@@ -8,4 +8,4 @@
     layout = "de";
     variant = "";
   };
-};
+}
