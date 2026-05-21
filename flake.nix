@@ -7,7 +7,7 @@
   outputs = { self, nixpkgs, home-manager, ... }: {
     nixosConfigurations.vm = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
-      specialArgs = { inherit home-manager };
+      specialArgs = { inherit home-manager; };
       modules = [ ./hosts/vm/configuration.nix ];
     };
   };
