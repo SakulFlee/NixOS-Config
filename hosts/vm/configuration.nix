@@ -25,5 +25,10 @@
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
 
+  # Auto-Login
+  services.displayManager.autoLogin = {
+    enable = true;
+    user = "sakulflee";
+  };
 }
 
