@@ -11,6 +11,7 @@
     ../../shared/packages/_default.nix
     ../../shared/ssh.nix
     ../../shared/gpg.nix
+    ../../shared/qemu_guest.nix
   ];
 
   # Hostname
