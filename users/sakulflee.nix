@@ -35,15 +35,6 @@
 
     programs.zsh = {
       enable = true;
-
-      initContent = ''
-        # Automatically launch Hyprland via UWSM when logging into TTY1
-	if [ "$(tty)" = "/dev/tty1" ]; then
-	  if uwsm check may-start; then
-	    exec uwsm start hyprland-uwsm.desktop
-	  fi
-	fi
-      '';
     };
 
     programs.waybar = {
@@ -53,6 +44,15 @@
     programs.kitty = {
       enable = true;
     };  
+
+    services.displayManager = {
+      sddm = {
+        enabled = true;
+	wayland.enable = true;
+      };
+
+      defaultSession = "hyprland-uwsm";
+    };
 
     wayland.windowManager.hyprland = {
       enable = true;
