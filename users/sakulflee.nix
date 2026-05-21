@@ -17,6 +17,8 @@
   };
 
   home-manager.users.sakulflee = { pkgs, ...}: {
+    home.stateVersion = "25.11";
+
     home.packages = [
       pkgs.htop
       pkgs.btop
