@@ -1,6 +1,7 @@
 { lib, pkgs, ... }: {
   imports = [
     ./hardware.nix
+    ../../users/sakulflee.nix
     ../../shared/kernel.nix
     ../../shared/display_server/wayland.nix
     ../../shared/timezone.nix
