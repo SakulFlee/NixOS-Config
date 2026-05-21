@@ -16,8 +16,10 @@
   };
 
   # Login Manager
-  programs.regreet = {
+  programs.sddm = {
     enable = true;
+
+    wayland.enable = true;
   };
 
   # Hint Electron apps to use Wayland
