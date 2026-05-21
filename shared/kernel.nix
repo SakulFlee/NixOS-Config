@@ -1,3 +1,3 @@
 { pkgs, ... }: {
-  boot.kernelPackages = pkgs.linuxPackage_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 }
