@@ -26,8 +26,11 @@
 
     programs.git = {
       enable = true;
-      userName = "@SakulFlee | Lukas Weber";
-      userEmail = "dev@sakul-flee.de";
+
+      settings = {
+      	user.name = "@SakulFlee | Lukas Weber";
+      	user.email = "dev@sakul-flee.de";
+      };
     };
 
     programs.zsh = {
