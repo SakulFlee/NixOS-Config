@@ -1,2 +1,4 @@
-# xServer = false -> Wayland
-services.xserver.enable = false;
+{ ... }: {
+  # xServer = false -> Wayland
+  services.xserver.enable = false;
+}
