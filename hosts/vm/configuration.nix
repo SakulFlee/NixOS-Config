@@ -2,13 +2,10 @@
   imports = [
     ./hardware.nix
     ../../users/sakulflee.nix
-    ../../shared/kernel.nix
+    ../../shared/_defaults.nix
     ../../shared/display_server/wayland.nix
-    ../../shared/timezone.nix
-    ../../shared/language.nix
     ../../shared/networkmanager.nix
     ../../shared/audio/pulsewire.nix
-    ../../shared/packages/_default.nix
     ../../shared/ssh.nix
     ../../shared/gpg.nix
     ../../shared/qemu_guest.nix
