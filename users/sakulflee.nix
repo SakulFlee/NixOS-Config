@@ -40,7 +40,7 @@
         # Automatically launch Hyprland via UWSM when logging into TTY1
 	if [ "$(tty)" = "/dev/tty1" ]; then
 	  if uwsm check may-start; then
-	    exec uwsm start hyprland.desktop
+	    exec uwsm start hyprland-uwsm.desktop
 	  fi
 	fi
       '';
