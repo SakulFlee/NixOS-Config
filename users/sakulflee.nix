@@ -46,6 +46,15 @@
       enable = true;
       settings = {
         monitor = ",preferred,auto,1";
+
+	input = {
+	  kb_layout = "de";
+	  kb_variant = "";
+	  # kb_options = "caps:escape"; # Maps caps lock to escape
+
+	  follow_mouse = 1; # Focus follows mouse movement
+	  sensitivity = 0;
+	};
       };
     };
   };
