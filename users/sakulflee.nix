@@ -56,9 +56,9 @@
 	];
 
 	bind = [
-	  "$mod, RETURN, exec, kitty"
-	  "$mod, Q, killactive"
-	  "$mod, M, exit"
+	  "SUPER, RETURN, exec, kitty"
+	  "SUPER, Q, killactive"
+	  "SUPER, M, exit"
 	];
 
 	decoration = {

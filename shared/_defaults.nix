@@ -5,6 +5,7 @@
     ./language.nix
     ./timezone.nix
     ./home-manager.nix
+    ./fonts.nix
     ./packages/_default.nix
   ];
 }
