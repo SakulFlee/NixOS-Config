@@ -4,6 +4,7 @@
     ../../users/sakulflee.nix
     ../../shared/_defaults.nix
     ../../shared/display_server/wayland.nix
+    ../../shared/display_environment/hyprland.nix
     ../../shared/networkmanager.nix
     ../../shared/audio/pulsewire.nix
     ../../shared/ssh.nix
@@ -18,10 +19,6 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/vda";
   boot.loader.grub.useOSProber = false;
-
-  # Enable the GNOME Desktop Environment.
-  services.desktopManager.gnome.enable = true;
-  services.displayManager.gdm.enable = true;
 
   # Auto-Login
   services.displayManager.autoLogin = {
