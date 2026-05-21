@@ -15,4 +15,21 @@
       # ...
     ];
   };
+
+  home-manager.users.sakulflee = { pkgs, ...}: {
+    home.packages = [
+      pkgs.htop
+      pkgs.btop
+    ];
+
+    programs.git = {
+      enable = true;
+      userName = "@SakulFlee | Lukas Weber";
+      userEmail = "dev@sakul-flee.de";
+    };
+
+    programs.zsh = {
+      enable = true;
+    };
+  };
 }
