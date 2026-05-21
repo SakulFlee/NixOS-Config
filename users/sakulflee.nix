@@ -15,4 +15,10 @@
       # ...
     ];
   };
+
+  home-manager.users.sakulflee = { pkgs, ...}: {
+    home.stateVersion = "25.11";
+
+    home.packages = [ pkgs.atool pkgs.httpie ];
+  };
 }

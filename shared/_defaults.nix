@@ -4,6 +4,7 @@
     ./kernel.nix
     ./language.nix
     ./timezone.nix
+    ./home-manager.nix
     ./packages/_default.nix
   ];
 }
