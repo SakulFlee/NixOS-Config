@@ -1,3 +1,3 @@
 { ... }: {
-  virtualization.qemu.guestAgent.enable = true;
+  virtualisation.qemu.guestAgent.enable = true;
 }
