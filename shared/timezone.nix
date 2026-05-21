@@ -1,0 +1,3 @@
+{ ... }: {
+  time.zimeZone = "Europe/Berlin";
+}
