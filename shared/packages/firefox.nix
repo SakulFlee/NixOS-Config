@@ -1,0 +1,3 @@
+{ ... }: {
+  packages.firefox.enable = true;
+}

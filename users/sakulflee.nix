@@ -1,11 +1,15 @@
 { pkgs, ... }: {
   users.users.sakulflee = {
-    isNormalUser = true;
     description = "SakulFlee";
+
+    isNormalUser = true;
+    
     extraGroups = [ 
       "networkmanager" 
       "wheel" 
     ];
+
+    shell = pkgs.zsh;
 
     packages = with pkgs; [
       # ...
