@@ -3,6 +3,6 @@
   outputs = { self, nixpkgs }: {
     nixosConfigurations.vm = nixpkgs.lib.nixosSystem {
       modules = [ ./hosts/vm/configuration.nix ];
-    }
+    };
   };
 }
