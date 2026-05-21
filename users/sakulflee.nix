@@ -33,5 +33,20 @@
     programs.zsh = {
       enable = true;
     };
+
+    programs.waybar = {
+      enable = true;
+    };
+
+    programs.kitty = {
+      enable = true;
+    };  
+
+    wayland.windowManager.hyprland = {
+      enable = true;
+      settings = {
+        monitor = ",preferred,auto,1";
+      };
+    };
   };
 }
