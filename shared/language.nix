@@ -5,7 +5,7 @@
 
   # Only needed in x11
   services.xserver.xkb = {
-    layout = "de"
+    layout = "de";
     variant = "";
   }
 }
