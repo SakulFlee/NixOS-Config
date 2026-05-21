@@ -21,16 +21,10 @@
   boot.loader.grub.device = "/dev/vda";
   boot.loader.grub.useOSProber = false;
 
-  # Auto-Login
-  services.displayManager.autoLogin = {
-    enable = true;
-    user = "sakulflee";
-  };
-
   # SDDM
   services.displayManager = {
     sddm = {
-      enabled = true;
+      enable = true;
       wayland.enable = true;
     };
 
