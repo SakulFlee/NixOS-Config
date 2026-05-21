@@ -26,5 +26,15 @@
     enable = true;
     user = "sakulflee";
   };
+
+  # SDDM
+  services.displayManager = {
+    sddm = {
+      enabled = true;
+      wayland.enable = true;
+    };
+
+    defaultSession = "hyprland-uwsm";
+  };
 }
 

@@ -45,15 +45,6 @@
       enable = true;
     };  
 
-    services.displayManager = {
-      sddm = {
-        enabled = true;
-	wayland.enable = true;
-      };
-
-      defaultSession = "hyprland-uwsm";
-    };
-
     wayland.windowManager.hyprland = {
       enable = true;
       systemd.enable = false; # Managed by UWSM!
