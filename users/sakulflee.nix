@@ -50,6 +50,25 @@
       settings = {
         monitor = ",preferred,auto,1";
 
+	exec-once = [
+	  "waybar"
+	  "swww-daemon"
+	];
+
+	bind = [
+	  "$mod, RETURN, exec, kitty"
+	  "$mod, Q, killactive"
+	  "$mod, M, exit"
+	];
+
+	decoration = {
+	  rounding = 10;
+	  blur = {
+	    enabled = true;
+	    size = 3;
+	  };
+	};
+
 	input = {
 	  kb_layout = "de";
 	  kb_variant = "";
