@@ -47,6 +47,7 @@
 
     wayland.windowManager.hyprland = {
       enable = true;
+      systemd.enable = false; # Managed by UWSM!
       settings = {
         monitor = ",preferred,auto,1";
 
