@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   imports = [
-    _allowUnfree.nix
+    ./_allowUnfree.nix
   ];
 
   environment.systemPackages = with pkgs; [
