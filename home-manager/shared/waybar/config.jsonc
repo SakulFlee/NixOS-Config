@@ -1,0 +1,71 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 4,
+    "content-margin": 0,
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "network",
+        "cpu",
+        "memory",
+        "battery",
+        "pulseaudio",
+        "tray"
+    ],
+    "modules-left-center": "left",
+    "modules-center-center": "center",
+    "modules-right-center": "right",
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name:classic}",
+        "on-click": "activate"
+    },
+    "hyprland/window": {
+        "format": " {title}",
+        "separate-outputs": true
+    },
+    "clock": {
+        "format": " {:%H:%M  %d.%m.%Y}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    },
+    "network": {
+        "format-wifi": "  {essid} ",
+        "format-ethernet": " 󰈀 {ipaddr} ",
+        "format-disconnected": " 󰖪 Disconnected ",
+        "tooltip-format": " {essid} "
+    },
+    "cpu": {
+        "format": "  {usage}% ",
+        "tooltip": false
+    },
+    "memory": {
+        "format": " ��内存 {percentage}% ",
+        "tooltip": false
+    },
+    "battery": {
+        "format": " {icon} {capacity}% ",
+        "format-charging": " 󱐋 {capacity}% ",
+        "format-plugged": "  {capacity}% ",
+        "format-icons": {
+            "default": "    "
+        },
+        "tooltip": false
+    },
+    "pulseaudio": {
+        "format": "  {volume}% ",
+        "format-muted": "  Muted ",
+        "on-click": "pavucontrol"
+    },
+    "tray": {
+        "spacing": 10
+    }
+}
