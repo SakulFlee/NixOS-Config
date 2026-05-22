@@ -13,7 +13,6 @@
     mako
     hyprsunset
     hyprpwcenter
-    hyprshutdown
 
     # General Software
     discord
