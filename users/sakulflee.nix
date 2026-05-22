@@ -2,6 +2,8 @@
   users.users.sakulflee = {
     description = "SakulFlee";
 
+    initialPassword = "nixos-temp-password";
+
     isNormalUser = true;
     
     extraGroups = [ 
