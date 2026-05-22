@@ -21,7 +21,7 @@
 
     # General Software
     discord
-    floorp
+    floorp-bin
     vlc
   ];
 }
