@@ -2,6 +2,7 @@
   imports = [
     ./hardware.nix
     ../../users/sakulflee.nix
+    ../../users/root.nix
     ../../shared/_defaults.nix
     ../../shared/system-vm.nix
   ];
