@@ -3,14 +3,7 @@
     ./hardware.nix
     ../../users/sakulflee.nix
     ../../shared/_defaults.nix
-    ../../shared/display_server/wayland.nix
-    ../../shared/desktop_environment/hyprland.nix
-    ../../shared/networkmanager.nix
-    ../../shared/audio/pulsewire.nix
-    ../../shared/ssh.nix
-    ../../shared/gpg.nix
-    ../../shared/qemu_guest.nix
-    ../../shared/experimental.nix
+    ../../shared/system-vm.nix
   ];
 
   # Hostname

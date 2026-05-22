@@ -1,11 +1,11 @@
 { ... }: {
   imports = [
-    ./_system_state.nix
-    ./kernel.nix
-    ./language.nix
-    ./timezone.nix
+    ./system-core.nix
+    ./system-network.nix
+    ./system-desktop.nix
+    ./system-security.nix
+    ./system-packages.nix
+    ./system-programs.nix
     ./home-manager.nix
-    ./fonts.nix
-    ./packages/_default.nix
   ];
 }
