@@ -8,12 +8,14 @@
       exec-once = [
         "waybar"
         "swww-daemon"
+        "hyprpolkitagent"
       ];
 
       bind = [
         "SUPER, RETURN, exec, kitty"
         "SUPER, Q, killactive"
         "SUPER, M, exit"
+        "SUPER, R, exec, hyprlauncher"
       ];
 
       decoration = {

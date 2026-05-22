@@ -4,5 +4,8 @@
     neovim
     curl
     git
+
+    # Infrastructure
+    docker
   ];
 }
