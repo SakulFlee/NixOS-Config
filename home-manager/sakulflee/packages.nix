@@ -8,13 +8,15 @@
     hyprlauncher
     nnn
     thunar
+    fzf
 
     # System Utilities
     mako
     hyprsunset
     hyprpwcenter
-    hyprshutdown # I will keep this in case they have a custom binary, but we add wlogout for the system
+    hyprshutdown
     wlogout
+    wlsunset
     hyprlock
     hypridle
 
