@@ -27,7 +27,7 @@
     ];
 
     home.file.".config/nvim" = {
-      source = ../../neovim-config();
+      source = ../../neovim-config;
       recursive = true;
     };
 
