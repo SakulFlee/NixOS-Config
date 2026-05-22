@@ -29,7 +29,7 @@
   };
 
   # Touchpad
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   # Printing
   services.printing.enable = true;
