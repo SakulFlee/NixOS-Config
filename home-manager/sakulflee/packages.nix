@@ -1,6 +1,7 @@
 { pkgs, ... }: {
-  home.packages = [
-    pkgs.htop
-    pkgs.btop
+  home.packages = with pkgs; [
+    htop
+    btop
+    lmstudio
   ];
 }
