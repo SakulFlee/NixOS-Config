@@ -18,9 +18,10 @@
 
   home-manager.users.sakulflee = { pkgs, ...}: {
     imports = [
-      ./sakulflee/packages.nix
-      ./sakulflee/programs.nix
-      ./sakulflee/hyprland.nix
+      ../../home-manager/sakulflee/packages.nix
+      ../../home-manager/sakulflee/programs.nix
+      ../../home-manager/shared/hyprland.nix
+      ../../home-manager/shared/waybar.nix
     ];
 
     home.stateVersion = "25.11";
