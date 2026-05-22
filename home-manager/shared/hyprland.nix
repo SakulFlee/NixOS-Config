@@ -13,9 +13,17 @@
 
       bind = [
         "SUPER, RETURN, exec, kitty"
+        "SUPER, T, exec, kitty"
+        "CTRL ALT, T, exec, kitty"
         "SUPER, Q, killactive"
         "SUPER, M, exit"
         "SUPER, R, exec, hyprlauncher"
+        "SUPER, L, exec, hyprlock"
+        "CTRL ALT, L, exec, hyprsunset"
+        "SUPER, X, exec, wlogout"
+        "SUPER, E, exec, thunar"
+        "SUPER, B, exec, floorp"
+        "SUPER, D, exec, discord"
       ];
 
       decoration = {
