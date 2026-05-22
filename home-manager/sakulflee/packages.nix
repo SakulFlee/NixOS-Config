@@ -14,7 +14,6 @@
     mako
     hyprsunset
     hyprpwcenter
-    hyprshutdown
     wlogout
     wlsunset
     hyprlock
