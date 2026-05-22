@@ -7,7 +7,7 @@
     # Application Launcher & Tools
     hyprlauncher
     nnn
-    thunar
+    xfce.thunar
     fzf
 
     # System Utilities
