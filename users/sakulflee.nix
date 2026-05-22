@@ -2,7 +2,7 @@
   users.users.sakulflee = {
     description = "SakulFlee";
 
-    initialPassword = "nixos-temp-password";
+    initialPassword = "nixos";
 
     isNormalUser = true;
     
