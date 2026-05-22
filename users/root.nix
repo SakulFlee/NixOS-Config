@@ -1,7 +1,6 @@
 { pkgs, ... }: {
   users.users.root = {
-    isSudo = true;
-    # Password should be set via 'passwd' command for security
+    # Root is the superuser by default
   };
 
   home-manager.users.root = { pkgs, ... }: {
