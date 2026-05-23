@@ -29,7 +29,7 @@
       theme = "catppuccin-mocha-mauve";
     };
 
-    defaultSession = "hyprland-uwsm";
+    defaultSession = "kde-plasma";
   };
 }
 
