@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, unstable, ... }: {
   users.users.sakulflee = {
     description = "SakulFlee";
 
@@ -18,7 +18,7 @@
     ];
   };
 
-  home-manager.users.sakulflee = { pkgs, unstable, ...}: {
+  home-manager.users.sakulflee = { pkgs, ...}: {
     imports = [
       ../home-manager/sakulflee/_defaults.nix
     ];
