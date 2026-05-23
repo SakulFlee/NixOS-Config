@@ -1,1 +1,6 @@
+# Builds
 result/
+
+# VM
+VM.qcow2
+

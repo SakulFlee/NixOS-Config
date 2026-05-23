@@ -1,14 +1,11 @@
 { pkgs, ... }: {
-  imports = [
-    ./_allowUnfree.nix
-    ./firefox.nix
-    ./zsh.nix
-  ];
-
   environment.systemPackages = with pkgs; [
+    # Core utilities
     neovim
     curl
     git
-    firefox
+
+    # Infrastructure
+    docker
   ];
 }
