@@ -3,6 +3,7 @@
     htop
     btop
     lmstudio
+    waybar
 
     # Application Launcher & Tools
     hyprlauncher
@@ -14,6 +15,7 @@
     mako
     hyprsunset
     hyprpwcenter
+    hyprshutdown
     wlogout
     wlsunset
     hyprlock
