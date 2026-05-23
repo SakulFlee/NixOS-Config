@@ -6,12 +6,13 @@
 
   # Bootloader
   boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/disk/by-uuid/2AAA-B9A7";
+  boot.loader.grub.efi.enable = true;
+  boot.loader.grub.efi.installAsBootOption = true;
   boot.loader.grub.useOSProber = false;
 
   # Disk config
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/861f305b-5dd5-4500-b602-2e286dca334d";
+    { device = "/dev/disk/by-uuid/fad2025e-e33e-45a5-af9a-8338cca5ee97";
       fsType = "ext4";
     };
 
