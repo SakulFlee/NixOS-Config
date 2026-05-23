@@ -1,6 +1,7 @@
 { ... }: {
   imports = [
     ./system-core.nix
+    ./system-gc.nix
     ./system-network.nix
     ./system-desktop.nix
     ./system-security.nix
