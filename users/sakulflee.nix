@@ -18,7 +18,7 @@
     ];
   };
 
-  home-manager.users.sakulflee = { pkgs, ...}: {
+  home-manager.users.sakulflee = { pkgs, unstable, ...}: {
     imports = [
       ../home-manager/sakulflee/_defaults.nix
     ];

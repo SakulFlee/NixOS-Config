@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, unstable, ... }: {
   home.packages = with pkgs; [
     htop
     btop
@@ -8,6 +8,6 @@
     vlc
     keepassxc
     ollama
-    lmstudio
+    unstable.lmstudio
   ];
 }
