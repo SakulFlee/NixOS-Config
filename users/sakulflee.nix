@@ -20,8 +20,7 @@
 
   home-manager.users.sakulflee = { pkgs, ...}: {
     imports = [
-      ../home-manager/sakulflee/packages.nix
-      ../home-manager/sakulflee/programs.nix
+      ../home-manager/sakulflee/_defaults.nix
     ];
 
     home.file.".config/nvim" = {
