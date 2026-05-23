@@ -8,7 +8,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }: {
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }: {
     nixosConfigurations.vm = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { 
