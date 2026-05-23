@@ -14,7 +14,7 @@
       modules = [ ./hosts/vm/configuration.nix ];
     };
 
-    nixosConfigurations.cindry = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.Cindry = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit home-manager; };
       modules = [ ./hosts/cindry/configuration.nix ];
