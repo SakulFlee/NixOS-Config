@@ -12,7 +12,7 @@
 
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-kde ];
+    extraPortals = with pkgs; [ kdePackages.xdg-desktop-portal-kde ];
   };
 
   # Audio
