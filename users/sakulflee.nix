@@ -23,8 +23,7 @@
       ../home-manager/sakulflee/packages.nix
       ../home-manager/sakulflee/programs.nix
       ../home-manager/sakulflee/services.nix
-      ../home-manager/shared/hyprland.nix
-      ../home-manager/shared/waybar.nix
+      ../home-manager/shared/kde-plasma6.nix
     ];
 
     home.file.".config/nvim" = {
