@@ -13,7 +13,10 @@
       system = "x86_64-linux";
       specialArgs = { 
         inherit home-manager; 
-        unstable = import nixpkgs-unstable.outPath { system = "x86_64-linux"; }; 
+        unstable = import nixpkgs-unstable.outPath { 
+          system = "x86_64-linux"; 
+          config = { allowUnfree = true; }; 
+        }; 
       };
       modules = [ 
         ./hosts/vm/configuration.nix 
@@ -31,7 +34,10 @@
       system = "x86_64-linux";
       specialArgs = { 
         inherit home-manager; 
-        unstable = import nixpkgs-unstable.outPath { system = "x86_64-linux"; }; 
+        unstable = import nixpkgs-unstable.outPath { 
+          system = "x86_64-linux"; 
+          config = { allowUnfree = true; }; 
+        }; 
       };
       modules = [ 
         ./hosts/cindry/configuration.nix 
