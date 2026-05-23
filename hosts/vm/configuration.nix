@@ -29,7 +29,7 @@
       theme = "catppuccin-mocha-mauve";
     };
 
-    defaultSession = "kde-plasma";
+    defaultSession = "plasma";
   };
 }
 
