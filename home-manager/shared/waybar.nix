@@ -1,9 +1,8 @@
 { pkgs, ... }: {
   programs.waybar = {
     enable = true;
-    config = {
-      config = ./waybar/config.jsonc;
-      style = ./waybar/style.css;
-    };
   };
+
+  home.file.".config/waybar/config.jsonc".source = ./waybar/config.jsonc;
+  home.file.".config/waybar/style.css".source = ./waybar/style.css;
 }
