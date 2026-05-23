@@ -8,5 +8,6 @@
     vlc
     keepassxc
     ollama
+    lmstudio
   ];
 }

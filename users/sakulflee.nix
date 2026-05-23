@@ -23,10 +23,6 @@
       ../home-manager/sakulflee/_defaults.nix
     ];
 
-    home.packages = [
-      unstable.lmstudio
-    ];
-
     home.file.".config/nvim" = {
       source = ../neovim-config;
       recursive = true;
