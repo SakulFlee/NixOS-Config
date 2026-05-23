@@ -6,8 +6,8 @@
 
   # Bootloader
   boot.loader.grub.enable = true;
-  boot.loader.grub.efi.enable = true;
-  boot.loader.grub.efi.installAsBootOption = true;
+  boot.loader.grub.device = "nodevice";
+  boot.loader.grub.efiSupport = true;
   boot.loader.grub.useOSProber = false;
 
   # Disk config
