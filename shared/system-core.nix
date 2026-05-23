@@ -16,6 +16,9 @@
   # Experimental features
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  # Unfree packages
+  nixpkgs.config.allowUnfree = true;
+
   # Kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
