@@ -15,7 +15,16 @@
         inherit home-manager; 
         unstable = import nixpkgs-unstable.outPath { system = "x86_64-linux"; }; 
       };
-      modules = [ ./hosts/vm/configuration.nix ];
+      modules = [ 
+        ./hosts/vm/configuration.nix 
+        ({ unstable, ... }: {
+          nixpkgs.overlays = [
+            (final: prev: {
+              lmstudio = unstable.lmstudio;
+            })
+          ];
+        })
+      ];
     };
 
     nixosConfigurations.Cindry = nixpkgs.lib.nixosSystem {
@@ -24,7 +33,16 @@
         inherit home-manager; 
         unstable = import nixpkgs-unstable.outPath { system = "x86_64-linux"; }; 
       };
-      modules = [ ./hosts/cindry/configuration.nix ];
+      modules = [ 
+        ./hosts/cindry/configuration.nix 
+        ({ unstable, ... }: {
+          nixpkgs.overlays = [
+            (final: prev: {
+              lmstudio = unstable.lmstudio;
+            })
+          ];
+        })
+      ];
     };
   };
 }
