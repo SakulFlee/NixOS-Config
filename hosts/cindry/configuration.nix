@@ -4,6 +4,7 @@
     ../../users/sakulflee.nix
     ../../users/root.nix
     ../../shared/_defaults.nix
+    ../../shared/syncthing.nix
   ];
 
   # Hostname
