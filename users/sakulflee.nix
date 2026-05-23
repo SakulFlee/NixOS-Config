@@ -22,7 +22,6 @@
     imports = [
       ../home-manager/sakulflee/packages.nix
       ../home-manager/sakulflee/programs.nix
-      ../home-manager/sakulflee/services.nix
       ../home-manager/shared/kde-plasma6.nix
     ];
 
