@@ -19,6 +19,9 @@
     device = "/dev/disk/by-uuid/dde0c8d0-6d7c-4cb5-ac79-5075540c8fe1"; 
   }];
 
+  # ZRAM
+  zramSwap.enable = true;
+
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # GPU config
