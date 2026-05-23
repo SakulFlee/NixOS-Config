@@ -17,7 +17,6 @@
 
   swapDevices = [{ 
     device = "/dev/disk/by-uuid/dde0c8d0-6d7c-4cb5-ac79-5075540c8fe1"; 
-    fsType = "swap";
   }];
 
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
