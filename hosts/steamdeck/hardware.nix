@@ -15,46 +15,11 @@
     device = "/dev/disk/by-uuid/dde0c8d0-6d7c-4cb5-ac79-5075540c8fe1"; 
   }];
 
+  # Steam Hardware
+  hardware.steam-hardware.enable = true;
+
   # ZRAM
   zramSwap.enable = true;
-
-  hardware.enableRedistributableFirmware = true;
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
-  # GPU config
-  hardware.graphics = {
-    enable = true;
-    extraPackages = [ pkgs.mesa ];
-  };
-  services.xserver.videoDrivers = [
-    "amdgpu"
-    "nvidia"
-  ];
-  hardware.nvidia = {
-    # Modesetting
-    modesetting.enable = true;
-
-    # Experimental!
-    powerManagement.enable = true;
-    powerManagement.finegrained = true;
-
-    # Driver version
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-    open = true;
-
-    # Include settings app?
-    nvidiaSettings = true;
-
-    # Prime
-    prime = {
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
-      nvidiaBusId = "PCI:1:0:0";
-      amdgpuBusId = "PCI:5:0:0";
-    };
-  };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
