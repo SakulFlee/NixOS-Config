@@ -34,5 +34,30 @@
         })
       ];
     };
+
+    nixosConfigurations.SteamDeck = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = { 
+        inherit home-manager; 
+        unstable = import nixpkgs-unstable.outPath { 
+          system = "x86_64-linux"; 
+          config = { allowUnfree = true; }; 
+        }; 
+        sunshine-pr = import nixpkgs-sunshine-pr.outPath { 
+          system = "x86_64-linux"; 
+        }; 
+      };
+      modules = [ 
+        ./hosts/steamdeck/configuration.nix 
+        ({ unstable, sunshine-pr, ... }: {
+          nixpkgs.overlays = [
+            (final: prev: {
+              lmstudio = unstable.lmstudio;
+              sunshine = sunshine-pr.sunshine;
+            })
+          ];
+        })
+      ];
+    };
   };
 }
