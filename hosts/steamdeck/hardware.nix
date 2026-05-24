@@ -27,7 +27,19 @@
   # GPU
   hardware.graphics = {
     enable = true;
-    extraPackages = [ pkgs.mesa ];
+    enable32Bit = true;
+    extraPackages = with pkgs; [ 
+      mesa 
+      amdvlk
+      mesa.drivers
+    ];
+    extraPackages32 = with pkgs; [
+      driversi686Linux.amdvlk
+      driversi686Linux.mesa.drivers
+    ];
+  };
+  environment.sessionVariables = {
+    AMD_VULKAN_ICD = "RADV";
   };
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
