@@ -16,7 +16,7 @@
     shell = pkgs.zsh;
 
     packages = with pkgs; [
-      "faugus-launcher"
+      faugus-launcher
     ];
   };
 
