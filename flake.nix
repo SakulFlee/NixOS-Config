@@ -10,7 +10,7 @@
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-sunshine-pr, home-manager, ... }: {
-    nixosConfigurations.vm = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.Cindry = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { 
         inherit home-manager; 
@@ -23,33 +23,12 @@
         }; 
       };
       modules = [ 
-        ./hosts/vm/configuration.nix 
+        ./hosts/cindry/configuration.nix 
         ({ unstable, sunshine-pr, ... }: {
           nixpkgs.overlays = [
             (final: prev: {
               lmstudio = unstable.lmstudio;
               sunshine = sunshine-pr.sunshine;
-            })
-          ];
-        })
-      ];
-    };
-
-    nixosConfigurations.Cindry = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { 
-        inherit home-manager; 
-        unstable = import nixpkgs-unstable.outPath { 
-          system = "x86_64-linux"; 
-          config = { allowUnfree = true; }; 
-        }; 
-      };
-      modules = [ 
-        ./hosts/cindry/configuration.nix 
-        ({ unstable, ... }: {
-          nixpkgs.overlays = [
-            (final: prev: {
-              lmstudio = unstable.lmstudio;
             })
           ];
         })
