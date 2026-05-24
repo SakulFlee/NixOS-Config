@@ -6,4 +6,6 @@
     gamescopeSession.enable = true;
     protontricks.enable = true;
   };
+
+  services.displayManager.defaultSession = "steam";
 }

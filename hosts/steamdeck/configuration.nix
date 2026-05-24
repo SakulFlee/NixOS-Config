@@ -12,5 +12,11 @@
 
   # Hostname
   networking.hostName = "SteamDeck";
+
+  # AutoLogin
+  services.displayManager.autoLogin.enable = {
+    enable = true;
+    user = "sakulflee";
+  };
 }
 
