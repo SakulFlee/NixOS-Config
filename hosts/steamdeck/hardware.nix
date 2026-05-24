@@ -30,12 +30,10 @@
     enable32Bit = true;
     extraPackages = with pkgs; [ 
       mesa 
-      amdvlk
-      mesa.drivers
+      amdgpu_top
     ];
     extraPackages32 = with pkgs; [
-      driversi686Linux.amdvlk
-      driversi686Linux.mesa.drivers
+      driversi686Linux.mesa
     ];
   };
   environment.sessionVariables = {
