@@ -1,13 +1,4 @@
 { config, lib, pkgs, modulesPath, ... }: {
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
-
-  # Bootloader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
   # Disk config
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/fad2025e-e33e-45a5-af9a-8338cca5ee97";
@@ -64,12 +55,6 @@
       amdgpuBusId = "PCI:5:0:0";
     };
   };
-
-  # WiFi Card (prevents speed and reliability issues)
-  boot.extraModprobeConfig = ''
-    options mt7921e disable_aspm=1
-  '';
-  networking.networkmanager.wifi.powersave = false;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
