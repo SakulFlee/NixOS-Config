@@ -31,5 +31,7 @@
 
     defaultSession = "plasma";
   };
+
+  services.sunshine.enable = true;
 }
 

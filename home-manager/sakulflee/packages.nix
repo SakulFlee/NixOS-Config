@@ -9,5 +9,6 @@
     keepassxc
     ollama
     lmstudio
+    sunshine
   ];
 }

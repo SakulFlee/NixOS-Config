@@ -37,10 +37,44 @@
         "type": "github"
       }
     },
+    "nixpkgs-sunshine-pr": {
+      "locked": {
+        "lastModified": 1779191467,
+        "narHash": "sha256-f7YjZaMnsqB3LluV19PvqfLeidEPYmtMMc3Iur6Xcj0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "9672041e168ea7e431074220bb71920ddbe4106d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "pull/521906/head",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-unstable": {
+      "locked": {
+        "lastModified": 1779536132,
+        "narHash": "sha256-q+fF42iv/geEbHfgSzy3tS0FF/EyD6XTZ98E6yxiBO8=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "3d8f0f3f72a6cd4d93d0ad13203f2ea1cb7e1456",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nixpkgs-sunshine-pr": "nixpkgs-sunshine-pr",
+        "nixpkgs-unstable": "nixpkgs-unstable"
       }
     }
   },
