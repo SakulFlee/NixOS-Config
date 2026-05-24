@@ -16,7 +16,7 @@
     shell = pkgs.zsh;
 
     packages = with pkgs; [
-      # System-level packages for this user
+      "faugus-launcher"
     ];
   };
 
