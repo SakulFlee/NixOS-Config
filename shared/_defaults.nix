@@ -8,5 +8,6 @@
     ./system-packages.nix
     ./system-programs.nix
     ./home-manager.nix
+    ./package-faugus.nix
   ];
 }
