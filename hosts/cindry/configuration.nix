@@ -6,6 +6,7 @@
     ../../shared/_defaults.nix
     ../../shared/syncthing.nix
     ../../shared/steam.nix
+    ../../shared/desktop-gnome.nix
   ];
 
   # Hostname

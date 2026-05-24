@@ -5,6 +5,7 @@
     ../../users/root.nix
     ../../shared/_defaults.nix
     ../../shared/system-vm.nix
+    ../../shared/desktop-kde.nix
   ];
 
   # Hostname
