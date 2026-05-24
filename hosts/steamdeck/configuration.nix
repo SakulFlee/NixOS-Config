@@ -2,6 +2,7 @@
   imports = [
     ./hardware.nix
     ./boot.nix
+    ./gamescope-and-steam.nix
     ../../users/sakulflee.nix
     ../../shared/_defaults.nix
     ../../shared/syncthing.nix
