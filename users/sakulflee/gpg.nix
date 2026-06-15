@@ -73,7 +73,7 @@
 
   # Import GPG key
   home.file."${config.programs.gpg.homedir}/.import-token" = {
-    text = "timestamp: 2026"; 
+    text = "dummy"; 
     onChange = ''
       if ! ${pkgs.gnupg}/bin/gpg --list-secret-keys 0A96C9AA72DB019DE171E7F77F0C6AF1F56A9E05 >/dev/null 2>&1; then
         echo "Importing private GPG key safely..."
