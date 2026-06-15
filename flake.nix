@@ -9,7 +9,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-sunshine-pr, home-manager, ... }:@inputs {
+  outputs = { self, nixpkgs, nixpkgs-unstable, nixpkgs-sunshine-pr, home-manager, ... }@inputs: {
     nixosConfigurations.Cindry = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { 
