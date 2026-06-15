@@ -7,6 +7,6 @@
 
     # Infrastructure
     docker
-    xorg.xauth
+    xauth
   ];
 }
