@@ -11,9 +11,8 @@
   # Tell SOPS which keys to use for decryption on the hardware
   sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
-  sops.secrets.smb-secrets = {
-    format = "yaml";
-  };
+  # Define the secret
+  sops.secrets.smb-secrets = {};
 
   # Install the SMB/CIFS client utilities
   environment.systemPackages = [ pkgs.cifs-utils ];
