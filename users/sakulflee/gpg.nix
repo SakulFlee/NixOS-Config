@@ -18,7 +18,7 @@
       # Only import if GPG doesn't already have this key active
       if ! ${pkgs.gnupg}/bin/gpg --list-secret-keys 0A96C9AA72DB019DE171E7F77F0C6AF1F56A9E05 >/dev/null 2>&1; then
         echo "Importing private GPG key from SOPS..."
-        ${pkgs.gnupg}/bin/gpg --import ${config.sops.secrets.gpg-private-key.path}
+        ${pkgs.gnupg}/bin/gpg --import ${config.sops.secrets."gpg-private-key".path}
       fi
     '';
   };
