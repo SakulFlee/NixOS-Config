@@ -13,6 +13,7 @@
     nixosConfigurations.Cindry = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { 
+        inherit inputs; 
         inherit home-manager; 
         unstable = import nixpkgs-unstable.outPath { 
           system = "x86_64-linux"; 
@@ -38,6 +39,7 @@
     nixosConfigurations.SteamDeck = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { 
+        inherit inputs; 
         inherit home-manager; 
         unstable = import nixpkgs-unstable.outPath { 
           system = "x86_64-linux"; 
