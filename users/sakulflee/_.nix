@@ -23,8 +23,7 @@
   home-manager.users.sakulflee = { pkgs, ...}: {
     imports = [
       ../shared/kde/plasma-manager.nix
-      ./home-manager/packages.nix
-      ./home-manager/programs.nix
+      ./home-manager/_.nix
     ];
 
     home.file.".config/nvim" = {
