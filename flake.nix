@@ -12,6 +12,12 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    
+    inputs.plasma-manager = {
+      url = "github:pjones/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs: 
