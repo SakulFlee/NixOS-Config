@@ -16,7 +16,7 @@
   };
 
   # Set GPG key
-  sops.gpg.privateKeys = [
+  sops.gnupg.privateKeys = [
     {
       name = "gpg-private-key";
     }
