@@ -1,5 +1,6 @@
 { ... }: {
   imports = [
+    ./sops.nix
     ./printing.nix
     ./touchpad.nix
     ./audio.nix

@@ -1,19 +1,4 @@
 { config, pkgs, inputs, ... }: {
-  # Enable sops-nix module
-  imports = [
-    inputs.sops-nix.nixosModules.sops
-  ];
-
-  # Tell SOPS where your encrypted file lives in your repo
-  sops.defaultSopsFile = ../secrets/nas-smb-credentials.yaml;
-  sops.defaultSopsFormat = "yaml";
-
-  # Tell SOPS which keys to use for decryption on the hardware
-  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-
-  # Define the secret
-  sops.secrets.smb-secrets = {};
-
   # Install the SMB/CIFS client utilities
   environment.systemPackages = [ pkgs.cifs-utils ];
 
