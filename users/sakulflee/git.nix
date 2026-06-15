@@ -6,7 +6,7 @@
       user.email = "dev@sakul-flee.de";
 
       signing = {
-        key = "0A96C9AA72DB019DE171E7F77F0C6AF1F56A9E05";
+        key = "0x7F0C6AF1F56A9E05";
         signByDefault = true;
       };
     };
