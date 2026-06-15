@@ -41,22 +41,23 @@
       };
     in {
       nixosConfigurations = {
-      Cindry = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = sharedArgs;
-        modules = [ 
-          ./hosts/cindry/configuration.nix 
-          sharedOverlayModule
-        ];
-      };
+        Cindry = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = sharedArgs;
+          modules = [ 
+            ./hosts/cindry/configuration.nix 
+            sharedOverlayModule
+          ];
+        };
 
-      SteamDeck = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = sharedArgs;
-        modules = [ 
-          ./hosts/steamdeck/configuration.nix 
-          sharedOverlayModule
-        ];
+        SteamDeck = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = sharedArgs;
+          modules = [ 
+            ./hosts/steamdeck/configuration.nix 
+            sharedOverlayModule
+          ];
+        };
       };
     };
   };
