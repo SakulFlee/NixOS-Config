@@ -1,4 +1,8 @@
 { config, pkgs, lib, ...}: {
+  imports = [
+    inputs.sops-nix.homeManagerModules.sops
+  ];
+
   programs.gpg = {
     enable = true;
 
