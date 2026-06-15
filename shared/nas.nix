@@ -9,7 +9,7 @@
   sops.defaultSopsFormat = "yaml";
 
   # Tell SOPS which keys to use for decryption on the hardware
-  sops.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  sops.gnupg.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
   # Extract the secret (SMB credentials) as binary
   sops.secrets.smb-secrets = {
