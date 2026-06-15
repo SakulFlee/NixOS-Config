@@ -6,6 +6,9 @@
     ../../shared/syncthing.nix
     ../../shared/steam.nix
     ../../shared/desktop.nix
+    ../../packages/sops.nix
+    ../../packages/files.nix
+    ../../packages/development.nix
   ];
 
   # Hostname
