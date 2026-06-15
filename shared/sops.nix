@@ -13,7 +13,4 @@
 
   # Define the secrets
   sops.secrets.smb-secrets = {};
-  sops.secrets.gpg-private-key = {
-    neededForUsers = true;
-  };
 }
