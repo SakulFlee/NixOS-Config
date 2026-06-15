@@ -1,7 +1,7 @@
 { lib, pkgs, ... }: {
   imports = [
     ./hardware.nix
-    ../../users/sakulflee.nix
+    ../../users/sakulflee/_.nix
     ../../shared/_defaults.nix
     ../../shared/syncthing.nix
     ../../shared/steam.nix
