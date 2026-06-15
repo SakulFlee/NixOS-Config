@@ -6,7 +6,7 @@
   programs.plasma = {
     enable = true;
     workspace = {
-      clickToOpen = true;
+      clickItemTo = "open";
       lookAndFeel = "org.kde.breezedark.desktop";
       wallpaper = "${pkgs.kdePackages.plasma-workspace-wallpapers}/share/wallpapers/Next/contents/images/5120x2880.png";
     };
