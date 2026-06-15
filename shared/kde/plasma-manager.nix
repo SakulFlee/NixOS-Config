@@ -18,13 +18,20 @@
       widgets = [
         {
           name = "org.kde.plasma.folder";
+          position = {
+            horizontal = 100;
+            vertical = 100;
+          };
+          size = {
+            width = 20;
+            height = 20;
+          };
           config = {
             General = {
               url = "file:///home/sakulflee/Sync/Desktop";
               sortMode = "2";    # Sort by Date
               alignment = "1";   # Icons on the Right
               arrangement = "1"; # Organize in Rows
-              horizontal = "false";
             };
           };
         }
