@@ -1,5 +1,7 @@
 { ... }: {
   imports = [
+    ./printing.nix
+    ./touchpad.nix
     ./audio.nix
     ./wayland.nix
     ./kde/_defaults.nix
