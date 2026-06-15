@@ -4,6 +4,8 @@ creation_rules:
       - age:
         # Evil-Donkey (Arch)
         - age1umxmep2f34wd85p3qvnua7udzlma0vrwhq7vhtwjjllaa7f8d3yshf0wwe
-        # Cindry
+        # Cindry (Host)
         - age1a3w7vvn728u7xsspluhffrggzyklgqervezhdamx7qn86c8v3dkq4x6zxy
+        # Cindry (User)
+        - age19tp8f5d84z5uyqdp86dyypwn0tt69yxrytj905xe73rglvz6r58smuesjt
 
