@@ -9,6 +9,9 @@
     defaultSopsFormat = osConfig.sops.defaultSopsFormat;
     age.sshKeyPaths   = osConfig.sops.age.sshKeyPaths;
 
+    # Use user SSH key to bypass Home-Manager being unable to access host SSH keys
+    age.sshKeyPaths   = [ "/home/sakulflee/.ssh/id_ed25519" ];
+
     # Declare secret to expose here
     secrets."gpg-private-key" = {};
   };
