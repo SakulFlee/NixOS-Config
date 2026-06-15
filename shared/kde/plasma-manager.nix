@@ -1,3 +1,5 @@
+# Use Home-Manger! 
+# Do not use directly in NixOS.
 { inputs, pkgs, ... }: {
   imports = [ inputs.plasma-manager.homeManagerModules.plasma-manager ];
 
