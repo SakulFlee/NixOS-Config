@@ -5,7 +5,6 @@
     ../../shared/_defaults.nix
     ../../shared/syncthing.nix
     ../../shared/steam.nix
-    ../../shared/desktop.nix
     ../../shared/nas.nix
     ../../packages/sops.nix
     ../../packages/files.nix
