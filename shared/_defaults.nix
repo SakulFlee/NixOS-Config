@@ -7,6 +7,8 @@
     ./system-security.nix
     ./system-packages.nix
     ./system-programs.nix
+    ./packages/files.nix
+    ./packages/development.nix
     ./home-manager.nix
   ];
 }
