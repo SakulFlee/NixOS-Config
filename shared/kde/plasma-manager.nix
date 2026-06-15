@@ -10,7 +10,6 @@
     workspace = {
       clickItemTo = "open";
       lookAndFeel = "org.kde.breezedark.desktop";
-      wallpaperPlugin = "org.kde.image";
       wallpaper = "/usr/share/wallpapers/cachyos-wallpapers/PurpleFeathers.png";
     };
 
