@@ -15,8 +15,12 @@
     secrets."gpg-private-key" = {};
   };
 
-  # Store secret GPG key into gpg homedir
-  sops.secrets."gpg-private-key".path = "${config.programs.gpg.homedir}/private-key.asc";
+  # Set GPG key
+  sops.gpg.privateKeys = [
+    {
+      name = "gpg-private-key";
+    }
+  ];
 
   programs.gpg = {
     enable = true;
