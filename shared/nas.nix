@@ -25,7 +25,7 @@
     fsType = "cifs";
     options = [
       # Crucial: Link to the decrypted runtime path provided by sops-nix
-      "credentials=${config.sops.secrets.smb-secrets.path}"
+      "credentials=/run/secrets/smb-secrets"
       
       "uid=1000"        # Maps files to your local user ID
       "gid=100"         # Maps files to the 'users' group ID
