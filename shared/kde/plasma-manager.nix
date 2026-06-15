@@ -24,6 +24,7 @@
               sortMode = "2";    # Sort by Date
               alignment = "1";   # Icons on the Right
               arrangement = "1"; # Organize in Rows
+              horizontal = "false";
             };
           };
         }
