@@ -1,10 +1,5 @@
 { pkgs, ...}:
 {
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [ kdePackages.xdg-desktop-portal-kde ];
-  };
-
   # Audio
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
@@ -14,10 +9,4 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-
-  # Touchpad
-  services.libinput.enable = true;
-
-  # Printing
-  services.printing.enable = true;
 }
