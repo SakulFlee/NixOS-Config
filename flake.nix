@@ -9,48 +9,43 @@
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs: {
-    nixosConfigurations.Cindry = nixpkgs.lib.nixosSystem {
+    let    
       system = "x86_64-linux";
-      specialArgs = { 
-        inherit inputs; 
-        inherit home-manager; 
-        unstable = import nixpkgs-unstable.outPath { 
-          system = "x86_64-linux"; 
-          config = { allowUnfree = true; }; 
-        }; 
+      unstable = import nixpkgs-unstable.outPath { 
+          inherit system;
+          config = { allowUnfree = true; };
       };
-      modules = [ 
-        ./hosts/cindry/configuration.nix 
-        ({ unstable, ... }: {
-          nixpkgs.overlays = [
-            (final: prev: {
-              lmstudio = unstable.lmstudio;
-            })
-          ];
-        })
-      ];
-    };
 
-    nixosConfigurations.SteamDeck = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { 
-        inherit inputs; 
-        inherit home-manager; 
-        unstable = import nixpkgs-unstable.outPath { 
-          system = "x86_64-linux"; 
-          config = { allowUnfree = true; }; 
-        }; 
+      sharedArgs = {
+        inherit inputs home-manager unstable;
       };
-      modules = [ 
-        ./hosts/steamdeck/configuration.nix 
-        ({ unstable, ... }: {
-          nixpkgs.overlays = [
-            (final: prev: {
-              lmstudio = unstable.lmstudio;
-            })
-          ];
-        })
-      ];
+
+      sharedOverlayModule = { ... }: {
+        nixpkgs.overlays = [
+          (final: prev: {
+            lmstudio = unstable.lmstudio;
+          })
+        ];
+      };
+    in {
+      nixosConfigurations = {
+      Cindry = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = sharedArgs;
+        modules = [ 
+          ./hosts/cindry/configuration.nix 
+          sharedOverlayModule
+        ];
+      };
+
+      SteamDeck = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = sharedArgs;
+        modules = [ 
+          ./hosts/steamdeck/configuration.nix 
+          sharedOverlayModule
+        ];
+      };
     };
   };
 }
