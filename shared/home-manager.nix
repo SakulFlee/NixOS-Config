@@ -1,4 +1,4 @@
-{ config, pkgs, lib, home-manager, ... }:
+{ config, pkgs, lib, home-manager, inputs, ... }:
 {
   imports = [
     home-manager.nixosModules.home-manager
@@ -9,5 +9,7 @@
     useGlobalPkgs = true;
 
     backupFileExtension = "bak";
+
+    extraSpecialArgs = { inherit inputs; };
   };
 }
