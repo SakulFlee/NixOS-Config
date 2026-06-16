@@ -22,7 +22,11 @@
         FFS_SCRIPT="$HOME/Sync/Sync.ffs_batch"
         
         sync_files() {
-            FreeFileSync "$FFS_SCRIPT"
+          FreeFileSync "$FFS_SCRIPT"
+          if [ $? -ne 0 ]; then
+            echo "Sync failed!"
+            exit -1
+          fi
         }
         
         echo "Initial startup sync ..."
