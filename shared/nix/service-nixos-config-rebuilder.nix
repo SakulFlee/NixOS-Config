@@ -1,68 +1,70 @@
 { pkgs, ... }: {
-  systemd.services.nixos-config-git-watcher = {
+
+  # 1. Provide a password-less rule allowing your user to run the rebuild
+  security.sudo.extraRules = [
+    {
+      users = [ "sakulflee" ]; # REPLACE with your actual username
+      commands = [
+        {
+          command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
+
+  # 2. Define the Timer and Service inside User Space
+  systemd.user.services.nixos-gitwatch = {
     description = "Check git upstream for configuration changes and rebuild";
-    
+    after = [ "network.target" ];
+    wantedBy = [ "default.target" ];
+
+    path = with pkgs; [ git openssh nixos-rebuild kdePackages.konsole bash sudo ];
+
     serviceConfig = {
       Type = "oneshot";
-      User = "root"; # Root to prevent password prompts
+      # Runs natively as you, giving it direct authority to throw windows onto your screen
     };
-
-    path = with pkgs; [ git openssh nixos-rebuild kdePackages.konsole bash systemd ];
 
     script = ''
       cd /etc/nixos
-      ${pkgs.git}/bin/git config --global --add safe.directory /etc/nixos
 
-      # 1. Fetch upstream changes silently
-      ${pkgs.git}/bin/git fetch origin --quiet
+      # 1. Fetch upstream changes silently using your user's SSH keys/credentials
+      git fetch origin --quiet
 
       # 2. Grab hashes
-      LOCAL=$(${pkgs.git}/bin/git rev-parse @)
-      REMOTE=$(${pkgs.git}/bin/git rev-parse @{u})
+      LOCAL=$(git rev-parse @)
+      REMOTE=$(git rev-parse @{u})
 
       if [ "$LOCAL" != "$REMOTE" ]; then
-        printf "Upstream updates detected!\n"
+        echo "Upstream updates detected!"
 
-        # Check if your user is logged into the graphical session
-        if ${pkgs.systemd}/bin/loginctl list-users | grep -q "sakulflee"; then
-          printf "User logged in. Spawning privileged visual terminal...\n"
+        # Fire off Konsole instantly. No display environment wrappers needed 
+        # because the service already lives inside your user graphical slice!
+        konsole -e bash -c '
+          printf "========== AUTOMATIC PRIVILEGED REBUILD ==========\n\n"
+          cd /etc/nixos
           
-          # WEIRD LINUX MAGIC
-          # Opens a terminal on the active display logged in as "root"
-          ${pkgs.systemd}/bin/systemd-run \
-            --uid=0 \
-            --collect \
-            --setenv=DISPLAY=:0 \
-            --setenv=XDG_RUNTIME_DIR=/run/user/1000 \
-            ${pkgs.kdePackages.konsole}/bin/konsole -e ${pkgs.bash}/bin/bash -c '
-              printf "========== AUTOMATIC ROOT GIT PULL & REBUILD ==========\n\n"
-              cd /etc/nixos
-              
-              printf "Pulling upstream commits as root...\n"
-              ${pkgs.git}/bin/git pull origin main
-              
-              printf "\nExecuting system switch as root (No password required)...\n"
-              ${pkgs.nixos-rebuild}/bin/nixos-rebuild switch --show-trace
-              
-              printf "\nFinished! Press any key to close this terminal..."
-              read -n 1
-            '
-        else
-          printf "No active user session. Rebuilding headlessly as root...\n"
-          ${pkgs.git}/bin/git pull origin main
-          ${pkgs.nixos-rebuild}/bin/nixos-rebuild switch
-        fi
+          printf "Pulling changes from Git...\n"
+          sudo git pull origin main
+          
+          printf "\nExecuting NixOS configuration switch...\n"
+          sudo nixos-rebuild switch --show-trace
+          
+          printf "\nFinished! Press any key to close this terminal..."
+          read -n 1
+        '
       fi
     '';
   };
 
-  # Triggers regularly to watch for changes
-  systemd.timers.nixos-config-git-watcher = {
+  # 3. Trigger the user service every 5 minutes
+  systemd.user.timers.nixos-gitwatch = {
     description = "Timer to poll /etc/nixos git status every 5 minutes";
     wantedBy = [ "timers.target" ];
     timerConfig = {
-      OnBootSec = "2min";       # Wait 2 minutes after boot before first check
-      OnUnitActiveSec = "5min"; # Check every 5 minutes continuously
+      OnBootSec = "2min";
+      OnUnitActiveSec = "5min";
     };
   };
 }
