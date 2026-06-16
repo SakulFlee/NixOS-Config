@@ -11,6 +11,11 @@
       wallpaper = "/usr/share/wallpapers/cachyos-wallpapers/PurpleFeathers.png";
     };
 
+    dateFormat = {
+      time = "de_DE.UTF-8";
+      formats = "de_DE.UTF-8";
+    };
+
     # Custom Folder View for your Synced Desktop Folder
     desktop = {
       widgets = [
