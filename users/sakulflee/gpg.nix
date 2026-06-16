@@ -12,7 +12,7 @@
     age.sshKeyPaths   = [ "/home/sakulflee/.ssh/id_ed25519" ];
 
     # Declare secret to expose here
-    secrets."gpg-private-key" = {
+    secrets."gpg_private_key" = {
       path = "${config.programs.gpg.homedir}/private-keys-v1.d/0A96C9AA72DB019DE171E7F77F0C6AF1F56A9E05.key";
     };
 
