@@ -46,7 +46,7 @@ let
     }
 
     sync() {
-      rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" --conflict-resolve newer --check-access
+      rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" --exclude '/#recycle/**' --conflict-resolve newer --check-access
     }
 
     # Check for error lock
