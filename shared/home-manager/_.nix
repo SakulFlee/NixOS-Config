@@ -1,6 +1,6 @@
 { ... }: {
   imports = [
-    ./kde/plasma-manager.nix
+    ./kde/_.nix
   ];
 }
 
