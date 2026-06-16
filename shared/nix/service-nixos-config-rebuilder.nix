@@ -72,7 +72,7 @@ in
     
     timerConfig = {
       OnBootSec = "2min";
-      OnUnitActiveSec = "5min";
+      OnUnitActiveSec = "1h";
     };
   };
 }
