@@ -40,7 +40,7 @@
           cd /etc/nixos
           
           printf "Pulling changes from Git...\n"
-          /run/wrappers/bin/sudo git pull origin main
+          git pull origin main
           
           printf "\nExecuting NixOS configuration switch...\n"
           /run/wrappers/bin/sudo nixos-rebuild switch --show-trace
