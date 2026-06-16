@@ -3,11 +3,6 @@
     rustup
     neovim
     git
-    curl
-    wget
-    zip
-    unzip
-    tar
   ];
 }
 
