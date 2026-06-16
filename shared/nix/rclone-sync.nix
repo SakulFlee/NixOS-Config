@@ -12,12 +12,6 @@ let
   rcloneWatcherScript = pkgs.writeShellScriptBin "rclone-watcher" ''
     PATH=${pkgs.lib.makeBinPath [ pkgs.rclone pkgs.inotify-tools pkgs.libnotify pkgs.coreutils pkgs.gnugrep ]}:$PATH
 
-    # --- RECONCILE SOPS SECRETS INTO RCLONE ENVIRONMENT VARIABLES ---
-    export RCLONE_CONFIG_NAS_SMB_TYPE="smb"
-    export RCLONE_CONFIG_NAS_SMB_HOST="$smb_host"
-    export RCLONE_CONFIG_NAS_SMB_USER="$smb_user"
-    export RCLONE_CONFIG_NAS_SMB_PASS="$smb_pass"
-
     LOCAL_DIR="${localDir}"
     REMOTE_DIR="${remoteDir}"
     COOLDOWN="${cooldown}"
@@ -88,9 +82,9 @@ in
   # Setup SOPS
   sops.defaultSopsFile = ../../secrets.yaml;
   sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-  sops.secrets."smb_user" = { owner = username; };
-  sops.secrets."smb_pass" = { owner = username; };
-  sops.secrets."smb_host" = { owner = username; };
+  sops.secrets."smb-user" = { owner = username; };
+  sops.secrets."smb-pass" = { owner = username; };
+  sops.secrets."smb-host" = { owner = username; };
 
   # Ensure Rclone and required packages are installed system-wide
   environment.systemPackages = [ pkgs.rclone pkgs.inotify-tools ];
@@ -108,15 +102,21 @@ in
       
       # Dynamically inject the credentials as environment variables
       EnvironmentFile = [
-        "${config.sops.secrets."smb_user".path}"
-        "${config.sops.secrets."smb_pass".path}"
-        "${config.sops.secrets."smb_host".path}"
+        "${config.sops.secrets."smb-user".path}"
+        "${config.sops.secrets."smb-pass".path}"
+        "${config.sops.secrets."smb-host".path}"
       ];
     };
 
     # Set up the Rclone-specific configuration variables using the SOPS outputs
     environment = {
       DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/${toString config.users.users.${username}.uid}/bus";
+      
+      # Dynamically generate rclone config via env-vars
+      RCLONE_CONFIG_NASSMB_TYPE = "smb";
+      RCLONE_CONFIG_NASSMB_HOST = "$smb-host";
+      RCLONE_CONFIG_NASSMB_USER = "$smb-user";
+      RCLONE_CONFIG_NASSMB_PASS = "$smb-pass"; 
     };
   };
 }
