@@ -4,7 +4,7 @@
   programs.plasma = {
     enable = true;
 
-# Desktop Workspace Settings
+    # Desktop Workspace Settings
     workspace = {
       clickItemTo = "open";
       lookAndFeel = "org.kde.breezedark.desktop";
