@@ -11,41 +11,47 @@
 
     script = ''
       cd /etc/nixos
-      
-      # Ensure it recognizes /etc/nixos as a safe repository even when run by root
       ${pkgs.git}/bin/git config --global --add safe.directory /etc/nixos
 
-      # Fetch the latest state from your origin branch silently
+      # 1. Fetch upstream changes silently
       ${pkgs.git}/bin/git fetch origin --quiet
 
-      # Extract the local vs remote commit hashes (Assuming your main branch is 'main')
+      # 2. Grab hashes
       LOCAL=$(${pkgs.git}/bin/git rev-parse @)
       REMOTE=$(${pkgs.git}/bin/git rev-parse @{u})
 
-      # Compare them. If they do not match, we are out of sync!
       if [ "$LOCAL" != "$REMOTE" ]; then
-        printf "Upstream updates detected! Launching build window...\n"
+        printf "Upstream updates detected!\n"
 
-        # Reach down into your active user GUI session to spawn Konsole.
-        # IF the user is not logged in, this will FAIL.
-        ${pkgs.systemd}/bin/systemd-run \
-          --user \
-          --machine=sakulflee@.host \
-          --collect \
-          --setenv=DISPLAY=:0 \
-          ${pkgs.kdePackages.konsole}/bin/konsole -e ${pkgs.bash}/bin/bash -c '
-            printf "========== AUTOMATIC GIT PULL & NIXOS REBUILD ==========\n\n"
-            cd /etc/nixos
-            
-            printf "Merging upstream commits...\n"
-            ${pkgs.git}/bin/git pull origin main
-            
-            printf "\nExecuting system switch...\n"
-            ${pkgs.nixos-rebuild}/bin/nixos-rebuild switch --show-trace
-            
-            printf "\nFinished! Press any key to close this terminal..."
-            read -n 1
-          '
+        # Check if your user is logged into the graphical session
+        if ${pkgs.systemd}/bin/loginctl list-users | grep -q "sakulflee"; then
+          printf "User logged in. Spawning privileged visual terminal...\n"
+          
+          # WEIRD LINUX MAGIC
+          # Opens a terminal on the active display logged in as "root"
+          ${pkgs.systemd}/bin/systemd-run \
+            --uid=0 \
+            --collect \
+            --setenv=DISPLAY=:0 \
+            --setenv=XDG_RUNTIME_DIR=/run/user/1000 \
+            ${pkgs.kdePackages.konsole}/bin/konsole -e ${pkgs.bash}/bin/bash -c '
+              printf "========== AUTOMATIC ROOT GIT PULL & REBUILD ==========\n\n"
+              cd /etc/nixos
+              
+              printf "Pulling upstream commits as root...\n"
+              ${pkgs.git}/bin/git pull origin main
+              
+              printf "\nExecuting system switch as root (No password required)...\n"
+              ${pkgs.nixos-rebuild}/bin/nixos-rebuild switch --show-trace
+              
+              printf "\nFinished! Press any key to close this terminal..."
+              read -n 1
+            '
+        else
+          printf "No active user session. Rebuilding headlessly as root...\n"
+          ${pkgs.git}/bin/git pull origin main
+          ${pkgs.nixos-rebuild}/bin/nixos-rebuild switch
+        fi
       fi
     '';
   };
