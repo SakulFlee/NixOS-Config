@@ -6,12 +6,12 @@
   specialisation = {
     lts.configuration = {
       system.nixos.tags = [ "LTS" ];
-      boot.kernelPackages = pkgs.linuxPackages; # Defaults to latest LTS
+      boot.kernelPackages = lib.mkForce pkgs.linuxPackages; # Defaults to latest LTS
     };
 
     gaming.configuration = {
       system.nixos.tags = [ "Latest" ];
-      boot.kernelPackages = pkgs.linuxPackages_latest;
+      boot.kernelPackages = lib.mkForce pkgs.linuxPackages_latest;
     };
   };
 }
