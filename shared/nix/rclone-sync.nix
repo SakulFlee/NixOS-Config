@@ -29,6 +29,17 @@ let
         local urgency="$1"
         local title="$2"
         local message="$3"
+
+        # DYNAMIC D-BUS DETECTION
+        # If DBUS_SESSION_BUS_ADDRESS is missing or invalid, scrape it from a running user process
+        if [ -z "$DBUS_SESSION_BUS_ADDRESS" ] || [[ "$DBUS_SESSION_BUS_ADDRESS" == *"No such file"* ]]; then
+            # Find a process owned by the current user that is guaranteed to hold the live DBUS variable
+            local user_pid=$(pgrep -u "$USER" -x "systemd" | head -n 1)
+            if [ -n "$user_pid" ]; then
+                export DBUS_SESSION_BUS_ADDRESS=$(grep -z '^DBUS_SESSION_BUS_ADDRESS=' /proc/"$user_pid"/environ | sed 's/^DBUS_SESSION_BUS_ADDRESS=//')
+            fi
+        fi
+
         if command -v notify-send &> /dev/null; then
             notify-send -u "$urgency" -i "emblem-synchronizing" "$title" "$message"
         fi
@@ -112,11 +123,6 @@ in
         "${config.sops.secrets."smb_pass".path}"
         "${config.sops.secrets."smb_host".path}"
       ];
-    };
-
-    # Set up the Rclone-specific configuration variables using the SOPS outputs
-    environment = {
-      DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/${toString config.users.users.${username}.uid}/bus";
     };
   };
 }
