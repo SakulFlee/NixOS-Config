@@ -41,6 +41,9 @@
             --event delete_self \
             "$FOLDER_TO_WATCH"
         
+
+
+
           if [ $? -ne 1 ]; then
             echo "Change detected! Syncing ..."
             sync_files
