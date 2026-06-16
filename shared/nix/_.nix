@@ -18,6 +18,7 @@
     ./sops.nix                  
     ./ssh.nix                   
     ./steam.nix
+    ./sunshine.nix
     ./system-packages.nix       
     ./system-state.nix          
     ./touchpad.nix              
