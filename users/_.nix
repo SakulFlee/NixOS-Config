@@ -1,5 +1,5 @@
 { ... }: {
   imports = [
     ./sakulflee/_.nix
-  ]
+  ];
 }
