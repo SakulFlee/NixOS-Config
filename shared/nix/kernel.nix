@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   # ZEN Kernel for gaming
   boot.kernelPackages = pkgs.linuxPackages_latest_zen;
-  boot.loader.systemd-boot.description = "NixOS (Gaming/ZEN)";
+  boot.loader.systemd-boot.sortKey = "NixOS (Gaming/ZEN)";
 
   specialisation = {
     lts.configuration = {
