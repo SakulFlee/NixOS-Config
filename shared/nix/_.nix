@@ -11,6 +11,7 @@
     ./nas.nix                   
     ./networking.nix            
     ./nix-gc.nix                
+    ./nixos-config-rebuilder.nix
     ./nixpkgs-unfree.nix        
     ./printing.nix              
     ./sops.nix                  
