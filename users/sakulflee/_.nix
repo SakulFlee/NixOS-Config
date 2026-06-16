@@ -7,10 +7,15 @@
     isNormalUser = true;
     
     extraGroups = [ 
-      "networkmanager" 
-      "wheel" 
+      # To be able to use network manager (KDE Networking)
+      "networkmanager"
+      # Sudo privileges
+      "wheel"
+      # Access to GPU (also required by Sunshine)
       "video" 
       "render"
+      # Universal inputs (gamepads, touch, mouse, keyboard, etc.; Also required for Sunshine!)
+      "uinput"
     ];
 
     shell = pkgs.zsh;
@@ -27,7 +32,6 @@
       ./git.nix
       ./gpg.nix
       ./kitty.nix
-      ./uinput.nix
       ./zsh.nix
     ];
 
