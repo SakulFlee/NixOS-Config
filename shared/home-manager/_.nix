@@ -1,6 +1,7 @@
 { ... }: {
   imports = [
-    ./kde/_.nix
+    ./plasma-manager.nix
+    ./autostart.nix
   ];
 }
 
