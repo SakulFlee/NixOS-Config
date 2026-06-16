@@ -10,9 +10,10 @@
     ./system-gc.nix
     ./system-network.nix
     ./system-security.nix
-    ./system-packages.nix
     ./system-programs.nix
     ./home-manager.nix
     ./nas.nix
+    ./nixpkgs-unfree.nix
+    ./zsh.nix
   ];
 }
