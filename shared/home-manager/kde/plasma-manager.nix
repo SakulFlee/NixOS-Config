@@ -17,12 +17,12 @@
         {
           name = "org.kde.plasma.folder";
           position = {
-            horizontal = 400;
-            vertical = 200;
+            horizontal = 1520;
+            vertical = 0;
           };
           size = {
-            width = 100;
-            height = 100;
+            width = 400;
+            height = 1080;
           };
           config = {
             General = {
