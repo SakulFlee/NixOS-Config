@@ -1,14 +1,8 @@
 { lib, pkgs, ... }: {
   imports = [
     ./hardware.nix
-    ../../users/sakulflee/_.nix
-    ../../shared/_defaults.nix
-    ../../shared/syncthing.nix
-    ../../shared/steam.nix
-    ../../shared/nas.nix
-    ../../packages/sops.nix
-    ../../packages/files.nix
-    ../../packages/development.nix
+    ../../users/_.nix
+    ../../shared/_.nix
   ];
 
   # Hostname

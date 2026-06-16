@@ -22,8 +22,8 @@
 
   home-manager.users.sakulflee = { pkgs, ...}: {
     imports = [
-      ../../shared/kde/plasma-manager.nix
-      ./home-manager/_.nix
+      ../../shared/home-manager/_.nix
+      ./packages/_.nix
       ./git.nix
       ./gpg.nix
     ];

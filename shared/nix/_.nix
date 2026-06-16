@@ -5,7 +5,7 @@
     ./touchpad.nix
     ./audio.nix
     ./wayland.nix
-    ./kde/_defaults.nix
+    ./kde/_.nix
     ./system-core.nix
     ./system-gc.nix
     ./system-network.nix
