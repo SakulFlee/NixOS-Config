@@ -13,5 +13,6 @@
     ./system-packages.nix
     ./system-programs.nix
     ./home-manager.nix
+    ./nas.nix
   ];
 }
