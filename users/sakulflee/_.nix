@@ -27,6 +27,7 @@
       ./git.nix
       ./gpg.nix
       ./kitty.nix
+      ./uinput.nix
       ./zsh.nix
     ];
 
