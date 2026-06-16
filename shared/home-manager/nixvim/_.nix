@@ -173,20 +173,24 @@
             request       = "launch";
             name          = "Launch";
             cwd           = "${workspaceFolder}";
-            program       = function()
-              return vim.fn.input(
-                "Path: ",
-                vim.fn.getcwd() .. "/",
-                "file"
-              )
-            end;
-            args          = function()
-              local args = {}
-              for _, arg in ipairs(vim.fn.input("Args: "):gmatch("%S+")) do
-                table.insert(args, arg)
+            program.__raw = ''
+              function()
+                return vim.fn.input(
+                  "Path: ",
+                  vim.fn.getcwd() .. "/",
+                  "file"
+                )
               end
-              return args
-            end;
+            '';
+            args.__raw = ''
+              function()
+                local args = {}
+                for _, arg in ipairs(vim.fn.input("Args: "):gmatch("%S+")) do
+                  table.insert(args, arg)
+                end
+                return args
+              end
+            '';
             runInTerminal = true;
           }
         ];
