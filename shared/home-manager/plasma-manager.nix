@@ -21,7 +21,7 @@
             vertical = 0;
           };
           size = {
-            width = 400;
+            width = 600;
             height = 1080;
           };
           config = {
