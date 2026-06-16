@@ -2,6 +2,7 @@
 let 
   nixosRebuildBin = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
   gitBin = "${pkgs.git}/bin/git";
+in 
 {
   security.sudo.extraRules = [
     {
