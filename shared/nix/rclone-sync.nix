@@ -3,7 +3,7 @@ let
   # --- CONFIGURATION VARIABLES ---
   username = "sakulflee"; 
   localDir = "/home/${username}/Sync";
-  remoteDir = "NASSMB:personal_folder/";
+  remoteDir = "NAS_SMB:personal_folder/";
   cooldown = "30";
   checkInterval = "1800";
   stateDir = "/home/${username}/.config/rclone";
