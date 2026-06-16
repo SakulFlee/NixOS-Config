@@ -41,6 +41,12 @@
       {
         location = "top";
         height = 44;
+
+        floating = true;
+        alignment = "center";
+        lengthMode = "fill";
+        hiding = "windowdodge";
+
         widgets = [
           "org.kde.plasma.kickoff"
           "org.kde.plasma.appmenu"
@@ -54,7 +60,13 @@
       # Bottom Panel: Dock
       {
         location = "bottom";
+
         height = 44;
+        floating = true;
+        alignment = "center";
+        lengthMode = "fit";
+        hiding = "windowdodge";
+
         widgets = [
           {
             name = "org.kde.plasma.icontasks";
