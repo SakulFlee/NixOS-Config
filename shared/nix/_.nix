@@ -8,7 +8,7 @@
     ./home-manager.nix          
     ./kernel.nix                
     ./locale.nix                
-    ./nas.nix                   
+    ./mount-nas.nix                   
     ./networking.nix            
     ./nix-gc.nix                
     ./nixos-config-rebuilder.nix
