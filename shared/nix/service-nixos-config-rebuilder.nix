@@ -16,11 +16,10 @@
     after = [ "network.target" ];
     wantedBy = [ "default.target" ];
 
-    path = with pkgs; [ git openssh nixos-rebuild kitty bash sudo ];
+    path = with pkgs; [ git openssh nixos-rebuild kdePackages.konsole bash sudo ];
 
     serviceConfig = {
       Type = "oneshot";
-      PassEnvironment = [ "DISPLAY" "WAYLAND_DISPLAY" "XDG_RUNTIME_DIR" ];
     };
 
     script = ''
