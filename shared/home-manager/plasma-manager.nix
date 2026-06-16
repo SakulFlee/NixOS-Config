@@ -40,7 +40,7 @@
       # Top Panel: App menu, system tray, launcher, etc.
       {
         location = "top";
-        height = 44;
+        height = 28;
 
         floating = true;
         alignment = "center";
