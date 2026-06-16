@@ -3,6 +3,7 @@
     ./kde/_.nix 
     ./audio.nix                 
     ./experimental-features.nix 
+    ./file-sync-service.nix
     ./fonts.nix                 
     ./gpg.nix                   
     ./home-manager.nix          
