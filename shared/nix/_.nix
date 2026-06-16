@@ -2,6 +2,7 @@
   imports = [
     ./kde/_.nix 
     ./audio.nix                 
+    ./bluetooth.nix
     ./experimental-features.nix 
     ./fonts.nix                 
     ./gpg.nix                   
