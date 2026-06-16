@@ -67,8 +67,8 @@
 
   services.gpg-agent = {
     enable = true;
-    pinentryPackage = pkgs.pinentry-qt; # KDE popup for password entry
-    enableSshSupport = true;            # Optional: lets GPG act as your SSH agent too
+    pinentry.package = pkgs.pinentry-qt; # KDE popup for password entry
+    enableSshSupport = true;             # Lets GPG act as your SSH agent too
   };
 
   # Import GPG key
