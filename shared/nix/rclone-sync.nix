@@ -3,7 +3,7 @@ let
   # --- CONFIGURATION VARIABLES ---
   username = "sakulflee"; 
   localDir = "/home/${username}/Sync";
-  remoteDir = "NAS-SMB:personal_folder/";
+  remoteDir = "NASSMB:personal_folder/";
   cooldown = "30";
   checkInterval = "1800";
   stateDir = "/home/${username}/.config/rclone";
@@ -113,10 +113,10 @@ in
       DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/${toString config.users.users.${username}.uid}/bus";
       
       # Dynamically generate rclone config via env-vars
-      RCLONE_CONFIG_NAS-SMB_TYPE = "smb";
-      RCLONE_CONFIG_NAS-SMB_HOST = "$smb-host";
-      RCLONE_CONFIG_NAS-SMB_USER = "$smb-user";
-      RCLONE_CONFIG_NAS-SMB_PASS = "$smb-pass"; 
+      RCLONE_CONFIG_NASSMB_TYPE = "smb";
+      RCLONE_CONFIG_NASSMB_HOST = "$smb-host";
+      RCLONE_CONFIG_NASSMB_USER = "$smb-user";
+      RCLONE_CONFIG_NASSMB_PASS = "$smb-pass"; 
     };
   };
 }
