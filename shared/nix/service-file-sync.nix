@@ -1,28 +1,32 @@
 { pkgs, ... }: {
   systemd.user.services.freefilesync-watcher = {
-    Unit = {
-      Description = "FreeFileSync Sync Watcher";
-      Documentation = [
-        "man:inotifywait(1)"
-        "man:FreeFileSync(1)"
-      ];
-      After = [ "network.target" ];
-    };
+    description = "FreeFileSync Sync Watcher";
+    documentation = [
+      "man:inotifywait(1)"
+      "man:FreeFileSync(1)"
+    ];
+    after = [ "network.target" ];
+    wantedBy = [ "default.target" ];
 
-    Service = {
+    serviceConfig = {
       Type = "simple";
+
+      # Ensure the target Sync directory exists before running the script
+      ExecStartPre = "${pkgs.bash}/bin/bash -c '${pkgs.coreutils}/bin/mkdir -p $HOME/Sync'";
+
       ExecStart = "${pkgs.writeShellScript "freefilesync-watcher" ''
-        PATH="${pkgs.lib.makeBinPath [ pkgs.inotify-tools ]}:$PATH"
+        # Make sure the script can find both inotify tools AND FreeFileSync
+        PATH="${pkgs.lib.makeBinPath [ pkgs.inotify-tools pkgs.freefilesync ]}:$PATH"
 
         FOLDER_TO_WATCH="$HOME/Sync"
         FFS_SCRIPT="$HOME/Sync/Sync.ffs_batch"
         
-        sync() {
+        sync_files() {
             FreeFileSync "$FFS_SCRIPT"
         }
         
         echo "Initial startup sync ..."
-        sync
+        sync_files
         
         while true; do
           inotifywait \
@@ -39,7 +43,7 @@
         
           if [ $? -ne 1 ]; then
             echo "Change detected! Syncing ..."
-            sync
+            sync_files
           fi
         done
         
@@ -50,10 +54,6 @@
       RestartSec = 5;
       StandardOutput = "journal";
       StandardError = "journal";
-    };
-
-    Install = {
-      WantedBy = [ "default.target" ];
     };
   };
 }
