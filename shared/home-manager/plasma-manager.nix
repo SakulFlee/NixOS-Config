@@ -91,7 +91,7 @@
       };
 
       "services/kitty.desktop" = {
-        "_launch" = "Ctrl+Alt+T";
+        "_launch" = "Meta+T,Ctrl+Alt+T";
       };
     };
   };
