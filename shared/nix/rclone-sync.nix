@@ -3,7 +3,7 @@ let
   # --- CONFIGURATION VARIABLES ---
   username = "sakulflee"; 
   localDir = "/home/${username}/Sync";
-  remoteDir = "nas-smb:personal_folder";
+  remoteDir = "NAS-SMB:personal_folder/";
   cooldown = "30";
   checkInterval = "1800";
   stateDir = "/home/${username}/.config/rclone";
@@ -79,6 +79,13 @@ let
   '';
 in
 {
+  # Setup SOPS
+  sops.defaultSopsFile = ../../secrets.yaml;
+  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+  sops.secrets."smb_user" = { owner = username; };
+  sops.secrets."smb_pass" = { owner = username; };
+  sops.secrets."smb_host" = { owner = username; };
+
   # Ensure Rclone and required packages are installed system-wide
   environment.systemPackages = [ pkgs.rclone pkgs.inotify-tools ];
 
@@ -88,15 +95,28 @@ in
     wantedBy = [ "graphical-session.target" ];
     after = [ "graphical-session.target" ];
     
-    environment = {
-      # Grants the script access to the user's running desktop notification bus
-      DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/${toString config.users.users.${username}.uid}/bus";
-    };
-
     serviceConfig = {
       ExecStart = "${rcloneWatcherScript}/bin/rclone-watcher";
       Restart = "on-failure";
       RestartSec = "10s";
+      
+      # Dynamically inject the credentials as environment variables
+      EnvironmentFile = [
+        "${config.sops.secrets."smb_user".path}"
+        "${config.sops.secrets."smb_pass".path}"
+        "${config.sops.secrets."smb_host".path}"
+      ];
+    };
+
+    # Set up the Rclone-specific configuration variables using the SOPS outputs
+    environment = {
+      DBUS_SESSION_BUS_ADDRESS = "unix:path=/run/user/${toString config.users.users.${username}.uid}/bus";
+      
+      # Dynamically generate rclone config via env-vars
+      RCLONE_CONFIG_NAS-SMB_TYPE = "smb";
+      RCLONE_CONFIG_NAS-SMB_HOST = "$smb_host";
+      RCLONE_CONFIG_NAS-SMB_USER = "$smb_user";
+      RCLONE_CONFIG_NAS-SMB_PASS = "$smb_pass"; 
     };
   };
 }
