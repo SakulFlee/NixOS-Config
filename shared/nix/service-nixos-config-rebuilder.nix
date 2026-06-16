@@ -40,10 +40,10 @@
           cd /etc/nixos
           
           printf "Pulling changes from Git...\n"
-          sudo git pull origin main
+          /run/wrappers/bin/sudo git pull origin main
           
           printf "\nExecuting NixOS configuration switch...\n"
-          sudo nixos-rebuild switch --show-trace
+          /run/wrappers/bin/sudo nixos-rebuild switch --show-trace
           
           printf "\nFinished! Press any key to close this terminal..."
           read -n 1
