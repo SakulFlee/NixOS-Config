@@ -48,16 +48,16 @@
         hiding = "dodgewindows";
 
         widgets = [
-          { kickoff },
-          { appmenu },
-          { panelspacer },
-          { pager },
-          { systemtray },
-          { digitalclock = {
+          "org.kde.plasma.kickoff"
+          "org.kde.plasma.appmenu"
+          "org.kde.plasma.panelspacer"
+          "org.kde.plasma.pager"
+          "org.kde.plasma.systemtray"
+          "org.kde.plasma.digitalclock" = {
             settings = {
               "Time Display" = "24-hour";
             };
-          }
+          };
         ];
       }
 
