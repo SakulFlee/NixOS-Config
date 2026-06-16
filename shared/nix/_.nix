@@ -15,6 +15,7 @@
     ./printing.nix              
     ./sops.nix                  
     ./ssh.nix                   
+    ./steam.nix
     ./system-packages.nix       
     ./system-state.nix          
     ./touchpad.nix              

@@ -5,7 +5,7 @@
     protontricks.enable = true;
   };
 
-  home.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     protonup-qt
   ];
 }

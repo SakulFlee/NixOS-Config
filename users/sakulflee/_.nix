@@ -27,7 +27,6 @@
       ./git.nix
       ./gpg.nix
       ./kitty.nix
-      ./steam.nix
       ./zsh.nix
     ];
 
