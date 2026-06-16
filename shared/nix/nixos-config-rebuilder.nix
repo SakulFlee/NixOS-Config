@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  systemd.services.nixos-gitwatch = {
+  systemd.services.nixos-config-git-watcher = {
     description = "Check git upstream for configuration changes and rebuild";
     
     serviceConfig = {
@@ -51,7 +51,7 @@
   };
 
   # Triggers regularly to watch for changes
-  systemd.timers.nixos-gitwatch = {
+  systemd.timers.nixos-config-git-watcher = {
     description = "Timer to poll /etc/nixos git status every 5 minutes";
     wantedBy = [ "timers.target" ];
     timerConfig = {
