@@ -12,12 +12,6 @@ let
   rcloneWatcherScript = pkgs.writeShellScriptBin "rclone-watcher" ''
     PATH=${pkgs.lib.makeBinPath [ pkgs.rclone pkgs.inotify-tools pkgs.libnotify pkgs.coreutils pkgs.gnugrep ]}:$PATH
 
-    # --- RECONCILE SOPS SECRETS INTO RCLONE ENVIRONMENT VARIABLES ---
-    export RCLONE_CONFIG_NAS_SMB_TYPE="smb"
-    export RCLONE_CONFIG_NAS_SMB_HOST="$smb_host"
-    export RCLONE_CONFIG_NAS_SMB_USER="$smb_user"
-    export RCLONE_CONFIG_NAS_SMB_PASS="$smb_pass"
-
     LOCAL_DIR="${localDir}"
     REMOTE_DIR="${remoteDir}"
     COOLDOWN="${cooldown}"
@@ -110,6 +104,15 @@ in
   sops.secrets."smb_user" = { owner = username; };
   sops.secrets."smb_pass" = { owner = username; };
   sops.secrets."smb_host" = { owner = username; };
+  sops.templates."rclone-env" = {
+    owner = username;
+    content = ''
+      RCLONE_CONFIG_NAS_SMB_TYPE="smb"
+      RCLONE_CONFIG_NAS_SMB_HOST="${config.sops.placeholder.smb_host}"
+      RCLONE_CONFIG_NAS_SMB_USER="${config.sops.placeholder.smb_user}"
+      RCLONE_CONFIG_NAS_SMB_PASS="${config.sops.placeholder.smb_pass}"
+    '';
+  };
 
   # Ensure Rclone and required packages are installed system-wide
   environment.systemPackages = [ pkgs.rclone pkgs.inotify-tools ];
@@ -125,12 +128,7 @@ in
       Restart = "on-failure";
       RestartSec = "10s";
       
-      # Dynamically inject the credentials as environment variables
-      EnvironmentFile = [
-        "${config.sops.secrets."smb_user".path}"
-        "${config.sops.secrets."smb_pass".path}"
-        "${config.sops.secrets."smb_host".path}"
-      ];
+      EnvironmentFile = [ config.sops.templates."rclone-env".path ];
     };
   };
 }
