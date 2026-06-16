@@ -15,5 +15,6 @@
     ./nas.nix
     ./nixpkgs-unfree.nix
     ./zsh.nix
+    ./system-state.nix
   ];
 }
