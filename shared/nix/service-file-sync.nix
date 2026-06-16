@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  systemd.user.services.freefilesync-watcher = {
+  systemd.user.services.file-sync-watcher = {
     description = "FreeFileSync Sync Watcher";
     documentation = [
       "man:inotifywait(1)"
