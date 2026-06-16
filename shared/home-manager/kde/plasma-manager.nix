@@ -45,7 +45,7 @@
         floating = true;
         alignment = "center";
         lengthMode = "fill";
-        hiding = "windowdodge";
+        hiding = "dodgewindows";
 
         widgets = [
           "org.kde.plasma.kickoff"
@@ -65,7 +65,7 @@
         floating = true;
         alignment = "center";
         lengthMode = "fit";
-        hiding = "windowdodge";
+        hiding = "dodgewindows";
 
         widgets = [
           {
