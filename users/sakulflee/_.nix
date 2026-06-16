@@ -27,6 +27,7 @@
       ./git.nix
       ./gpg.nix
       ./kitty.nix
+      ./zsh.nix
     ];
 
     home.file.".config/nvim" = {
