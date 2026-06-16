@@ -2,7 +2,7 @@
   imports = [
     ./hardware.nix
     ../../users/_.nix
-    ../../shared/_.nix
+    ../../shared/nix/_.nix
   ];
 
   # Hostname
