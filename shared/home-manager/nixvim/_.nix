@@ -172,7 +172,7 @@
             type          = "codelldb";
             request       = "launch";
             name          = "Launch";
-            cwd           = "${workspaceFolder}";
+            cwd           = ''${workspaceFolder}'';
             program.__raw = ''
               function()
                 return vim.fn.input(
