@@ -3,7 +3,7 @@
     # Process monitors
     htop
     btop
-    nvtop
+    nvtopPackages.full
     
     # Display Server
     xauth
