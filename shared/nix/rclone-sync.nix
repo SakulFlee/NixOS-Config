@@ -46,7 +46,19 @@ let
     }
 
     sync() {
-      rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" --exclude '/#recycle/**' --conflict-resolve newer --check-access
+      if rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" --exclude '/#recycle/**' --conflict-resolve newer --check-access; then
+        echo "Sync successful."
+        notify "normal" "Rclone Sync" "Files are fully up to date."
+      else
+        echo "-------------------------------------------------------------------------"
+        echo "CRITICAL: Sync encountered an error or conflict!"
+        echo "Tripping the circuit breaker. Auto-sync is frozen."
+        echo "-------------------------------------------------------------------------"
+          
+        touch "$ERROR_LOCK"
+        notify "critical" "⚠️ RCLONE SYNC CRITICAL ERROR" "Auto-sync has been frozen to prevent data loss."
+        exit 0
+      fi
     }
 
     # Check for error lock
@@ -85,20 +97,8 @@ let
         notify "low" "Rclone Syncing" "Updating files with remote storage..."
         echo "Sync triggered at $(date)"
 
-        if sync; then
-            echo "Sync successful."
-            notify "normal" "Rclone Sync" "Files are fully up to date."
-        else
-            echo "-------------------------------------------------------------------------"
-            echo "CRITICAL: Sync encountered an error or conflict!"
-            echo "Tripping the circuit breaker. Auto-sync is frozen."
-            echo "-------------------------------------------------------------------------"
-            
-            touch "$ERROR_LOCK"
-            notify "critical" "⚠️ RCLONE SYNC CRITICAL ERROR" "Auto-sync has been frozen to prevent data loss."
-            exit 0
-        fi
-        
+        sync
+         
         sleep 3
     done
   '';
