@@ -1,5 +1,4 @@
-{ config, pkgs, ... }: 
-
+{ config, pkgs, ... }:
 let 
   nixosRebuildBin = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
   gitBin = "${pkgs.git}/bin/git";
@@ -10,7 +9,7 @@ in
       users = [ "sakulflee" ];
       commands = [
         {
-          command = nixosRebuildBin;
+          command = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
           options = [ "NOPASSWD" ];
         }
       ];
@@ -19,18 +18,14 @@ in
 
   systemd.user.services.nixos-rebuilder = {
     description = "Check git upstream for configuration changes and rebuild";
-    
-    after = [ "graphical-session.target" ];
-    wantedBy = [ "graphical-session.target" ];
+    after = [ "network.target" ];
+    wantedBy = [ "default.target" ];
 
-    path = with pkgs; [ git openssh nixos-rebuild kitty bash ];
+    path = with pkgs; [ git openssh nixos-rebuild kitty bash sudo ];
 
     serviceConfig = {
       Type = "oneshot";
       PassEnvironment = [ "DISPLAY" "WAYLAND_DISPLAY" "XDG_RUNTIME_DIR" ];
-
-      # Prevents Kitty from getting killed below
-      KillMode = "process";
     };
 
     script = ''
@@ -53,6 +48,7 @@ in
           ${gitBin} pull origin main
           
           printf "\nExecuting NixOS configuration switch...\n"
+          # We add special flags to ensure it switches profiles smoothly out-of-band
           ${config.security.wrapperDir}/sudo ${nixosRebuildBin} switch --show-trace
           
           printf "\nFinished! Press any key to close this terminal..."
@@ -64,12 +60,10 @@ in
     '';
   };
 
+  # 3. Trigger the user service every 5 minutes
   systemd.user.timers.nixos-rebuilder = {
     description = "Timer to poll /etc/nixos git status every 5 minutes";
-    
-    # FIXED: Binds the timer cycle to the active desktop environment session context
-    wantedBy = [ "graphical-session.target" ];
-    
+    wantedBy = [ "timers.target" ];
     timerConfig = {
       OnBootSec = "2min";
       OnUnitActiveSec = "5min";
