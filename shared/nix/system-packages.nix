@@ -17,5 +17,6 @@
     gnutar
     busybox
     diffutils
+    openrgb-with-all-plugins
   ];
 }
