@@ -35,11 +35,6 @@
       ./zsh.nix
     ];
 
-    home.file.".config/nvim" = {
-      source = ../../neovim-config;
-      recursive = true;
-    };
-
     home.stateVersion = "25.11";
   };
 }
