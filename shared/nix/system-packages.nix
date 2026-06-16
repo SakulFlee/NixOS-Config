@@ -16,6 +16,6 @@
     unzip
     gnutar
     busybox
-    diff
+    diffutils
   ];
 }
