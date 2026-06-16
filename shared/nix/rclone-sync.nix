@@ -45,6 +45,10 @@ let
         fi
     }
 
+    sync() {
+      rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" --conflict-resolve newer --check-access
+    }
+
     # Check for error lock
     if [ -f "$ERROR_LOCK" ]; then
         echo "========================================================================="
@@ -63,7 +67,11 @@ let
         exit 1
     fi
 
-    echo "Starting rclone bisync watcher for $LOCAL_DIR..."
+    echo "Initial sync for $LOCAL_DIR ..."
+    notify "normal" "Rclone Watcher" "Initial sync started"
+    sync
+
+    echo "Starting rclone bisync watcher for $LOCAL_DIR ..."
     notify "normal" "Rclone Watcher" "Monitoring started safely for local changes."
 
     while true; do
@@ -77,7 +85,7 @@ let
         notify "low" "Rclone Syncing" "Updating files with remote storage..."
         echo "Sync triggered at $(date)"
 
-        if rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" --conflict-resolve newer --check-access; then
+        if sync; then
             echo "Sync successful."
             notify "normal" "Rclone Sync" "Files are fully up to date."
         else
