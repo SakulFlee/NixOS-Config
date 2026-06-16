@@ -84,6 +84,16 @@
         ];
       }
     ];
+
+    shortcuts = {
+      "khotkeys" = {
+        "Konsole" = "none";
+      };
+
+      "services/kitty.desktop" = {
+        "_launch" = "Ctrl+Alt+T";
+      };
+    };
   };
 }
 
