@@ -26,6 +26,7 @@
       ./packages/_.nix
       ./git.nix
       ./gpg.nix
+      ./kitty.nix
     ];
 
     home.file.".config/nvim" = {
