@@ -12,7 +12,7 @@
   sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
   # Define the secrets
-  sops.secrets.smb-credentials = {};
+  sops.secrets.smb_credentials = {};
 
   environment.systemPackages = with pkgs; [
     sops
