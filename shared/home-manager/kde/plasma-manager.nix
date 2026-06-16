@@ -76,7 +76,6 @@
                   "preferred://filemanager"
                   "preferred://browser"
                   "applications:discord.desktop"
-                  "applications:brave-browser.desktop"
                   "applications:obsidian.desktop"
                 ];
               };
