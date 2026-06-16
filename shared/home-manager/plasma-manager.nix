@@ -17,7 +17,7 @@
         {
           name = "org.kde.plasma.folder";
           position = {
-            horizontal = 1520;
+            horizontal = 1420; # Screen resolution (1920) minus width
             vertical = 0;
           };
           size = {
