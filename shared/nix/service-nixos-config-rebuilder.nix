@@ -26,28 +26,31 @@
     script = ''
       cd /etc/nixos
 
-      git fetch origin --quiet
+      ${gitBin} fetch origin --quiet
 
-      LOCAL=$(git rev-parse @)
-      REMOTE=$(git rev-parse @{u})
+      LOCAL=$(${gitBin} rev-parse @)
+      REMOTE=$(${gitBin} rev-parse @{u})
 
       if [ "$LOCAL" != "$REMOTE" ]; then
         echo "Upstream updates detected!"
 
-        # Open Terminal to show progress
+        # Note: Kitty runs detached here to free the service and prevent a deadlock!
         kitty --title="NixOS Rebuilder" -- bash -c '
           printf "========== NixOS Rebuilder ==========\n\n"
           cd /etc/nixos
           
           printf "Pulling changes from Git...\n"
-          git pull origin main
+          ${config.security.wrapperDir}/sudo ${gitBin} pull origin main
           
           printf "\nExecuting NixOS configuration switch...\n"
-          /run/wrappers/bin/sudo nixos-rebuild switch --show-trace
+          # We add special flags to ensure it switches profiles smoothly out-of-band
+          ${config.security.wrapperDir}/sudo ${nixosRebuildBin} switch --show-trace
           
           printf "\nFinished! Press any key to close this terminal..."
           read -n 1
-        '
+        ' &
+        
+        disown
       fi
     '';
   };
