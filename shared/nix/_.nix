@@ -3,7 +3,6 @@
     ./kde/_.nix 
     ./audio.nix                 
     ./experimental-features.nix 
-    ./file-sync-service.nix
     ./fonts.nix                 
     ./gpg.nix                   
     ./home-manager.nix          
@@ -12,9 +11,10 @@
     ./mount-nas.nix                   
     ./networking.nix            
     ./nix-gc.nix                
-    ./nixos-config-rebuilder.nix
     ./nixpkgs-unfree.nix        
-    ./printing.nix              
+    ./printing.nix             
+    ./service-file-sync.nix
+    ./service-nixos-config-rebuilder.nix
     ./sops.nix                  
     ./ssh.nix                   
     ./steam.nix
