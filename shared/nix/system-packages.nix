@@ -7,10 +7,5 @@
 
     # Display Server
     xauth
-
-    # SOPS
-    sops
-    age
-    ssh-to-age
   ];
 }

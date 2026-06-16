@@ -13,4 +13,10 @@
 
   # Define the secrets
   sops.secrets.smb-secrets = {};
+
+  environment.systemPackages = with pkgs; [
+    sops
+    age
+    ssh-to-age
+  ];
 }
