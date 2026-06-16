@@ -1,4 +1,8 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let 
+  nixosRebuildBin = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
+  gitBin = "${pkgs.git}/bin/git";
+{
   security.sudo.extraRules = [
     {
       users = [ "sakulflee" ];
@@ -40,7 +44,7 @@
           cd /etc/nixos
           
           printf "Pulling changes from Git...\n"
-          ${config.security.wrapperDir}/sudo ${gitBin} pull origin main
+          ${gitBin} pull origin main
           
           printf "\nExecuting NixOS configuration switch...\n"
           # We add special flags to ensure it switches profiles smoothly out-of-band
