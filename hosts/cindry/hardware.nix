@@ -10,19 +10,31 @@
 
   # Disk config
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/fad2025e-e33e-45a5-af9a-8338cca5ee97";
-      fsType = "ext4";
+    { device = "/dev/disk/by-uuid/1f439d9c-9091-443f-bfe5-26268bd52d03";
+      fsType = "btrfs";
+    };
+
+  fileSystems."/home" =
+    { device = "/dev/disk/by-uuid/1f439d9c-9091-443f-bfe5-26268bd52d03";
+      fsType = "btrfs";
+      options = [ "subvol=home" ];
+    };
+
+  fileSystems."/nix" =
+    { device = "/dev/disk/by-uuid/1f439d9c-9091-443f-bfe5-26268bd52d03";
+      fsType = "btrfs";
+      options = [ "subvol=nix" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/2AAA-B9A7";
+    { device = "/dev/disk/by-uuid/91F6-9D00";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  swapDevices = [{ 
-    device = "/dev/disk/by-uuid/dde0c8d0-6d7c-4cb5-ac79-5075540c8fe1"; 
-  }];
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/417a545e-a9a0-472b-adc1-2428812c1110"; }
+    ];
 
   # ZRAM
   zramSwap.enable = true;
