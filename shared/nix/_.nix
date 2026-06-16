@@ -9,7 +9,7 @@
     ./home-manager.nix          
     ./kernel.nix                
     ./locale.nix                
-    ./mount-nas.nix                   
+    # ./mount-nas.nix                   
     ./networking.nix            
     ./nix-gc.nix                
     ./nixpkgs-unfree.nix        
