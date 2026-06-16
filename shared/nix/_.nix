@@ -15,7 +15,7 @@
     ./nixpkgs-unfree.nix        
     ./printing.nix             
     ./rclone-sync.nix
-    ./service-file-sync.nix
+    # ./service-file-sync.nix
     ./service-nixos-config-rebuilder.nix
     ./sops.nix                  
     ./ssh.nix                   
