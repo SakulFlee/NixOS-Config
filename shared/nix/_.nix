@@ -10,7 +10,7 @@
     ./system-gc.nix
     ./system-network.nix
     ./system-security.nix
-    ./packages.nix
+    ./system-packages.nix
     ./system-programs.nix
     ./home-manager.nix
   ];
