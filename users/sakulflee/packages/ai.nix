@@ -3,5 +3,6 @@
     ollama
     lmstudio
     opencode
+    opencode-desktop
   ];
 }
