@@ -172,7 +172,7 @@
       adapters = {
         codelldb = {
           type    = "executable";
-          command = "${pkgs.codelldb}/bin/codelldb";
+          command = "${pkgs.vscode-extensions.vadimcn.vscode-lldb.adapter}/bin/codelldb";
           args    = [ "--port" "13000" ];
         };
       };
@@ -217,6 +217,6 @@
     ripgrep
     fd
     tree-sitter
-    codelldb
+    vscode-extensions.vadimcn.vscode-lldb.adapter
   ];
 }
