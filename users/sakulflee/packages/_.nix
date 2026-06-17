@@ -7,5 +7,6 @@
     ./media.nix
     ./security.nix
     ./social.nix
+    ./tools.nix
   ];
 }
