@@ -7,5 +7,6 @@
     cursor-cli
     pi-coding-agent
     claude-code
+    llama-cpp-vulkan
   ];
 }
