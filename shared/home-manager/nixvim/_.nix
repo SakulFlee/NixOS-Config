@@ -96,6 +96,24 @@
               grep = {};
               buffers = {};
             };
+            win = {
+              input.keys = {
+                "<C-w>w" = { __unkeyed-1 = "cycle_win"; mode = [ "n" "i" ]; desc = "Cycle windows"; };
+                "<C-w>j" = { __unkeyed-1 = "focus_list"; desc = "Focus list"; };
+                "<C-w>l" = { __unkeyed-1 = "focus_preview"; desc = "Focus preview"; };
+              };
+              list.keys = {
+                "<C-w>w" = { __unkeyed-1 = "cycle_win"; mode = "n"; desc = "Cycle windows"; };
+                "<C-w>k" = { __unkeyed-1 = "focus_input"; desc = "Focus input"; };
+                "<C-w>l" = { __unkeyed-1 = "focus_preview"; desc = "Focus preview"; };
+                "<C-w>h" = { __unkeyed-1 = "focus_input"; desc = "Focus input"; };
+              };
+              preview.keys = {
+                "<C-w>w" = { __unkeyed-1 = "cycle_win"; mode = "n"; desc = "Cycle windows"; };
+                "<C-w>h" = { __unkeyed-1 = "focus_input"; desc = "Focus input"; };
+                "<C-w>j" = { __unkeyed-1 = "focus_list"; desc = "Focus list"; };
+              };
+            };
           };
           indent.enabled = true;
           words.enabled = true;
@@ -618,6 +636,56 @@
       map("n", "<leader>tl", function() Snacks.lazygit() end, { desc = "Lazygit" })
       map({ "n", "t" }, "<F7>", function() Snacks.terminal.toggle() end, { desc = "Toggle terminal" })
 
+      -- ── UI Toggle keymaps (AstroNvim-style) ──────────────
+      map("n", "<leader>uw", function()
+        vim.wo.wrap = not vim.wo.wrap
+        Snacks.notify("Wrap: " .. (vim.wo.wrap and "ON" or "OFF"))
+      end, { desc = "Toggle wrap" })
+
+      map("n", "<leader>un", function()
+        if vim.wo.relativenumber then
+          vim.wo.relativenumber = false
+          vim.wo.number = true
+        elseif vim.wo.number then
+          vim.wo.number = false
+        else
+          vim.wo.relativenumber = true
+          vim.wo.number = true
+        end
+        local mode = vim.wo.relativenumber and "relative" or (vim.wo.number and "absolute" or "off")
+        Snacks.notify("Line numbers: " .. mode)
+      end, { desc = "Toggle line numbers" })
+
+      map("n", "<leader>us", function()
+        vim.wo.spell = not vim.wo.spell
+        Snacks.notify("Spell: " .. (vim.wo.spell and "ON" or "OFF"))
+      end, { desc = "Toggle spellcheck" })
+
+      map("n", "<leader>u|", function()
+        Snacks.toggle.indent()
+      end, { desc = "Toggle indent guides" })
+
+      map("n", "<leader>ug", function()
+        if vim.wo.signcolumn == "yes" then
+          vim.wo.signcolumn = "no"
+        elseif vim.wo.signcolumn == "no" then
+          vim.wo.signcolumn = "auto"
+        else
+          vim.wo.signcolumn = "yes"
+        end
+        Snacks.notify("Signcolumn: " .. vim.wo.signcolumn)
+      end, { desc = "Toggle signcolumn" })
+
+      map("n", "<leader>ud", function()
+        if vim.diagnostic.is_enabled() then
+          vim.diagnostic.enable(false)
+          Snacks.notify("Diagnostics: OFF")
+        else
+          vim.diagnostic.enable(true)
+          Snacks.notify("Diagnostics: ON")
+        end
+      end, { desc = "Toggle diagnostics" })
+
       -- ── Picker keymaps (snacks.picker) ────────────────────
       map("n", "<leader>ff", function() Snacks.picker.files() end, { desc = "Find files" })
       map("n", "<leader>fb", function() Snacks.picker.buffers() end, { desc = "Buffers" })
@@ -633,6 +701,10 @@
       map("n", "<leader>fk", function() Snacks.picker.keymaps() end, { desc = "Keymaps" })
       map("n", "<leader>ft", function() Snacks.picker.colorschemes() end, { desc = "Colorschemes" })
       map("n", "<leader>fo", function() Snacks.picker.recent() end, { desc = "Recent files" })
+
+      -- ── Explorer / Outline ────────────────────────────────
+      map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "File explorer" })
+      map("n", "<leader>o", "<cmd>AerialToggle!<cr>", { desc = "Symbols outline" })
 
       -- ── Session keymaps (auto-session) ────────────────────
       local gs_ok, gs = pcall(require, "auto-session")
@@ -693,16 +765,7 @@
 
       -- ── Notifications ──────────────────────────────────────
       map("n", "<leader>uD", function() Snacks.notifier.hide() end, { desc = "Dismiss notifications" })
-      map("n", "<leader>n", function()
-        local history = Snacks.notifier.get_history()
-        if #history == 0 then
-          Snacks.notify("No notifications")
-          return
-        end
-        local last = history[#history]
-        vim.fn.setreg("+", last.msg)
-        Snacks.notify("Copied last notification to clipboard")
-      end, { desc = "Copy last notification" })
+      map("n", "<leader>n", function() Snacks.notifier.show_history() end, { desc = "Notification history" })
 
       -- ══════════════════════════════════════════════════════
       -- Which-Key Groups
@@ -724,6 +787,9 @@
           { "<leader>h",  group = "Dashboard" },
           { "<leader>m",  group = "Markdown" },
           { "<leader>q",  group = "Quick" },
+          { "<leader>u",  group = "UI Toggle" },
+          { "<leader>e",  group = "Explorer" },
+          { "<leader>o",  group = "Outline" },
         })
       end
 
