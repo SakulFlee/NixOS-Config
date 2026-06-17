@@ -91,7 +91,7 @@
 
     shortcuts = {
       "services/kitty.desktop" = {
-        "_launch" = [ "Meta+T" "Ctrl+Alt+T" ];
+        "_launch" = "Ctrl+Alt+T";
       };
     };
   };
