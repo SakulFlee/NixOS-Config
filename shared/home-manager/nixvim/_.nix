@@ -120,22 +120,22 @@
         settings.dashboard = { enabled = true; };
       };
 
+      # ── Treesitter (parsers from nixpkgs) ────────────────
+      treesitter = {
+        enable = true;
+        settings = {
+          highlight.enable = true;
+          indent.enable    = true;
+        };
+        grammarPackages = [
+          "rust" "html" "css" "javascript" "typescript" "tsx"
+          "yaml" "json" "toml" "bash" "lua" "nix" "vim" "vimdoc"
+          "regex" "markdown" "markdown_inline"
+        ];
+      };
+
       # ── Git: lazygit ─────────────────────────────────────
       lazygit.enable = true;
-    };
-
-    # ── Treesitter (parsers from nixpkgs) ─────────────────────
-    treesitter = {
-      enable = true;
-      settings = {
-        highlight.enable = true;
-        indent.enable    = true;
-      };
-      grammarPackages = [
-        "rust" "html" "css" "javascript" "typescript" "tsx"
-        "yaml" "json" "toml" "bash" "lua" "nix" "vim" "vimdoc"
-        "regex" "markdown" "markdown_inline"
-      ];
     };
 
     # ── LSP ───────────────────────────────────────────────────
