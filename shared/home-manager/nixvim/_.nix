@@ -106,12 +106,14 @@
                 "<C-w>w" = { __unkeyed-1 = "cycle_win"; mode = [ "n" "i" ]; desc = "Cycle windows"; };
                 "<C-w>j" = { __unkeyed-1 = "focus_list"; desc = "Focus list"; };
                 "<C-w>l" = { __unkeyed-1 = "focus_preview"; desc = "Focus preview"; };
+                "<Tab>"  = { __unkeyed-1 = "focus_preview"; mode = [ "n" "i" ]; desc = "Focus preview"; };
               };
               list.keys = {
                 "<C-w>w" = { __unkeyed-1 = "cycle_win"; mode = "n"; desc = "Cycle windows"; };
                 "<C-w>k" = { __unkeyed-1 = "focus_input"; desc = "Focus input"; };
                 "<C-w>l" = { __unkeyed-1 = "focus_preview"; desc = "Focus preview"; };
                 "<C-w>h" = { __unkeyed-1 = "focus_input"; desc = "Focus input"; };
+                "<Tab>"  = { __unkeyed-1 = "focus_preview"; mode = "n"; desc = "Focus preview"; };
               };
               preview.keys = {
                 "<C-w>w" = { __unkeyed-1 = "cycle_win"; mode = "n"; desc = "Cycle windows"; };
