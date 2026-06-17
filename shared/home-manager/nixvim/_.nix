@@ -102,6 +102,7 @@
           scope.enabled = true;
           bigfile.enabled = true;
           lazygit.enabled = true;
+          explorer.enabled = false;
         };
       };
 
