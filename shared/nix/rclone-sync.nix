@@ -42,7 +42,19 @@ let
         fi
     }
 
+    check_connection() {
+      if rclone lsd "$REMOTE_DIR" --timeout 10s --max-depth 1 > /dev/null 2>&1; then
+        return 0
+      fi
+      return 1
+    }
+
     sync() {
+      if ! check_connection; then
+        echo "Network unreachable, skipping sync."
+        notify "low" "Rclone Sync" "Remote unreachable. Will retry later."
+        return 1
+      fi
     if rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" --exclude '/#recycle/**' --conflict-resolve newer --verbose; then
         echo "Sync successful."
         notify "normal" "Rclone Sync" "Files are fully up to date."
@@ -78,7 +90,7 @@ let
 
     echo "Initial sync for $LOCAL_DIR ..."
     notify "normal" "Rclone Watcher" "Initial sync started"
-    sync
+    sync || true
 
     echo "Starting rclone bisync watcher for $LOCAL_DIR ..."
     notify "normal" "Rclone Watcher" "Monitoring started safely for local changes."
@@ -94,7 +106,7 @@ let
         notify "low" "Rclone Syncing" "Updating files with remote storage..."
         echo "Sync triggered at $(date)"
 
-        sync
+        sync || true
          
         sleep 3
     done
