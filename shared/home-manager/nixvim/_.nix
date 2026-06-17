@@ -45,11 +45,9 @@
     '';
 
     # ── Dashboard (snacks) ─────────────────────────────────────
-    startscreen = "dashboard";
-
     snacks = {
       enable = true;
-      dashboard.enable = true;
+      settings.dashboard = { enabled = true; };
     };
 
     # ── Quality-of-life plugins ────────────────────────────────
@@ -144,7 +142,6 @@
 
     # ── LSP ───────────────────────────────────────────────────
     lsp = {
-      enable = true;
       keymaps = [
         {
           key = "<leader>rn";
@@ -214,7 +211,6 @@
     plugins.dap-ui.enable           = true;
     plugins.dap-virtual-text.enable = true;
 
-    # ── Git: lazygit ─────────────────────────────────────────
     # ── OpenCode.nvim (sudo-tee/opencode.nvim) ───────────────
     extraPlugins = [
       (pkgs.vimPlugins.buildVimPlugin {
