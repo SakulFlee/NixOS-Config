@@ -5,7 +5,10 @@
     enable = true;
     defaultEditor = true;
 
-    colorscheme = "catppuccin-mocha";
+    colorschemes.catppuccin = {
+      enable = true;
+      settings.flavour = "mocha";
+    };
 
     opts = {
       relativenumber = true;
