@@ -61,7 +61,7 @@
       lualine.enable          = true;
       aerial = {
         enable   = true;
-        backends = { lsp = true; treesitter = true; };
+        settings.backends = [ "lsp" "treesitter" ];
       };
       neo-tree = {
         enable       = true;
