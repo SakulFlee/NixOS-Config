@@ -170,8 +170,7 @@
     plugins.dap = {
       enable = true;
       adapters = {
-        codelldb = {
-          type    = "executable";
+        executables.codelldb = {
           command = "${pkgs.vscode-extensions.vadimcn.vscode-lldb.adapter}/bin/codelldb";
           args    = [ "--port" "13000" ];
         };
