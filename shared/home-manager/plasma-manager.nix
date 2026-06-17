@@ -90,12 +90,8 @@
     ];
 
     shortcuts = {
-      "khotkeys" = {
-        "Konsole" = "none";
-      };
-
       "services/kitty.desktop" = {
-        "_launch" = "Meta+T,Ctrl+Alt+T";
+        "_launch" = [ "Meta+T" "Ctrl+Alt+T" ];
       };
     };
   };
