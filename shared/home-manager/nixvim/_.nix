@@ -395,10 +395,16 @@
 
       -- ── WinBar ────────────────────────────────────────────
       local Navic = {
-        condition = function() return package.loaded["aerial"] ~= nil end,
+        condition = function()
+          local ok, aerial = pcall(require, "aerial")
+          if not ok then return false end
+          local bn = vim.api.nvim_get_current_buf()
+          if not vim.api.nvim_buf_is_valid(bn) then return false end
+          local ok2, loc = pcall(aerial.get_location, true)
+          return ok2 and #loc > 0
+        end,
         provider = function()
-          local status_ok, aerial = pcall(require, "aerial")
-          if not status_ok then return "" end
+          local aerial = require("aerial")
           local symbols = aerial.get_location(true)
           if #symbols == 0 then return "" end
           local parts = {}
@@ -412,6 +418,8 @@
 
       local WinBar = {
         condition = function()
+          local bn = vim.api.nvim_get_current_buf()
+          if not vim.api.nvim_buf_is_valid(bn) then return false end
           return not conditions.buffer_matches({
             buftype = { "nofile", "prompt", "help", "quickfix" },
             filetype = { "^git.*", "fugitive", "neo-tree", "dashboard" },
@@ -457,6 +465,7 @@
         tabline = TabLine,
         opts = {
           disable_winbar_cb = function(args)
+            if not vim.api.nvim_buf_is_valid(args.buf) then return true end
             return conditions.buffer_matches({
               buftype = { "nofile", "prompt", "help", "quickfix" },
               filetype = { "^git.*", "fugitive", "neo-tree", "dashboard" },
