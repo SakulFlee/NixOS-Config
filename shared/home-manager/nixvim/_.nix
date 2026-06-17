@@ -140,7 +140,13 @@
         enable   = true;
         settings.backends = [ "lsp" "treesitter" ];
       };
-      neo-tree.enable = true;
+      neo-tree = {
+        enable = true;
+        settings = {
+          filesystem.hijack_netrw_behavior = "disabled";
+          close_if_last_window = true;
+        };
+      };
       which-key.enable = true;
 
       # ── Smart splits ───────────────────────────────────────
