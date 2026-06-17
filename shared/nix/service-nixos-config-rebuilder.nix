@@ -36,12 +36,10 @@ in
     script = ''
       cd /etc/nixos
 
-      ${gitBin} fetch origin --quiet
+      ${gitBin} fetch origin --quiet 2>/dev/null || true
+      BEHIND=$(${gitBin} rev-list --count @..@{u} 2>/dev/null || echo 0)
 
-      LOCAL=$(${gitBin} rev-parse @)
-      REMOTE=$(${gitBin} rev-parse @{u})
-
-      if [ "$LOCAL" != "$REMOTE" ]; then
+      if [ "$BEHIND" -gt 0 ]; then
         echo "Upstream updates detected!"
 
         # Note: Kitty runs detached here to free the service and prevent a deadlock!
@@ -65,7 +63,7 @@ in
   };
 
   systemd.user.timers.nixos-rebuilder = {
-    description = "Timer to poll /etc/nixos git status every 5 minutes";
+    description = "Timer to poll /etc/nixos git status every hour";
     
     # FIXED: Binds the timer cycle to the active desktop environment session context
     wantedBy = [ "graphical-session.target" ];
