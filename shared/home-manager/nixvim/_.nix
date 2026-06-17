@@ -103,6 +103,26 @@
           ];
         };
       };
+
+      # ── Formatters (conform.nvim) ─────────────────────────
+      conform-nvim = {
+        enable = true;
+        settings = {
+          formatters_by_ft = {
+            lua        = [ "stylua" ];
+            nix        = [ "nixfmt" ];
+            javascript = [ "prettier" ];
+            typescript = [ "prettier" ];
+            tsx        = [ "prettier" ];
+            html       = [ "prettier" ];
+            css        = [ "prettier" ];
+            json       = [ "prettier" ];
+            yaml       = [ "prettier" ];
+            toml       = [ "taplo" ];
+            markdown   = [ "prettier" ];
+          };
+        };
+      };
     };
 
     # ── Treesitter (parsers from nixpkgs) ─────────────────────
@@ -146,14 +166,6 @@
         jsonls.enable = true;
         bashls.enable = true;
       };
-    };
-
-    # ── Formatters ────────────────────────────────────────────
-    formatters = {
-      stylua.enable   = true;
-      nixfmt.enable   = true;
-      prettier.enable = true;
-      taplo.enable    = true;
     };
 
     # ── DAP (debugger) ───────────────────────────────────────
