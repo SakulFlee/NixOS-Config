@@ -322,9 +322,16 @@
       local GitBranch = {
         condition = conditions.is_git_repo,
         init = function(self)
-          self.branch = vim.fn.FugitiveHead()
+          local gs = package.loaded.gitsigns
+          if gs then
+            self.branch = gs.get_branch() or ""
+          else
+            self.branch = ""
+          end
         end,
-        provider = function(self) return " " .. self.branch .. " " end,
+        provider = function(self)
+          return self.branch ~= "" and (" " .. self.branch .. " ") or ""
+        end,
         hl = { fg = colors.purple, bold = true },
       }
 
