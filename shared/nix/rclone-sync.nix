@@ -8,6 +8,7 @@ let
   checkInterval = "1800";
   stateDir = "/home/${username}/.config/rclone";
   errorLock = "${stateDir}/bisync-error.lock";
+  workDir = "/home/${username}/.local/state/rclone/bisync";
 
   rcloneWatcherScript = pkgs.writeShellScriptBin "rclone-watcher" ''
     PATH=${pkgs.lib.makeBinPath [ pkgs.rclone pkgs.inotify-tools pkgs.libnotify pkgs.coreutils pkgs.gnugrep ]}:$PATH
@@ -18,6 +19,7 @@ let
     CHECK_INTERVAL="${checkInterval}"
     STATE_DIR="${stateDir}"
     ERROR_LOCK="${errorLock}"
+    WORK_DIR="${workDir}"
 
     # Re-export password but obscure it
     export RCLONE_CONFIG_NAS_SMB_PASS=$(rclone obscure "$RCLONE_CONFIG_NAS_SMB_PASS")
@@ -55,7 +57,7 @@ let
         notify "low" "Rclone Sync" "Remote unreachable. Will retry later."
         return 1
       fi
-    if rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" --exclude '/#recycle/**' --conflict-resolve newer --verbose; then
+    if rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" --workdir "$WORK_DIR" --exclude '/#recycle/**' --conflict-resolve newer --verbose; then
         echo "Sync successful."
         notify "normal" "Rclone Sync" "Files are fully up to date."
       else
@@ -83,6 +85,7 @@ let
     fi
 
     mkdir -p "$STATE_DIR"
+    mkdir -p "$WORK_DIR"
     if [ ! -d "$LOCAL_DIR" ]; then
         echo "Error: Local directory $LOCAL_DIR does not exist."
         exit 1
