@@ -4,5 +4,6 @@
     lmstudio
     opencode
     opencode-desktop
+    cursor-cli
   ];
 }
