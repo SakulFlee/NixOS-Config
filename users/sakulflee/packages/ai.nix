@@ -5,5 +5,6 @@
     opencode
     opencode-desktop
     cursor-cli
+    pi-coding-agent
   ];
 }
