@@ -70,6 +70,10 @@
         settings = {
           dashboard = {
             enabled = true;
+            sections = [
+              { section = "header"; }
+              { section = "keys"; gap = 1; padding = 1; }
+            ];
             preset = {
               keys = [
                 { icon = " "; key = "f"; desc = "Find File"; action = "function() Snacks.picker.files() end"; }
@@ -686,6 +690,19 @@
 
       -- ── Dashboard ─────────────────────────────────────────
       map("n", "<leader>h", function() Snacks.dashboard() end, { desc = "Dashboard" })
+
+      -- ── Notifications ──────────────────────────────────────
+      map("n", "<leader>uD", function() Snacks.notifier.hide() end, { desc = "Dismiss notifications" })
+      map("n", "<leader>n", function()
+        local history = Snacks.notifier.get_history()
+        if #history == 0 then
+          Snacks.notify("No notifications")
+          return
+        end
+        local last = history[#history]
+        vim.fn.setreg("+", last.msg)
+        Snacks.notify("Copied last notification to clipboard")
+      end, { desc = "Copy last notification" })
 
       -- ══════════════════════════════════════════════════════
       -- Which-Key Groups
