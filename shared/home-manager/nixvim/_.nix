@@ -127,10 +127,10 @@
           highlight.enable = true;
           indent.enable    = true;
         };
-        grammarPackages = [
-          "rust" "html" "css" "javascript" "typescript" "tsx"
-          "yaml" "json" "toml" "bash" "lua" "nix" "vim" "vimdoc"
-          "regex" "markdown" "markdown_inline"
+        grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+          rust html css javascript typescript tsx
+          yaml json toml bash lua nix vim vimdoc
+          regex markdown markdown_inline
         ];
       };
 
