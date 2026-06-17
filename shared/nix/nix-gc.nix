@@ -3,6 +3,6 @@
   nix.gc = {
     automatic = true;
     dates = "daily";
-    options = "--delete-odler-than 7d";
+    options = "--delete-odler-than 3d";
   };
 }
