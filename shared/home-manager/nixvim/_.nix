@@ -20,6 +20,7 @@
       conceallevel = 2;
       cmdheight = 0;
       winborder = "rounded";
+      clipboard = "wl-copy";
     };
 
     globals = {
@@ -765,7 +766,7 @@
 
       -- ── Notifications ──────────────────────────────────────
       map("n", "<leader>uD", function() Snacks.notifier.hide() end, { desc = "Dismiss notifications" })
-      map("n", "<leader>n", function() Snacks.notifier.show_history() end, { desc = "Notification history" })
+      map("n", "<leader>n", function() Snacks.picker.notifications() end, { desc = "Notification history" })
 
       -- ══════════════════════════════════════════════════════
       -- Which-Key Groups
