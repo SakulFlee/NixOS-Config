@@ -1,4 +1,4 @@
-{ inputs, pkgs, unstable, ... }: {
+{ inputs, pkgs, ... }: {
   imports = [ inputs.nixvim.homeModules.nixvim ];
 
   programs.nixvim = {
@@ -209,19 +209,6 @@
     plugins.dap-ui.enable           = true;
     plugins.dap-virtual-text.enable = true;
 
-    # ── OpenCode.nvim (sudo-tee/opencode.nvim) ───────────────
-    extraPlugins = [
-      (pkgs.vimPlugins.buildVimPlugin {
-        pname    = "opencode-nvim";
-        version  = "unstable";
-        src = pkgs.fetchFromGitHub {
-          owner   = "sudo-tee";
-          repo    = "opencode.nvim";
-          rev     = "main";
-          sha256  = "0000000000000000000000000000000000000000000000000000";
-        };
-      })
-    ];
   };
 
   # CLI tools that plugins shell out to
@@ -231,5 +218,5 @@
     fd
     tree-sitter
     codelldb
-  ] ++ [ unstable.opencode ];
+  ];
 }
