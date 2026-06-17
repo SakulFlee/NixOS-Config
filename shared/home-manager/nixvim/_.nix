@@ -20,12 +20,16 @@
       conceallevel = 2;
       cmdheight = 0;
       winborder = "rounded";
-      clipboard = "wl-copy";
     };
 
     globals = {
       mapleader = " ";
       maplocalleader = ",";
+    };
+
+    clipboard = {
+      register = "unnamedplus";
+      providers.wl-copy.enable = true;
     };
 
     # ── Quality-of-life plugins ────────────────────────────────
