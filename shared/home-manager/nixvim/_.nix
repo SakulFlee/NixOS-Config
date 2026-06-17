@@ -68,7 +68,19 @@
       snacks = {
         enable = true;
         settings = {
-          dashboard.enabled = true;
+          dashboard = {
+            enabled = true;
+            preset = {
+              keys = [
+                { icon = " "; key = "f"; desc = "Find File"; action = "function() Snacks.picker.files() end"; }
+                { icon = " "; key = "r"; desc = "Recent Files"; action = "function() Snacks.picker.recent() end"; }
+                { icon = " "; key = "g"; desc = "Git Files"; action = "function() Snacks.picker.git_files() end"; }
+                { icon = " "; key = "b"; desc = "Buffers"; action = "function() Snacks.picker.buffers() end"; }
+                { icon = " "; key = "s"; desc = "Restore Session"; action = "function() require('auto-session').RestoreSession() end"; }
+                { icon = " "; key = "q"; desc = "Quit"; action = "qa"; }
+              ];
+            };
+          };
           notifier = {
             enabled = true;
             timeout = 3000;
