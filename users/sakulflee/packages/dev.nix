@@ -3,7 +3,7 @@
     rustup
     neovim
     git
-    wl-copy
+    wl-clipboard
   ];
 }
 
