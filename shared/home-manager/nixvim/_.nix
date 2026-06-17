@@ -322,12 +322,8 @@
       local GitBranch = {
         condition = conditions.is_git_repo,
         init = function(self)
-          local gs = package.loaded.gitsigns
-          if gs then
-            self.branch = gs.get_branch() or ""
-          else
-            self.branch = ""
-          end
+          local branch = vim.fn.system("git -C " .. vim.fn.expand("%:p:h") .. " rev-parse --abbrev-ref HEAD 2>/dev/null"):gsub("\n", "")
+          self.branch = branch ~= "" and branch or ""
         end,
         provider = function(self)
           return self.branch ~= "" and (" " .. self.branch .. " ") or ""
