@@ -123,6 +123,9 @@
           };
         };
       };
+
+      # ── Git: lazygit ─────────────────────────────────────
+      lazygit.enable = true;
     };
 
     # ── Treesitter (parsers from nixpkgs) ─────────────────────
@@ -212,8 +215,6 @@
     plugins.dap-virtual-text.enable = true;
 
     # ── Git: lazygit ─────────────────────────────────────────
-    git.lazygit.enable = true;
-
     # ── OpenCode.nvim (sudo-tee/opencode.nvim) ───────────────
     extraPlugins = [
       (pkgs.vimPlugins.buildVimPlugin {
