@@ -43,7 +43,7 @@ let
     }
 
     sync() {
-      if rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" --exclude '/#recycle/**' --conflict-resolve newer --check-access; then
+    if rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" --exclude '/#recycle/**' --conflict-resolve newer --verbose; then
         echo "Sync successful."
         notify "normal" "Rclone Sync" "Files are fully up to date."
       else
