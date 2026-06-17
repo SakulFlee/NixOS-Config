@@ -11,29 +11,27 @@
       wallpaper = "/usr/share/wallpapers/cachyos-wallpapers/PurpleFeathers.png";
     };
 
-    # Custom Folder View for your Synced Desktop Folder
+    # Native desktop containment showing ~/Sync/Desktop
     desktop = {
-      widgets = [
-        {
-          name = "org.kde.plasma.folder";
-          position = {
-            horizontal = 1420; # Screen resolution (1920) minus width
-            vertical = 0;
-          };
-          size = {
-            width = 600;
-            height = 1080;
-          };
-          config = {
-            General = {
-              url = "file:///home/sakulflee/Sync/Desktop";
-              sortMode = "2";    # Sort by Date
-              alignment = "1";   # Icons on the Right
-              arrangement = "1"; # Organize in Rows
-            };
-          };
+      widgets = [];
+
+      icons = {
+        arrangement = "topToBottom";
+        alignment = "right";
+        sorting.mode = "date";
+      };
+    };
+
+    startup.desktopScript."set_desktop_url" = {
+      text = ''
+        var allDesktops = desktops();
+        for (var i = 0; i < allDesktops.length; i++) {
+            var d = allDesktops[i];
+            d.currentConfigGroup = ["General"];
+            d.writeConfig("url", "file:///home/sakulflee/Sync/Desktop");
         }
-      ];
+      '';
+      priority = 3;
     };
 
     panels = [
