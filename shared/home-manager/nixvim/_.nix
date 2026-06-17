@@ -44,16 +44,10 @@
         { desc = "Markdown preview" })
     '';
 
-    # ── Dashboard (snacks) ─────────────────────────────────────
-    snacks = {
-      enable = true;
-      settings.dashboard = { enabled = true; };
-    };
-
     # ── Quality-of-life plugins ────────────────────────────────
     plugins = {
-      autopairs.enable        = true;
-      surround.enable         = true;
+      nvim-autopairs.enable = true;
+      nvim-surround.enable = true;
       comment.enable          = true;
       indent-blankline.enable = true;
       todo-comments.enable    = true;
@@ -65,12 +59,10 @@
       };
       neo-tree = {
         enable       = true;
-        openOnStart  = false;
       };
       telescope.enable = true;
       which-key = {
         enable = true;
-        settings.preset.lazy = false;
       };
 
       # ── Session manager (auto-session) ───────────────────────
@@ -85,7 +77,7 @@
       };
 
       # ── Project manager ─────────────────────────────────────
-      projectmgr-nvim.enable = true;
+      project-nvim.enable = true;
 
       # ── Markdown & Obsidian ────────────────────────────────
       render-markdown.enable  = true;
@@ -122,6 +114,12 @@
         };
       };
 
+      # ── Dashboard (snacks) ───────────────────────────────
+      snacks = {
+        enable = true;
+        settings.dashboard = { enabled = true; };
+      };
+
       # ── Git: lazygit ─────────────────────────────────────
       lazygit.enable = true;
     };
@@ -133,7 +131,7 @@
         highlight.enable = true;
         indent.enable    = true;
       };
-      grammars = [
+      grammarPackages = [
         "rust" "html" "css" "javascript" "typescript" "tsx"
         "yaml" "json" "toml" "bash" "lua" "nix" "vim" "vimdoc"
         "regex" "markdown" "markdown_inline"
