@@ -19,6 +19,9 @@ let
     STATE_DIR="${stateDir}"
     ERROR_LOCK="${errorLock}"
 
+    # Re-export password but obscure it
+    export RCLONE_CONFIG_NAS_SMB_PASS=$(rclone obscure "$RCLONE_CONFIG_NAS_SMB_PASS")
+
     notify() {
         local urgency="$1"
         local title="$2"
