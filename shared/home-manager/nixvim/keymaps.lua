@@ -218,6 +218,10 @@ end, { desc = "Git commits" })
 map("n", "<leader>gb", function()
   Snacks.picker.git_branches()
 end, { desc = "Git branches" })
+local gs_ok, gitsigns = pcall(require, "gitsigns")
+if gs_ok then
+  map("n", "<leader>gB", gitsigns.blame_line, { desc = "Git blame" })
+end
 
 -- ── Quickfix / Location list ──────────────────────────
 map("n", "<leader>xq", "<cmd>copen<cr>", { desc = "Open quickfix list" })
