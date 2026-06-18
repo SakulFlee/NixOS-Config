@@ -39,7 +39,6 @@
     ];
 
   # ZRAM
-  zramSwap.enable = true;
 
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

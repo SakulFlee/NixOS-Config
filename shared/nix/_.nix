@@ -25,6 +25,7 @@
     ./system-state.nix          
     ./touchpad.nix              
     ./wayland.nix              
+    ./zram.nix
     ./zsh.nix                   
   ];
 }
