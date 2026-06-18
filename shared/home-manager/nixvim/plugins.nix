@@ -135,7 +135,13 @@
       ts-autotag.enable = true;
 
       # ── Guess indent ───────────────────────────────────────
-      guess-indent.enable = true;
+      guess-indent = {
+        enable = true;
+        settings = {
+          auto_cmd = true;
+          filetype_blacklist = [ "rust" "python" "lua" "nix" "go" ];
+        };
+      };
 
       # ── Highlight colors ───────────────────────────────────
       highlight-colors.enable = true;

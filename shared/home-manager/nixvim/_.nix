@@ -24,6 +24,10 @@
       conceallevel = 2;
       cmdheight = 0;
       winborder = "rounded";
+      expandtab = true;
+      tabstop = 4;
+      softtabstop = 4;
+      shiftwidth = 4;
     };
 
     globals = {
