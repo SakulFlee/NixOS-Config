@@ -13,7 +13,10 @@
     '')
 
     # GE Proton for other games
-    proton-ge-bin
+    (runCommand "proton-ge-bin-fixed" {} ''
+      mkdir -p $out/bin
+      ln -s ${proton-ge-bin} $out/bin/proton-ge
+    '')
   ];
 }
 
