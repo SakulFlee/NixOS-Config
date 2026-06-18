@@ -7,6 +7,10 @@
     ../../shared/nix-hardware/microcode.nix
   ];
 
+  # Needs to be set by every platform host
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+
+  # Additional boot arguments should _mostly_ stay in the host config as they tend to highly customized between hosts
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
