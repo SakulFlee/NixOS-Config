@@ -17,6 +17,11 @@
     gnutar
     busybox
     diffutils
+
+    # RGB control
     openrgb-with-all-plugins
+
+    # Enabled running graphical applications via SSH using vglrun <cmd>
+    virtualgl
   ];
 }
