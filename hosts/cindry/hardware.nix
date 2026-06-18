@@ -54,7 +54,4 @@
   boot.extraModprobeConfig = ''
     options mt7921e disable_aspm=1
   '';
-  networking.networkmanager.wifi.powersave = false;
-
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }

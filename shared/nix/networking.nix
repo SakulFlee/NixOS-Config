@@ -2,6 +2,9 @@
   networking.networkmanager = {
     enable = true;
 
-    wifi.backend = "iwd";
+    wifi = {
+      powersave = true;
+      # backend = "iwd";
+    }
   };
 }
