@@ -5,6 +5,8 @@
     weather_provider.sopsFile = ../../../secrets.yaml;
   };
 
+  programs.plasma.startup.desktopScript."set_desktop_widgets".runAlways = true;
+
   programs.plasma.startup.startupScript."configure_weather" = {
     text = ''
       qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript "
@@ -44,6 +46,7 @@
           totalSensors = [ "cpu/all/usage" ];
           textOnlySensors = [ "cpu/all/averageTemperature" ];
           range = { from = 0; to = 100; };
+          settings.Configuration.CurrentPreset = "";
         };
       }
 
@@ -62,6 +65,7 @@
           ];
           totalSensors = [ "mem/physical/percentage" ];
           textOnlySensors = [ "mem/physical/total" ];
+          settings.Configuration.CurrentPreset = "";
         };
       }
 
@@ -84,6 +88,7 @@
             { name = "cpu/cpu7/usage"; color = "254,180,254"; label = "Core 7"; }
           ];
           range = { from = 0; to = 100; };
+          settings.Configuration.CurrentPreset = "";
         };
       }
 
@@ -99,6 +104,7 @@
             { name = "mem/physical/used"; color = "150,200,150"; label = "Used"; }
           ];
           totalSensors = [ "mem/physical/used" ];
+          settings.Configuration.CurrentPreset = "";
         };
       }
 
@@ -114,6 +120,7 @@
             { name = "network/all/download"; color = "150,200,150"; label = "Down"; }
             { name = "network/all/upload"; color = "239,152,150"; label = "Up"; }
           ];
+          settings.Configuration.CurrentPreset = "";
         };
       }
 
@@ -132,6 +139,7 @@
           ];
           totalSensors = [ "disk/all/fillLevel" ];
           range = { from = 0; to = 100; };
+          settings.Configuration.CurrentPreset = "";
         };
       }
 
