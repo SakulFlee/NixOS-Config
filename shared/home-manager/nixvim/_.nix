@@ -538,14 +538,26 @@
       -- ── Window navigation (smart-splits) ──────────────────
       local ss_ok, smart_splits = pcall(require, "smart-splits")
       if ss_ok then
+        -- hjkl navigation
         map("n", "<C-h>", smart_splits.move_cursor_left,  { desc = "Move to left split" })
-        map("n", "<C-j>", smart_splits.move_cursor_down,   { desc = "Move to below split" })
-        map("n", "<C-k>", smart_splits.move_cursor_up,     { desc = "Move to above split" })
-        map("n", "<C-l>", smart_splits.move_cursor_right,  { desc = "Move to right split" })
-        map("n", "<C-Left>",  smart_splits.resize_left,    { desc = "Resize split left" })
-        map("n", "<C-Down>",  smart_splits.resize_down,    { desc = "Resize split down" })
-        map("n", "<C-Up>",    smart_splits.resize_up,      { desc = "Resize split up" })
-        map("n", "<C-Right>", smart_splits.resize_right,   { desc = "Resize split right" })
+        map("n", "<C-j>", smart_splits.move_cursor_down,  { desc = "Move to below split" })
+        map("n", "<C-k>", smart_splits.move_cursor_up,    { desc = "Move to above split" })
+        map("n", "<C-l>", smart_splits.move_cursor_right, { desc = "Move to right split" })
+        -- Arrow key alternatives
+        map("n", "<Left>",  smart_splits.move_cursor_left,  { desc = "Move to left split" })
+        map("n", "<Down>",  smart_splits.move_cursor_down,  { desc = "Move to below split" })
+        map("n", "<Up>",    smart_splits.move_cursor_up,    { desc = "Move to above split" })
+        map("n", "<Right>", smart_splits.move_cursor_right, { desc = "Move to right split" })
+        -- Resize splits (Ctrl+Shift+Arrow)
+        map("n", "<C-S-Left>",  smart_splits.resize_left,  { desc = "Resize split left" })
+        map("n", "<C-S-Down>",  smart_splits.resize_down,  { desc = "Resize split down" })
+        map("n", "<C-S-Up>",    smart_splits.resize_up,    { desc = "Resize split up" })
+        map("n", "<C-S-Right>", smart_splits.resize_right, { desc = "Resize split right" })
+        -- Resize splits (Ctrl+Shift+HJKL alternative)
+        map("n", "<C-S-h>", smart_splits.resize_left,  { desc = "Resize split left" })
+        map("n", "<C-S-j>", smart_splits.resize_down,  { desc = "Resize split down" })
+        map("n", "<C-S-k>", smart_splits.resize_up,    { desc = "Resize split up" })
+        map("n", "<C-S-l>", smart_splits.resize_right, { desc = "Resize split right" })
       end
 
       -- ── Window splits ─────────────────────────────────────
