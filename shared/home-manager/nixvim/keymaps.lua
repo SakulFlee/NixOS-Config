@@ -208,6 +208,7 @@ if gs_ok then
 end
 
 -- ── Git keymaps ───────────────────────────────────────
+map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Lazygit" })
 map("n", "<leader>go", function()
   Snacks.picker.git_status()
 end, { desc = "Git status" })
