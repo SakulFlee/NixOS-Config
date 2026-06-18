@@ -20,5 +20,8 @@
 
     # RGB control
     openrgb-with-all-plugins
+
+    # KDE Plasma
+    kdePackages.plasma-systemmonitor
   ];
 }

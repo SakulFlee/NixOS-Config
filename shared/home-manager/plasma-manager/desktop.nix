@@ -5,7 +5,7 @@
       {
         systemMonitor = {
           position = { horizontal = 20; vertical = 20; };
-          size = { width = 920; height = 200; };
+          size = { width = 350; height = 200; };
           title = "CPU";
           showTitle = true;
           displayStyle = "org.kde.ksysguard.piechart";
@@ -22,8 +22,8 @@
       # ── Row 1: RAM (pie, preset) ─────────────────────────
       {
         name = "org.kde.plasma.systemmonitor.memory";
-        position = { horizontal = 960; vertical = 20; };
-        size = { width = 920; height = 200; };
+        position = { horizontal = 390; vertical = 20; };
+        size = { width = 350; height = 200; };
         config = {
           Appearance = {
             title = "Memory";
@@ -37,7 +37,7 @@
       {
         name = "org.kde.plasma.systemmonitor.coreusage";
         position = { horizontal = 20; vertical = 240; };
-        size = { width = 920; height = 220; };
+        size = { width = 350; height = 200; };
         config = {
           Appearance = {
             title = "Cores";
@@ -49,8 +49,8 @@
       # ── Row 2: RAM history (line chart) ─────────────────
       {
         systemMonitor = {
-          position = { horizontal = 960; vertical = 240; };
-          size = { width = 920; height = 220; };
+          position = { horizontal = 390; vertical = 240; };
+          size = { width = 350; height = 200; };
           title = "RAM History";
           showTitle = true;
           displayStyle = "org.kde.ksysguard.linechart";
@@ -64,8 +64,8 @@
       # ── Row 3: Network (preset) ──────────────────────────
       {
         name = "org.kde.plasma.systemmonitor.net";
-        position = { horizontal = 20; vertical = 480; };
-        size = { width = 1880; height = 180; };
+        position = { horizontal = 20; vertical = 460; };
+        size = { width = 350; height = 180; };
         config = {
           Appearance = {
             title = "Network";
@@ -77,8 +77,8 @@
       # ── Row 4: Disk (pie, preset) ────────────────────────
       {
         name = "org.kde.plasma.systemmonitor.diskusage";
-        position = { horizontal = 20; vertical = 680; };
-        size = { width = 1880; height = 180; };
+        position = { horizontal = 20; vertical = 660; };
+        size = { width = 350; height = 180; };
         config = {
           Appearance = {
             title = "Disk";
@@ -91,8 +91,8 @@
       # ── Row 5: Weather (placeholder — config location in GUI) ─
       {
         name = "org.kde.plasma.weather";
-        position = { horizontal = 20; vertical = 880; };
-        size = { width = 1880; height = 180; };
+        position = { horizontal = 20; vertical = 860; };
+        size = { width = 350; height = 180; };
         config = { };
       }
     ];
