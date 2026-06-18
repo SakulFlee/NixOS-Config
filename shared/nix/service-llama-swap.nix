@@ -37,5 +37,9 @@ in
     # Fixes cache location error
     Environment = [ "HOME=/var/lib/llama-swap" ];
     StateDirectory = "llama-swap";
+
+    # Fixes JIT cache compilation errors
+    MemoryDenyWriteExecute = lib.mkForce false;
+    ProtectControlGroups = lib.mkForce false;
   };
 }
