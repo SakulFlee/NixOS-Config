@@ -24,6 +24,6 @@ in
 
   # Fixes the /proc/meminfo error
   systemd.services.llama-swap.serviceConfig = {
-    ProcSubset = "all";
+    ProcSubset = lib.mkForce "all";
   };
 }
