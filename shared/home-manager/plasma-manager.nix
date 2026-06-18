@@ -4,6 +4,19 @@
   programs.plasma = {
     enable = true;
 
+    # Configs
+    configFile = {
+      "ktrashrc" = {
+        "/home/sakulflee/.local/share/Trash" = {
+          "UseSizeLimit" = true;
+          "Percent" = 10;                # Max percent of disk size the trash can take
+          "LimitReachedAction" = 0;      # 0 = Delete oldest files, 1 = Warn
+          "UseTimeLimit" = true;
+          "Days" = 30;                   # Days to keep trash before purging
+        };
+      };
+    };
+
     # Desktop Workspace Settings
     workspace = {
       clickItemTo = "open";
