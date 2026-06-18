@@ -1,6 +1,7 @@
 { ... }: {
   imports = [
     ./ai.nix
+    ./creative.nix
     ./dev.nix
     ./files.nix
     ./internet.nix
