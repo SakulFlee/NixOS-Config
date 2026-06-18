@@ -6,6 +6,7 @@
     ./desktop.nix
     ./panels.nix
     ./shortcuts.nix
+    ./cursor.nix
   ];
 
   programs.plasma.enable = true;

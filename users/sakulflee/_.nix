@@ -35,6 +35,12 @@
       ./zsh.nix
     ];
 
+    home.pointerCursor = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Classic";
+      size = 24;
+    };
+
     home.stateVersion = "25.11";
   };
 }
