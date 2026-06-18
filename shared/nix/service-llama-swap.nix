@@ -22,8 +22,12 @@ in
     };
   };
 
-  # Fixes the /proc/meminfo error
   systemd.services.llama-swap.serviceConfig = {
+    # Fixes /proc/meminfo error
     ProcSubset = lib.mkForce "all";
+
+    # Fixes cache location error
+    Environment = [ "HOME=/var/lib/llama-swap" ];
+    StateDirectory = "llama-swap";
   };
 }
