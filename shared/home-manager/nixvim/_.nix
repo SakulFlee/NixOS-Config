@@ -543,11 +543,11 @@
         map("n", "<C-j>", smart_splits.move_cursor_down,  { desc = "Move to below split" })
         map("n", "<C-k>", smart_splits.move_cursor_up,    { desc = "Move to above split" })
         map("n", "<C-l>", smart_splits.move_cursor_right, { desc = "Move to right split" })
-        -- Arrow key alternatives
-        map("n", "<Left>",  smart_splits.move_cursor_left,  { desc = "Move to left split" })
-        map("n", "<Down>",  smart_splits.move_cursor_down,  { desc = "Move to below split" })
-        map("n", "<Up>",    smart_splits.move_cursor_up,    { desc = "Move to above split" })
-        map("n", "<Right>", smart_splits.move_cursor_right, { desc = "Move to right split" })
+        -- Ctrl+Arrow alternatives
+        map("n", "<C-Left>",  smart_splits.move_cursor_left,  { desc = "Move to left split" })
+        map("n", "<C-Down>",  smart_splits.move_cursor_down,  { desc = "Move to below split" })
+        map("n", "<C-Up>",    smart_splits.move_cursor_up,    { desc = "Move to above split" })
+        map("n", "<C-Right>", smart_splits.move_cursor_right, { desc = "Move to right split" })
         -- Resize splits (Ctrl+Shift+Arrow)
         map("n", "<C-S-Left>",  smart_splits.resize_left,  { desc = "Resize split left" })
         map("n", "<C-S-Down>",  smart_splits.resize_down,  { desc = "Resize split down" })
