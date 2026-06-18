@@ -1,4 +1,4 @@
-{ pkgs, unstable, ... }: {
+{ pkgs, unstable, inputs, ... }: {
   home.packages = with pkgs; [
     (unstable.ollama)
     (unstable.lmstudio)
@@ -7,6 +7,6 @@
     cursor-cli
     pi-coding-agent
     claude-code
-    (unstable.llama-cpp-vulkan)
+    (inputs.llama-cpp.packages.${pkgs.system}.vulkan)
   ];
 }
