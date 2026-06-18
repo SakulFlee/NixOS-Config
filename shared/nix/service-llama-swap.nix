@@ -8,10 +8,11 @@ in
     enable = true;
     settings = {
       models = {
-        name = "qwen35_9b";
-        cmd = ''
-          ${llama-server} --port ''${PORT} -hf unsloth/Qwen3.5-9B-MTP-GGUF
-        '';
+        "qwen35-9b" = {
+          cmd = ''
+            ${llama-server} --port ''${PORT} -hf unsloth/Qwen3.5-9B-MTP-GGUF
+          '';
+        };
       };
     };
   };
