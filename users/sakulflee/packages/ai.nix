@@ -8,5 +8,6 @@
     pi-coding-agent
     claude-code
     (inputs.llama-cpp.packages.${pkgs.system}.vulkan)
+    llama-swap
   ];
 }
