@@ -123,7 +123,7 @@ if dap_ok then
 end
 
 -- ── Terminal keymaps ──────────────────────────────────
-map("n", "<leader>tf", function() Snacks.terminal() end, { desc = "Floating terminal" })
+map("n", "<leader>tf", function() Snacks.terminal(nil, { win = { position = "float" } }) end, { desc = "Floating terminal" })
 map("n", "<leader>th", function() Snacks.terminal(nil, { win = { position = "bottom", height = 0.3 } }) end, { desc = "Horizontal terminal" })
 map("n", "<leader>tv", function() Snacks.terminal(nil, { win = { position = "right", width = 0.4 } }) end, { desc = "Vertical terminal" })
 map("n", "<leader>tl", function() Snacks.lazygit() end, { desc = "Lazygit" })
