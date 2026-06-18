@@ -1,5 +1,6 @@
 { ... }: {
   imports = [
+    ../gc.nix
     ./kde/_.nix 
     ./audio.nix                 
     ./bluetooth.nix
@@ -12,7 +13,6 @@
     ./locale.nix                
     ./mount-nas.nix                   
     ./networking.nix            
-    ./nix-gc.nix                
     ./nixpkgs-unfree.nix        
     ./printing.nix             
     ./rclone-sync.nix
