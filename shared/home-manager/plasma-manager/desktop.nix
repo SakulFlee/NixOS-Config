@@ -1,4 +1,32 @@
-{ ... }: {
+{ config, pkgs, ... }: {
+  sops.secrets = {
+    weather_display_name.sopsFile = ../../../secrets.yaml;
+    weather_place_info.sopsFile = ../../../secrets.yaml;
+    weather_provider.sopsFile = ../../../secrets.yaml;
+  };
+
+  programs.plasma.startup.startupScript."configure_weather" = {
+    text = ''
+      qdbus org.kde.plasmashell /PlasmaShell org.kde.PlasmaShell.evaluateScript "
+        var allDesktops = desktops();
+        for (var i = 0; i < allDesktops.length; i++) {
+          var widgets = allDesktops[i].widgets();
+          for (var j = 0; j < widgets.length; j++) {
+            var w = widgets[j];
+            if (w.type === 'org.kde.plasma.weather') {
+              w.currentConfigGroup = ['WeatherStation'];
+              w.writeConfig('placeDisplayName', '$(cat ${config.sops.secrets.weather_display_name.path})');
+              w.writeConfig('placeInfo', '$(cat ${config.sops.secrets.weather_place_info.path})');
+              w.writeConfig('provider', '$(cat ${config.sops.secrets.weather_provider.path})');
+            }
+          }
+        }
+      "
+    '';
+    priority = 4;
+    runAlways = true;
+  };
+
   programs.plasma.desktop = {
     widgets = [
       # ── Row 1: CPU (pie) + temp (on hover) ────────────────
