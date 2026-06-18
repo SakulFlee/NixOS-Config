@@ -5,6 +5,7 @@
     ../../shared/nix-hardware/boot-loader.nix
     ../../shared/nix-hardware/redistributable-hardware.nix
     ../../shared/nix-hardware/microcode.nix
+    ../../shared/nix-hardware/wifi-mt7921e.nix
   ];
 
   # Needs to be set by every platform host
@@ -49,9 +50,4 @@
     nvidiaBusId = "PCI:1:0:0";
     amdgpuBusId = "PCI:5:0:0";
   };
-
-  # WiFi Card (prevents speed and reliability issues)
-  boot.extraModprobeConfig = ''
-    options mt7921e disable_aspm=1
-  '';
 }
