@@ -8,7 +8,7 @@ in
     enable = true;
     settings = {
       models = {
-        name = "qwen3.5 9B";
+        name = "qwen3.5-9B";
         cmd = ''
           ${llama-server} --port ''${PORT} -hf unsloth/Qwen3.5-9B-MTP-GGUF
         '';
