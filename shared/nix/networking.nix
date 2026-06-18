@@ -5,6 +5,6 @@
     wifi = {
       powersave = true;
       # backend = "iwd";
-    }
+    };
   };
 }
