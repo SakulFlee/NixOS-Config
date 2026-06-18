@@ -15,7 +15,15 @@ in
         };
         "gemma-4-e4b-it-qat" = {
           cmd = ''
-            ${llama-server} --port ''${PORT} -hf unsloth/gemma-4-E4B-it-qat-GGUF
+            ${llama-server} \
+              --port ''${PORT}
+              -hf unsloth/gemma-4-E4B-it-qat-GGUF:UD-Q4_K_XL \
+              -c 8192 \
+              -fit off \
+              --spec-type draft-mtp \
+              --spec-draft-n-max 2 \
+              -ngl 35 \
+              --port 8081
           '';
         };
       };
