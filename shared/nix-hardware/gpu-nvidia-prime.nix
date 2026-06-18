@@ -1,4 +1,4 @@
-{ ... }: {
+{ config, ... }: {
   imports = [
     ./gpu-nvidia.nix
     ./gpu-mesa.nix
