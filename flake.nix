@@ -36,14 +36,6 @@
       sharedArgs = {
         inherit inputs home-manager unstable;
       };
-
-      sharedOverlayModule = { ... }: {
-        nixpkgs.overlays = [
-          (final: prev: {
-            lmstudio = unstable.lmstudio;
-          })
-        ];
-      };
     in {
       nixosConfigurations = {
       Cindry = nixpkgs.lib.nixosSystem {
@@ -51,7 +43,6 @@
         specialArgs = sharedArgs;
         modules = [ 
           ./hosts/cindry/configuration.nix 
-          sharedOverlayModule
         ];
       };
 
@@ -60,7 +51,6 @@
         specialArgs = sharedArgs;
         modules = [ 
           ./hosts/steamdeck/configuration.nix 
-          sharedOverlayModule
         ];
       };
     };

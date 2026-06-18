@@ -1,12 +1,12 @@
-{ pkgs, ... }: {
+{ pkgs, unstable, ... }: {
   home.packages = with pkgs; [
-    ollama
-    lmstudio
+    (unstable.ollama)
+    (unstable.lmstudio)
     opencode
     opencode-desktop
     cursor-cli
     pi-coding-agent
     claude-code
-    llama-cpp-vulkan
+    (unstable.llama-cpp-vulkan)
   ];
 }
