@@ -1,6 +1,6 @@
 { ... }: {
   imports = [
-    ./plasma-manager.nix
+    ./plasma-manager/_.nix
     ./autostart.nix
     ./nixvim/_.nix
   ];
