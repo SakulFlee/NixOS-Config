@@ -1,9 +1,13 @@
 { lib, pkgs, ... }: {
-  # ZEN Kernel for gaming
+  # Default kernel
   boot.kernelPackages = pkgs.linuxPackages_zen;
-  boot.loader.systemd-boot.sortKey = "NixOS (Gaming/ZEN)";
 
   specialisation = {
+    lts.configuration = {
+      system.nixos.tags = [ "Gaming" ];
+      boot.kernelPackages = lib.mkForce pkgs.linuxPackages_zen; # ZEN for gaming
+    };
+
     lts.configuration = {
       system.nixos.tags = [ "LTS" ];
       boot.kernelPackages = lib.mkForce pkgs.linuxPackages; # Defaults to latest LTS
