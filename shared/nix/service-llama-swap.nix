@@ -15,6 +15,7 @@ in
         };
         "gemma-4-e4b-it-qat" = {
           cmd = ''
+            # Note: --fit on usually works, but is bugged here because of MTP
             ${llama-server} \
               --port ''${PORT}
               -hf unsloth/gemma-4-E4B-it-qat-GGUF:UD-Q4_K_XL \
