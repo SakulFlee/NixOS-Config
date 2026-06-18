@@ -1,6 +1,8 @@
-{ configs, pkgs, lib, ... }: 
+{ inputs, configs, lib, ... }: 
 let
-  llama-cpp = pkgs.llama-cpp.override { vulkanSupport = true; };
+  llama-cpp = inputs.llama-cpp.packages.${pkgs.system}.default.override {
+    vulkanSupport = true;
+  };
   llama-server = lib.getExe' llama-cpp "llama-server";
 in
 {
