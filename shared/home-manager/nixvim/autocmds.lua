@@ -3,7 +3,7 @@
 -- ══════════════════════════════════════════════════════
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
-    if vim.fn.argvc() == 0 then
+    if vim.fn.argc() == 0 then
       Snacks.dashboard()
     end
   end,
