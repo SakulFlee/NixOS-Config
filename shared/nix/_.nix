@@ -3,6 +3,7 @@
     ./kde/_.nix 
     ./audio.nix                 
     ./bluetooth.nix
+    ./boot-loader.nix
     ./experimental-features.nix 
     ./fonts.nix                 
     ./gpg.nix                   

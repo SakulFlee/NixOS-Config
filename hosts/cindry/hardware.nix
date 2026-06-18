@@ -10,10 +10,6 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  # Bootloader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
   # Disk config
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/1f439d9c-9091-443f-bfe5-26268bd52d03";
