@@ -145,6 +145,7 @@
         settings = {
           auto_clean_after_session_restore = true;
           close_if_last_window = true;
+          window.width = 25;
         };
       };
       which-key.enable = true;
