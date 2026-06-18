@@ -1,4 +1,10 @@
 { config, lib, pkgs, modulesPath, ... }: {
+  imports = [
+    ../../shared/nix-hardware/gpu-nvidia-prime.nix
+    ../../shared/nix-hardware/gpu-amdgpu.nix
+    ../../shared/nix-hardware/boot-loader.nix
+  ];
+
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
@@ -42,39 +48,10 @@
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-  # GPU config
-  hardware.graphics = {
-    enable = true;
-    extraPackages = [ pkgs.mesa ];
-  };
-  services.xserver.videoDrivers = [
-    "amdgpu"
-    "nvidia"
-  ];
-  hardware.nvidia = {
-    # Modesetting
-    modesetting.enable = true;
-
-    # Experimental!
-    powerManagement.enable = true;
-    powerManagement.finegrained = true;
-
-    # Driver version
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-    open = true;
-
-    # Include settings app?
-    nvidiaSettings = true;
-
-    # Prime
-    prime = {
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
-      nvidiaBusId = "PCI:1:0:0";
-      amdgpuBusId = "PCI:5:0:0";
-    };
+  # NVIDIA PRIME
+  hardware.nvidia.prime = {
+    nvidiaBusId = "PCI:1:0:0";
+    amdgpuBusId = "PCI:5:0:0";
   };
 
   # WiFi Card (prevents speed and reliability issues)
