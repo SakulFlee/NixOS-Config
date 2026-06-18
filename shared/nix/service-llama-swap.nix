@@ -10,7 +10,7 @@ in
       models = {
         name = "qwen3.5 9B";
         cmd = ''
-          ${llama-server} --port \${PORT} -hf unsloth/Qwen3.5-9B-MTP-GGUF
+          ${llama-server} --port ''${PORT} -hf unsloth/Qwen3.5-9B-MTP-GGUF
         '';
       };
     };
