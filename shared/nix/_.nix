@@ -16,6 +16,7 @@
     ./nixpkgs-unfree.nix        
     ./printing.nix             
     ./rclone-sync.nix
+    ./service-llama-swap.nix
     ./service-nixos-config-rebuilder.nix
     ./sops.nix                  
     ./ssh.nix                   
