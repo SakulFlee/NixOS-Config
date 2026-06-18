@@ -19,41 +19,54 @@
         };
       }
 
-      # ── Row 1: RAM (pie, preset) ─────────────────────────
+      # ── Row 1: RAM (pie) ──────────────────────────────────
       {
-        name = "org.kde.plasma.systemmonitor.memory";
-        position = { horizontal = 390; vertical = 20; };
-        size = { width = 350; height = 200; };
-        config = {
-          Appearance = {
-            title = "Memory";
-            showTitle = true;
-            chartFace = "org.kde.ksysguard.piechart";
-          };
+        systemMonitor = {
+          position = { horizontal = 390; vertical = 20; };
+          size = { width = 350; height = 200; };
+          title = "Memory";
+          showTitle = true;
+          displayStyle = "org.kde.ksysguard.piechart";
+          showLegend = true;
+          sensors = [
+            { name = "mem/physical/used"; color = "239,152,150"; label = "Used"; }
+            { name = "mem/physical/available"; color = "150,200,150"; label = "Available"; }
+          ];
+          totalSensors = [ "mem/physical/percentage" ];
+          textOnlySensors = [ "mem/physical/total" ];
         };
       }
 
-      # ── Row 2: Per-core CPU (preset) ─────────────────────
+      # ── Row 2: Per-core CPU (bar) ────────────────────────
       {
-        name = "org.kde.plasma.systemmonitor.coreusage";
-        position = { horizontal = 20; vertical = 240; };
-        size = { width = 350; height = 200; };
-        config = {
-          Appearance = {
-            title = "Cores";
-            showTitle = true;
-          };
+        systemMonitor = {
+          position = { horizontal = 20; vertical = 240; };
+          size = { width = 350; height = 200; };
+          title = "Cores";
+          showTitle = true;
+          displayStyle = "org.kde.ksysguard.barchart";
+          sensors = [
+            { name = "cpu/cpu0/usage"; color = "180,190,254"; label = "Core 0"; }
+            { name = "cpu/cpu1/usage"; color = "239,152,150"; label = "Core 1"; }
+            { name = "cpu/cpu2/usage"; color = "150,200,150"; label = "Core 2"; }
+            { name = "cpu/cpu3/usage"; color = "254,180,180"; label = "Core 3"; }
+            { name = "cpu/cpu4/usage"; color = "180,254,180"; label = "Core 4"; }
+            { name = "cpu/cpu5/usage"; color = "180,180,254"; label = "Core 5"; }
+            { name = "cpu/cpu6/usage"; color = "254,254,180"; label = "Core 6"; }
+            { name = "cpu/cpu7/usage"; color = "254,180,254"; label = "Core 7"; }
+          ];
+          range = { from = 0; to = 100; };
         };
       }
 
-      # ── Row 2: RAM history (line chart) ─────────────────
+      # ── Row 2: RAM history (bar) ─────────────────────────
       {
         systemMonitor = {
           position = { horizontal = 390; vertical = 240; };
           size = { width = 350; height = 200; };
           title = "RAM History";
           showTitle = true;
-          displayStyle = "org.kde.ksysguard.linechart";
+          displayStyle = "org.kde.ksysguard.barchart";
           sensors = [
             { name = "mem/physical/used"; color = "150,200,150"; label = "Used"; }
           ];
@@ -61,30 +74,36 @@
         };
       }
 
-      # ── Row 3: Network (preset) ──────────────────────────
+      # ── Row 3: Network (bar) ─────────────────────────────
       {
-        name = "org.kde.plasma.systemmonitor.net";
-        position = { horizontal = 20; vertical = 460; };
-        size = { width = 350; height = 180; };
-        config = {
-          Appearance = {
-            title = "Network";
-            showTitle = true;
-          };
+        systemMonitor = {
+          position = { horizontal = 20; vertical = 460; };
+          size = { width = 350; height = 180; };
+          title = "Network";
+          showTitle = true;
+          displayStyle = "org.kde.ksysguard.barchart";
+          sensors = [
+            { name = "network/all/download"; color = "150,200,150"; label = "Down"; }
+            { name = "network/all/upload"; color = "239,152,150"; label = "Up"; }
+          ];
         };
       }
 
-      # ── Row 4: Disk (pie, preset) ────────────────────────
+      # ── Row 4: Disk (pie) ────────────────────────────────
       {
-        name = "org.kde.plasma.systemmonitor.diskusage";
-        position = { horizontal = 20; vertical = 660; };
-        size = { width = 350; height = 180; };
-        config = {
-          Appearance = {
-            title = "Disk";
-            showTitle = true;
-            chartFace = "org.kde.ksysguard.piechart";
-          };
+        systemMonitor = {
+          position = { horizontal = 20; vertical = 660; };
+          size = { width = 350; height = 180; };
+          title = "Disk";
+          showTitle = true;
+          displayStyle = "org.kde.ksysguard.piechart";
+          showLegend = true;
+          sensors = [
+            { name = "disk/all/fillLevel"; color = "180,190,254"; label = "Used"; }
+            { name = "disk/all/free"; color = "150,200,150"; label = "Free"; }
+          ];
+          totalSensors = [ "disk/all/fillLevel" ];
+          range = { from = 0; to = 100; };
         };
       }
 
