@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Clear console
+clear
+
 # Pull to check for changes
 git pull origin main
 
