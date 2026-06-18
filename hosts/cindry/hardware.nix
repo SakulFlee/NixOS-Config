@@ -4,6 +4,7 @@
     ../../shared/nix-hardware/gpu-amdgpu.nix
     ../../shared/nix-hardware/boot-loader.nix
     ../../shared/nix-hardware/redistributable-hardware.nix
+    ../../shared/nix-hardware/microcode.nix
   ];
 
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" ];
@@ -38,8 +39,6 @@
   swapDevices =
     [ { device = "/dev/disk/by-uuid/417a545e-a9a0-472b-adc1-2428812c1110"; }
     ];
-
-  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # NVIDIA PRIME
   hardware.nvidia.prime = {
