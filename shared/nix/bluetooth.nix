@@ -4,12 +4,13 @@
     powerOnBoot = true;
     settings = {
       General = {
+        # Explicitly allow sending and receiving audio
+        Enable = "Source,Sink,Media,Socket";
         # Shows battery charge of connected devices on supported
-        # Bluetooth adapters. Defaults to 'false'.
+        # Bluetooth adapters.
         Experimental = true;
         # When enabled other devices can connect faster to us, however
-        # the tradeoff is increased power consumption. Defaults to
-        # 'false'.
+        # the tradeoff is increased power consumption.
         FastConnectable = true;
       };
       Policy = {
