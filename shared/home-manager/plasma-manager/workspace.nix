@@ -5,6 +5,15 @@
     wallpaper = "/usr/share/wallpapers/cachyos-wallpapers/PurpleFeathers.png";
   };
 
+  programs.plasma.configFile."kwinrc" = {
+    "ElectricBorders" = {
+      "BottomLeft" = "NoAction";
+      "BottomRight" = "NoAction";
+      "TopLeft" = "NoAction";
+      "TopRight" = "NoAction";
+    };
+  };
+
   programs.plasma.startup.desktopScript."set_desktop_url" = {
     text = ''
       var allDesktops = desktops();
