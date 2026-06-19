@@ -66,7 +66,15 @@
   services.gpg-agent = {
     enable = true;
     pinentry.package = pkgs.pinentry-qt; # KDE popup for password entry
-    enableSshSupport = true;             # Lets GPG act as your SSH agent too
+
+    # GPG for SSH
+    enableSshSupport = true;
+    defaultCacheTtlSsh = 3600;
+    maxCacheTtlSsh = 86400;
+
+    # Cache time-to-live settings (values are in seconds)
+    defaultCacheTtl = 3600;      # 1 hour (re-authenticates after 1 hour of inactivity)
+    maxCacheTtl = 86400;         # 24 hours (forces re-entry after 24 hours max)
   };
 
   # Import GPG key on every activation (idempotent — skips if already present)
