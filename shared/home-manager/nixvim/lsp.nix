@@ -10,6 +10,7 @@
         jsonls.enable = true;
         bashls.enable = true;
         pyright.enable = true;
+        nil_ls.enable = true;
       };
     };
 
