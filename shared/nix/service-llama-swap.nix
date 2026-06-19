@@ -55,20 +55,11 @@ in
               -fit on
             '';
         };
-        "WeiboAI/VibeThinker-1.5B" = {
+        "VibeThinker-3B" = {
           cmd = ''
             ${llama-server} \
               --port ''${PORT}
-              -hf WeiboAI/VibeThinker-1.5B \
-              -c 8192 \
-              -fit on
-            '';
-        };
-        "WeiboAI/VibeThinker-3B" = {
-          cmd = ''
-            ${llama-server} \
-              --port ''${PORT}
-              -hf WeiboAI/VibeThinker-3B \
+              -hf prithivMLmods/VibeThinker-3B-GGUF:Q8_0 \
               -c 8192 \
               -fit on
             '';
