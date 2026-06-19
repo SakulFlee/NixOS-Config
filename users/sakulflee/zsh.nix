@@ -118,7 +118,7 @@
         local range_end=$2
         for i in $(seq "$range_start" "$range_end"); do
           echo "> $i"
-          ffmpeg -i "${i}_1.mp4" -i "${i}_2.mp4" -vcodec copy "out_${i}.mp4"
+          ffmpeg -i "''${i}_1.mp4" -i "''${i}_2.mp4" -vcodec copy "out_''${i}.mp4"
         done
       }
     '';
