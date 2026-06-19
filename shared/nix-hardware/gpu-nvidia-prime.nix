@@ -5,6 +5,9 @@
   ];
 
   hardware.nvidia = {
+    # Experimental
+    powerManagement.finegrained = true;
+
     # Prime
     prime = {
       offload = {

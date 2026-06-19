@@ -17,7 +17,6 @@
 
     # Experimental!
     powerManagement.enable = true;
-    powerManagement.finegrained = true;
 
     # Driver version
     package = config.boot.kernelPackages.nvidiaPackages.stable;
