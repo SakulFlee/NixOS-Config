@@ -7,6 +7,7 @@
     ./avahi.nix
     ./bluetooth.nix
     ./boot-loader.nix
+    ./dbus.nix
     ./experimental-features.nix 
     ./fonts.nix                 
     ./gpg.nix                   
