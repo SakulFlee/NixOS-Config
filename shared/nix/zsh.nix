@@ -1,13 +1,3 @@
 { pkgs, ... }: {
-  programs.zsh = {
-    enable = true;
-    ohMyZsh = {
-      enable = true;
-      plugins = [
-        "git"
-        "z"
-      ];
-      theme = "robbyrussell";
-    };
-  };
+  programs.zsh.enable = true;
 }
