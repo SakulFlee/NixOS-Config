@@ -11,7 +11,6 @@
     ./fonts.nix                 
     ./gpg.nix                   
     ./home-manager.nix          
-    ./kde-pim.nix
     ./kernel.nix                
     ./locale.nix                
     ./mount-nas.nix                   
