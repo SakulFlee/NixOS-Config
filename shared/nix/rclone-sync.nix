@@ -7,7 +7,6 @@ let
   cooldown = "30";
   checkInterval = "1800";
   stateDir = "/home/${username}/.config/rclone";
-  errorLock = "${stateDir}/bisync-error.lock";
   workDir = "/home/${username}/.local/state/rclone/bisync";
 
   rcloneWatcherScript = pkgs.writeShellScriptBin "rclone-watcher" ''
@@ -18,7 +17,6 @@ let
     COOLDOWN="${cooldown}"
     CHECK_INTERVAL="${checkInterval}"
     STATE_DIR="${stateDir}"
-    ERROR_LOCK="${errorLock}"
     WORK_DIR="${workDir}"
 
     # Re-export password but obscure it
@@ -57,32 +55,24 @@ let
         notify "low" "Rclone Sync" "Remote unreachable. Will retry later."
         return 1
       fi
-      if rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" --workdir "$WORK_DIR" --exclude '/#recycle/**' --exclude '/.Trash-1000/**' --conflict-resolve newer --verbose --links; then
-        echo "Sync successful."
-        notify "normal" "Rclone Sync" "Files are fully up to date."
+
+      local output
+      output=$(rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" --workdir "$WORK_DIR" --exclude '/#recycle/**' --exclude '/.Trash-1000/**' --conflict-resolve newer --verbose --links --resilient 2>&1)
+      local exit_code=$?
+
+      if [ "$exit_code" -eq 0 ]; then
+        local transferred
+        transferred=$(echo "$output" | grep -oP 'Transferred:\s+\K\d+' | head -1)
+        local bytes
+        bytes=$(echo "$output" | grep -oP 'Transferred:.*?,\s+\d+%,\s+\K[^,]+' | head -1 | xargs)
+        if [ -n "$transferred" ] && [ "$transferred" -gt 0 ]; then
+          notify "normal" "Rclone Sync" "Synced $transferred files ($bytes transferred)."
+        fi
       else
-        echo "-------------------------------------------------------------------------"
-        echo "CRITICAL: Sync encountered an error or conflict!"
-        echo "Tripping the circuit breaker. Auto-sync is frozen."
-        echo "-------------------------------------------------------------------------"
-          
-        touch "$ERROR_LOCK"
-        notify "critical" "⚠️ RCLONE SYNC CRITICAL ERROR" "Auto-sync has been frozen to prevent data loss."
-        exit 0
+        notify "critical" "⚠️ RCLONE SYNC ERROR" "Sync encountered an error. Check logs."
+        return 1
       fi
     }
-
-    # Check for error lock
-    if [ -f "$ERROR_LOCK" ]; then
-        echo "========================================================================="
-        echo "CRITICAL ERROR: Auto-sync is DISABLED because a previous sync failed."
-        echo "To protect your data, this script will refuse to run."
-        echo "1. Inspect your logs: journalctl --user -u rclone-watcher.service -n 50"
-        echo "2. Fix the conflict or run a manual rclone bisync ... --resync"
-        echo "3. Clear this lock by running: rm $ERROR_LOCK"
-        echo "========================================================================="
-        exit 0
-    fi
 
     mkdir -p "$STATE_DIR"
     mkdir -p "$WORK_DIR"
@@ -99,14 +89,11 @@ let
     notify "normal" "Rclone Watcher" "Monitoring started safely for local changes."
 
     while true; do
-        if [ -f "$ERROR_LOCK" ]; then exit 0; fi
-
         # Wait for local change or force timeout check
         inotifywait -r -t "$CHECK_INTERVAL" -e modify,create,delete,move "$LOCAL_DIR" &> /dev/null
         
         sleep "$COOLDOWN"
         
-        notify "low" "Rclone Syncing" "Updating files with remote storage..."
         echo "Sync triggered at $(date)"
 
         sync || true
