@@ -9,6 +9,9 @@
       # For file conversion
       ghostscript
 
+      # Standard open-source drivers
+      gutenprint
+
       # Fallback
       cups-filters
     ];
