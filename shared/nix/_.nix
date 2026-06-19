@@ -2,6 +2,7 @@
   imports = [
     ../gc.nix
     ./kde/_.nix 
+    ./akonadi.nix
     ./audio.nix                 
     ./avahi.nix
     ./bluetooth.nix
