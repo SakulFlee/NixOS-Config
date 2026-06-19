@@ -1,6 +1,6 @@
 { pkgs, inputs, unstable, ... }:
 let
-  fenix = inputs.fenix.packages.${pkgs.system};
+  fenix = inputs.fenix.packages.${pkgs.stdenv.hostPlatform.system};
 
   rust-toolchain = with fenix; combine [
     latest.toolchain

@@ -1,6 +1,6 @@
 { pkgs, inputs, configs, lib, ... }: 
 let
-  llama-cpp = inputs.llama-cpp.packages.${pkgs.system}.default.override {
+  llama-cpp = inputs.llama-cpp.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
     useVulkan = true;
   };
   llama-server = lib.getExe' llama-cpp "llama-server";
@@ -40,6 +40,33 @@ in
               -ngl 0 \
               -t 8
           '';
+        };
+        "yuxinlu1/gemma-4-12B-coder-fable5-composer2.5-v1:Q4_K_M" = {
+          cmd = ''
+            ${llama-server} \
+              --port ''${PORT}
+              -hf yuxinlu1/gemma-4-12B-coder-fable5-composer2.5-v1-GGUF:Q4_K_M \
+              -c 8192 \
+              -fit on
+            '';
+        };
+        "yuxinlu1/gemma-4-12B-coder-fable5-composer2.5-v1:Q6_0" = {
+          cmd = ''
+            ${llama-server} \
+              --port ''${PORT}
+              -hf yuxinlu1/gemma-4-12B-coder-fable5-composer2.5-v1-GGUF:Q6_0 \
+              -c 8192 \
+              -fit on
+            '';
+        };
+        "yuxinlu1/gemma-4-12B-coder-fable5-composer2.5-v1:Q8_0" = {
+          cmd = ''
+            ${llama-server} \
+              --port ''${PORT}
+              -hf yuxinlu1/gemma-4-12B-coder-fable5-composer2.5-v1-GGUF:Q8_0 \
+              -c 8192 \
+              -fit on
+            '';
         };
       };
     };
