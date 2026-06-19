@@ -27,6 +27,11 @@
 
         deviceUri = "dnssd://Canon%20TR4500%20series%20(AIR)._ipp._tcp.local/";
         model = "canontr4500.ppd";
+
+        options = {
+          media = "a4";
+          sides = "two-sided-long-edge";
+        };
       }
     ];
     ensureDefaultPrinter = "Canon_TR4500_series";
