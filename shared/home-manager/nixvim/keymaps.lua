@@ -44,6 +44,7 @@ map("n", "<leader>bn", "<cmd>enew<cr>", { desc = "New buffer" })
 -- ── Window management ─────────────────────────────────
 map("n", "<C-s>", "<cmd>w<cr>", { desc = "Force write" })
 map("n", "<C-q>", "<cmd>q<cr>", { desc = "Force quit" })
+map("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit" })
 
 -- ── LSP keymaps ───────────────────────────────────────
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -284,7 +285,7 @@ if wk_ok then
     { "<leader>.",  group = "Suggest" },
     { "<leader>h",  group = "Dashboard" },
     { "<leader>m",  group = "Markdown" },
-    { "<leader>q",  group = "Quick" },
+
     { "<leader>u",  group = "UI Toggle" },
     { "<leader>e",  group = "Explorer" },
     { "<leader>o",  group = "Outline" },
