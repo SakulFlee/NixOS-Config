@@ -8,6 +8,9 @@
 
       # For file conversion
       ghostscript
+
+      # Fallback
+      cups-filters
     ];
 
     browsed.enable = true;
