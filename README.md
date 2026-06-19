@@ -61,3 +61,7 @@ Finally, build and apply your configuration via:
 > You may want to enroll your new SSH keys (`ssh-keygen`) to Forgejo and switch to SSH+GIT instead of HTTPS:  
 > `git remote set-url origin git@forgejo.sakul-flee.de/SakulFlee/NixOS-Config.git`
 
+> [!WARNING]
+> You will also need to run a FULL Rclone sync:
+> `RCLONE_CONFIG_NAS_SMB_TYPE="smb" RCLONE_CONFIG_NAS_SMB_HOST="192.168.178.250" RCLONE_CONFIG_NAS_SMB_HOST="IP" RCLONE_CONFIG_NAS_SMB_USER="USER" RCLONE_CONFIG_NAS_SMB_PASS=$(rclone obscure "PASSWORD") rclone bisync /home/sakulflee/Sync NAS_SMB:personal_folder/ --workdir /home/sakulflee/.local/state/rclone/bisync --resync --exclude '/#recycle/**' --exclude '/.Trash-1000/**' --conflict-resolve newer --verbose --links --resilient`
+
