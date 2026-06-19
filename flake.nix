@@ -52,6 +52,14 @@
       };
     in {
       nixosConfigurations = {
+      Evil-Donkey = nixpkgs.lib.nixosSystem {
+        specialArgs = sharedArgs;
+        modules = [
+          { nixpkgs.hostPlatform = system; }
+          ./hosts/evil-donkey/configuration.nix 
+        ];
+      };
+
       Cindry = nixpkgs.lib.nixosSystem {
         specialArgs = sharedArgs;
         modules = [
