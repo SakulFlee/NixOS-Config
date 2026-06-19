@@ -16,7 +16,7 @@ The generated aged string needs to be placed into the `.sops.yaml` file.
 Next, you will need to move to a **known** machine (or gain access to their secret key) and run:
 
 ```bash
-nix-shell -I nixpkgs=channel:nixos-unstable -p sops --run 'sops updatekeys'
+nix-shell -I nixpkgs=channel:nixos-unstable -p sops --run 'SOPS_AGE_KEY=$(sudo ssh-to-age -private-key -i /etc/ssh/ssh_host_ed25519_key) sops updatekeys secrets.yaml'
 ```
 
 > [!INFO]
