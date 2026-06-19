@@ -23,11 +23,6 @@
     };
 
     defaultSession = "plasma";
-
-    autoLogin = {
-      enable = true;
-      user = "sakulflee";
-    };
   };
 }
 
