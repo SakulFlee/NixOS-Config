@@ -11,10 +11,8 @@
     # Use user SSH key to bypass Home-Manager being unable to access host SSH keys
     age.sshKeyPaths   = [ "/home/sakulflee/.ssh/id_ed25519" ];
 
-    # Declare secret to expose here
-    secrets."gpg_private_key" = {
-      path = "${config.programs.gpg.homedir}/private-keys-v1.d/0A96C9AA72DB019DE171E7F77F0C6AF1F56A9E05.key";
-    };
+    # Declare secret to expose here (onChange hook handles import into GPG keyring)
+    secrets."gpg_private_key" = {};
 
     # Tell SOPS where where to put GPG key
     gnupg.home = "${config.programs.gpg.homedir}";
@@ -71,14 +69,11 @@
     enableSshSupport = true;             # Lets GPG act as your SSH agent too
   };
 
-  # Import GPG key
-  home.file."${config.programs.gpg.homedir}/.import-token" = {
-    text = "dummy"; 
-    onChange = ''
-      if ! ${pkgs.gnupg}/bin/gpg --list-secret-keys 0A96C9AA72DB019DE171E7F77F0C6AF1F56A9E05 >/dev/null 2>&1; then
-        echo "Importing private GPG key safely..."
-        ${pkgs.gnupg}/bin/gpg --batch --import ${config.sops.secrets."gpg_private_key".path}
-      fi
-    '';
-  };
+  # Import GPG key on every activation (idempotent — skips if already present)
+  home.activation.importGpgKey = lib.mkAfter ''
+    if ! ${pkgs.gnupg}/bin/gpg --list-secret-keys 0A96C9AA72DB019DE171E7F77F0C6AF1F56A9E05 >/dev/null 2>&1; then
+      echo "Importing private GPG key safely..."
+      ${pkgs.gnupg}/bin/gpg --batch --import ${config.sops.secrets."gpg_private_key".path}
+    fi
+  '';
 }
