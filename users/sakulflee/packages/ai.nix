@@ -7,6 +7,6 @@
     cursor-cli
     pi-coding-agent
     claude-code
-    (inputs.llama-cpp.packages.${pkgs.system}.vulkan)
+    (inputs.llama-cpp.packages.${pkgs.stdenv.hostPlatform.system}.vulkan)
   ];
 }
