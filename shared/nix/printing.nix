@@ -16,6 +16,6 @@
       cups-filters
     ];
 
-    browsed.enable = true;
+    browsed.enable = false;
   };
 }
