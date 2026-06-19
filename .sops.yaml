@@ -2,8 +2,10 @@ creation_rules:
   - path_regex: .*\.yaml$
     key_groups:
       - age:
-        # Evil-Donkey (Arch)
-        - age1umxmep2f34wd85p3qvnua7udzlma0vrwhq7vhtwjjllaa7f8d3yshf0wwe
+        # Evil-Donkey (Host)
+        - age1gsqf94w28l0rv8khatmwtx0tnakvafj7m0xrtl92axl6ecte5qgqxreytu
+        # Evil-Donkey (User)
+        - age1extqssdhtgu3ntpuvq5rkz8zfd20597de9g6y4uuxwf27ca7a3xqjvacrg
         # Cindry (Host)
         - age1a3w7vvn728u7xsspluhffrggzyklgqervezhdamx7qn86c8v3dkq4x6zxy
         # Cindry (User)
