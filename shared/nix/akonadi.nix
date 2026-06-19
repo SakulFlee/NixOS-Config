@@ -1,9 +1,5 @@
 { pkgs, ... }:
 {
-  services.akonadi = {
-    enable = true;
-  };
-
   environment.systemPackages = with pkgs; [
     kdePackages.kdepim-runtime
     kdePackages.akonadi
