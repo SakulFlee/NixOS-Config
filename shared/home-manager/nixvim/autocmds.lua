@@ -1,10 +1,23 @@
 -- ══════════════════════════════════════════════════════
--- Open Dashboard on Startup
+-- Open Dashboard on Startup (only when no files opened)
 -- ══════════════════════════════════════════════════════
 vim.api.nvim_create_autocmd("VimEnter", {
+  nested = true,
   callback = function()
     if vim.fn.argc() == 0 then
-      Snacks.dashboard()
+      vim.schedule(function()
+        local has_file = false
+        for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+          if vim.api.nvim_buf_get_option(buf, "buftype") == ""
+            and vim.api.nvim_buf_get_name(buf) ~= "" then
+            has_file = true
+            break
+          end
+        end
+        if not has_file then
+          Snacks.dashboard()
+        end
+      end)
     end
   end,
 })
