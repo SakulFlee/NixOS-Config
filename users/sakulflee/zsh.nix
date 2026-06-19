@@ -1,6 +1,8 @@
 { pkgs, lib, ... }: {
   home.packages = [ pkgs.zsh-powerlevel10k ];
 
+  home.file.".p10k.zsh".text = builtins.readFile ./p10k.zsh;
+
   programs.zsh = {
     enable = true;
 
