@@ -118,6 +118,10 @@
       neo-tree = {
         enable = true;
         settings = {
+          follow_current_file = {
+            enabled = true;
+            leave_dirs_open = false;
+          };
           auto_clean_after_session_restore = true;
           close_if_last_window = true;
           window.width = 25;
