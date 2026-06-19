@@ -42,8 +42,7 @@
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixvim, ... }@inputs: 
     let    
       system = "x86_64-linux";
-      unstable = import nixpkgs-unstable.outPath { 
-          inherit system;
+      unstable = import nixpkgs-unstable.outPath {
           config = { allowUnfree = true; };
       };
 
@@ -53,17 +52,17 @@
     in {
       nixosConfigurations = {
       Cindry = nixpkgs.lib.nixosSystem {
-        inherit system;
         specialArgs = sharedArgs;
-        modules = [ 
+        modules = [
+          { nixpkgs.hostPlatform = system; }
           ./hosts/cindry/configuration.nix 
         ];
       };
 
       SteamDeck = nixpkgs.lib.nixosSystem {
-        inherit system;
         specialArgs = sharedArgs;
-        modules = [ 
+        modules = [
+          { nixpkgs.hostPlatform = system; }
           ./hosts/steamdeck/configuration.nix 
         ];
       };
