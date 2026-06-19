@@ -57,3 +57,7 @@ Finally, build and apply your configuration via:
 > The current system's hostname will be used automatically.
 > Also, a service will be installed that regularly checks for updates in this repository ... you may not even need to update manually.
 
+> [!INFO]
+> You may want to enroll your new SSH keys (`ssh-keygen`) to Forgejo and switch to SSH+GIT instead of HTTPS:  
+> `git remote set-url origin git@forgejo.sakul-flee.de/SakulFlee/NixOS-Config.git`
+
