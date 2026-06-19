@@ -2,7 +2,6 @@
   imports = [
     ../gc.nix
     ./kde/_.nix 
-    ./akonadi.nix
     ./audio.nix                 
     ./avahi.nix
     ./bluetooth.nix
@@ -12,6 +11,7 @@
     ./fonts.nix                 
     ./gpg.nix                   
     ./home-manager.nix          
+    ./kde-pim.nix
     ./kernel.nix                
     ./locale.nix                
     ./mount-nas.nix                   
