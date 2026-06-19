@@ -43,7 +43,7 @@
     let    
       system = "x86_64-linux";
       unstable = import nixpkgs-unstable.outPath {
-          inherit system;
+          localSystem = { inherit system; };
           config = { allowUnfree = true; };
       };
 
