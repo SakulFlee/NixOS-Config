@@ -18,4 +18,17 @@
 
     browsed.enable = false;
   };
+
+  hardware.printers = {
+    ensurePrinters = [
+      {
+        name = "Canon_TR4500_series";
+        location = "Home";
+
+        deviceUri = "dnssd://Canon%20TR4500%20series%20(AIR)._ipp._tcp.local/";
+        model = "canontr4500.ppd";
+      }
+    ];
+    ensureDefaultPrinter = "Canon_TR4500_series";
+  };
 }
