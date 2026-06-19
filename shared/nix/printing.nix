@@ -2,7 +2,13 @@
 {
   services.printing = {
     enable = true;
-    drivers = [ pkgs.cnijfilter2 ];
+    drivers = with pkgs; [ 
+      # CANON printer drivers
+      cnijfilter2
+
+      # For file conversion
+      ghostscript
+    ];
 
     browsed.enable = true;
   };
