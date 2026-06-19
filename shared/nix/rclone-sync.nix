@@ -57,7 +57,7 @@ let
         notify "low" "Rclone Sync" "Remote unreachable. Will retry later."
         return 1
       fi
-      if rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" --workdir "$WORK_DIR" --exclude '/#recycle/**' --conflict-resolve newer --verbose --links; then
+      if rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" --workdir "$WORK_DIR" --exclude '/#recycle/**' --exclude '/.Trash-1000/**' --conflict-resolve newer --verbose --links; then
         echo "Sync successful."
         notify "normal" "Rclone Sync" "Files are fully up to date."
       else
