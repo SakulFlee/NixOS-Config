@@ -28,19 +28,6 @@ in
               -ngl 35 
           '';
         };
-        "gemma-4-E4B-it-qat-CPU-ONLY" = {
-          cmd = ''
-            ${llama-server} \
-              --port ''${PORT} \
-              -hf unsloth/gemma-4-E4B-it-qat-GGUF:UD-Q4_K_XL \
-              -c 4096 \
-              -fit off \
-              --spec-type draft-mtp \
-              --spec-draft-n-max 2 \
-              -ngl 0 \
-              -t 8
-          '';
-        };
         "yuxinlu1/gemma-4-12B-coder-fable5-composer2.5-v1:Q4_K_M" = {
           cmd = ''
             ${llama-server} \
