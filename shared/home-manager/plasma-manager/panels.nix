@@ -40,6 +40,8 @@
                 "preferred://browser"
                 "applications:discord.desktop"
                 "applications:obsidian.desktop"
+                "applications:thunderbird.desktop"
+                "applications:kitty.desktop"
               ];
             };
           };
