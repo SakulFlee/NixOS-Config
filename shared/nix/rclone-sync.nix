@@ -62,7 +62,7 @@ let
       fi
 
       local output
-      output=$(stdbuf -oL rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" --workdir "$WORK_DIR" --exclude '/#recycle/**' --exclude '/.Trash-1000/**' --conflict-resolve newer --verbose --links --resilient 2>&1 | tee /proc/self/fd/2)
+      output=$(stdbuf -oL rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" --workdir "$WORK_DIR" --exclude '/#recycle/**' --exclude '/.Trash-1000/**' --conflict-resolve newer --verbose --links --resilient)
       local exit_code=$?
       echo -e "rclone log:\n$output"
 
@@ -89,7 +89,7 @@ let
 
     echo "Initial sync for $LOCAL_DIR ..."
     notify "normal" "Rclone Watcher" "Initial sync started"
-    sync || true
+    sync
 
     echo "Starting rclone bisync watcher for $LOCAL_DIR ..."
     notify "normal" "Rclone Watcher" "Monitoring started safely for local changes."
@@ -102,7 +102,7 @@ let
         
         echo "Sync triggered at $(date)"
 
-        sync || true
+        sync || exit 1
          
         sleep 3
     done
