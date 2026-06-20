@@ -195,10 +195,32 @@ map("n", "<leader>fm", function() Snacks.picker.man() end, { desc = "Man pages" 
 map("n", "<leader>fk", function() Snacks.picker.keymaps() end, { desc = "Keymaps" })
 map("n", "<leader>ft", function() Snacks.picker.colorschemes() end, { desc = "Colorschemes" })
 map("n", "<leader>fo", function() Snacks.picker.recent() end, { desc = "Recent files" })
-map("n", "<leader>fp", function() Snacks.picker.projects() end, { desc = "Find project" })
-map("n", "<leader>fP", function()
-  Snacks.picker.projects({ filter = { cwd = vim.fn.expand("%:p:h") } })
-end, { desc = "Projects in current dir" })
+local function switch_project()
+  local projects = require("project_nvim").get_recent_projects()
+  if not projects or #projects == 0 then
+    Snacks.notify.warn("No recent projects")
+    return
+  end
+
+  Snacks.picker.pick({
+    prompt = "Switch project",
+    items = projects,
+    format = function(p)
+      local name = vim.fn.fnamemodify(p, ":t")
+      local path = vim.fn.fnamemodify(p, ":~")
+      return name .. "  (" .. path .. ")"
+    end,
+    confirm = function(choice)
+      if not choice then return end
+      vim.fn.chdir(choice)
+      local ok, nt = pcall(require, "neo-tree")
+      if ok then nt.command({ action = "show", dir = choice }) end
+      Snacks.notify("Project: " .. vim.fn.fnamemodify(choice, ":~"))
+    end,
+  })
+end
+
+map("n", "<leader>fp", switch_project, { desc = "Switch project" })
 
 -- ── Explorer / Outline ────────────────────────────────
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "File explorer" })
@@ -207,7 +229,7 @@ map("n", "<leader>o", "<cmd>AerialToggle!<cr>", { desc = "Symbols outline" })
 -- ── Project keymaps (project-nvim) ────────────────────
 local pn_ok, _ = pcall(require, "project_nvim")
 if pn_ok then
-  map("n", "<leader>pp", function() Snacks.picker.projects() end, { desc = "Find project (picker)" })
+  map("n", "<leader>pp", switch_project, { desc = "Switch project" })
 end
 
 -- ── Session keymaps (auto-session) ────────────────────
