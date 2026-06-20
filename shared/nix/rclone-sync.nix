@@ -50,6 +50,11 @@ let
     }
 
     sync() {
+      while pgrep -x rclone > /dev/null 2>&1; do
+        echo "rclone is already running, waiting 10s..."
+        sleep 10
+      done
+
       if ! check_connection; then
         echo "Network unreachable, skipping sync."
         notify "low" "Rclone Sync" "Remote unreachable. Will retry later."
@@ -57,8 +62,9 @@ let
       fi
 
       local output
-      output=$(rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" --workdir "$WORK_DIR" --exclude '/#recycle/**' --exclude '/.Trash-1000/**' --conflict-resolve newer --verbose --links --resilient 2>&1)
+      output=$(stdbuf -oL rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" --workdir "$WORK_DIR" --exclude '/#recycle/**' --exclude '/.Trash-1000/**' --conflict-resolve newer --verbose --links --resilient 2>&1 | tee /proc/self/fd/2)
       local exit_code=$?
+      echo -e "rclone log:\n$output"
 
       if [ "$exit_code" -eq 0 ]; then
         local transferred
@@ -91,8 +97,8 @@ let
     while true; do
         # Wait for local change or force timeout check
         inotifywait -r -t "$CHECK_INTERVAL" -e modify,create,delete,move "$LOCAL_DIR" &> /dev/null
-        
-        sleep "$COOLDOWN"
+        # Debounce: restart cooldown on each event, sync only after silence
+        while inotifywait -r -t "$COOLDOWN" -e modify,create,delete,move "$LOCAL_DIR" &> /dev/null; do :; done
         
         echo "Sync triggered at $(date)"
 
