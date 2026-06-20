@@ -1,6 +1,6 @@
 { ... }: {
   programs.plasma.workspace = {
-    clickItemTo = "open";
+    clickItemTo = "select";
     lookAndFeel = "org.kde.breezedark.desktop";
     wallpaper = "/usr/share/wallpapers/cachyos-wallpapers/PurpleFeathers.png";
   };
