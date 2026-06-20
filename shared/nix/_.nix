@@ -1,6 +1,7 @@
 { ... }: {
   imports = [
     ../gc.nix
+    ./man.nix
     ./kde/_.nix 
     ./audio.nix                 
     ./avahi.nix
