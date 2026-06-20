@@ -9,59 +9,55 @@ in
   services.llama-swap = {
     enable = true;
     settings = {
+      macros = {
+        "default" = ''
+          ${llama-server} \
+            --host 127.0.0.1 \
+            --port ''${PORT}
+        '';
+        "with_fit" = ''
+          ''${default} \
+            -fit on
+        '';
+        "with_mtp" = ''
+          ''${default} \
+            --spec-type draft-mtp
+        '';
+        "with_mtp_and_fit" = ''
+          ''${default} \
+            -fit on \
+            --spec-type draft-mtp
+        '';
+      };
       models = {
         "unsloth/Qwen3.5-9B-MTP-GGUF" = {
           cmd = ''
-            ${llama-server} \
-              --port ''${PORT} \
+            ''${with_mtp} \
               -hf unsloth/Qwen3.5-9B-MTP-GGUF \
-              -c 8192 \
-              -fit on
+              -c 8192 
           '';
         };
         "unsloth/gemma-4-E4B-it-qat-GGUF:UD-Q4_K_XL (Laptop config)" = {
           cmd = ''
-            # Note: --fit on usually works, but is bugged here because of MTP
-            ${llama-server} \
-              --port ''${PORT}
+            ''${with_mtp} \
               -hf unsloth/gemma-4-E4B-it-qat-GGUF:UD-Q4_K_XL \
               -c 8192 \
-              -fit off \
-              --spec-type draft-mtp \
-              --spec-draft-n-max 2 \
-              -ngl 35 
+              -ngl 35
           '';
         };
-        "unsloth/gemma-4-E4B-it-qat-GGUF:UD-Q4_K_XL (full)" = {
+        "unsloth/gemma-4-E4B-it-qat-GGUF:UD-Q4_K_XL" = {
           cmd = ''
-            # Note: --fit on usually works, but is bugged here because of MTP
-            ${llama-server} \
-              --port ''${PORT}
+            ''${with_mtp_and_fit} \
               -hf unsloth/gemma-4-E4B-it-qat-GGUF:UD-Q4_K_XL \
-              -c 8192 \
-              -fit off \
-              --spec-type draft-mtp \
-              --spec-draft-n-max 2 \
-              -ngl 99 
+              -c 8192
           '';
-        };
-        "VibeThinker-3B" = {
-          cmd = ''
-            ${llama-server} \
-              --port ''${PORT}
-              -hf prithivMLmods/VibeThinker-3B-GGUF:Q8_0 \
-              -c 8192 \
-              -fit on
-            '';
         };
         "yuxinlu1/gemma-4-12B-agentic-fable5-composer2.5-v2-3.5x-tau2-GGUF" = {
           cmd = ''
-            ${llama-server} \
-              --port ''${PORT}
+            ''${with_mtp_and_fit} \
               -hf yuxinlu1/gemma-4-12B-agentic-fable5-composer2.5-v2-3.5x-tau2-GGUF:Q4_K_M \
-              -c 8192 \
-              -fit on
-            '';
+              -c 8192 
+          '';
         };
       };
     };
