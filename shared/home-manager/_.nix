@@ -5,6 +5,7 @@
     ./autostart.nix
     ./nixvim/_.nix
     ./rust.nix
+    ./direnv.nix
   ];
 }
 
