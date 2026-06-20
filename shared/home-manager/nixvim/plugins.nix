@@ -79,6 +79,7 @@
               files = {};
               grep = {};
               buffers = {};
+              projects = {};
             };
             win = {
               input.keys = {
@@ -169,7 +170,22 @@
       };
 
       # ── Project manager ────────────────────────────────────
-      project-nvim.enable = true;
+      project-nvim = {
+        enable = true;
+        settings = {
+          detection_methods = [ "lsp" "pattern" ];
+          patterns = [
+            ".git"
+            ".project"
+            "Makefile"
+            "flake.nix"
+            "Cargo.toml"
+            "package.json"
+            "project.json"
+          ];
+          show_hidden = true;
+        };
+      };
 
       # ── Markdown & Obsidian ────────────────────────────────
       render-markdown.enable  = true;

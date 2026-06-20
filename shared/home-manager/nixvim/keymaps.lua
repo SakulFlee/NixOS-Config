@@ -195,10 +195,20 @@ map("n", "<leader>fm", function() Snacks.picker.man() end, { desc = "Man pages" 
 map("n", "<leader>fk", function() Snacks.picker.keymaps() end, { desc = "Keymaps" })
 map("n", "<leader>ft", function() Snacks.picker.colorschemes() end, { desc = "Colorschemes" })
 map("n", "<leader>fo", function() Snacks.picker.recent() end, { desc = "Recent files" })
+map("n", "<leader>fp", function() Snacks.picker.projects() end, { desc = "Find project" })
+map("n", "<leader>fP", function()
+  Snacks.picker.projects({ filter = { cwd = vim.fn.expand("%:p:h") } })
+end, { desc = "Projects in current dir" })
 
 -- ── Explorer / Outline ────────────────────────────────
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "File explorer" })
 map("n", "<leader>o", "<cmd>AerialToggle!<cr>", { desc = "Symbols outline" })
+
+-- ── Project keymaps (project-nvim) ────────────────────
+local pn_ok, _ = pcall(require, "project_nvim")
+if pn_ok then
+  map("n", "<leader>pp", function() Snacks.picker.projects() end, { desc = "Find project (picker)" })
+end
 
 -- ── Session keymaps (auto-session) ────────────────────
 local gs_ok, gs = pcall(require, "auto-session")
@@ -285,6 +295,7 @@ if wk_ok then
     { "<leader>.",  group = "Suggest" },
     { "<leader>h",  group = "Dashboard" },
     { "<leader>m",  group = "Markdown" },
+    { "<leader>p",  group = "Project" },
 
     { "<leader>u",  group = "UI Toggle" },
     { "<leader>e",  group = "Explorer" },
