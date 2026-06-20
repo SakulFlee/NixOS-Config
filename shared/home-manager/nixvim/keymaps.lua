@@ -196,7 +196,7 @@ map("n", "<leader>fk", function() Snacks.picker.keymaps() end, { desc = "Keymaps
 map("n", "<leader>ft", function() Snacks.picker.colorschemes() end, { desc = "Colorschemes" })
 map("n", "<leader>fo", function() Snacks.picker.recent() end, { desc = "Recent files" })
 local function switch_project()
-  local projects = require("project_nvim").get_recent_projects()
+  local projects = require("project").get_recent_projects(true)
   if not projects or #projects == 0 then
     Snacks.notify.warn("No recent projects")
     return
@@ -225,12 +225,6 @@ map("n", "<leader>fp", switch_project, { desc = "Switch project" })
 -- ── Explorer / Outline ────────────────────────────────
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "File explorer" })
 map("n", "<leader>o", "<cmd>AerialToggle!<cr>", { desc = "Symbols outline" })
-
--- ── Project keymaps (project-nvim) ────────────────────
-local pn_ok, _ = pcall(require, "project_nvim")
-if pn_ok then
-  map("n", "<leader>pp", switch_project, { desc = "Switch project" })
-end
 
 -- ── Session keymaps (auto-session) ────────────────────
 local gs_ok, gs = pcall(require, "auto-session")
