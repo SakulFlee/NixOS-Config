@@ -10,12 +10,16 @@ in
     enable = true;
     settings = {
       models = {
-        "qwen3.5-9b-mtp" = {
+        "unsloth/Qwen3.5-9B-MTP-GGUF" = {
           cmd = ''
-            ${llama-server} --port ''${PORT} -hf unsloth/Qwen3.5-9B-MTP-GGUF
+            ${llama-server} \
+              --port ''${PORT} \
+              -hf unsloth/Qwen3.5-9B-MTP-GGUF \
+              -c 8192 \
+              -fit on
           '';
         };
-        "gemma-4-e4b-it-qat" = {
+        "unsloth/gemma-4-E4B-it-qat-GGUF:UD-Q4_K_XL (Laptop config)" = {
           cmd = ''
             # Note: --fit on usually works, but is bugged here because of MTP
             ${llama-server} \
@@ -28,33 +32,6 @@ in
               -ngl 35 
           '';
         };
-        "yuxinlu1/gemma-4-12B-coder-fable5-composer2.5-v1:Q4_K_M" = {
-          cmd = ''
-            ${llama-server} \
-              --port ''${PORT}
-              -hf yuxinlu1/gemma-4-12B-coder-fable5-composer2.5-v1-GGUF:Q4_K_M \
-              -c 8192 \
-              -fit on
-            '';
-        };
-        "yuxinlu1/gemma-4-12B-coder-fable5-composer2.5-v1:Q6_0" = {
-          cmd = ''
-            ${llama-server} \
-              --port ''${PORT}
-              -hf yuxinlu1/gemma-4-12B-coder-fable5-composer2.5-v1-GGUF:Q6_0 \
-              -c 8192 \
-              -fit on
-            '';
-        };
-        "yuxinlu1/gemma-4-12B-coder-fable5-composer2.5-v1:Q8_0" = {
-          cmd = ''
-            ${llama-server} \
-              --port ''${PORT}
-              -hf yuxinlu1/gemma-4-12B-coder-fable5-composer2.5-v1-GGUF:Q8_0 \
-              -c 8192 \
-              -fit on
-            '';
-        };
         "VibeThinker-3B" = {
           cmd = ''
             ${llama-server} \
@@ -64,7 +41,7 @@ in
               -fit on
             '';
         };
-        "Gemma4_12B-Agentic-Fable5-Composer2.5-v2-3.5x-tau2" = {
+        "yuxinlu1/gemma-4-12B-agentic-fable5-composer2.5-v2-3.5x-tau2-GGUF" = {
           cmd = ''
             ${llama-server} \
               --port ''${PORT}
