@@ -125,7 +125,12 @@
         settings = {
           auto_clean_after_session_restore = true;
           close_if_last_window = true;
-          window.width = 25;
+          window = {
+            width = 25;
+            mappings = {
+              "<Space>" = "<nop>";
+            };
+          };
           filesystem = {
             follow_current_file = {
               enabled = true;

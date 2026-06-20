@@ -196,26 +196,27 @@ map("n", "<leader>fk", function() Snacks.picker.keymaps() end, { desc = "Keymaps
 map("n", "<leader>ft", function() Snacks.picker.colorschemes() end, { desc = "Colorschemes" })
 map("n", "<leader>fo", function() Snacks.picker.recent() end, { desc = "Recent files" })
 local function switch_project()
-  local projects = require("project").get_recent_projects(true)
-  if not projects or #projects == 0 then
+  local paths = require("project").get_recent_projects(true)
+  if not paths or #paths == 0 then
     Snacks.notify.warn("No recent projects")
     return
   end
 
+  local items = vim.tbl_map(function(p)
+    local name = vim.fn.fnamemodify(p, ":t")
+    local path = vim.fn.fnamemodify(p, ":~")
+    return { text = name .. "  (" .. path .. ")", path = p }
+  end, paths)
+
   Snacks.picker.pick({
     prompt = "Switch project",
-    items = projects,
-    format = function(p)
-      local name = vim.fn.fnamemodify(p, ":t")
-      local path = vim.fn.fnamemodify(p, ":~")
-      return name .. "  (" .. path .. ")"
-    end,
+    items = items,
     confirm = function(choice)
       if not choice then return end
-      vim.fn.chdir(choice)
+      vim.fn.chdir(choice.path)
       local ok, nt = pcall(require, "neo-tree")
-      if ok then nt.command({ action = "show", dir = choice }) end
-      Snacks.notify("Project: " .. vim.fn.fnamemodify(choice, ":~"))
+      if ok then nt.command({ action = "show", dir = choice.path }) end
+      Snacks.notify("Project: " .. vim.fn.fnamemodify(choice.path, ":~"))
     end,
   })
 end
