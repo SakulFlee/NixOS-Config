@@ -54,7 +54,7 @@ in
         };
         "yuxinlu1/gemma-4-12B-agentic-fable5-composer2.5-v2-3.5x-tau2-GGUF" = {
           cmd = ''
-            ''${with_mtp_and_fit} \
+            ''${with_fit} \
               -hf yuxinlu1/gemma-4-12B-agentic-fable5-composer2.5-v2-3.5x-tau2-GGUF:Q4_K_M \
               -c 8192 
           '';
