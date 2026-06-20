@@ -211,7 +211,9 @@ local function switch_project()
   Snacks.picker.pick({
     prompt = "Switch project",
     items = items,
-    format = "text",
+    format = function(item)
+      return { item.text }
+    end,
     preview = "none",
     confirm = function(choice)
       if not choice then return end
