@@ -212,7 +212,7 @@ local function switch_project()
     prompt = "Switch project",
     items = items,
     format = function(item)
-      return { item.text }
+      return { { item.text } }
     end,
     preview = "none",
     confirm = function(choice)
