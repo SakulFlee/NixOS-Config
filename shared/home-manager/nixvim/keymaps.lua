@@ -211,6 +211,7 @@ local function switch_project()
   Snacks.picker.pick({
     prompt = "Switch project",
     items = items,
+    format = "text",
     confirm = function(choice)
       if not choice then return end
       vim.fn.chdir(choice.path)
