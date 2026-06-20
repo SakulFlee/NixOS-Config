@@ -52,6 +52,20 @@ in
               -c 8192
           '';
         };
+        "unsloth/gemma-4-12B-it-qat-GGUF:UD-Q4_K_XL" = {
+          cmd = ''
+            ''${with_mtp_and_fit} \
+              -hf unsloth/gemma-4-12B-it-qat-GGUF:UD-Q4_K_XL \
+              -c 8192
+          '';
+        };
+        "unsloth/gemma-4-26B-A4B-it-qat-GGUF:UD-Q4_K_XL" = {
+          cmd = ''
+            ''${with_mtp_and_fit} \
+              -hf unsloth/gemma-4-26B-A4B-it-qat-GGUF:UD-Q4_K_XL \
+              -c 8192
+          '';
+        };
         "yuxinlu1/gemma-4-12B-agentic-fable5-composer2.5-v2-3.5x-tau2-GGUF" = {
           cmd = ''
             ''${with_fit} \
