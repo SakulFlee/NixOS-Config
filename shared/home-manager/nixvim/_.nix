@@ -49,8 +49,6 @@
     # ── Lua configuration ─────────────────────────────────────
     extraConfigLuaPre = builtins.readFile ./keymaps.lua;
     extraConfigLua    = builtins.readFile ./heirline.lua + ''
-      -- Pre-load snacks.notifier so nvim_create_namespace is called during normal
-      -- startup, not when project.nvim's libuv watcher fires in a fast event context.
       require("snacks.notifier")
     '';
 

@@ -45,30 +45,6 @@
       snacks = {
         enable = true;
         settings = {
-          dashboard = {
-            enabled = false;
-            sections = [
-              { section = "header"; }
-              { section = "keys"; gap = 1; padding = 1; }
-            ];
-            preset = {
-              header = ''
-                ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
-                ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
-                ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
-                ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
-                ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
-                ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝'';
-              keys = [
-                { icon = " "; key = "f"; desc = "Find File"; action = "function() Snacks.picker.files() end"; }
-                { icon = " "; key = "r"; desc = "Recent Files"; action = "function() Snacks.picker.recent() end"; }
-                { icon = " "; key = "g"; desc = "Git Files"; action = "function() Snacks.picker.git_files() end"; }
-                { icon = " "; key = "b"; desc = "Buffers"; action = "function() Snacks.picker.buffers() end"; }
-                { icon = " "; key = "s"; desc = "Restore Session"; action = "function() require('auto-session').RestoreSession() end"; }
-                { icon = " "; key = "q"; desc = "Quit"; action = "qa"; }
-              ];
-            };
-          };
           notifier = {
             enabled = true;
             timeout = 3000;
@@ -79,7 +55,6 @@
               files = {};
               grep = {};
               buffers = {};
-              projects = {};
             };
             win = {
               input.keys = {
@@ -171,24 +146,6 @@
           auto_session_save_enabled         = true;
           auto_session_enabled              = true;
           auto_session_root_dir             = "~/.local/share/nvim/sessions";
-        };
-      };
-
-      # ── Project manager ────────────────────────────────────
-      project-nvim = {
-        enable = true;
-        settings = {
-          detection_methods = [ "lsp" "pattern" ];
-          patterns = [
-            ".git"
-            ".project"
-            "Makefile"
-            "flake.nix"
-            "Cargo.toml"
-            "package.json"
-            "project.json"
-          ];
-          show_hidden = true;
         };
       };
 

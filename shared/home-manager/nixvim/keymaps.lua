@@ -195,37 +195,6 @@ map("n", "<leader>fm", function() Snacks.picker.man() end, { desc = "Man pages" 
 map("n", "<leader>fk", function() Snacks.picker.keymaps() end, { desc = "Keymaps" })
 map("n", "<leader>ft", function() Snacks.picker.colorschemes() end, { desc = "Colorschemes" })
 map("n", "<leader>fo", function() Snacks.picker.recent() end, { desc = "Recent files" })
-local function switch_project()
-  local paths = require("project").get_recent_projects(true)
-  if not paths or #paths == 0 then
-    Snacks.notify.warn("No recent projects")
-    return
-  end
-
-  local items = vim.tbl_map(function(p)
-    local name = vim.fn.fnamemodify(p, ":t")
-    local path = vim.fn.fnamemodify(p, ":~")
-    return { text = name .. "  (" .. path .. ")", path = p }
-  end, paths)
-
-  Snacks.picker.pick({
-    prompt = "Switch project",
-    items = items,
-    format = function(item)
-      return { { item.text } }
-    end,
-    preview = "none",
-    confirm = function(_, item)
-      if not item then return end
-      vim.fn.chdir(item.path)
-      pcall(require("neo-tree.command").execute, { action = "show", dir = item.path })
-      Snacks.notify("Project: " .. vim.fn.fnamemodify(item.path, ":~"))
-    end,
-  })
-end
-
-map("n", "<leader>fp", switch_project, { desc = "Switch project" })
-
 -- ── Explorer / Outline ────────────────────────────────
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "File explorer" })
 map("n", "<leader>o", "<cmd>AerialToggle!<cr>", { desc = "Symbols outline" })
@@ -289,9 +258,6 @@ map({ "x", "o" }, "ia", ts_to("parameter.inner"), { desc = "inner parameter" })
 map({ "x", "o" }, "al", ts_to("loop.outer"), { desc = "outer loop" })
 map({ "x", "o" }, "il", ts_to("loop.inner"), { desc = "inner loop" })
 
--- ── Dashboard ─────────────────────────────────────────
-map("n", "<leader>h", function() Snacks.dashboard() end, { desc = "Dashboard" })
-
 -- ── Notifications ──────────────────────────────────────
 map("n", "<leader>uD", function() Snacks.notifier.hide() end, { desc = "Dismiss notifications" })
 map("n", "<leader>n", function() Snacks.picker.notifications() end, { desc = "Notification history" })
@@ -315,7 +281,6 @@ if wk_ok then
     { "<leader>.",  group = "Suggest" },
     { "<leader>h",  group = "Dashboard" },
     { "<leader>m",  group = "Markdown" },
-    { "<leader>p",  group = "Project" },
 
     { "<leader>u",  group = "UI Toggle" },
     { "<leader>e",  group = "Explorer" },
