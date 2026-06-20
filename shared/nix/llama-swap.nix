@@ -32,21 +32,6 @@ in
               -ngl 35 
           '';
         };
-        "unsloth/gemma-4-E4B-it-qat-GGUF:UD-Q4_K_XL (full + rerank)" = {
-          cmd = ''
-            # Note: --fit on usually works, but is bugged here because of MTP
-            ${llama-server} \
-              --port ''${PORT}
-              -hf unsloth/gemma-4-E4B-it-qat-GGUF:UD-Q4_K_XL \
-              -c 8192 \
-              --rerank \
-              -fit off \
-              --spec-type draft-mtp \
-              --spec-draft-n-max 2 \
-              -ngl 99 
-          '';
-        };
-
         "unsloth/gemma-4-E4B-it-qat-GGUF:UD-Q4_K_XL (full)" = {
           cmd = ''
             # Note: --fit on usually works, but is bugged here because of MTP
