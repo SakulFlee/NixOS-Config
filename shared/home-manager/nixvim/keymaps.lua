@@ -215,11 +215,11 @@ local function switch_project()
       return { { item.text } }
     end,
     preview = "none",
-    confirm = function(choice)
-      if not choice then return end
-      vim.fn.chdir(choice.path)
-      pcall(require("neo-tree.command").execute, { action = "show", dir = choice.path })
-      Snacks.notify("Project: " .. vim.fn.fnamemodify(choice.path, ":~"))
+    confirm = function(_, item)
+      if not item then return end
+      vim.fn.chdir(item.path)
+      pcall(require("neo-tree.command").execute, { action = "show", dir = item.path })
+      Snacks.notify("Project: " .. vim.fn.fnamemodify(item.path, ":~"))
     end,
   })
 end
