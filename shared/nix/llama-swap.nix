@@ -64,6 +64,15 @@ in
               -fit on
             '';
         };
+        "Gemma4_12B-Agentic-Fable5-Composer2.5-v2-3.5x-tau2" = {
+          cmd = ''
+            ${llama-server} \
+              --port ''${PORT}
+              -hf yuxinlu1/gemma-4-12B-agentic-fable5-composer2.5-v2-3.5x-tau2-GGUF:Q4_K_M \
+              -c 8192 \
+              -fit on
+            '';
+        };
       };
     };
   };
