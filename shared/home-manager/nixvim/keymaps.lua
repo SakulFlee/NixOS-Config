@@ -212,11 +212,11 @@ local function switch_project()
     prompt = "Switch project",
     items = items,
     format = "text",
+    preview = "none",
     confirm = function(choice)
       if not choice then return end
       vim.fn.chdir(choice.path)
-      local ok, nt = pcall(require, "neo-tree")
-      if ok then nt.command({ action = "show", dir = choice.path }) end
+      pcall(require("neo-tree.command").execute, { action = "show", dir = choice.path })
       Snacks.notify("Project: " .. vim.fn.fnamemodify(choice.path, ":~"))
     end,
   })

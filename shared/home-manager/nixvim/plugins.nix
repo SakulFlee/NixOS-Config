@@ -128,7 +128,7 @@
           window = {
             width = 25;
             mappings = {
-              "<Space>" = false;
+              "<space>" = "noop";
             };
           };
           filesystem = {
