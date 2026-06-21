@@ -62,7 +62,7 @@ let
       fi
 
       local output
-      output=$(stdbuf -oL rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" --workdir "$WORK_DIR" --lock-timeout 60s --timeout 1h --verbose --exclude '/#recycle/**' --exclude '/.Trash-1000/**' --conflict-resolve newer --links --resilient)
+      output=$(stdbuf -oL rclone bisync "$LOCAL_DIR" "$REMOTE_DIR" --workdir "$WORK_DIR" --exclude '/#recycle/**' --exclude '/.Trash-1000/**' --conflict-resolve newer --verbose --links --resilient)
       local exit_code=$?
       echo -e "rclone log:\n$output"
 
@@ -94,16 +94,7 @@ let
     echo "Starting rclone bisync watcher for $LOCAL_DIR ..."
     notify "normal" "Rclone Watcher" "Monitoring started safely for local changes."
 
-    # Check if shutdown is imminent
     while true; do
-        # Check for shutdown signals
-        if [ -f /run/shutdown.target ]; then
-            echo "Shutdown detected, stopping rclone sync gracefully..."
-            rm -f "$WORK_DIR"/*.lck 2>/dev/null
-            rm -f "$STATE_DIR"/*.lck 2>/dev/null
-            exit 0
-        fi
-        
         # Wait for local change or force timeout check
         inotifywait -r -t "$CHECK_INTERVAL" -e modify,create,delete,move "$LOCAL_DIR" &> /dev/null
         # Debounce: restart cooldown on each event, sync only after silence
@@ -144,15 +135,9 @@ in
     after = [ "graphical-session.target" ];
     
     serviceConfig = {
-      Type = "notify";
       ExecStart = "${rcloneWatcherScript}/bin/rclone-watcher";
       Restart = "on-failure";
       RestartSec = "10s";
-      
-      # Graceful shutdown settings
-      KillMode = "mixed";
-      KillSignal = "SIGTERM";
-      TimeoutStopSec = "30";
       
       EnvironmentFile = [ config.sops.templates."rclone-env".path ];
     };
