@@ -35,6 +35,7 @@ let
       ];
     };
   };
+in
 {
   # Install the SMB/CIFS client utilities
   environment.systemPackages = [ pkgs.cifs-utils ];
