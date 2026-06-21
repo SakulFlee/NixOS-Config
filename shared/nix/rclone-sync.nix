@@ -49,6 +49,15 @@ let
       return 1
     }
 
+    cleanup_locks() {
+      local locks
+      locks=$(ls "$WORK_DIR"/*.lck 2>/dev/null)
+      if [ -n "$locks" ]; then
+        echo "Removing stale bisync lock files from $WORK_DIR"
+        rm -f "$WORK_DIR"/*.lck
+      fi
+    }
+
     sync() {
       while pgrep -x rclone > /dev/null 2>&1; do
         echo "rclone is already running, waiting 10s..."
@@ -86,6 +95,8 @@ let
         echo "Error: Local directory $LOCAL_DIR does not exist."
         exit 1
     fi
+
+    cleanup_locks
 
     echo "Initial sync for $LOCAL_DIR ..."
     notify "normal" "Rclone Watcher" "Initial sync started"
