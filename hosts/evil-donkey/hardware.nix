@@ -47,4 +47,5 @@
   swapDevices =
     [ { device = "/dev/disk/by-uuid/66f414be-c83d-4b98-aa49-ca21bd57eb00"; }
     ];
+  boot.resumeDevice = "/dev/disk/by-uuid/66f414be-c83d-4b98-aa49-ca21bd57eb00";
 }
