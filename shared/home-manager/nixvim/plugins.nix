@@ -204,23 +204,6 @@
       # ── Git: lazygit ───────────────────────────────────────
       lazygit.enable = true;
 
-      # ── Test runner (neotest) ──────────────────────────────
-      neotest = {
-        enable = true;
-        adapters.rust.enable = true;
-        settings = {
-          quickfix.enabled = false;
-          output = {
-            enabled = true;
-            open_on_run = true;
-          };
-          output_panel = {
-            enabled = true;
-            open = "botright split | resize 15";
-          };
-        };
-      };
-
       # ── Rust: rustaceanvim ─────────────────────────────────
       rustaceanvim.enable = true;
     };

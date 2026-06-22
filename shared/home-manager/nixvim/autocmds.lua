@@ -133,31 +133,12 @@ if rust_ok then
         return { buffer = rb, desc = desc, noremap = true, silent = true }
       end
 
-      map("n", "<leader>cM", function() vim.cmd("RustExpandMacro") end, ro("Expand macro"))
-      map("n", "<leader>cH", function() vim.cmd("RustHoverActions") end, ro("Hover actions"))
-      map("n", "<leader>cR", function() vim.cmd("RustReloadWorkspace") end, ro("Reload workspace"))
-      map("n", "<leader>cr", function() vim.cmd("RustRunnables") end, ro("Runnables"))
-      map("n", "<leader>cc", function() vim.cmd("RustOpenCargo") end, ro("Open Cargo.toml"))
-      map("n", "<leader>cp", function() vim.cmd("RustParentModule") end, ro("Parent module"))
-      -- neotest mappings
-      local nt_ok, neotest = pcall(require, "neotest")
-      if nt_ok then
-        map("n", "<leader>lt", function()
-          neotest.run.run()
-        end, ro("Run nearest test"))
-        map("n", "<leader>lT", function()
-          neotest.run.run(vim.fn.expand("%"))
-        end, ro("Run all tests in file"))
-        map("n", "<leader>lo", function()
-          neotest.output_panel.open()
-        end, ro("Test output panel"))
-        map("n", "<leader>ls", function()
-          neotest.run.stop()
-        end, ro("Stop test run"))
-        map("n", "<leader>la", function()
-          neotest.run.run()
-        end, ro("Run test(s)"))
-      end
+      map("n", "<leader>lM", function() vim.cmd("RustExpandMacro") end, ro("Expand macro"))
+      map("n", "<leader>lH", function() vim.cmd("RustHoverActions") end, ro("Hover actions"))
+      map("n", "<leader>lW", function() vim.cmd("RustReloadWorkspace") end, ro("Reload workspace"))
+      map("n", "<leader>lt", function() vim.cmd("RustLsp runnables") end, ro("Targets (run/test/debug)"))
+      map("n", "<leader>lC", function() vim.cmd("RustOpenCargo") end, ro("Open Cargo.toml"))
+      map("n", "<leader>lP", function() vim.cmd("RustParentModule") end, ro("Parent module"))
     end,
   })
 end
