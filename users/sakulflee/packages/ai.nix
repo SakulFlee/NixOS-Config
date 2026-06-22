@@ -11,7 +11,7 @@
     (inputs.llama-cpp.packages.${pkgs.stdenv.hostPlatform.system}.vulkan)
 
     # pi-coding-agent with NodeJS
-    (symlinkJoin {
+    ((symlinkJoin {
       name = "pi-coding-agent-with-nodejs";
       paths = [ pkgs.pi-coding-agent ];
       nativeBuildInputs = [ makeWrapper ];
@@ -23,6 +23,6 @@
       meta = (pkgs.pi-coding-agent.meta or {}) // {
         mainProgram = "pi";
       };
-    }
+    })
   ];
 }
