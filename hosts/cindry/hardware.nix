@@ -43,6 +43,7 @@
   swapDevices =
     [ { device = "/dev/disk/by-uuid/417a545e-a9a0-472b-adc1-2428812c1110"; }
     ];
+  boot.resumeDevice = "/dev/disk/by-uuid/417a545e-a9a0-472b-adc1-2428812c1110";
 
   # NVIDIA PRIME
   hardware.nvidia.prime = {
