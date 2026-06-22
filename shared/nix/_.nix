@@ -30,6 +30,5 @@
     ./wayland.nix              
     ./zswap.nix
     ./zsh.nix                   
-    ./openrgb.nix
   ];
 }
