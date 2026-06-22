@@ -28,6 +28,7 @@
   home-manager.users.sakulflee = { pkgs, ...}: {
     imports = [
       ../../shared/home-manager/_.nix
+      ./configs/_.nix
       ./packages/_.nix
       ./git.nix
       ./gpg.nix
