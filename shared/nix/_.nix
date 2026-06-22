@@ -5,7 +5,6 @@
     ./man.nix
     ./kde/_.nix 
     ./audio.nix                 
-    ./avahi.nix
     ./bluetooth.nix
     ./boot-loader.nix
     ./experimental-features.nix 
