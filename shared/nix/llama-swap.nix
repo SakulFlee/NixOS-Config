@@ -14,7 +14,7 @@ in
           ${llama-server} \
             --host 127.0.0.1 \
             --port ''${PORT} \
-            -c 40000
+            -c 65536
         '';
         "with_fit" = ''
           ''${default} \
