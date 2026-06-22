@@ -4,5 +4,6 @@
         ./llama-swap.nix
         ./sunshine.nix
         ./openrgb.nix
+        ./dbus.nix
     ];
 }
