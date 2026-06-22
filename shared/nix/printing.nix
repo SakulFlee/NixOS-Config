@@ -14,13 +14,15 @@
 
       # Fallback
       cups-filters
-
-      # Scanning
-      kdePackages.skanpage
     ];
 
     browsed.enable = false;
   };
+
+  environment.systemPackages = with pkgs; [
+      # Scanning
+      kdePackages.skanpage
+  ];
 
   hardware.printers = {
     ensurePrinters = [
