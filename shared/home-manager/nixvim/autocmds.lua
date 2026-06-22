@@ -54,6 +54,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("LspCodeLens", { clear = true }),
   callback = function(ev)
     local bufnr = ev.buf
+    if inlay_hints_enabled then
+      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+    end
     vim.lsp.codelens.refresh()
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
       buffer = bufnr,
