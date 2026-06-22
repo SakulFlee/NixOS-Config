@@ -2,7 +2,6 @@
   imports = [
     ./services/_.nix
     ../gc.nix
-    ./man.nix
     ./kde/_.nix 
     ./audio.nix                 
     ./bluetooth.nix
