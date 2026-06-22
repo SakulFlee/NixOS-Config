@@ -40,12 +40,30 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- Inlay Hints Toggle
 -- ══════════════════════════════════════════════════════
 local map = vim.keymap.set
-local inlay_hints_enabled = false
+local inlay_hints_enabled = true
 map("n", "<leader>uh", function()
   inlay_hints_enabled = not inlay_hints_enabled
   vim.lsp.inlay_hint.enable(inlay_hints_enabled)
   Snacks.notify(inlay_hints_enabled and "Inlay hints enabled" or "Inlay hints disabled")
 end, { desc = "Toggle inlay hints" })
+
+-- ══════════════════════════════════════════════════════
+-- LSP Code Lenses (e.g. "Run Test", "Run", "Debug" annotations)
+-- ══════════════════════════════════════════════════════
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("LspCodeLens", { clear = true }),
+  callback = function(ev)
+    local bufnr = ev.buf
+    vim.lsp.codelens.refresh()
+    vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+      buffer = bufnr,
+      group = vim.api.nvim_create_augroup("LspCodeLensRefresh_" .. bufnr, { clear = true }),
+      callback = function()
+        vim.lsp.codelens.refresh()
+      end,
+    })
+  end,
+})
 
 -- ══════════════════════════════════════════════════════
 -- LSP File Operations (auto-update imports on rename)
@@ -121,6 +139,25 @@ if rust_ok then
       map("n", "<leader>cr", function() vim.cmd("RustRunnables") end, ro("Runnables"))
       map("n", "<leader>cc", function() vim.cmd("RustOpenCargo") end, ro("Open Cargo.toml"))
       map("n", "<leader>cp", function() vim.cmd("RustParentModule") end, ro("Parent module"))
+      -- neotest mappings
+      local nt_ok, neotest = pcall(require, "neotest")
+      if nt_ok then
+        map("n", "<leader>lt", function()
+          neotest.run.run()
+        end, ro("Run nearest test"))
+        map("n", "<leader>lT", function()
+          neotest.run.run(vim.fn.expand("%"))
+        end, ro("Run all tests in file"))
+        map("n", "<leader>lo", function()
+          neotest.output_panel.open()
+        end, ro("Test output panel"))
+        map("n", "<leader>ls", function()
+          neotest.run.stop()
+        end, ro("Stop test run"))
+        map("n", "<leader>la", function()
+          neotest.run.run()
+        end, ro("Run test(s)"))
+      end
     end,
   })
 end
