@@ -13,14 +13,14 @@
     # pi-coding-agent with NodeJS
     (symlinkJoin {
       name = "pi-coding-agent-with-nodejs";
-      paths = [ pi-coding-agent ];
+      paths = [ pkgs.pi-coding-agent ];
       nativeBuildInputs = [ makeWrapper ];
       postBuild = ''
         wrapProgram $out/bin/pi \
           --prefix PATH : ${lib.makeBinPath [ nodejs ]}
       '';
     }) // {
-      meta = (pi-coding-agent.meta or {}) // {
+      meta = (pkgs.pi-coding-agent.meta or {}) // {
         mainProgram = "pi";
       };
     }
