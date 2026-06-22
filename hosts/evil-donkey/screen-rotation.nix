@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   environment.etc."xdg/weston/weston.ini".text = ''
     [output]
     name=eDP-1
