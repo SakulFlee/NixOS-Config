@@ -136,7 +136,8 @@ if rust_ok then
       map("n", "<leader>lM", function() vim.cmd("RustExpandMacro") end, ro("Expand macro"))
       map("n", "<leader>lH", function() vim.cmd("RustHoverActions") end, ro("Hover actions"))
       map("n", "<leader>lW", function() vim.cmd("RustReloadWorkspace") end, ro("Reload workspace"))
-      map("n", "<leader>lt", function() vim.cmd("RustLsp runnables") end, ro("Targets (run/test/debug)"))
+      map("n", "<leader>lt", function() require("rustaceanvim.runnables").run() end, ro("Run nearest target"))
+      map("n", "<leader>lT", function() vim.cmd("RustLsp runnables") end, ro("All targets (picker)"))
       map("n", "<leader>lC", function() vim.cmd("RustOpenCargo") end, ro("Open Cargo.toml"))
       map("n", "<leader>lP", function() vim.cmd("RustParentModule") end, ro("Parent module"))
     end,
