@@ -12,7 +12,7 @@ in
     package = (pkgs.symlinkJoin {
       name = "llama-swap-njs-wrapped";
       paths = [ pkgs.llama-swap ];
-      buildInputs = [ pkgs.makeWrapper ];
+      buildINputs = [ pkgs.makeWrapper ];
       postBuild = ''
         wrapProgram $out/bin/llama-swap \
           --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.nodejs]}
