@@ -8,17 +8,6 @@ in
 {
   services.llama-swap = {
     enable = true;
-
-    package = pkgs.symlinkJoin {
-      name = "llama-swap-njs-wrapped";
-      paths = [ pkgs.llama-swap ];
-      buildINputs = [ pkgs.makeWrapper ];
-      postBuild = ''
-        wrapProgram $out/bin/llama-swap \
-          --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.nodejs]}
-      '';
-    };
-
     settings = {
       macros = {
         "default" = ''
