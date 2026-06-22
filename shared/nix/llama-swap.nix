@@ -9,7 +9,7 @@ in
   services.llama-swap = {
     enable = true;
 
-    package = pkgs.symlinkJoin {
+    package = (pkgs.symlinkJoin {
       name = "llama-swap-njs-wrapped";
       paths = [ pkgs.llama-swap ];
       buildINputs = [ pkgs.makeWrapper ];
@@ -17,6 +17,10 @@ in
         wrapProgram $out/bin/llama-swap \
           --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.nodejs]}
       '';
+    }) // {
+      meta = (pkgs.llama-swap.meta or {}) // {
+        mainProgram = "llama-swap";
+      };
     };
 
     settings = {
