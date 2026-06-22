@@ -17,5 +17,6 @@
     gnutar
     busybox
     diffutils
+    lm_sensors
   ];
 }
