@@ -39,15 +39,6 @@ in
               -m Qwythos-9B-Claude-Mythos-5-1M-MTP-Q4_K_M.gguf
           '';
         };
-
-        "empero-ai/Qwythos-9B-Claude-Mythos-5-1M-GGUF:Q4_K_M" = {
-          cmd = ''
-            ''${with_mtp_and_fit} \
-              -hf empero-ai/Qwythos-9B-Claude-Mythos-5-1M-GGUF:Q4_K_M \
-              -m Qwythos-9B-Claude-Mythos-5-1M-MTP-Q4_K_M.gguf \
-              --spec-draft-n-max 6
-          '';
-        };
         "unsloth/Qwen3.5-9B-MTP-GGUF" = {
           cmd = ''
             ''${with_mtp} \
