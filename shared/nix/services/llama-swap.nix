@@ -8,6 +8,7 @@ in
 {
   services.llama-swap = {
     enable = true;
+    port = 30001;
     settings = {
       macros = {
         "default" = ''
