@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   # SDDM
   environment.systemPackages = [
     (pkgs.catppuccin-sddm.override {
