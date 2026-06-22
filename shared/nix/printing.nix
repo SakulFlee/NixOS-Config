@@ -14,6 +14,9 @@
 
       # Fallback
       cups-filters
+
+      # Scanning
+      kdePackages.skanpage
     ];
 
     browsed.enable = false;
