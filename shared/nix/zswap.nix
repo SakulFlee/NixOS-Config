@@ -1,4 +1,4 @@
-{ ... }: {
+{ lib, ... }: {
   # Note: boot.resumeDevice needs to be set for hibernation to work!
 
   # ZRAM and ZSWAP are incompatible!
