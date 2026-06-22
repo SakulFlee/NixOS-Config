@@ -17,8 +17,5 @@
     gnutar
     busybox
     diffutils
-
-    # RGB control
-    openrgb-with-all-plugins
   ];
 }
