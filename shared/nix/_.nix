@@ -29,7 +29,7 @@
     ./system-state.nix          
     ./touchpad.nix              
     ./wayland.nix              
-    ./zram.nix
+    ./zswap.nix
     ./zsh.nix                   
     ./openrgb.nix
   ];
