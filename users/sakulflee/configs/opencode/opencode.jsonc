@@ -9,7 +9,6 @@
       },
       "models": {
         "[unsloth] Gemma4 26B-A4B @Q4_K_XL - IT QAT MTP": { "name": "[unsloth] Gemma4 26B-A4B @Q4_K_XL - IT QAT MTP" }
-        "qwen3-coder:a3b": { "name": "Qwen3-Coder: a3b-30b" },
       }
     }
   }
