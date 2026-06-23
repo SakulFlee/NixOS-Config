@@ -22,16 +22,36 @@ in
           -fit on
         '';
         "with_mtp" = ''
-          --spec-type draft-mtp \
-          --spec-draft-n-max 4
+          --spec-type draft-mtp 
         '';
       };
-      models = {
+      models = {        
+        "[unsloth] Qwen3.5 9B @Q4_K_XL - MTP" = {
+          cmd = ''
+            ''${default} \
+            ''${with_mtp} \
+            ''${with_fit} \
+              --spec-draft-n-max 6 \
+              -np 1 \
+              -hf unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-Q4_K_XL 
+          '';
+        };
+        "[unsloth] Qwen3.6 35B-A3B @Q4_K_XL - MTP" = {
+          cmd = ''
+            ''${default} \
+            ''${with_mtp} \
+            ''${with_fit} \
+              --spec-draft-n-max 2 \
+              -np 1 \
+              -hf unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-Q4_K_XL 
+          '';
+        };
         "[unsloth] Gemma4 26B-A4B @Q4_K_XL - IT QAT MTP" = {
           cmd = ''
             ''${default} \
             ''${with_mtp} \
             ''${with_fit} \
+              --spec-draft-n-max 4 \
               -hf unsloth/gemma-4-26B-A4B-it-qat-GGUF:UD-Q4_K_XL 
           '';
         };
