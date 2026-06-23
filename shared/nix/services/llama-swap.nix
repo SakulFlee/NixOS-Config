@@ -32,6 +32,12 @@ in
         '';
       };
       models = {
+        "unsloth/gemma-4-26B-A4B-it-qat-GGUF:Q8_0" = {
+          cmd = ''
+            ''${with_mtp_and_fit} \
+              -hf unsloth/gemma-4-26B-A4B-it-qat-GGUF:Q8_0
+          '';
+        };
         "[MTP] empero-ai/Qwythos-9B-Claude-Mythos-5-1M-GGUF:Q4_K_M" = {
           cmd = ''
             ''${with_mtp_and_fit} \
