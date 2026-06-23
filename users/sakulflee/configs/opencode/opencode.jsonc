@@ -1,0 +1,16 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "llama.cpp": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "llama-swap",
+      "options": {
+        "baseURL": "http://127.0.0.1:30001/v1"
+      },
+      "models": {
+        "[unsloth] Gemma4 26B-A4B @Q4_K_XL - IT QAT MTP": { "name": "[unsloth] Gemma4 26B-A4B @Q4_K_XL - IT QAT MTP" }
+        "qwen3-coder:a3b": { "name": "Qwen3-Coder: a3b-30b" },
+      }
+    }
+  }
+}
