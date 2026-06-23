@@ -9,15 +9,6 @@ in
   services.llama-swap = {
     enable = true;
     port = 30001;
-    
-    # Trying to fix GPU utilization graph
-    path = [
-      pkgs.nvidia-utils
-    ];
-    environment = {
-      LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [ pkgs.nvidia-drivers ];
-    };
-
     settings = {
       macros = {
         "default" = ''
