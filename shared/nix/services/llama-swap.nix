@@ -14,9 +14,6 @@ in
     path = [
       pkgs.nvidia-utils
     ];
-    environment = {
-      LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [ pkgs.nvidia-drivers ];
-    };
 
     settings = {
       macros = {
