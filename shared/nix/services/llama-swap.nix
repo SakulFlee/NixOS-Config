@@ -6,19 +6,19 @@ let
   llama-server = lib.getExe' llama-cpp "llama-server";
 in
 {
+  systemd.services.llama-swap = {
+    # Trying to fix GPU utilization graph
+    path = [
+      pkgs.nvidia-utils
+    ];
+    environment = {
+      LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [ pkgs.nvidia-drivers ];
+    };
+  };
+
   services.llama-swap = {
     enable = true;
     port = 30001;
-   
-    systemd.services.llama-swap = {
-      # Trying to fix GPU utilization graph
-      path = [
-        pkgs.nvidia-utils
-      ];
-      environment = {
-        LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath [ pkgs.nvidia-drivers ];
-      };
-    };
 
     settings = {
       macros = {
