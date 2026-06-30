@@ -6,5 +6,6 @@
         ./openrgb.nix
         ./dbus.nix
         ./avahi.nix
+        ./flatpak.nix
     ];
 }
