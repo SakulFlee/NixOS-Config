@@ -4,6 +4,8 @@
     unstable.protonplus
     # FFXIV
     xivlauncher
+    # Minecraft
+    prismlauncher
   ];
 }
 
