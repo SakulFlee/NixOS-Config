@@ -16,6 +16,8 @@
       "render"
       # Universal inputs (gamepads, touch, mouse, keyboard, etc.; Also required for Sunshine!)
       "uinput"
+      # i2c support
+      "i2c"
     ];
 
     shell = pkgs.zsh;
