@@ -5,6 +5,7 @@
     ../../shared/nix-hardware/redistributable-hardware.nix
     ../../shared/nix-hardware/microcode.nix
     ../../shared/nix-hardware/wifi-mt7921e.nix
+    ../../shared/nix-hardware/i2c.nix
   ];
 
   # Needs to be set by every platform host
