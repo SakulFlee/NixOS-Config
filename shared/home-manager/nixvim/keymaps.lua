@@ -194,6 +194,7 @@ map("n", "<leader>fC", function() Snacks.picker.commands() end, { desc = "Comman
 map("n", "<leader>fm", function() Snacks.picker.man() end, { desc = "Man pages" })
 map("n", "<leader>fk", function() Snacks.picker.keymaps() end, { desc = "Keymaps" })
 map("n", "<leader>ft", function() Snacks.picker.colorschemes() end, { desc = "Colorschemes" })
+map("n", "<leader>fd", function() Snacks.picker.diagnostics() end, { desc = "Diagnostics" })
 map("n", "<leader>fo", function() Snacks.picker.recent() end, { desc = "Recent files" })
 -- ── Explorer / Outline ────────────────────────────────
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "File explorer" })
