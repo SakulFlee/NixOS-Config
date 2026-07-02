@@ -100,12 +100,14 @@
         settings = {
           auto_clean_after_session_restore = true;
           close_if_last_window = true;
+          position = "right";
           window = {
             width = 25;
             mappings = {
               "<space>" = "noop";
             };
           };
+          sources = [ "filesystem" "buffers" "git_status" "document_symbols" ];
           filesystem = {
             follow_current_file = {
               enabled = true;
@@ -200,6 +202,9 @@
         ];
       };
       treesitter-textobjects.enable = true;
+
+      # ── AI: opencode.nvim ──────────────────────────────────
+      opencode.enable = true;
 
       # ── Git: lazygit ───────────────────────────────────────
       lazygit.enable = true;

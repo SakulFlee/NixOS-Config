@@ -198,7 +198,7 @@ map("n", "<leader>fd", function() Snacks.picker.diagnostics() end, { desc = "Dia
 map("n", "<leader>fo", function() Snacks.picker.recent() end, { desc = "Recent files" })
 -- ── Explorer / Outline ────────────────────────────────
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "File explorer" })
-map("n", "<leader>o", "<cmd>AerialToggle!<cr>", { desc = "Symbols outline" })
+map("n", "<leader>o", "<cmd>Neotree source=document_symbols<cr>", { desc = "Symbols outline" })
 
 -- ── Session keymaps (auto-session) ────────────────────
 local gs_ok, gs = pcall(require, "auto-session")
@@ -230,14 +230,18 @@ map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Open location list" })
 map("n", "]q", "<cmd>cnext<cr>", { desc = "Next quickfix" })
 map("n", "[q", "<cmd>cprevious<cr>", { desc = "Previous quickfix" })
 
--- ── AI sidecar terminal split ─────────────────────────
-local function open_in_split(cmd)
-  vim.cmd("split | terminal " .. cmd)
-  vim.cmd("wincmd p")
-end
+-- ── AI: opencode.nvim ────────────────────────────
+map({ "n", "x" }, "<leader>oa", function() require("opencode").ask("@this: ") end, { desc = "Ask OpenCode…" })
+map({ "n", "x" }, "<leader>os", function() require("opencode").select() end,       { desc = "Select OpenCode…" })
+map({ "n", "t" }, "<leader>ao", function() require("opencode").toggle() end,       { desc = "Toggle OpenCode" })
 
-map("n", "<leader>ao", function() open_in_split("opencode") end,
-  { desc = "Open OpenCode" })
+-- ── AI: Pi coding agent ──────────────────────────
+map("n", "<leader>ap", function()
+  Snacks.terminal.toggle("pi", { win = { position = "right", width = 0.4 } })
+end, { desc = "Toggle Pi" })
+map("t", "<leader>ap", function()
+  Snacks.terminal.toggle("pi", { win = { position = "right", width = 0.4 } })
+end, { desc = "Toggle Pi" })
 
 -- ── Markdown preview ──────────────────────────────────
 map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>",

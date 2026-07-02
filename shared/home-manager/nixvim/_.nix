@@ -19,7 +19,9 @@
       relativenumber = true;
       number = true;
       signcolumn = "yes";
-      wrap = false;
+      wrap = true;
+      spell = true;
+      spelllang = "en_us";
       termguicolors = true;
       updatetime = 250;
       conceallevel = 2;
@@ -40,6 +42,8 @@
       register = "unnamedplus";
       providers.wl-copy.enable = true;
     };
+
+    dependencies.opencode.enable = true;
 
     # ── Extra plugins (not in nixvim module) ──────────────────
     extraPlugins = [
