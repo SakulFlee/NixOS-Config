@@ -7,6 +7,10 @@
 
   programs.vscode = {
     enable = true;
+    profiles.main = {
+      extensions = [
+      ];
+    };
   };
 }
 
