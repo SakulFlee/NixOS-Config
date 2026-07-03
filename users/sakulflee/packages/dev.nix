@@ -29,6 +29,7 @@
         # Rust
         rust-lang.rust-analyzer
         tamasfe.even-better-toml
+        sst-dev.opencode
         (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
           mktplcRef = {
             publisher = "Swellaby";
