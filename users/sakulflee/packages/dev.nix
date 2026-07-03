@@ -36,7 +36,7 @@
             publisher = "phil294";
             name = "git-log--graph";
             version = "0.1.35";
-            sha256 = "sha256-6adXUaoh/OP5yYItH3GAQ7GpupfmTGaxkKP6hYUMYNQ=";
+            sha256 = "sha256-xDR+3zBlkgPBQihGUFvTrtt8yH8gbcBg6pFKGtOEBHI=";
           };
         })
 
