@@ -235,14 +235,6 @@ map({ "n", "x" }, "<leader>oa", function() require("opencode").ask("@this: ") en
 map({ "n", "x" }, "<leader>os", function() require("opencode").select() end,       { desc = "Select OpenCode…" })
 map({ "n", "t" }, "<leader>ao", function() require("opencode").toggle() end,       { desc = "Toggle OpenCode" })
 
--- ── AI: Pi coding agent ──────────────────────────
-map("n", "<leader>ap", function()
-  Snacks.terminal.toggle("pi", { win = { position = "right", width = 0.4 } })
-end, { desc = "Toggle Pi" })
-map("t", "<leader>ap", function()
-  Snacks.terminal.toggle("pi", { win = { position = "right", width = 0.4 } })
-end, { desc = "Toggle Pi" })
-
 -- ── Markdown preview ──────────────────────────────────
 map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>",
   { desc = "Markdown preview" })
