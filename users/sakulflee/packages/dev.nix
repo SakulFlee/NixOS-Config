@@ -16,6 +16,8 @@
         "workbench.sideBar.location" = "right";
         "workbench.activityBar.iconSizes" = "small";
         "git.enableSmartCommit" = true;
+        "git.alwaysSignOff" = true;
+        "git.autofetch" = "all";
         "files.autoSave" = "onFocusChange";
       };
 
