@@ -28,9 +28,8 @@
             publisher = "Swellaby";
             name = "vscode-rust-test-adapter";
             version = "0.11.0";
+            sha256 = "sha256-IgfcIRF54JXm9l2vVjf7lFJOVSI0CDgDjQT+Hw6FO4Q=";
           };
-          # test
-          sha256 = "sha256-IgfcIRF54JXm9l2vVjf7lFJOVSI0CDgDjQT+Hw6FO4Q=";
         })
 
         # Nix
