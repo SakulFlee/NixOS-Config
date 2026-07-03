@@ -27,7 +27,7 @@
         vadimcn.vscode-lldb
 
         # AI
-        continue.Continue
+        continue.continue
         (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
           mktplcRef = {
             publisher = "sst-dev";
