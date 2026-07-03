@@ -30,8 +30,15 @@
         vadimcn.vscode-lldb
 
         # Git tools
-        phil294.git-log--graph
         donjayamanne.githistory
+        (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+          mktplcRef = {
+            publisher = "phil294";
+            name = "git-log--graph";
+            version = "0.1.35";
+            sha256 = "sha256-6adXUaoh/OP5yYItH3GAQ7GpupfmTGaxkKP6hYUMYNQ=";
+          };
+        })
 
         # AI
         continue.continue
