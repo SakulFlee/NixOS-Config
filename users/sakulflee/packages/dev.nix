@@ -19,6 +19,7 @@
         # General
         fill-labs.dependi
         hbenl.vscode-test-explorer
+        ms-vscode.test-adapter-converter
 
         # Rust
         rust-lang.rust-analyzer
