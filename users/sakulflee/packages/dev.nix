@@ -52,7 +52,14 @@
         })
 
         # AI
-        continue-vsc
+        (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+          mktplcRef = {
+            publisher = "Continue";
+            name = "continue";
+            version = "2.1.0";
+            sha256 = "sha256-6adXUaoh/OP5yYItH3GAQ7GpupfmTGaxkKP6hYUMYNQ=";
+          };
+        })
         (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
           mktplcRef = {
             publisher = "sst-dev";
