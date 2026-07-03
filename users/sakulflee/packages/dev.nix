@@ -12,6 +12,7 @@
     profiles.main = {
       extensions = [
         bbenoist.nix         # Nix syntax highlighting
+        jnoortheen.nix-ide   # Nix language server support
       ];
     };
   };
