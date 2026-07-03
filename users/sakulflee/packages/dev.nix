@@ -11,6 +11,7 @@
     enable = true;
     profiles.main = {
       extensions = [
+        bbenoist.nix         # Nix syntax highlighting
       ];
     };
   };
