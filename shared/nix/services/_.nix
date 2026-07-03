@@ -7,6 +7,5 @@
         ./dbus.nix
         ./avahi.nix
         ./flatpak.nix
-        ./aria2.nix
     ];
 }
