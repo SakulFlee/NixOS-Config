@@ -22,6 +22,14 @@
         "files.autoSave" = "onFocusChange";
       };
 
+      keybindings = [
+        {
+          key = "ctrl+ö";
+          command = "workbench.action.terminal.toggleTerminal";
+          when = "terminalProcessSupported";
+        }
+      ];
+
       extensions = with pkgs.vscode-extensions; [
         # General
         fill-labs.dependi
