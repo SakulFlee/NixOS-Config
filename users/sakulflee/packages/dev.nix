@@ -27,8 +27,8 @@
           mktplcRef = {
             publisher = "swellaby";
             name = "vscode-rust-test-adapter";
+            version = "0.11.1";
           };
-          version = "0.11.1";
           sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
         })
 
