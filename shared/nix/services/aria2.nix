@@ -5,7 +5,7 @@
     rpcSecretFile = "/var/lib/aria2/secret.txt";
     settings = {
       enable-rpc = true;
-      dir = "/home/sakulflee/Downloads/"
+      dir = "/home/sakulflee/Downloads/";
     };
     openPorts = true;
   };
