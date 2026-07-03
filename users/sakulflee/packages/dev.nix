@@ -43,7 +43,7 @@
             publisher = "PrintagaPublishingLLC";
             name = "pilots-studio";
             version = "2.2.0";
-            sha256 = "sha256-IgfcIRF54JXm9l2vVjf7lFJOVSI0CDgDjQT+Hw6FO4Q=";
+            sha256 = "sha256-hIV4P6stGon3Jp3A+PJ5LkWsiCA6B795uKniDQ+rYDQ=";
           };
         })
         
