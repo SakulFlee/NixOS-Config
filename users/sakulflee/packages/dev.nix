@@ -29,6 +29,10 @@
         ms-vscode.test-adapter-converter
         vadimcn.vscode-lldb
 
+        # Git tools
+        phil294.git-log--graph
+        donjayamanne.githistory
+
         # AI
         continue.continue
         (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
