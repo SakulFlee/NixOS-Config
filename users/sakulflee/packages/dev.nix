@@ -52,7 +52,7 @@
         })
 
         # AI
-        continue.continue
+        continue-vsc
         (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
           mktplcRef = {
             publisher = "sst-dev";
