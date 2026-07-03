@@ -22,7 +22,7 @@
         # Rust
         rust-lang.rust-analyzer
         tamasfe.even-better-toml
-        Swellaby.vscode-rust-test-adapter
+        swellaby.vscode-rust-test-adapter
 
         # Nix
         bbenoist.nix
