@@ -25,7 +25,7 @@
         tamasfe.even-better-toml
         (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
           mktplcRef = {
-            publisher = "swellaby";
+            publisher = "Swellaby";
             name = "vscode-rust-test-adapter";
             version = "0.11.1";
           };
