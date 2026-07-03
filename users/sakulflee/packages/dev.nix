@@ -18,11 +18,12 @@
       extensions = with pkgs.vscode-extensions; [
         # General
         fill-labs.dependi
+        hbenl.vscode-test-explorer
 
         # Rust
         rust-lang.rust-analyzer
         tamasfe.even-better-toml
-        swellaby.vscode-rust-test-adapter
+        Swellaby.vscode-rust-test-adapter
 
         # Nix
         bbenoist.nix
