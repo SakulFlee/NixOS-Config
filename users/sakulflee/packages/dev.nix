@@ -9,7 +9,7 @@
 
   programs.vscodium = {
     enable = true;
-    profiles.main = {
+    profiles.default = {
       userSettings = {
         "telemetry.telemetryLevel" = "off";
         "update.mode" = "none";
