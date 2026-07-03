@@ -57,7 +57,7 @@
             publisher = "Continue";
             name = "continue";
             version = "2.1.0";
-            sha256 = "sha256-6adXUaoh/OP5yYItH3GAQ7GpupfmTGaxkKP6hYUMYNQ=";
+            sha256 = "sha256-KOHEaR8JAID5hy3bvUUOMqgidZ/v6m5sEvlqRZKTUbk=";
           };
         })
         (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
