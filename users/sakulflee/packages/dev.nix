@@ -25,6 +25,14 @@
         "editor.fontLigatures" = true; # Enables beautiful code arrows (->, ==)
       };
 
+      keybindings = [
+        {
+          key = "ctrl+ö";
+          command = "workbench.action.terminal.toggleTerminal";
+          when = "terminalProcessSupported";
+        }
+      ];
+
       extensions = with pkgs.vscode-extensions; [
         # General
         fill-labs.dependi
