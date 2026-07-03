@@ -13,6 +13,7 @@
       extensions = [
         bbenoist.nix         # Nix syntax highlighting
         jnoortheen.nix-ide   # Nix language server support
+        vscodevim.vim        # Vim emulation
       ];
     };
   };
