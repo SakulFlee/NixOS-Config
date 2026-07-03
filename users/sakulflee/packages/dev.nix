@@ -7,7 +7,7 @@
     vscode-runner # Open VSCode workspaces from KDE 
   ];
 
-  programs.vscode = {
+  programs.vscodium = {
     enable = true;
     profiles.main = {
       extensions = [
