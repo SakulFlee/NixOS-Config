@@ -29,6 +29,7 @@
         # AI
         sst-dev.opencode
         PrintagaPublishingLLC.pilots-studio
+        Continue.continue
 
         # Rust
         rust-lang.rust-analyzer
