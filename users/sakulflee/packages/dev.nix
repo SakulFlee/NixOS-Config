@@ -35,7 +35,7 @@
             publisher = "sst-dev";
             name = "opencode";
             version = "0.0.13";
-            sha256 = "sha256-IgfcIRF54JXm9l2vVjf7lFJOVSI0CDgDjQT+Hw6FO4Q=";
+            sha256 = "sha256-6adXUaoh/OP5yYItH3GAQ7GpupfmTGaxkKP6hYUMYNQ=";
           };
         })
         (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
