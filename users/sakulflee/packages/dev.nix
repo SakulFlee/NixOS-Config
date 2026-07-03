@@ -24,9 +24,10 @@
         rust-lang.rust-analyzer
         tamasfe.even-better-toml
         (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
-          mktid = "swellaby.vscode-rust-test-adapter";
-          name = "vscode-rust-test-adapter";
-          publisher = "swellaby";
+          mktplcRef = {
+            publisher = "swellaby";
+            name = "vscode-rust-test-adapter";
+          };
           version = "0.11.1";
           sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
         })
