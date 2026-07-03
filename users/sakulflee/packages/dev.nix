@@ -3,6 +3,8 @@
     git
     wl-clipboard
     renderdoc
+
+    vscode-runner # Open VSCode workspaces from KDE 
   ];
 
   programs.vscode = {
