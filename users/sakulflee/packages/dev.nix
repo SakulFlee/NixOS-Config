@@ -4,5 +4,9 @@
     wl-clipboard
     renderdoc
   ];
+
+  programs.vscode = {
+    enable = true;
+  };
 }
 
