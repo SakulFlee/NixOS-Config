@@ -16,9 +16,17 @@
       };
 
       extensions = with pkgs.vscode-extensions; [
-        bbenoist.nix         # Nix syntax highlighting
-        jnoortheen.nix-ide   # Nix language server support
-        vscodevim.vim        # Vim emulation
+        # General
+        fill-labs.dependi
+
+        # Rust
+        rust-lang.rust-analyzer
+        tamasfe.even-better-toml
+        Swellaby.vscode-rust-test-adapter
+
+        # Nix
+        bbenoist.nix
+        jnoortheen.nix-ide
       ];
     };
   };
