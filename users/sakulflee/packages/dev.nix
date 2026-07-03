@@ -27,9 +27,24 @@
         vadimcn.vscode-lldb
 
         # AI
-        sst-dev.opencode
-        PrintagaPublishingLLC.pilots-studio
-        Continue.continue
+        continue.Continue
+        (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+          mktplcRef = {
+            publisher = "sst-dev";
+            name = "opencode";
+            version = "0.0.13";
+            sha256 = "sha256-IgfcIRF54JXm9l2vVjf7lFJOVSI0CDgDjQT+Hw6FO4Q=";
+          };
+        })
+        (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+          mktplcRef = {
+            publisher = "PrintagaPublishingLLC";
+            name = "pilots-studio";
+            version = "2.2.0";
+            sha256 = "sha256-IgfcIRF54JXm9l2vVjf7lFJOVSI0CDgDjQT+Hw6FO4Q=";
+          };
+        })
+        
 
         # Rust
         rust-lang.rust-analyzer
