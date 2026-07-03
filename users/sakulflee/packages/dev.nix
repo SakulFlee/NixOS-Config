@@ -18,6 +18,7 @@
         "git.enableSmartCommit" = true;
         "git.alwaysSignOff" = true;
         "git.autofetch" = "all";
+        "git.confirmSync" = false;
         "files.autoSave" = "onFocusChange";
       };
 
