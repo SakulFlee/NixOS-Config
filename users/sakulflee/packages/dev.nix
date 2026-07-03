@@ -20,6 +20,9 @@
         "git.autofetch" = "all";
         "git.confirmSync" = false;
         "files.autoSave" = "onFocusChange";
+        "terminal.integrated.fontFamily" = "'JetBrainsMono Nerd Font'";
+        "editor.fontFamily" = "'JetBrainsMono Nerd Font', 'Droid Sans Mono', 'monospace'";
+        "editor.fontLigatures" = true; # Enables beautiful code arrows (->, ==)
       };
 
       extensions = with pkgs.vscode-extensions; [
