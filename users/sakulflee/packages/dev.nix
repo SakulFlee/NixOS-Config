@@ -13,6 +13,10 @@
       userSettings = {
         "telemetry.telemetryLevel" = "off";
         "update.mode" = "none";
+        "workbench.sideBar.location" = "right";
+        "workbench.activityBar.iconSizes" = "small";
+        "git.enableSmartCommit" = true;
+        "files.autoSave" = "onFocusChange";
       };
 
       extensions = with pkgs.vscode-extensions; [
