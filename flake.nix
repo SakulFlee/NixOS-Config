@@ -41,9 +41,13 @@
     crane = {
       url = "github:ipetkov/crane";
     };
+
+    nix-flatpak = {
+      url = "github:gcapax/nix-flatpak";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixvim, ... }@inputs: 
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixvim, nix-flatpak, ... }@inputs: 
     let    
       system = "x86_64-linux";
       unstable = import nixpkgs-unstable.outPath {
