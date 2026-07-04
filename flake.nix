@@ -43,7 +43,7 @@
     };
 
     nix-flatpak = {
-      url = "github:gcapax/nix-flatpak";
+      url = "github:gmodena/nix-flatpak";
     };
   };
 
