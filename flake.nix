@@ -64,7 +64,6 @@
         specialArgs = sharedArgs;
         modules = [
           { nixpkgs.hostPlatform = system; }
-          inputs.nix-flatpak.nixosModules.nix-flatpak
           ./hosts/evil-donkey/configuration.nix 
         ];
       };
@@ -73,7 +72,6 @@
         specialArgs = sharedArgs;
         modules = [
           { nixpkgs.hostPlatform = system; }
-          inputs.nix-flatpak.nixosModules.nix-flatpak
           ./hosts/cindry/configuration.nix 
         ];
       };
@@ -82,7 +80,6 @@
         specialArgs = sharedArgs;
         modules = [
           { nixpkgs.hostPlatform = system; }
-          inputs.nix-flatpak.nixosModules.nix-flatpak
           ./hosts/steamdeck/configuration.nix 
         ];
       };
