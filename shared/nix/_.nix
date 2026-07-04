@@ -27,5 +27,6 @@
     ./wayland.nix              
     ./zswap.nix
     ./zsh.nix                   
+    ./wireguard.nix
   ];
 }
