@@ -7,5 +7,6 @@
         ./dbus.nix
         ./avahi.nix
         ./flatpak.nix
+        ./ollama.nix
     ];
 }

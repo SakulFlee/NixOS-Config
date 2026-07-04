@@ -1,6 +1,5 @@
 { pkgs, unstable, inputs, ... }: {
   home.packages = with pkgs; [
-    (unstable.ollama)
     (unstable.lmstudio)
     opencode
     opencode-desktop
