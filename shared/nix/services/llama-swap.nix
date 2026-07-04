@@ -26,6 +26,13 @@ in
         '';
       };
       models = {        
+        "deepreinforce-ai/Ornith-1.0-9B-GGUF:Q4_K_M" = {
+          cmd = ''
+            ''${default} \
+            ''${with_fit} \
+              -hf deepreinforce-ai/Ornith-1.0-9B-GGUF:Q4_K_M
+          '';
+        };
         "[unsloth] Qwen3.5 9B @Q4_K_XL - MTP" = {
           cmd = ''
             ''${default} \
