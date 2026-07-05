@@ -25,5 +25,9 @@ in {
       allowedIPs = [ "10.0.0.0/24" "192.168.178.0/24" "fdbe::/64" ];
       persistentKeepalive = 25;
     }];
+
+    # DNS
+    postSetup = ''resolvectl dns wg0 10.0.0.116'';
+    postDown = ''resolvectl revert wg0'';
   };
 }
