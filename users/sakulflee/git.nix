@@ -10,6 +10,7 @@
       commit.gpgsign = true;
       init.defaultBranch = "main";
       pull.rebase = true;
+      credential.helper = "store";
     };
   };
 }
