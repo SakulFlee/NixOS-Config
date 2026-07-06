@@ -23,7 +23,7 @@ in {
     peers = [{
       publicKey = this.publicKey;
       endpoint = "vpn.sakul-flee.de:51820";
-      allowedIPs = [ "10.0.0.0/24" "192.168.178.0/24" "fdbe::/64" ];
+      allowedIPs = [ "0.0.0.0/0" "::/0" ];
       persistentKeepalive = 25;
     }];
   };
