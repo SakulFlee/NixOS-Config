@@ -59,6 +59,8 @@
             version = "2.1.0";
             sha256 = "sha256-KOHEaR8JAID5hy3bvUUOMqgidZ/v6m5sEvlqRZKTUbk=";
           };
+          nativeBuildInputs = [ pkgs.autoPatchelfHook ];
+          buildInputs = [ (pkgs.lib.getLib pkgs.stdenv.cc.cc) ];
         })
         (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
           mktplcRef = {
