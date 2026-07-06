@@ -6,7 +6,7 @@
   ];
 
   # Setting x11 here makes the title bar like any other application and not be GIGANTIC.
-  xdg.desktopEntries.cinny-desktop = {
+  xdg.desktopEntries.cinny = {
     name = "Cinny";
     exec = "env GDK_BACKEND=x11 cinny %U";
     icon = "cinny";
