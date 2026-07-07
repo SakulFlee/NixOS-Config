@@ -30,11 +30,11 @@ in {
     postUp = ''
       # Keep the handshake route direct (bypass tunnel)
       ip route add 192.168.178.200/32 dev enp9s0 2>/dev/null || true
-
+      
       # Internet through tunnel
       ip route add 0.0.0.0/1 dev wg0
       ip route add 128.0.0.0/1 dev wg0
-
+      
       # Containers through tunnel
       ip route add 10.0.0.0/24 dev wg0
       ip route add fdbe::/64 dev wg0
@@ -46,6 +46,4 @@ in {
       ip route del fdbe::/64 dev wg0 2>/dev/null || true
     '';
   };
-
-  networking.nameservers = [ "192.168.178.200" "10.0.0.116" ];
 }
