@@ -3,6 +3,7 @@
     discord
     cinny-desktop
     element-desktop
+    fluffychat
   ];
 
   # Setting x11 here makes the title bar like any other application and not be GIGANTIC.
