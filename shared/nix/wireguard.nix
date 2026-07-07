@@ -23,25 +23,19 @@ in {
     table = null;
     peers = [{
       publicKey = this.publicKey;
+      endpoint = "vpn.sakul-flee.de:51820";
       allowedIPs = [ "0.0.0.0/0" "::/0" ];
       persistentKeepalive = 25;
     }];
     preUp = ''
-      # Detect if we're on the home network
       if ping -c 1 -W 1 192.168.178.200 &>/dev/null; then
-        ENDPOINT="192.168.178.200:51820"
-        wg set wg0 peer "${this.publicKey}" endpoint "$ENDPOINT"
-        # Home: containers + internet
-        ip route add 10.0.0.0/24 dev wg0
-        ip route add 0.0.0.0/1 dev wg0
-        ip route add 128.0.0.0/1 dev wg0
-      else
-        # Outside: resolve endpoint via public DNS, full tunnel
-        ENDPOINT=$(host vpn.sakul-flee.de | awk '/has address/ { print $4 }'):51820
-        wg set wg0 peer "${this.publicKey}" endpoint "$ENDPOINT"
-        ip route add 0.0.0.0/1 dev wg0
-        ip route add 128.0.0.0/1 dev wg0
+        # On home LAN — use direct Proxmox endpoint
+        ${pkgs.wireguard-tools}/bin/wg set wg0 peer ${this.publicKey} endpoint 192.168.178.200:51820
+        ip route add 10.0.0.0/24 dev wg0 2>/dev/null || true
       fi
+      # Full tunnel routes (all traffic)
+      ip route add 0.0.0.0/1 dev wg0 2>/dev/null || true
+      ip route add 128.0.0.0/1 dev wg0 2>/dev/null || true
     '';
     postDown = ''
       ip route del 10.0.0.0/24 dev wg0 2>/dev/null || true
