@@ -26,5 +26,12 @@ in {
       allowedIPs = [ "0.0.0.0/0" "::/0" ];
       persistentKeepalive = 25;
     }];
+    table = null; # Don't auto-add routes
+    postUp = ''
+      # Route containers through the tunnel
+      ip route add 10.0.0.0/24 dev wg0
+      ip route add 192.168.178.0/24 dev wg0
+      ip route add fdbe::/64 dev wg0
+    '';
   };
 }
