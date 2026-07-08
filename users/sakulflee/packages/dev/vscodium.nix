@@ -35,8 +35,17 @@
         redhat.vscode-yaml
 
         # Git tools
-        asispts.neo-git-graph
         boyan01.intelli-git
+        (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+          mktplcRef = {
+            publisher = "asispts";
+            name = "neo-git-graph";
+            version = "0.4.0";
+            sha256 = "sha256-KOHEaR8JAID5hy3bvUUOMqgidZ/v6m5sEvlqRZKTUbk=";
+          };
+          nativeBuildInputs = [ pkgs.autoPatchelfHook ];
+          buildInputs = [ (pkgs.lib.getLib pkgs.stdenv.cc.cc) ];
+        })
 
         # AI
         kilocode.kilo-code
