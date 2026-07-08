@@ -58,7 +58,16 @@
 
         # AI
         kilocode.kilo-code
-        RooVeterinaryInc.roo-cline
+        (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+          mktplcRef = {
+            publisher = "RooVeterinaryInc";
+            name = "roo-cline";
+            version = "3.54.0";
+            sha256 = "sha256-KOHEaR8JAID5hy3bvUUOMqgidZ/v6m5sEvlqRZKTUbk=";
+          };
+          nativeBuildInputs = [ pkgs.autoPatchelfHook ];
+          buildInputs = [ (pkgs.lib.getLib pkgs.stdenv.cc.cc) ];
+        })
         (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
           mktplcRef = {
             publisher = "Continue";
