@@ -50,7 +50,7 @@
             publisher = "boyan01";
             name = "intelli-git";
             version = "0.0.7";
-            sha256 = "sha256-KOHEaR8JAID5hy3bvUUOMqgidZ/v6m5sEvlqRZKTUbk=";
+            sha256 = "sha256-Zl8obCV157FXHQFnPA2kalrXdukxfXUKzbdJ9q6Saq8=";
           };
           nativeBuildInputs = [ pkgs.autoPatchelfHook ];
           buildInputs = [ (pkgs.lib.getLib pkgs.stdenv.cc.cc) ];
