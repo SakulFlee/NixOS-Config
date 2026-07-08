@@ -39,6 +39,7 @@
         hbenl.vscode-test-explorer
         ms-vscode.test-adapter-converter
         vadimcn.vscode-lldb
+        esbenp.prettier-vscode
 
         # Git tools
         asispts.neo-git-graph
