@@ -48,6 +48,7 @@
 
         # AI
         kilocode.kilo-code
+        RooVeterinaryInc.roo-cline
         (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
           mktplcRef = {
             publisher = "Continue";
