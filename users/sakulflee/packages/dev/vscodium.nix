@@ -73,7 +73,8 @@
             publisher = "Continue";
             name = "continue";
             version = "2.1.0";
-            sha256 = "sha256-KOHEaR8JAID5hy3bvUUOMqgidZ/v6m5sEvlqRZKTUbk=";
+            arch = "linux-x64";
+            sha256 = "sha256-O2L5xTj04tFYRUolBoY7KftNS/qPA5RIkOpL0ar9p38=";
           };
           nativeBuildInputs = [ pkgs.autoPatchelfHook ];
           buildInputs = [ (pkgs.lib.getLib pkgs.stdenv.cc.cc) ];
