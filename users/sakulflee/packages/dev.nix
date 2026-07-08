@@ -47,6 +47,7 @@
         boyan01.intelli-git
 
         # AI
+        kilocode.kilo-code
         (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
           mktplcRef = {
             publisher = "Continue";
