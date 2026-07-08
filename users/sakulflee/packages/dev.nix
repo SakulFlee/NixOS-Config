@@ -40,6 +40,7 @@
         ms-vscode.test-adapter-converter
         vadimcn.vscode-lldb
         esbenp.prettier-vscode
+        redhat.vscode-yaml
 
         # Git tools
         asispts.neo-git-graph
