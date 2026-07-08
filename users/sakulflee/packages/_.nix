@@ -1,8 +1,8 @@
 { ... }: {
   imports = [
+    ./dev/_.nix
     ./ai.nix
     ./creative.nix
-    ./dev.nix
     ./files.nix
     ./games.nix
     ./internet.nix
