@@ -94,6 +94,11 @@
 
         # Terraform
         hashicorp.terraform
+
+        # Markdown & Typst
+        myriad-dreamin.tinymist
+        MermaidChart.vscode-mermaid-chart
+        tomoki1207.pdf
       ];
     };
   };
