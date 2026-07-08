@@ -40,7 +40,7 @@
             publisher = "asispts";
             name = "neo-git-graph";
             version = "0.4.0";
-            sha256 = "sha256-KOHEaR8JAID5hy3bvUUOMqgidZ/v6m5sEvlqRZKTUbk=";
+            sha256 = "sha256-tMd76ZQjiE/3U95/TFrbLG9TgIxpREhrSK/tXMfN2Yk=";
           };
           nativeBuildInputs = [ pkgs.autoPatchelfHook ];
           buildInputs = [ (pkgs.lib.getLib pkgs.stdenv.cc.cc) ];
