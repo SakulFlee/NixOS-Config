@@ -122,7 +122,7 @@
             publisher = "MermaidChart";
             name = "vscode-mermaid-chart";
             version = "2.7.2";
-            sha256 = "sha256-hIV4P6stGon3Jp3A+PJ5LkWsiCA6B795uKniDQ+rYDQ=";
+            sha256 = "sha256-hXJPKvmXpJi54O6xSJFR20jHOS6hzyPGFTu7JDSKe2s=";
           };
         })
       ];
