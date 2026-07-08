@@ -91,6 +91,9 @@
         # Nix
         bbenoist.nix
         jnoortheen.nix-ide
+
+        # Terraform
+        hashicorp.terraform
       ];
     };
   };
