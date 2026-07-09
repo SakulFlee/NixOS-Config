@@ -14,7 +14,6 @@
     jetbrains.gateway
     jetbrains.idea
     jetbrains.rust-rover
-    jetbrains.mono
     jetbrains.jdk
 
     vscode-runner # Open VSCode workspaces from KDE 
