@@ -18,14 +18,6 @@
         "editor.fontLigatures" = true; # Enables beautiful code arrows (->, ==)
       };
 
-      keybindings = [
-        {
-          key = "ctrl+ö";
-          command = "workbench.action.terminal.toggleTerminal";
-          when = "terminalProcessSupported";
-        }
-      ];
-
       extensions = with pkgs.vscode-extensions; [
         # General
         fill-labs.dependi
@@ -58,17 +50,6 @@
         })
 
         # AI
-        kilocode.kilo-code
-        (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
-          mktplcRef = {
-            publisher = "RooVeterinaryInc";
-            name = "roo-cline";
-            version = "3.54.0";
-            sha256 = "sha256-yvltWW1pyzQn8Aw8pgSSaTE1zGufYhqgYiApA6plJzU=";
-          };
-          nativeBuildInputs = [ pkgs.autoPatchelfHook ];
-          buildInputs = [ (pkgs.lib.getLib pkgs.stdenv.cc.cc) ];
-        })
         (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
           mktplcRef = {
             publisher = "Continue";
