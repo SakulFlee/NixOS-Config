@@ -6,5 +6,8 @@
   };
 
   # WebUI
-  services.nextjs-ollama-llm-ui.enable = true;
+  services.nextjs-ollama-llm-ui = {
+    enable = true;
+    port = 30003
+  };
 }
