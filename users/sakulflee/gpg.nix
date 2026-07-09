@@ -68,8 +68,8 @@
     pinentry.package = pkgs.pinentry-qt; # KDE popup for password entry
 
     # Cache time-to-live settings (values are in seconds)
-    defaultCacheTtl = 3600;      # 1 hour (re-authenticates after 1 hour of inactivity)
-    maxCacheTtl = 86400;         # 24 hours (forces re-entry after 24 hours max)
+    defaultCacheTtl = 14400;     # 4 hours (re-authenticates after 4 hours of inactivity)
+    maxCacheTtl = 172800;        # 48 hours (forces re-entry after 48 hours max)
   };
 
   # Import GPG key on every activation (idempotent — skips if already present)
