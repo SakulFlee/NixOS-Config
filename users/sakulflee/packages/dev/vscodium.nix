@@ -6,8 +6,8 @@
         "telemetry.telemetryLevel" = "off";
         "update.mode" = "none";
         "workbench.sideBar.location" = "right";
-        "workbench.activityBar.location" = "default";
-        "workbench.activityBar.position" = "top";
+        "workbench.activityBar.location" = "top";
+        "workbench.activityBar.compact" = true;
         "git.enableSmartCommit" = true;
         "git.alwaysSignOff" = true;
         "git.autofetch" = "all";
