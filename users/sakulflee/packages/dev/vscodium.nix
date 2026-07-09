@@ -7,7 +7,7 @@
         "update.mode" = "none";
         "workbench.sideBar.location" = "right";
         "workbench.activityBar.location" = "default";
-        "workbench.activityBar.compact" = true;
+        "workbench.activityBar.position" = "top";
         "git.enableSmartCommit" = true;
         "git.alwaysSignOff" = true;
         "git.autofetch" = "all";
