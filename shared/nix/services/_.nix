@@ -8,5 +8,6 @@
         ./avahi.nix
         ./flatpak.nix
         ./ollama.nix
+        ./syncthing.nix
     ];
 }
