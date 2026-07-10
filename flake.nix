@@ -48,7 +48,6 @@
 
     jovian = {
       url = "github:Jovian-Experiments/Jovian-NixOS";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -81,7 +80,7 @@
         ];
       };
 
-      SteamDeck = nixpkgs.lib.nixosSystem {
+      SteamDeck = nixpkgs-unstable.lib.nixosSystem {
         specialArgs = sharedArgs;
         modules = [
           { nixpkgs.hostPlatform = system; }
