@@ -37,7 +37,8 @@ in {
       wayland.compositor = "kwin";
       settings.General.IdleTimeout = 0;
     };
+    sessionPackages = [ steamdeck-desktop ];
   };
 
-  environment.systemPackages = [ steamdeck-desktop ];
+  environment.systemPackages = [ steamdeck-session ];
 }
