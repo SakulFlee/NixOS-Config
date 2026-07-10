@@ -6,6 +6,8 @@ Run through the whole setup, create your user, parition the disks, etc.
 
 ### Enrollment
 Since we use SOPS secrets in this repository, you will have to "enroll" your new installation first.
+You need to activate the SSH server first at least once in the NixOS config, then rebuild and switch for it to generate the host keys!
+
 On your new installation, run the following:
 
 ```bash
