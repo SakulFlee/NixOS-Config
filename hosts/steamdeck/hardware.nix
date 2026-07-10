@@ -41,14 +41,16 @@
   # Steam Hardware
   hardware.steam-hardware.enable = true;
 
-  # ZRAM
+  # Redistributable firmware (required for amdgpu Van Gogh GPU)
+  hardware.enableRedistributableFirmware = true;
+
+  # ZRAM compressed swap
   zramSwap.enable = true;
 
   # Microcode
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # GPU
-  hardware.enableRedistributableFirmware = true;
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
