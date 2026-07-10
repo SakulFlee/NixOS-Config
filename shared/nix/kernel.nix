@@ -1,6 +1,6 @@
 { lib, pkgs, ... }: {
   # Default kernel is gaming focused (ZEN)
-  boot.kernelPackages = pkgs.linuxPackages_zen;
+  boot.kernelPackages = lib.mkDefault pkgs.linuxPackages_zen;
 
   specialisation = {
     latest.configuration = {
