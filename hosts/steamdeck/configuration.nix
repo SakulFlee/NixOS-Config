@@ -6,9 +6,6 @@
     inputs.jovian.nixosModules.jovian
   ];
 
-  # Apply Jovian overlay (provides gamescope-session, steamos-manager, etc.)
-  nixpkgs.overlays = [ inputs.jovian.overlays.default ];
-
   # Hostname
   networking.hostName = "SteamDeck";
 
