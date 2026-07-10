@@ -5,6 +5,9 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
+  # For SteamDecks horizontal layout
+  boot.loader.systemd-boot.consoleMode = "5";
+
   # Disk config
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/da954ab9-0559-4cf4-9004-2826a61078d1";
