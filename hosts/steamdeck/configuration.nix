@@ -8,11 +8,15 @@
 
   # Apply Jovian overlay (provides gamescope-session, steamos-manager, etc.)
   # Then fix gamescope: Jovian overrides src/version to 3.16.24 but inherits
-  # stale patches from nixpkgs-26.05 that don't apply to that version.
+  # stale patches and substituteInPlace calls from nixpkgs-26.05 that don't
+  # apply to that version.
   nixpkgs.overlays = [
     inputs.jovian.overlays.default
     (final: prev: {
-      gamescope = prev.gamescope.overrideAttrs (_: { patches = []; });
+      gamescope = prev.gamescope.overrideAttrs (_: {
+        patches = [];
+        postPatch = "";
+      });
     })
   ];
 
