@@ -9,6 +9,10 @@
   # Hostname
   networking.hostName = "SteamDeck";
 
+  # Silence version mismatch warnings (home-manager/nixvim on 26.05, pkgs on 26.11)
+  home-manager.users.sakulflee.home.enableNixpkgsReleaseCheck = false;
+  home-manager.users.sakulflee.programs.nixvim.version.enableNixpkgsReleaseCheck = false;
+
   # Jovian Steam Deck integration
   jovian.steam = {
     enable = true;
