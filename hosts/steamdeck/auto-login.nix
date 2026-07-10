@@ -9,9 +9,9 @@
       user = "sakulflee";
     };
     defaultSession = lib.mkForce "steam";
-    sddm.settings.General = {
-      # Prevent SDDM from blanking the screen after idle timeout
-      IdleTimeout = 0;
+    sddm = {
+      wayland.compositor = "kwin";
+      settings.General.IdleTimeout = 0;
     };
   };
 }
