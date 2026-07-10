@@ -1,4 +1,4 @@
-{ ... }: {
+{ lib, ... }: {
   # Auto-login to Steam Big Picture.
   # SDDM's Relogin defaults to false, so exiting Steam drops you at the
   # greeter where you can select "Plasma" and enter your password for
