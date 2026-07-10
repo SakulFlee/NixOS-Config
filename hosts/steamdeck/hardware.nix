@@ -48,6 +48,7 @@
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   # GPU
+  hardware.enableRedistributableFirmware = true;
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
