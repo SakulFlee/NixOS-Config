@@ -5,7 +5,7 @@ let
     # Give SDDM's greeter compositor time to fully release DRM master
     # before gamescope tries to acquire it (avoids black screen on
     # Steam Deck's AMD Van Gogh GPU with auto-login)
-    sleep 2
+    sleep 10
     exec ${pkgs.gamescope}/bin/gamescope \
       --steam \
       --force-orientation right \
