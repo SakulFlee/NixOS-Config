@@ -8,6 +8,9 @@ let
     "Cindry" = {
       address = [ "10.100.0.3/32" ];
     };
+    "SteamDeck" = {
+      address = [ "10.100.0.5/32" ];
+    };
   };
   this = hostCfg.${config.networking.hostName} or (throw "wireguard.nix: unknown host ${config.networking.hostName}");
 in {
