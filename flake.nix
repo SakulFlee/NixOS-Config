@@ -45,9 +45,14 @@
     nix-flatpak = {
       url = "github:gmodena/nix-flatpak";
     };
+
+    jovian = {
+      url = "github:Jovian-Experiments/Jovian-NixOS";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixvim, nix-flatpak, ... }@inputs: 
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixvim, nix-flatpak, jovian, ... }@inputs: 
     let    
       system = "x86_64-linux";
       unstable = import nixpkgs-unstable.outPath {

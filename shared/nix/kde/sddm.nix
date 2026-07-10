@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ lib, pkgs, ... }: {
   # SDDM
   environment.systemPackages = [
     (pkgs.catppuccin-sddm.override {
@@ -14,6 +14,7 @@
       theme = "catppuccin-mocha-mauve";
     };
 
-    defaultSession = "plasma";
+    # mkDefault so hosts (e.g. SteamDeck via Jovian) can override
+    defaultSession = lib.mkDefault "plasma";
   };
 }
