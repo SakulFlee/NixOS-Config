@@ -12,13 +12,16 @@ let
       -- steam -tenfoot -pipewire-dmabuf
   '';
 
-  steamdeck-desktop = pkgs.writeTextDir "share/wayland-sessions/steamdeck.desktop" ''
-    [Desktop Entry]
-    Name=SteamDeck
-    Comment=Steam Big Picture via Gamescope
-    Exec=${steamdeck-session}/bin/steamdeck-session
-    Type=Application
-  '';
+  steamdeck-desktop =
+    (pkgs.writeTextDir "share/wayland-sessions/steamdeck.desktop" ''
+      [Desktop Entry]
+      Name=SteamDeck
+      Comment=Steam Big Picture via Gamescope
+      Exec=${steamdeck-session}/bin/steamdeck-session
+      Type=Application
+    '').overrideAttrs (_: {
+      passthru.providedSessions = [ "steamdeck" ];
+    });
 in {
   # Auto-login to Steam Big Picture.
   # SDDM's Relogin defaults to false, so exiting Steam drops you at the
