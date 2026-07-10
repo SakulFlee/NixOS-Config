@@ -5,7 +5,7 @@
     ./steam.nix
     ../../users/_.nix
 
-    # Shared modules (same base as Cindry/Evil-Donkey, minus conflicting ones)
+    # Shared modules (same base as Cindry/Evil-Donkey)
     ../../shared/nix/experimental-features.nix
     ../../shared/nix/nixpkgs-unfree.nix
     ../../shared/nix/locale.nix
@@ -23,22 +23,14 @@
     ../../shared/nix/home-manager.nix
     ../../shared/nix/sops.nix
     ../../shared/nix/zram.nix
+    ../../shared/nix/wireguard.nix
+    ../../shared/nix/nixos-config-rebuilder.nix
 
     # KDE Plasma (same desktop as other hosts)
     ../../shared/nix/kde/_.nix
 
     # Services (Ollama, Sunshine, etc.)
     ../../shared/nix/services/_.nix
-
-    # Not included from shared/nix/_.nix:
-    #   boot-loader.nix   → handled by boot.nix (consoleMode=5 for Deck)
-    #   steam.nix         → handled by ./steam.nix (gamescopeSession)
-    #   touchpad.nix      → Deck has its own input handling
-    #   printing.nix      → not needed
-    #   mount-nas.nix     → not needed
-    #   rclone-sync.nix   → not needed
-    #   wireguard.nix     → not needed
-    #   nixos-config-rebuilder.nix → opens kitty on rebuild, skip for Deck
   ];
 
   networking.hostName = "SteamDeck";
