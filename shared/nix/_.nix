@@ -25,7 +25,7 @@
     ./system-state.nix          
     ./touchpad.nix              
     ./wayland.nix              
-    ./zswap.nix
+    ./zram.nix
     ./zsh.nix                   
     ./wireguard.nix
   ];

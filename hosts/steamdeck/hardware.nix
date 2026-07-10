@@ -29,9 +29,11 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
+  # Swap + hibernation
   swapDevices =
     [ { device = "/dev/disk/by-uuid/f2aef7fb-e914-4284-8b8d-c920a56d2a4a"; }
     ];
+  boot.resumeDevice = "/dev/disk/by-uuid/f2aef7fb-e914-4284-8b8d-c920a56d2a4a";
 
   # Steam Hardware
   hardware.steam-hardware.enable = true;

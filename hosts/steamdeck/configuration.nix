@@ -22,6 +22,7 @@
     ../../shared/nix/zsh.nix
     ../../shared/nix/home-manager.nix
     ../../shared/nix/sops.nix
+    ../../shared/nix/zram.nix
 
     # KDE Plasma (same desktop as other hosts)
     ../../shared/nix/kde/_.nix
@@ -33,7 +34,6 @@
     #   boot-loader.nix   → handled by boot.nix (consoleMode=5 for Deck)
     #   steam.nix         → handled by ./steam.nix (gamescopeSession)
     #   touchpad.nix      → Deck has its own input handling
-    #   zswap.nix         → using ZRAM instead (more suitable for handheld)
     #   printing.nix      → not needed
     #   mount-nas.nix     → not needed
     #   rclone-sync.nix   → not needed
