@@ -1,7 +1,7 @@
 { ... }: {
   imports = [
     ./services/_.nix
-    ../gc.nix
+    ./gc.nix
     ./kde/_.nix 
     ./audio.nix                 
     ./bluetooth.nix
