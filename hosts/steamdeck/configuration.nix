@@ -3,7 +3,6 @@
     inputs.jovian.nixosModules.jovian
     ./hardware.nix
     ../../shared/nix-hardware/_.nix
-    ../../shared/nix-hardware/firmware.nix
     ../../shared/nix/boot-loader.nix
     ../../shared/nix/experimental-features.nix
     ../../shared/nix/fonts.nix
