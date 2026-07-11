@@ -48,35 +48,6 @@
           nativeBuildInputs = [ pkgs.autoPatchelfHook ];
           buildInputs = [ (pkgs.lib.getLib pkgs.stdenv.cc.cc) ];
         })
-
-        # AI
-        (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
-          mktplcRef = {
-            publisher = "Continue";
-            name = "continue";
-            version = "2.1.0";
-            arch = "linux-x64";
-            sha256 = "sha256-O2L5xTj04tFYRUolBoY7KftNS/qPA5RIkOpL0ar9p38=";
-          };
-          nativeBuildInputs = [ pkgs.autoPatchelfHook ];
-          buildInputs = [ (pkgs.lib.getLib pkgs.stdenv.cc.cc) ];
-        })
-        (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
-          mktplcRef = {
-            publisher = "sst-dev";
-            name = "opencode";
-            version = "0.0.13";
-            sha256 = "sha256-6adXUaoh/OP5yYItH3GAQ7GpupfmTGaxkKP6hYUMYNQ=";
-          };
-        })
-        (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
-          mktplcRef = {
-            publisher = "PrintagaPublishingLLC";
-            name = "pilots-studio";
-            version = "2.2.0";
-            sha256 = "sha256-hIV4P6stGon3Jp3A+PJ5LkWsiCA6B795uKniDQ+rYDQ=";
-          };
-        })
         
         # Rust
         rust-lang.rust-analyzer
