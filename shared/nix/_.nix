@@ -16,7 +16,6 @@
     ./networking.nix            
     ./nixpkgs-unfree.nix        
     ./printing.nix             
-    ./rclone-sync.nix
     ./nixos-config-rebuilder.nix
     ./sops.nix                  
     ./ssh.nix                   

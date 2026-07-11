@@ -20,13 +20,16 @@
     settings.PasswordAuthentication = true;
   };
 
+  # Add Plasma as desktop session for "Switch to Desktop"
+  services.desktopManager.plasma6.enable = true;
+
   jovian = {
     devices.steamdeck.enable = true;
     steam = {
       enable = true;
       autoStart = true;
       user = "sakulflee";
-      desktopSession = "gamescope-wayland";
+      desktopSession = "plasma";
     };
   };
 }
