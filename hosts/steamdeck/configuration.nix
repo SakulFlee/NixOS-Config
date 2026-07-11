@@ -3,6 +3,7 @@
     inputs.jovian.nixosModules.jovian
     ./hardware.nix
     ../../shared/nix/home-manager.nix
+    ../../shared/nix/zsh.nix
     ../../users/_.nix
   ];
 
