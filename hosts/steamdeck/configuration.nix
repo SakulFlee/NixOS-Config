@@ -22,7 +22,7 @@
     # ../../shared/nix/steam.nix
     ../../shared/nix/system-packages.nix
     ../../shared/nix/system-state.nix
-    # ../../shared/nix/wayland.nix
+    ../../shared/nix/wayland.nix
     ../../shared/nix/wireguard.nix
     ../../shared/nix/zram.nix
     ../../shared/nix/zsh.nix
