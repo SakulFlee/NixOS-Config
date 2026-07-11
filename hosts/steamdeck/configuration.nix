@@ -2,6 +2,7 @@
   imports = [
     inputs.jovian.nixosModules.jovian
     ./hardware.nix
+    ../../shared/nix-hardware/firmware.nix
     ../../shared/nix/home-manager.nix
     ../../shared/nix/zsh.nix
     ../../shared/nix/sops.nix

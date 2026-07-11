@@ -2,7 +2,7 @@
   imports = [
     ../../shared/nix-hardware/gpu-nvidia-prime.nix
     ../../shared/nix-hardware/gpu-amdgpu.nix
-    ../../shared/nix-hardware/redistributable-hardware.nix
+    ../../shared/nix-hardware/firmware.nix
     ../../shared/nix-hardware/microcode.nix
     ../../shared/nix-hardware/wifi-mt7921e.nix
     ../../shared/nix-hardware/i2c.nix
