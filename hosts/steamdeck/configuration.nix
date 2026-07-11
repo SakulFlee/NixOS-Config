@@ -2,6 +2,7 @@
   imports = [
     inputs.jovian.nixosModules.jovian
     ./hardware.nix
+    ../../shared/nix/home-manager.nix
     ../../users/_.nix
   ];
 
