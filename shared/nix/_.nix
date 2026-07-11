@@ -10,8 +10,7 @@
     ./home-manager.nix          
     ./kernel.nix                
     ./locale.nix                
-    ./mount-nas.nix                   
-    ./networking.nix            
+    ./mount-nas.nix                    
     ./nixpkgs-unfree.nix        
     ./printing.nix             
     ./nixos-config-rebuilder.nix
