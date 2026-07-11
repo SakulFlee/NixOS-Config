@@ -21,6 +21,12 @@
   # Enable Steam Deck device support (panel driver, bridge, DTM TA, etc.)
   jovian.devices.steamdeck.enable = true;
 
+  # Override SDDM to X11 for SteamDeck — Valve uses X11 greeter.
+  # SDDM Wayland (KWin) conflicts with gamescope during DRM handoff,
+  # causing cold boot black screen. X11 releases DRM cleanly before
+  # gamescope-session takes over.
+  services.displayManager.sddm.wayland.enable = lib.mkForce false;
+
   # Jovian Steam Deck integration
   jovian.steam = {
     enable = true;
