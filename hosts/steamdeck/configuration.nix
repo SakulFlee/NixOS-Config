@@ -2,7 +2,6 @@
   imports = [
     inputs.jovian.nixosModules.jovian
     ./hardware.nix
-    ../../shared/nix-hardware/_.nix
     ../../shared/nix/_.nix
     ../../users/_.nix
   ];

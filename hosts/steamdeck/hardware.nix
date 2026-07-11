@@ -1,4 +1,8 @@
 { config, lib, pkgs, modulesPath, ... }: {
+  imports = [
+    ../../shared/nix-hardware/_.nix
+  ];
+
   # Additional boot arguments should _mostly_ stay in the host config as they tend to highly customized between hosts
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ ];
@@ -40,9 +44,6 @@
 
   # Steam Hardware
   hardware.steam-hardware.enable = true;
-
-  # ZRAM compressed swap
-  zramSwap.enable = true;
 
   # GPU
   hardware.graphics = {
