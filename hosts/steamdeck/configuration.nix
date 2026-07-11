@@ -4,6 +4,7 @@
     ./hardware.nix
     ../../shared/nix/home-manager.nix
     ../../shared/nix/zsh.nix
+    ../../shared/nix/sops.nix
     ../../users/_.nix
   ];
 
