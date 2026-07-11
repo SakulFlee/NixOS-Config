@@ -15,6 +15,11 @@
   };
   security.sudo.wheelNeedsPassword = false;
 
+  services.openssh = {
+    enable = true;
+    settings.PasswordAuthentication = true;
+  };
+
   jovian = {
     devices.steamdeck.enable = true;
     steam = {
