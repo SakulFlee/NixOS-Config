@@ -26,6 +26,7 @@
         vadimcn.vscode-lldb
         esbenp.prettier-vscode
         redhat.vscode-yaml
+        christian-kohler.path-intellisense
 
         # Git tools
         (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
