@@ -55,12 +55,9 @@
     enable = true;
     enable32Bit = true;
     extraPackages = with pkgs; [ 
-      mesa 
       amdgpu_top
     ];
-    extraPackages32 = with pkgs; [
-      driversi686Linux.mesa
-    ];
+    extraPackages32 = [];
   };
   environment.sessionVariables = {
     AMD_VULKAN_ICD = "RADV";
