@@ -26,6 +26,7 @@
   # causing cold boot black screen. X11 releases DRM cleanly before
   # gamescope-session takes over.
   services.displayManager.sddm.wayland.enable = lib.mkForce false;
+  services.xserver.enable = lib.mkForce true;
 
   # Jovian Steam Deck integration
   jovian.steam = {
