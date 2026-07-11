@@ -2,9 +2,7 @@
   imports = [
     ./services/_.nix
     ./gc.nix
-    ./kde/_.nix 
-    ./audio.nix                 
-    ./bluetooth.nix
+    ./kde/_.nix
     ./boot-loader.nix
     ./experimental-features.nix 
     ./fonts.nix                 
@@ -21,8 +19,7 @@
     ./ssh.nix                   
     ./steam.nix
     ./system-packages.nix       
-    ./system-state.nix          
-    ./touchpad.nix              
+    ./system-state.nix           
     ./wayland.nix              
     ./zram.nix
     ./zsh.nix                   
