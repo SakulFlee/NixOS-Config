@@ -7,7 +7,6 @@
     ../../users/_.nix
   ];
 
-  boot.loader.systemd-boot.enable = true;
   networking.hostName = "SteamDeck";
 
   jovian = {
