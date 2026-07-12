@@ -10,6 +10,7 @@
 
   jovian = {
     devices.steamdeck.enable = true;
+    steamos.enableAutoMountUdevRules = false;
     steam = {
       enable = true;
       autoStart = true;
@@ -17,4 +18,13 @@
       desktopSession = "plasma";
     };
   };
+
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      if (action.id == "org.freedesktop.udisks2.filesystem-mount" &&
+          subject.isInGroup("wheel")) {
+        return polkit.Result.YES;
+      }
+    });
+  '';
 }
