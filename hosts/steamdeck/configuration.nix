@@ -16,7 +16,6 @@
     ../../shared/nix/nixos-config-rebuilder.nix
     ../../shared/nix/nixpkgs-unfree.nix
     ../../shared/nix/printing.nix
-    ../../shared/nix/services/_.nix
     ../../shared/nix/sops.nix
     ../../shared/nix/ssh.nix
     ../../shared/nix/steam.nix
@@ -26,6 +25,17 @@
     ../../shared/nix/wireguard.nix
     ../../shared/nix/zram.nix
     ../../shared/nix/zsh.nix
+
+    ../../shared/nix/services/avahi.nix
+    ../../shared/nix/services/dbus.nix
+    # ../../shared/nix/services/flatpak.nix
+    ../../shared/nix/services/llama-swap.nix
+    ../../shared/nix/services/ollama.nix
+    ../../shared/nix/services/openrgb.nix
+    ../../shared/nix/services/open-webui.nix
+    ../../shared/nix/services/sunshine.nix
+    ../../shared/nix/services/syncthing.nix
+
     ../../users/_.nix
   ];
 
