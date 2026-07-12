@@ -1,8 +1,8 @@
 { ... }: {
   imports = [
     ./plasma.nix
-    ./xdg-portal.nix
     ./sddm.nix
+    # ./xdg-portal.nix
     # ./kde-patch.nix
   ];
 }
