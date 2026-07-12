@@ -87,6 +87,14 @@
           ./hosts/steamdeck/configuration.nix 
         ];
       };
+
+      HomeLab = nixpkgs-unstable.lib.nixosSystem {
+        specialArgs = sharedArgs;
+        modules = [
+          { nixpkgs.hostPlatform = system; }
+          ./hosts/homelab/configuration.nix 
+        ];
+      };
     };
   };
 }
