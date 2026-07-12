@@ -8,7 +8,7 @@
     ../../shared/nix/fonts.nix
     ../../shared/nix/gpg.nix
     ../../shared/nix/home-manager.nix
-    # ../../shared/nix/kde
+    ../../shared/nix/kde/_.nix
     ../../shared/nix/kernel.nix
     ../../shared/nix/locale.nix
     ../../shared/nix/mount-nas.nix
