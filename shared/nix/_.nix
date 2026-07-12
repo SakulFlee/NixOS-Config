@@ -23,5 +23,6 @@
     ./zram.nix
     ./zsh.nix                   
     ./wireguard.nix
+    ./wheel.nix
   ];
 }
