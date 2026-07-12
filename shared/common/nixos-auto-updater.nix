@@ -19,10 +19,6 @@ in
     }
   ];
 
-
-
-  
-
   systemd.user.services.nixos-auto-updater = {
     description = "Check git upstream for configuration changes and rebuild";
     
