@@ -59,7 +59,7 @@ in
     '';
   };
 
-  systemd.user.timers.nixos-rebuilder = {
+  systemd.user.timers.nixos-auto-updater = {
     description = "Timer to poll /etc/nixos git status every hour";
     
     # FIXED: Binds the timer cycle to the active desktop environment session context
