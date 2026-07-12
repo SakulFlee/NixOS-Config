@@ -1,5 +1,6 @@
+{ installPackages ? true }:
 { ... }: {
   imports = [
-    ./sakulflee/_.nix
+    (import ./sakulflee/_.nix { inherit installPackages; })
   ];
 }
