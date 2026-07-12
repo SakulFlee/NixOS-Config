@@ -16,7 +16,7 @@
     ../../shared/nix/nixos-config-rebuilder.nix
     ../../shared/nix/nixpkgs-unfree.nix
     ../../shared/nix/printing.nix
-    ../../shared/nix/services
+    ../../shared/nix/services/_.nix
     ../../shared/nix/sops.nix
     ../../shared/nix/ssh.nix
     ../../shared/nix/steam.nix
