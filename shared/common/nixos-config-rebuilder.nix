@@ -3,6 +3,7 @@
 let 
   nixosRebuildBin = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
   gitBin = "${pkgs.git}/bin/git";
+  notifyBin = "${pkgs.libnotify}/bin/notify-send";
 in 
 {
   security.sudo.extraRules = [
@@ -23,14 +24,11 @@ in
     after = [ "graphical-session.target" ];
     wantedBy = [ "graphical-session.target" ];
 
-    path = with pkgs; [ git openssh nixos-rebuild kitty bash ];
+    path = with pkgs; [ git openssh nixos-rebuild libnotify ];
 
     serviceConfig = {
       Type = "oneshot";
       PassEnvironment = [ "DISPLAY" "WAYLAND_DISPLAY" "XDG_RUNTIME_DIR" ];
-
-      # Prevents Kitty from getting killed below
-      KillMode = "process";
     };
 
     script = ''
@@ -42,22 +40,21 @@ in
       if [ "$BEHIND" -gt 0 ]; then
         echo "Upstream updates detected!"
 
-        # Note: Kitty runs detached here to free the service and prevent a deadlock!
-        kitty --title="NixOS Rebuilder" -- bash -c '
-          printf "========== NixOS Rebuilder ==========\n\n"
-          cd /etc/nixos
-          
-          printf "Pulling changes from Git...\n"
-          ${gitBin} pull origin main
-          
-          printf "\nExecuting NixOS configuration switch...\n"
-          ${config.security.wrapperDir}/sudo ${nixosRebuildBin} switch --show-trace
-          
-          printf "\nFinished! Press any key to close this terminal..."
-          read -n 1
-        ' &
-        
-        disown
+        ${notifyBin} --app-name="NixOS Rebuilder" --urgency=normal \
+          "NixOS Rebuilder" "Updates detected, rebuilding..." >/dev/null 2>&1 || true
+
+        ${gitBin} pull origin main
+
+        ${config.security.wrapperDir}/sudo ${nixosRebuildBin} switch --show-trace
+        EXIT_CODE=$?
+
+        if [ "$EXIT_CODE" -eq 0 ]; then
+          ${notifyBin} --app-name="NixOS Rebuilder" --urgency=normal \
+            "NixOS Rebuilder" "Rebuild completed successfully!" >/dev/null 2>&1 || true
+        else
+          ${notifyBin} --app-name="NixOS Rebuilder" --urgency=critical \
+            "NixOS Rebuilder" "Rebuild failed! Check logs:\n\njournalctl --user -u nixos-rebuilder" >/dev/null 2>&1 || true
+        fi
       fi
     '';
   };
