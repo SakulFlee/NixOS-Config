@@ -9,6 +9,7 @@
     ../../shared/nix/gpg.nix
     ../../shared/nix/home-manager.nix
     # ../../shared/nix/kde
+    ../../shared/nix/kde/xdg-portal.nix
     ../../shared/nix/kernel.nix
     ../../shared/nix/locale.nix
     ../../shared/nix/mount-nas.nix
