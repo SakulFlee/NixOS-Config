@@ -3,6 +3,7 @@
     ./hardware.nix
     ../../users/_.nix
     ../../shared/nix/_.nix
+    ../../shared/optionals/openrgb.nix
     ./screen-rotation.nix
   ];
 
