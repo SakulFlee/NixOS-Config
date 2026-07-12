@@ -5,7 +5,7 @@
         ./openrgb.nix
         ./dbus.nix
         ./avahi.nix
-        # ./flatpak.nix
+        ./flatpak.nix
         ./ollama.nix
         ./syncthing.nix
     ];
