@@ -11,7 +11,6 @@
     ./mount-nas.nix
     ./nixpkgs-unfree.nix
     ./printing.nix
-    ./nixos-config-rebuilder.nix
     ./sops.nix
     ./ssh.nix
     ./steam.nix
@@ -32,5 +31,6 @@
     ./kde-plasma.nix
     ./sddm.nix
     ./sdcard.nix
+    ./nixos-auto-updater.nix
   ];
 }
