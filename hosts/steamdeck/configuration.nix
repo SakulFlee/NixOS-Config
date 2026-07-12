@@ -25,6 +25,7 @@
     ../../shared/nix/wireguard.nix
     ../../shared/nix/zram.nix
     ../../shared/nix/zsh.nix
+    ../../shared/nix/wheel.nix
 
     # ../../shared/nix/services/avahi.nix
     # # ../../shared/nix/services/dbus.nix
