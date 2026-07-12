@@ -31,5 +31,6 @@
     ./syncthing.nix
     ./kde-plasma.nix
     ./sddm.nix
+    ./sdcard.nix
   ];
 }
