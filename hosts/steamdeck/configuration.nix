@@ -18,7 +18,7 @@
     ../../shared/nix/printing.nix
     ../../shared/nix/sops.nix
     ../../shared/nix/ssh.nix
-    ../../shared/nix/steam.nix
+    # ../../shared/nix/steam.nix
     ../../shared/nix/system-packages.nix
     ../../shared/nix/system-state.nix
     ../../shared/nix/wayland.nix
