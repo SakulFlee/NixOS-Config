@@ -21,10 +21,6 @@
     ];
 
     shell = pkgs.zsh;
-
-    packages = with pkgs; [
-      faugus-launcher
-    ];
   };
 
   home-manager.users.sakulflee = { pkgs, ...}: {
