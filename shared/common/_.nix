@@ -29,8 +29,7 @@
     ./flatpak.nix
     ./ollama.nix
     ./syncthing.nix
-    ./plasma.nix
+    ./kde-plasma.nix
     ./sddm.nix
-    ./xdg-portal.nix
   ];
 }

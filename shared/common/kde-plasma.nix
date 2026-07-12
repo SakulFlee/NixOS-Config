@@ -2,6 +2,16 @@
   # KDE & SDDM
   services.desktopManager.plasma6.enable = true;
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [ kdePackages.xdg-desktop-portal-kde ];
+    config =  {
+      common = {
+        default = [ "kde" ];
+      };
+    };
+  };
+
   # !!! READ THIS !!!
   # This is a temporary, possibly unstable, performance fix for KDE Plasma on NixOS.
   # Apparently, the main issue is that QT applications (which KDE Plasma is basically made out of) has to read a lot of different directories (/nix/store/*) on NixOS.
