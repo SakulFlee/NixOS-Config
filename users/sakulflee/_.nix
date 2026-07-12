@@ -1,3 +1,4 @@
+{ installPackages ? true }:
 { pkgs, unstable, ... }: {
   users.users.sakulflee = {
     description = "SakulFlee";
@@ -23,16 +24,16 @@
     shell = pkgs.zsh;
   };
 
-  home-manager.users.sakulflee = { pkgs, ...}: {
+  home-manager.users.sakulflee = {
     imports = [
       ../../shared/home-manager/_.nix
-      ./configs/_.nix
-      ./packages/_.nix
       ./git.nix
       ./gpg.nix
-      ./kitty.nix
       ./zsh.nix
-    ];
+    ] ++ (if installPackages then [ 
+      ./packages/_.nix
+      ./configs/_.nix
+    ] else [ ]);
 
     home.pointerCursor = {
       package = pkgs.bibata-cursors;

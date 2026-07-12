@@ -7,6 +7,7 @@
     git
     wl-clipboard
     renderdoc
+    kitty
 
     jetbrains.clion
     jetbrains.datagrip
