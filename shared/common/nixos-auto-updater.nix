@@ -4,7 +4,6 @@ let
   nixosRebuildBin = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
   gitBin = "${pkgs.git}/bin/git";
   notifyBin = "${pkgs.libnotify}/bin/notify-send";
-  loggerBin = "${pkgs.util-linux}/bin/logger";
 in 
 {
   security.sudo.extraRules = [
@@ -46,12 +45,10 @@ in
 
         ${gitBin} pull origin main
 
-        LOG_FILE="$XDG_RUNTIME_DIR/nixos-auto-updater.log"
-        ${config.security.wrapperDir}/sudo ${nixosRebuildBin} switch --show-trace --verbose --print-build-logs > "$LOG_FILE" 2>&1
+        echo "--- nixos-rebuild start ---"
+        ${config.security.wrapperDir}/sudo ${nixosRebuildBin} switch --show-trace --verbose --print-build-logs --debug
         EXIT_CODE=$?
-        ${loggerBin} -t nixos-auto-updater < "$LOG_FILE"
-        cat "$LOG_FILE"
-        rm -f "$LOG_FILE"
+        echo "--- nixos-rebuild end (exit: $EXIT_CODE) ---"
 
         if [ "$EXIT_CODE" -eq 0 ]; then
           ${notifyBin} --app-name="NixOS Auto Updater" --urgency=normal \
