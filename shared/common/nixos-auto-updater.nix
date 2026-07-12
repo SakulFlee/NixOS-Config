@@ -31,9 +31,6 @@ in
       PassEnvironment = [ "DISPLAY" "WAYLAND_DISPLAY" "XDG_RUNTIME_DIR" ];
     };
 
-
-    
-
     script = ''
       cd /etc/nixos
 
