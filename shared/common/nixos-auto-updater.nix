@@ -45,7 +45,7 @@ in
 
         ${gitBin} pull origin main
 
-        ${config.security.wrapperDir}/sudo ${nixosRebuildBin} switch --show-trace
+        ${config.security.wrapperDir}/sudo ${nixosRebuildBin} switch --show-trace --verbose
         EXIT_CODE=$?
 
         if [ "$EXIT_CODE" -eq 0 ]; then
@@ -53,7 +53,7 @@ in
             "NixOS Auto Updater" "Rebuild completed successfully!" >/dev/null 2>&1 || true
         else
           ${notifyBin} --app-name="NixOS Auto Updater" --urgency=critical \
-            "NixOS Auto Updater" "Rebuild failed! Check logs:\n\njournalctl --user -u nixos-rebuilder" >/dev/null 2>&1 || true
+            "NixOS Auto Updater" "Rebuild failed! Check logs:\n\njournalctl --user -u nixos-auto-updater" >/dev/null 2>&1 || true
         fi
       fi
     '';
