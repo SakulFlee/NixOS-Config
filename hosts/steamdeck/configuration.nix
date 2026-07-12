@@ -32,7 +32,7 @@
     # # ../../shared/nix/services/flatpak.nix
     ../../shared/nix/services/llama-swap.nix
     ../../shared/nix/services/ollama.nix
-    ../../shared/nix/services/openrgb.nix
+    # ../../shared/nix/services/openrgb.nix
     # ../../shared/nix/services/open-webui.nix
     # ../../shared/nix/services/sunshine.nix
     # ../../shared/nix/services/syncthing.nix
