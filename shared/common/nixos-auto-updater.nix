@@ -18,7 +18,7 @@ in
     }
   ];
 
-  systemd.user.services.nixos-rebuilder = {
+  systemd.user.services.nixos-auto-updater = {
     description = "Check git upstream for configuration changes and rebuild";
     
     after = [ "graphical-session.target" ];
@@ -40,8 +40,8 @@ in
       if [ "$BEHIND" -gt 0 ]; then
         echo "Upstream updates detected!"
 
-        ${notifyBin} --app-name="NixOS Rebuilder" --urgency=normal \
-          "NixOS Rebuilder" "Updates detected, rebuilding..." >/dev/null 2>&1 || true
+        ${notifyBin} --app-name="NixOS Auto Updater" --urgency=normal \
+          "NixOS Auto Updater" "Updates detected, rebuilding..." >/dev/null 2>&1 || true
 
         ${gitBin} pull origin main
 
@@ -49,11 +49,11 @@ in
         EXIT_CODE=$?
 
         if [ "$EXIT_CODE" -eq 0 ]; then
-          ${notifyBin} --app-name="NixOS Rebuilder" --urgency=normal \
-            "NixOS Rebuilder" "Rebuild completed successfully!" >/dev/null 2>&1 || true
+          ${notifyBin} --app-name="NixOS Auto Updater" --urgency=normal \
+            "NixOS Auto Updater" "Rebuild completed successfully!" >/dev/null 2>&1 || true
         else
-          ${notifyBin} --app-name="NixOS Rebuilder" --urgency=critical \
-            "NixOS Rebuilder" "Rebuild failed! Check logs:\n\njournalctl --user -u nixos-rebuilder" >/dev/null 2>&1 || true
+          ${notifyBin} --app-name="NixOS Auto Updater" --urgency=critical \
+            "NixOS Auto Updater" "Rebuild failed! Check logs:\n\njournalctl --user -u nixos-rebuilder" >/dev/null 2>&1 || true
         fi
       fi
     '';
