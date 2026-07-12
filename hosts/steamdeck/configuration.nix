@@ -28,7 +28,7 @@
     ../../shared/nix/wheel.nix
 
     ../../shared/nix/services/avahi.nix
-    # # ../../shared/nix/services/dbus.nix
+    ../../shared/nix/services/dbus.nix
     # # ../../shared/nix/services/flatpak.nix
     # ../../shared/nix/services/llama-swap.nix
     # ../../shared/nix/services/ollama.nix
