@@ -48,7 +48,7 @@
       enable = true;
       autoStart = true;
       user = "sakulflee";
-      desktopSession = "gamescope-wayland";
+      desktopSession = "plasma";
     };
   };
 }
