@@ -1,6 +1,6 @@
 { ... }: {
   imports = [
-    ../gc.nix
+    ../common/gc.nix
     ./plasma-manager/_.nix
     ./autostart.nix
     ./nixvim/_.nix
