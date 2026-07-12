@@ -1,5 +1,10 @@
-{ installPackages ? true }:
-{ pkgs, unstable, ... }: {
+{ config, pkgs, unstable, ... }: {
+  options.custom.installPackages = lib.mkOption {
+    type = lib.types.bool;
+    default = true;
+    description = "Install user packages (mostly GUI, requires GUI) for sakulflee";
+  };
+
   users.users.sakulflee = {
     description = "SakulFlee";
 
@@ -30,7 +35,7 @@
       ./git.nix
       ./gpg.nix
       ./zsh.nix
-    ] ++ (if installPackages then [ 
+    ] ++ (if config.custom.installPackages then [ 
       ./packages/_.nix
       ./configs/_.nix
     ] else [ ]);
