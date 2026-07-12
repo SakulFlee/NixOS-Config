@@ -10,6 +10,7 @@ let
     "PBS"
     "qBittorrent"
     "Shows"
+    "HomeLab-Backups"
   ];
 
   nasServer = "//192.168.178.250";
