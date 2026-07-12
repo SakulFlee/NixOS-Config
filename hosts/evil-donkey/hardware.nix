@@ -1,8 +1,8 @@
 { config, lib, pkgs, modulesPath, ... }: {
   imports = [
-    ../../shared/nix-hardware/_.nix
-    ../../shared/nix-hardware/gpu-nvidia.nix
-    ../../shared/nix-hardware/gpu-amdgpu.nix
+    ../../shared/hardware/_.nix
+    ../../shared/hardware/gpu-nvidia.nix
+    ../../shared/hardware/gpu-amdgpu.nix
   ];
 
   # Needs to be set by every platform host

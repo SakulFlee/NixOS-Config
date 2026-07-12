@@ -1,6 +1,6 @@
 { config, lib, pkgs, modulesPath, ... }: {
   imports = [
-    ../../shared/nix-hardware/_.nix
+    ../../shared/hardware/_.nix
   ];
 
   # Additional boot arguments should _mostly_ stay in the host config as they tend to highly customized between hosts

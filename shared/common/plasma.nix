@@ -1,15 +1,17 @@
-# !!! READ THIS !!!
-# This is a temporary, possibly unstable, performance fix for KDE Plasma on NixOS.
-# Apparently, the main issue is that QT applications (which KDE Plasma is basically made out of) has to read a lot of different directories (/nix/store/*) on NixOS.
-# This is especially bad in KDE Plasma, as there are many different QT applications trying to find and read all kinds of files ...
-# Additionally, some environment variables which partially control this process (the "where to look") are extremely bloated on NixOS.
-# This patch was found on GitHub (https://github.com/NixOS/nixpkgs/issues/126590#issuecomment-3194531220) and only modifies these lookups, which results in a much more snappier KDE Plasma.
-# In the future, this will be fixed in nixpkgs _somehow_ at which point this should be removed!
-# Note, that this creates copies of a bunch of KDE-related files into a single directory. It does not seem to link these files.
-# If this patch is removed, those copies should be automatically cleaned up from the Nix-store.
-# However, there might also be problems upon KDE updates!
-{ config, pkgs, lib, ... }:
-{
+{ config, pkgs, lib, ... }: {
+  # KDE & SDDM
+  services.desktopManager.plasma6.enable = true;
+
+  # !!! READ THIS !!!
+  # This is a temporary, possibly unstable, performance fix for KDE Plasma on NixOS.
+  # Apparently, the main issue is that QT applications (which KDE Plasma is basically made out of) has to read a lot of different directories (/nix/store/*) on NixOS.
+  # This is especially bad in KDE Plasma, as there are many different QT applications trying to find and read all kinds of files ...
+  # Additionally, some environment variables which partially control this process (the "where to look") are extremely bloated on NixOS.
+  # This patch was found on GitHub (https://github.com/NixOS/nixpkgs/issues/126590#issuecomment-3194531220) and only modifies these lookups, which results in a much more snappier KDE Plasma.
+  # In the future, this will be fixed in nixpkgs _somehow_ at which point this should be removed!
+  # Note, that this creates copies of a bunch of KDE-related files into a single directory. It does not seem to link these files.
+  # If this patch is removed, those copies should be automatically cleaned up from the Nix-store.
+  # However, there might also be problems upon KDE updates!
   nixpkgs.overlays = lib.singleton (final: prev: {
     kdePackages = prev.kdePackages // {
       plasma-workspace = let

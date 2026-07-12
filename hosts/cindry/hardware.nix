@@ -1,10 +1,10 @@
 { config, lib, pkgs, modulesPath, ... }: {
   imports = [
-    ../../shared/nix-hardware/_.nix
-    ../../shared/nix-hardware/gpu-nvidia-prime.nix
-    ../../shared/nix-hardware/gpu-amdgpu.nix    
-    ../../shared/nix-hardware/wifi-mt7921e.nix
-    ../../shared/nix-hardware/touchpad.nix
+    ../../shared/hardware/_.nix
+    ../../shared/hardware/gpu-nvidia-prime.nix
+    ../../shared/hardware/gpu-amdgpu.nix    
+    ../../shared/hardware/wifi-mt7921e.nix
+    ../../shared/hardware/touchpad.nix
   ];
 
   # Needs to be set by every platform host

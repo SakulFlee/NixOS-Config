@@ -1,10 +1,11 @@
 { lib, pkgs, ... }: {
   imports = [
     ./hardware.nix
-    ../../users/_.nix
-    ../../shared/nix/_.nix
-    ../../shared/optionals/openrgb.nix
     ./screen-rotation.nix
+    
+    ../../users/_.nix
+    ../../shared/common/_.nix
+    ../../shared/optionals/openrgb.nix
   ];
 
   # Hostname
