@@ -56,8 +56,7 @@ in {
           AuthorizedKeysCommandUser forgejo
           AllowTcpForwarding no
           X11Forwarding no
-    '';
-  };
+  '';
 
   users.users.git = {
     isSystemUser = true;
