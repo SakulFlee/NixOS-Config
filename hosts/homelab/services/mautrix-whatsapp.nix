@@ -1,4 +1,8 @@
 { config, ... }: {
+  nixpkgs.config.permittedInsecurePackages = [
+    "olm-3.2.16"
+  ];
+
   services.mautrix-whatsapp = {
     enable = true;
     settings = {
