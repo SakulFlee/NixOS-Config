@@ -1,21 +1,39 @@
-{ config, pkgs, inputs, ... }: {
+{ config, pkgs, lib, ... }: {
   imports = [
     ./hardware.nix
-    inputs.jovian.nixosModules.jovian
     ../../shared/common/_.nix
     ../../users/_.nix
   ];
 
   networking.hostName = "SteamDeck";
 
-  jovian = {
-    devices.steamdeck.enable = true;
-    steamos.enableAutoMountUdevRules = false;
-    steam = {
-      enable = true;
-      autoStart = true;
-      user = "sakulflee";
-      desktopSession = "plasma";
+  programs.gamescope = {
+    enable = true;
+    capSysNice = false;
+  };
+
+  environment.systemPackages = with pkgs; [
+    (makeDesktopItem {
+      name = "steam-gaming-mode";
+      exec = "${steam}/bin/steam -gamepadui";
+      icon = "steam";
+      desktopName = "Return to Gaming Mode";
+      comment = "Switch to Steam Game Mode";
+      categories = [ "Game" ];
+    })
+  ];
+
+  # Prevent Maliit virtual keyboard from stealing focus on keypress
+  home-manager.users.sakulflee = {
+    programs.plasma.configFile."kwinrulesrc" = {
+      "General" = { count = 1; };
+      "1" = {
+        Description = "Virtual Keyboard - prevent focus steal";
+        windowclass = "maliit_keyboard";
+        windowclassrule = 2;  # Force
+        acceptfocus = "false";
+        acceptfocusrule = 3;  # Force
+      };
     };
   };
 

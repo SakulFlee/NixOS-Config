@@ -44,13 +44,9 @@
     nix-flatpak = {
       url = "github:gmodena/nix-flatpak";
     };
-
-    jovian = {
-      url = "github:Jovian-Experiments/Jovian-NixOS";
-    };
   };
 
-    outputs = { self, nixpkgs, home-manager, nixvim, nix-flatpak, jovian, ... }@inputs: 
+    outputs = { self, nixpkgs, home-manager, nixvim, nix-flatpak, ... }@inputs: 
     let    
       system = "x86_64-linux";
 
