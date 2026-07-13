@@ -1,6 +1,6 @@
-{ pkgs, fansly-recorder, ... }:
+{ pkgs, inputs, ... }:
 let
-  pkg = fansly-recorder.packages.x86_64-linux.default;
+  pkg = inputs.fansly-recorder.packages.x86_64-linux.default;
 
   wrapper = pkgs.writeShellScript "fansly-recorder-wrapper" ''
     set -euo pipefail
@@ -73,7 +73,7 @@ let
   '';
 in {
   environment.systemPackages = [
-    fansly-recorder.packages.x86_64-linux.default
+    inputs.fansly-recorder.packages.x86_64-linux.default
   ];
 
   systemd.tmpfiles.settings."fansly-recorder" = {

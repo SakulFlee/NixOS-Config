@@ -1,5 +1,5 @@
-{ config, pkgs, lib, hermes-agent, ... }: {
-  imports = [ hermes-agent.nixosModules.default ];
+{ config, pkgs, lib, inputs, ... }: {
+  imports = [ inputs.hermes-agent.nixosModules.default ];
 
   sops.secrets."hermes-env" = {};
 
@@ -7,7 +7,7 @@
     enable = true;
     addToSystemPackages = true;
 
-    package = (hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.default).override {
+    package = (inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.default).override {
       extraPythonPackages = [
         (pkgs.python312Packages.ddgs.overrideAttrs (old: {
           dontCheckRuntimeDeps = true;
