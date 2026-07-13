@@ -46,7 +46,7 @@ in
         ${gitBin} pull origin main
 
         echo "--- nixos-rebuild start ---"
-        ${config.security.wrapperDir}/sudo ${nixosRebuildBin} switch --show-trace --verbose --print-build-logs --debug
+        ${nixosRebuildBin} switch --show-trace --verbose --print-build-logs --sudo --debug
         EXIT_CODE=$?
         echo "--- nixos-rebuild end (exit: $EXIT_CODE) ---"
 
