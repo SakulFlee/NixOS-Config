@@ -5,6 +5,12 @@
     wallpaper = "/usr/share/wallpapers/cachyos-wallpapers/PurpleFeathers.png";
   };
 
+  programs.plasma.input.keyboard = {
+    layouts = [
+      { layout = "de"; }
+    ];
+  };
+
   programs.plasma.configFile."kwinrc" = {
     "ElectricBorders" = {
       "BottomLeft" = "NoAction";
