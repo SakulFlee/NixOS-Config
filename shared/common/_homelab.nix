@@ -14,7 +14,6 @@
     ./system-state.nix
     ./zram.nix
     ./zsh.nix
-    ./wireguard.nix
     ./dbus.nix
     ./nixos-auto-updater.nix
     ./home-manager.nix
