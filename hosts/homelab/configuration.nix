@@ -2,8 +2,8 @@
   imports = [
     ./hardware.nix
     ./kernel.nix
-    ./services/
-    ./shared/
+    ./services/_.nix
+    ./shared/_.nix
     ../../shared/common/_homelab.nix
     ../../users/_.nix
   ];
