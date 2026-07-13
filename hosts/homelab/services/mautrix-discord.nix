@@ -1,4 +1,8 @@
 { config, ... }: {
+  nixpkgs.config.permittedInsecurePackages = [
+    "olm-3.2.16"
+  ];
+
   sops.secrets."mautrix-discord-env" = {};
 
   services.mautrix-discord = {
