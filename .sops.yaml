@@ -14,4 +14,7 @@ creation_rules:
         - age1nj55hvyhkf7202f6afpthufvdppylwxnxdxnn97xe8ylmc42lfhq6vknm2
         # SteamDeck (User)
         - age15h7mnk8kr3rfsftw33j5cv8mmlqemag664mc8gypklqqewnnqdnskxe3wn
+        # HomeLab (Host) — derive via: ssh-to-age < /etc/ssh/ssh_host_ed25519_key.pub
+        # FIXME: replace with actual key derived from HomeLab's SSH host key
+        # - age1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
