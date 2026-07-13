@@ -1,5 +1,5 @@
 { config, pkgs, ... }: {
-  sops.secrets."registration_token" = {
+  sops.secrets."tuwunel_registration_token" = {
     mode = "0444";
   };
 
@@ -12,7 +12,7 @@
         port = [ 6167 ];
         allow_federation = true;
         allow_registration = true;
-        registration_token_file = config.sops.secrets.registration_token.path;
+        registration_token_file = config.sops.secrets.tuwunel_registration_token.path;
       };
       media.retention = [
         {
