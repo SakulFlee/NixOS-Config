@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: let
+{ config, pkgs, ... }: let
   matrixWellKnown = pkgs.symlinkJoin {
     name = "matrix-well-known";
     paths = [

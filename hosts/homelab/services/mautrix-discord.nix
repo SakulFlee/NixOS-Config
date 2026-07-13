@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ config, ... }: {
   sops.secrets."mautrix-discord-env" = {};
 
   services.mautrix-discord = {

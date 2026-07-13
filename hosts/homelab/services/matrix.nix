@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, ... }: {
   sops.secrets."tuwunel_registration_token" = {
     mode = "0444";
   };

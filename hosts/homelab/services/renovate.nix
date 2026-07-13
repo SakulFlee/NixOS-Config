@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, ... }: {
   sops.secrets."renovate-env" = {};
 
   environment.etc."renovate/config.js" = {

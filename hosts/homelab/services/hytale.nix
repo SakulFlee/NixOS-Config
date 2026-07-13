@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ pkgs, ... }: {
   users.groups.hytale = {};
   users.users.hytale = {
     isSystemUser = true;

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ config, ... }: {
   sops.secrets."mautrix-whatsapp-env" = {};
 
   services.mautrix-whatsapp = {

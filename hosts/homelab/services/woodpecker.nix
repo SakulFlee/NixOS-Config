@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, ... }: {
   sops.secrets."woodpecker-server-env" = {};
   sops.secrets."woodpecker-agent-env" = {};
 

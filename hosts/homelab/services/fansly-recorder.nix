@@ -1,4 +1,4 @@
-{ config, pkgs, lib, fansly-recorder, ... }:
+{ pkgs, fansly-recorder, ... }:
 let
   pkg = fansly-recorder.packages.x86_64-linux.default;
 
