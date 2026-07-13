@@ -14,5 +14,7 @@ creation_rules:
         - age1nj55hvyhkf7202f6afpthufvdppylwxnxdxnn97xe8ylmc42lfhq6vknm2
         # SteamDeck (User)
         - age15h7mnk8kr3rfsftw33j5cv8mmlqemag664mc8gypklqqewnnqdnskxe3wn
-        # HomeLab (Host) — derived from /etc/ssh/ssh_host_ed25519_key
+        # HomeLab (Host)
         - age16n3ufazps5tru37l4wny0sh4f7em63j22yuhlahhfhxu5kz2ufdsmer7mw
+        # HomeLab (User)
+        - age1pt5cn83yyaguf0plzfmxunlu9cpa78klf0uqvnhhsvcxvkt6wu0qp274kc
