@@ -6,7 +6,7 @@
 
       settings = {
         Input = {
-          Keyboard.layout = "de";
+          "Keyboard.layout" = "de";
         };
       };
     };
