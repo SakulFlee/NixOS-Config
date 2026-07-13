@@ -1,7 +1,7 @@
-{ unstable, ... }:
+{ pkgs, ... }:
 {
   services.ollama = {
     enable = true;
-    package = unstable.ollama;
+    package = pkgs.ollama;
   };
 }

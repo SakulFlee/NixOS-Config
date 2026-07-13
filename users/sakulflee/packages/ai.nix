@@ -1,6 +1,6 @@
-{ pkgs, unstable, inputs, ... }: {
+{ pkgs, inputs, ... }: {
   home.packages = with pkgs; [
-    (unstable.lmstudio)
+    (pkgs.lmstudio)
     opencode
     opencode-desktop
     cursor-cli

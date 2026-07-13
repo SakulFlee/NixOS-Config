@@ -1,4 +1,4 @@
-{ pkgs, inputs, unstable, ... }:
+{ pkgs, inputs, ... }:
 let
   fenix = inputs.fenix.packages.${pkgs.stdenv.hostPlatform.system};
 
@@ -19,7 +19,7 @@ in {
     rust-toolchain
     cargo-nightly
     rustc-nightly
-    unstable.cargo-flamegraph
-    unstable.cargo-criterion
+    pkgs.cargo-flamegraph
+    pkgs.cargo-criterion
   ];
 }

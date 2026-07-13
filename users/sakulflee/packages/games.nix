@@ -1,7 +1,7 @@
-{ pkgs, unstable, ... }: {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     # Proton manager
-    unstable.protonplus
+    pkgs.protonplus
     # FFXIV
     xivlauncher
     # Minecraft

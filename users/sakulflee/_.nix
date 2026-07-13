@@ -1,4 +1,4 @@
-{ config, lib, pkgs, unstable, ... }: {
+{ config, lib, pkgs, ... }: {
   options.custom.installPackages = lib.mkOption {
     type = lib.types.bool;
     default = true;

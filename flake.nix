@@ -1,7 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -9,7 +8,7 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
@@ -25,7 +24,7 @@
     };
 
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-26.05";
+      url = "github:nix-community/nixvim/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -51,16 +50,12 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, nixvim, nix-flatpak, jovian, ... }@inputs: 
+    outputs = { self, nixpkgs, home-manager, nixvim, nix-flatpak, jovian, ... }@inputs: 
     let    
       system = "x86_64-linux";
-      unstable = import nixpkgs-unstable.outPath {
-          localSystem = { inherit system; };
-          config = { allowUnfree = true; };
-      };
 
       sharedArgs = {
-        inherit inputs home-manager unstable;
+        inherit inputs home-manager;
       };
     in {
       nixosConfigurations = {
@@ -80,7 +75,7 @@
         ];
       };
 
-      SteamDeck = nixpkgs-unstable.lib.nixosSystem {
+      SteamDeck = nixpkgs.lib.nixosSystem {
         specialArgs = sharedArgs;
         modules = [
           { nixpkgs.hostPlatform = system; }
@@ -88,7 +83,7 @@
         ];
       };
 
-      HomeLab = nixpkgs-unstable.lib.nixosSystem {
+      HomeLab = nixpkgs.lib.nixosSystem {
         specialArgs = sharedArgs;
         modules = [
           { nixpkgs.hostPlatform = system; }
