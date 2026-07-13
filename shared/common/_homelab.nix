@@ -16,7 +16,6 @@
     ./zram.nix
     ./zsh.nix
     ./wireguard.nix
-    ./wheel.nix
     ./dbus.nix
     ./nixos-auto-updater.nix
   ];
