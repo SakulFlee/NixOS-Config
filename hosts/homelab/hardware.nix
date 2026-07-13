@@ -1,4 +1,3 @@
-[root@nixos:/etc/nixos]# cat /etc/nixos_git/hosts/homelab/hardware.nix 
 { config, lib, pkgs, modulesPath, ... }:
 
 {
