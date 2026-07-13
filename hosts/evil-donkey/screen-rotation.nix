@@ -2,10 +2,7 @@
   # 1. TTY / Console — rotate framebuffer 180°
   boot.kernelParams = [ "fbcon=rotate:2" ];
 
-  # 2. SDDM greeter — rotate via display manager config
-  services.displayManager.sddm.settings.General.DisplayRotate = "Inverted";
-
-  # 3. KDE Plasma — rotate via kscreen-doctor on graphical session start
+  # 2. KDE Plasma — rotate via kscreen-doctor on graphical session start
   systemd.user.services.rotate-kde = {
     description = "Rotate KDE Plasma display by 180 degrees";
     wantedBy = [ "graphical-session.target" ];

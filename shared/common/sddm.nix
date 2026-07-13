@@ -14,9 +14,6 @@
           Font = "Noto Sans,10,-1,0,400,0,0,0,0,0,0,0,0,0,0,1,,0,0";
         };
       };
-
-      wayland.compositorCommand =
-        "${lib.getBin pkgs.kdePackages.kwin}/bin/kwin_wayland --no-global-shortcuts --no-kactivities --no-lockscreen --locale1 --xkb-layout de";
     };
 
     # mkDefault so hosts (e.g. SteamDeck via Jovian) can override
@@ -26,4 +23,7 @@
   environment.systemPackages = with pkgs; [
     kdePackages.sddm-kcm
   ];
+
+  # KWin compositor (used by SDDM greeter) reads this for keyboard layout
+  systemd.services.display-manager.environment.XKB_DEFAULT_LAYOUT = "de";
 }
