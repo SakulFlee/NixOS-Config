@@ -53,8 +53,6 @@ in {
         };
       };
     };
-  };
-
   systemd.services.pia-port-monitor = {
     description = "PIA Port Forwarding Monitor for qBittorrent";
     after = [ "podman-gluetun.service" "podman-qbittorrent.service" ];
