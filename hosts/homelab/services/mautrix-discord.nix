@@ -3,11 +3,8 @@
     "olm-3.2.16"
   ];
 
-  sops.secrets."mautrix-discord-env" = {};
-
   services.mautrix-discord = {
     enable = true;
-    environmentFile = config.sops.secrets."mautrix-discord-env".path;
     settings = {
       homeserver = {
         address = "http://127.0.0.1:6167";
