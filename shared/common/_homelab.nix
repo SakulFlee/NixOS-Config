@@ -18,5 +18,6 @@
     ./wireguard.nix
     ./dbus.nix
     ./nixos-auto-updater.nix
+    ./home-manager.nix
   ];
 }
