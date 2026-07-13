@@ -1,4 +1,14 @@
 { config, ... }: {
+  nixpkgs.overlays = [
+    (final: prev: {
+      libmsquic = prev.libmsquic.overrideAttrs (old: {
+        buildInputs = builtins.filter
+          (p: p.pname or "" != "lttng-tools")
+          (old.buildInputs or []);
+      });
+    })
+  ];
+
   services.technitium-dns-server = {
     enable = true;
   };
