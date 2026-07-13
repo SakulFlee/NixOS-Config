@@ -5,7 +5,6 @@
     ./experimental-features.nix 
     ./fonts.nix
     ./gpg.nix
-    ./kernel.nix
     ./locale.nix
     ./mount-nas.nix
     ./nixpkgs-unfree.nix
