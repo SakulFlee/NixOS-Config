@@ -45,6 +45,7 @@ in {
     description = "Cloudflare DDNS updater";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
+    path = with pkgs; [ curl jq ];
     serviceConfig = {
       Type = "oneshot";
       ExecStart = "${updateScript}";
