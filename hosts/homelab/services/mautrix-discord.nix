@@ -3,6 +3,10 @@
     "olm-3.2.16"
   ];
 
+  systemd.services.mautrix-discord.serviceConfig = {
+    MemoryDenyWriteExecute = false;
+  };
+
   services.mautrix-discord = {
     enable = true;
     settings = {

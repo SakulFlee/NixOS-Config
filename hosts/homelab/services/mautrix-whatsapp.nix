@@ -3,6 +3,10 @@
     "olm-3.2.16"
   ];
 
+  systemd.services.mautrix-whatsapp.serviceConfig = {
+    MemoryDenyWriteExecute = false;
+  };
+
   services.mautrix-whatsapp = {
     enable = true;
     settings = {
