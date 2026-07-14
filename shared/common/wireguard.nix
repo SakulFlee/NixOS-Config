@@ -21,7 +21,7 @@ in {
   networking.wg-quick.interfaces.wg0 = {
     address = this.address;
     privateKeyFile = config.sops.secrets.${"wireguard_${config.networking.hostName}_private_key"}.path;
-    dns = [ "10.0.0.116" ];
+    dns = [ "192.168.178.200" ];
     table = null;
     peers = [{
       publicKey = serverPublicKey;
