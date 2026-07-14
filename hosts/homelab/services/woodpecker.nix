@@ -32,8 +32,8 @@
   systemd.services.woodpecker-agent = {
     description = "Woodpecker CI agent";
     documentation = [ "https://woodpecker-ci.org/docs/administration/agent-config" ];
-    after = [ "network.target" ];
-    wants = [ "network.target" ];
+    after = [ "network.target" "woodpecker-server.service" ];
+    wants = [ "network.target" "woodpecker-server.service" ];
     wantedBy = [ "multi-user.target" ];
     path = with pkgs; [ podman ];
     serviceConfig = {
@@ -47,6 +47,7 @@
         "WOODPECKER_AGENT_LABELS=type=linux"
         "WOODPECKER_AGENT_NAME=HomeLab"
         "WOODPECKER_SERVER=localhost:9000"
+        "WOODPECKER_AGENT_HTTP_PORT=3001"
       ];
       ExecStart = "${pkgs.woodpecker-agent}/bin/woodpecker-agent";
       WorkingDirectory = "/var/lib/woodpecker";
