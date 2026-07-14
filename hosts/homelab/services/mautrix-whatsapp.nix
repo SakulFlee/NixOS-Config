@@ -16,11 +16,19 @@
         domain = "sakul-flee.de";
       };
       bridge = {
+        command_prefix = "!wa";
+        relay = {
+          enabled = true;
+        };
         permissions = {
           "*" = "relay";
         };
         double_puppet_server_url = "https://matrix.sakul-flee.de";
         displayname_check = false;
+      };
+      database = {
+        type = "sqlite3-fk-wal";
+        uri = "file:/var/lib/mautrix-whatsapp/mautrix-whatsapp.db?_txlock=immediate";
       };
     };
   };
