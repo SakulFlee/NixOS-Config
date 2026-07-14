@@ -12,4 +12,3 @@
   # Hostname
   networking.hostName = "HomeLab";
 }
-
