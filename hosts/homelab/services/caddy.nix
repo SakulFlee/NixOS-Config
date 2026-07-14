@@ -56,7 +56,7 @@ in {
       }
 
       woodpecker.sakul-flee.de {
-        reverse_proxy localhost:8001
+        reverse_proxy localhost:8000
       }
 
       matrix.sakul-flee.de:443, matrix.sakul-flee.de:8448 {
