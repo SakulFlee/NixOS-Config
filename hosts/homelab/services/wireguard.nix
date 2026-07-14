@@ -52,12 +52,7 @@
   networking.firewall = {
     allowedUDPPorts = [ 51820 ];
     trustedInterfaces = [ "wg0" ];
-    extraCommands = ''
-      nft insert rule inet nixos-fw filter forward iifname "wg0" accept
-    '';
-    extraStopCommands = ''
-      nft delete rule inet nixos-fw filter forward iifname "wg0" accept
-    '';
+    filterForward = false;
   };
 
   boot.kernel.sysctl."net.ipv4.ip_forward" = true;
