@@ -47,20 +47,6 @@ in {
         }
       }
 
-      pve.sakul-flee.de {
-        @vpn client_ip ${vpnCidr} ${lanCidr}
-        handle @vpn {
-          reverse_proxy 10.0.0.1:8006 {
-            transport http {
-              tls_insecure_skip_verify
-            }
-          }
-        }
-        handle {
-          abort
-        }
-      }
-
       forgejo.sakul-flee.de {
         reverse_proxy localhost:3000
       }
