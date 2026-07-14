@@ -45,6 +45,8 @@
     };
   };
 
+  networking.nftables.enable = true;
+
   networking.nat.enable = true;
   networking.nat.externalInterface = "eth0";
   networking.nat.internalInterfaces = [ "wg0" ];
