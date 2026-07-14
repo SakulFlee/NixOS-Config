@@ -52,9 +52,6 @@
   networking.firewall = {
     allowedUDPPorts = [ 51820 ];
     trustedInterfaces = [ "wg0" ];
-    extraForwardRules = ''
-      iifname "wg0" accept
-    '';
   };
 
   boot.kernel.sysctl."net.ipv4.ip_forward" = true;
