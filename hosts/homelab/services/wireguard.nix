@@ -52,15 +52,8 @@
   networking.firewall = {
     allowedUDPPorts = [ 51820 ];
     trustedInterfaces = [ "wg0" ];
-    extraCommands = ''
-      iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
-      iptables -A FORWARD -i wg0 -j ACCEPT
-      iptables -A FORWARD -o wg0 -m state --state ESTABLISHED,RELATED -j ACCEPT
-    '';
-    extraStopCommands = ''
-      iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
-      iptables -D FORWARD -i wg0 -j ACCEPT
-      iptables -D FORWARD -o wg0 -m state --state ESTABLISHED,RELATED -j ACCEPT
+    extraForwardRules = ''
+      iifname "wg0" accept
     '';
   };
 
