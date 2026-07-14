@@ -2,15 +2,12 @@
 let 
   shares = [
     "personal_folder"
-    "Doujin"
-    "Hentai"
+    "HomeLab-Backups"
     "Movies"
     "Music"
     "NSFW"
-    "PBS"
     "qBittorrent"
     "Shows"
-    "HomeLab-Backups"
   ];
 
   nasServer = "//192.168.178.250";
