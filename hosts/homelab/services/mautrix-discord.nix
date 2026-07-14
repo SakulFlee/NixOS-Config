@@ -15,9 +15,18 @@
         domain = "sakul-flee.de";
       };
       appservice = {
+        address = "http://localhost:29334";
+        hostname = "0.0.0.0";
+        port = 29334;
         database = {
           type = "sqlite3-fk-wal";
           uri = "file:/var/lib/mautrix-discord/mautrix-discord.db?_txlock=immediate";
+        };
+        id = "discord";
+        bot = {
+          username = "discordbot";
+          displayname = "Discord bridge bot";
+          avatar = "mxc://maunium.net/nIdEykemnwdisvHbpxflpDlC";
         };
       };
       bridge = {
