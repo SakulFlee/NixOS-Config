@@ -43,13 +43,13 @@ in {
           --exclude-caches
 
         restic -r "${repo}" --password-file "${cfg.passwordFile}" forget \
-          --keep-daily 7 --keep-weekly 4 --keep-monthly 3 \
+          --keep-hourly 24 --keep-daily 7 --keep-weekly 4 --keep-monthly 3 \
           --prune
       '';
     };
 
     systemd.timers.homelab-restic = {
-      description = "Daily restic backup timer";
+      description = "Hourly restic backup timer";
       wantedBy = [ "timers.target" ];
       timerConfig = {
         OnCalendar = "hourly";

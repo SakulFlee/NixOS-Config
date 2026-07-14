@@ -19,7 +19,7 @@
     ./hermes-agent.nix
     ./wireguard.nix
     ./technitium.nix
-    ./matrix.nix
+    ./tuwunel.nix
     ./palworld.nix
     ./syncthing.nix
     ./mautrix-discord.nix
