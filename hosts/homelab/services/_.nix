@@ -4,7 +4,7 @@
     ./caddy.nix
     ./website.nix
     ./forgejo.nix
-    ./vpn.nix
+    ./gluetun.nix
     ./woodpecker.nix
     ./renovate.nix
     ./minecraft.nix
