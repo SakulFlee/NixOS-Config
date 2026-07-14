@@ -79,7 +79,6 @@
     enable = true;
     paths = [
       "/var/lib/woodpecker"
-      "/var/lib/postgresql"
     ];
   };
 }
