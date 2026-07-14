@@ -18,6 +18,7 @@
     ./fansly-recorder.nix
     ./hermes-agent.nix
     ./wireguard.nix
+    ./cloudflare-ddns.nix
     ./technitium.nix
     ./tuwunel.nix
     ./palworld.nix
