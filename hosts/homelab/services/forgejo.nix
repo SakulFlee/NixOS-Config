@@ -47,7 +47,6 @@ in {
   services.openssh.settings = {
     PasswordAuthentication = lib.mkDefault false;
     PubkeyAuthentication = lib.mkDefault true;
-    AllowTcpForwarding = lib.mkDefault false;
     X11Forwarding = lib.mkForce false;
   };
   services.openssh.extraConfig = ''
