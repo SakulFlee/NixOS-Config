@@ -51,7 +51,7 @@ in {
           };
           volumes = [
             "/var/lib/qbittorrent/config:/config"
-            "/mnt/nas/qbittorrent:/mnt/nas/qbittorrent"
+            "/mnt/nas/qBittorrent:/mnt/nas/qBittorrent"
             "/mnt/nas/Music:/mnt/nas/Music"
             "/mnt/nas/Shows:/mnt/nas/Shows"
             "/mnt/nas/Movies:/mnt/nas/Movies"
