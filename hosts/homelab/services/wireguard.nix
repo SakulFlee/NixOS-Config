@@ -6,9 +6,6 @@
       ips = [ "10.100.0.1/24" ];
       listenPort = 51820;
       privateKeyFile = config.sops.secrets.wireguard_server_private_key.path;
-      postSetup = ''
-        nft add rule inet nixos-fw filter forward iifname "wg0" accept
-      '';
 
       peers = [
         {
@@ -52,11 +49,33 @@
   networking.nat.externalInterface = "eth0";
   networking.nat.internalInterfaces = [ "wg0" ];
 
-  networking.nftables.enable = true;
-
   networking.firewall = {
     allowedUDPPorts = [ 51820 ];
     trustedInterfaces = [ "wg0" ];
+    extraCommands = ''
+      iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+      iptables -A FORWARD -i wg0 -j ACCEPT
+      iptables -A FORWARD -o wg0 -m state --state ESTABLISHED,RELATED -j ACCEPT
+    '';
+    extraStopCommands = ''
+      iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+      iptables -D FORWARD -i wg0 -j ACCEPT
+      iptables -D FORWARD -o wg0 -m state --state ESTABLISHED,RELATED -j ACCEPT
+    '';
+  };
+
+  systemd.services.wireguard-forward = {
+    description = "Enable forwarding for WireGuard VPN";
+    after = [ "firewall.service" "wireguard-wg0.service" ];
+    requires = [ "firewall.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      nft add rule inet nixos-fw filter forward iifname "wg0" accept
+    '';
   };
 
   boot.kernel.sysctl."net.ipv4.ip_forward" = true;
