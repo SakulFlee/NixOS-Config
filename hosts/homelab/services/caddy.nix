@@ -30,6 +30,10 @@ in {
             file_server
         }
 
+        handle /_matrix/* {
+            reverse_proxy localhost:6167
+        }
+
         reverse_proxy localhost:8081
       }
 
@@ -48,7 +52,7 @@ in {
       }
 
       forgejo.sakul-flee.de {
-        reverse_proxy localhost:3000
+        reverse_proxy localhost:3002
       }
 
       woodpecker.sakul-flee.de {

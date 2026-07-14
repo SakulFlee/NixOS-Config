@@ -111,7 +111,7 @@ in {
         SSH_USER = "git";
         SSH_DOMAIN = domain;
         PROTOCOL = "http";
-        HTTP_PORT = 3000;
+        HTTP_PORT = 3002;
         DOMAIN = domain;
         ROOT_URL = "https://${domain}";
         LFS_START_SERVER = true;

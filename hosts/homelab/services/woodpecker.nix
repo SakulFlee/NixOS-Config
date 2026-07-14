@@ -22,6 +22,16 @@
       User = "woodpecker";
       Group = "woodpecker";
       EnvironmentFile = [ config.sops.secrets."woodpecker-server-env".path ];
+      Environment = [
+        "WOODPECKER_OPEN=true"
+        "WOODPECKER_HOST=https://woodpecker.sakul-flee.de"
+        "WOODPECKER_ADMIN=sakulflee"
+        "WOODPECKER_FORGEJO=true"
+        "WOODPECKER_FORGEJO_URL=https://forgejo.sakul-flee.de"
+        "WOODPECKER_DATABASE_DRIVER=postgres"
+        "WOODPECKER_BACKEND=docker"
+        "DOCKER_HOST=unix:///run/podman/podman.sock"
+      ];
       ExecStart = "${pkgs.woodpecker-server}/bin/woodpecker-server";
       WorkingDirectory = "/var/lib/woodpecker";
       StateDirectory = "woodpecker";
@@ -42,12 +52,11 @@
       Group = "woodpecker";
       EnvironmentFile = [ config.sops.secrets."woodpecker-agent-env".path ];
       Environment = [
-        "WOODPECKER_MAX_WORKFLOWS=1"
+        "WOODPECKER_MAX_WORKFLOWS=2"
         "WOODPECKER_BACKEND_ENGINE=docker"
         "WOODPECKER_AGENT_LABELS=type=linux"
         "WOODPECKER_AGENT_NAME=HomeLab"
         "WOODPECKER_SERVER=localhost:9000"
-        "WOODPECKER_AGENT_HTTP_PORT=3001"
       ];
       ExecStart = "${pkgs.woodpecker-agent}/bin/woodpecker-agent";
       WorkingDirectory = "/var/lib/woodpecker";
