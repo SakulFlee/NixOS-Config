@@ -5,6 +5,7 @@
     openDefaultPorts = true;
     overrideDevices = false;
     overrideFolders = false;
+    settings.gui.host = "syncthing.sakul-flee.de";
   };
 
   networking.firewall.allowedTCPPorts = [ 22000 8384 ];
