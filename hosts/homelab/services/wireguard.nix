@@ -6,6 +6,9 @@
       ips = [ "10.100.0.1/24" ];
       listenPort = 51820;
       privateKeyFile = config.sops.secrets.wireguard_server_private_key.path;
+      postSetup = ''
+        nft add rule inet nixos-fw filter forward iifname "wg0" accept
+      '';
 
       peers = [
         {
@@ -49,10 +52,11 @@
   networking.nat.externalInterface = "eth0";
   networking.nat.internalInterfaces = [ "wg0" ];
 
+  networking.nftables.enable = true;
+
   networking.firewall = {
     allowedUDPPorts = [ 51820 ];
     trustedInterfaces = [ "wg0" ];
-    filterForward = false;
   };
 
   boot.kernel.sysctl."net.ipv4.ip_forward" = true;
