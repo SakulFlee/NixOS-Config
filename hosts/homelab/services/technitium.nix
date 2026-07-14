@@ -11,6 +11,7 @@
 
   services.technitium-dns-server = {
     enable = true;
+    openFirewall = true;
   };
 
   systemd.services.technitium-dns-server.serviceConfig = {
