@@ -2,15 +2,12 @@
 let
   shares = [
     "personal_folder"
-    "Doujin"
-    "Hentai"
+    "HomeLab-Backups"
     "Movies"
     "Music"
     "NSFW"
-    "PBS"
     "qBittorrent"
     "Shows"
-    "HomeLab-Backups"
   ];
 
   nasServer = "//192.168.178.250";
@@ -29,7 +26,6 @@ let
         "_netdev"
         "x-systemd.automount"
         "x-systemd.idle-timeout=60"
-        "x-systemd.requires=sops-install-secrets.service"
       ];
     };
   };
