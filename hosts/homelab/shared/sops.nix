@@ -3,4 +3,11 @@
 # This adds the user SSH key so sops-install-secrets can decrypt user-level secrets.
 { ... }: {
   sops.age.sshKeyPaths = [ "/home/sakulflee/.ssh/id_ed25519" ];
+
+  sops.secrets.gpg_private_key = {
+    path = "/home/sakulflee/.config/sops-nix/secrets/gpg_private_key";
+    owner = "sakulflee";
+    group = "users";
+    mode = "0400";
+  };
 }
