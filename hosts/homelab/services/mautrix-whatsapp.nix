@@ -5,6 +5,7 @@
 
   systemd.services.mautrix-whatsapp.serviceConfig = {
     MemoryDenyWriteExecute = false;
+    SystemCallFilter = [];
   };
 
   services.mautrix-whatsapp = {
@@ -15,6 +16,9 @@
         domain = "sakul-flee.de";
       };
       bridge = {
+        permissions = {
+          "*" = "relay";
+        };
         double_puppet_server_url = "https://matrix.sakul-flee.de";
         displayname_check = false;
       };

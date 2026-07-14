@@ -26,7 +26,7 @@ let
   '';
 in {
   systemd.tmpfiles.settings."qbittorrent" = {
-    "/var/lib/qbittorrent/config"."d" = {
+    "/var/lib/qbittorrent/config"."D" = {
       mode = "0755";
       user = "root";
       group = "root";

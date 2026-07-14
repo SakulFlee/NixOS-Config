@@ -4,7 +4,7 @@
   ];
 
   systemd.services.mautrix-discord.serviceConfig = {
-    MemoryDenyWriteExecute = false;
+    ReadWritePaths = [ "/var/lib/mautrix-discord" ];
   };
 
   services.mautrix-discord = {
@@ -15,6 +15,9 @@
         domain = "sakul-flee.de";
       };
       bridge = {
+        permissions = {
+          "*" = "relay";
+        };
         displayname_check = false;
         federation = true;
       };
