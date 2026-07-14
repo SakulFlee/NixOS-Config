@@ -54,6 +54,7 @@
   networking.firewall = {
     allowedUDPPorts = [ 51820 ];
     trustedInterfaces = [ "wg0" ];
+    filterForward = true;
     extraForwardRules = ''
       iifname "wg0" accept
     '';
