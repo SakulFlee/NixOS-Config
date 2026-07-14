@@ -26,7 +26,7 @@ in {
     environment.systemPackages = with pkgs; [ restic ];
 
     systemd.services.homelab-restic = {
-      description = "Daily restic backup for homelab services";
+      description = "Restic backup for homelab services";
       after = [ "network.target" "remote-fs.target" ];
       wants = [ "remote-fs.target" ];
       path = with pkgs; [ restic ];
@@ -52,9 +52,9 @@ in {
       description = "Daily restic backup timer";
       wantedBy = [ "timers.target" ];
       timerConfig = {
-        OnCalendar = "daily";
+        OnCalendar = "hourly";
         Persistent = true;
-        RandomizedDelaySec = "1h";
+        RandomizedDelaySec = "15m";
       };
     };
   };
