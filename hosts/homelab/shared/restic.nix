@@ -54,7 +54,7 @@ in {
       timerConfig = {
         OnCalendar = "hourly";
         Persistent = true;
-        RandomizedDelaySec = "15m";
+        RandomizedDelaySec = "5m";
       };
     };
   };
