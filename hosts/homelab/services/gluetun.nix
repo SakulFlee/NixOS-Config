@@ -29,7 +29,6 @@
           VPN_TYPE = "openvpn";
           PORT_FORWARDING = "on";
           HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE = "{\"auth\":\"none\"}";
-          FIREWALL_OUTBOUND_SUBNETS = "10.88.0.1/32";
         };
         environmentFiles = [ "/run/gluetun/env" ];
         extraOptions = [ "--cap-add=NET_ADMIN" "--device=/dev/net/tun" ];
