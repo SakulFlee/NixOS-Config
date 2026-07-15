@@ -99,7 +99,7 @@ in {
         ENABLE_NOTIFY_MAIL = true;
       };
 
-      metrics.ENABLED = false;
+      metrics.ENABLED = true;
       session.PROVIDER = "memory";
       queue.TYPE = "level";
       cache.ADAPTER = "memory";
