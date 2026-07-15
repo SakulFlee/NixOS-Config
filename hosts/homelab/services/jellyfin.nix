@@ -1,13 +1,11 @@
 { pkgs, lib, ... }:
 
 let
-  # Jellyfin generates FFmpeg commands with -init_hw_device vulkan and
-  # -filter_hw_device vk which conflicts with the scale_vaapi filter on
-  # AMD RADV. This wrapper strips those flags so only DRM+VAAPI are used.
+  # Jellyfin's ffmpeg generates Vulkan init flags that conflict with
+  # scale_vaapi on AMD RADV. This wrapper invokes the real ffmpeg
+  # directly, bypassing the default wrapper that would add those flags.
   ffmpeg-wrapper = pkgs.writeShellScriptBin "ffmpeg" ''
-    exec ${lib.getBin pkgs.jellyfin-ffmpeg}/bin/ffmpeg \
-      -init_hw_device drm=dr:/dev/dri/renderD128 \
-      -init_hw_device vaapi=va@dr "$@"
+    exec ${lib.getBin pkgs.jellyfin-ffmpeg}/bin/ffmpeg "$@"
   '';
 in {
   services.jellyfin = {
