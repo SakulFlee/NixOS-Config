@@ -34,6 +34,9 @@
     exporter.enable = true;
   };
 
+  # Gotenberg LibreOffice module (needed for DOCX conversion)
+  services.gotenberg.libreoffice.autoStart = true;
+
   # Backup paperless data directory to NAS via restic
   services.homelab-restic = {
     enable = true;
