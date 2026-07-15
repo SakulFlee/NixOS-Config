@@ -126,7 +126,7 @@ in {
     enable = true;
     port = 8081;
     listenAddress = "127.0.0.1";
-    extraArgs = [ "--docker_only=false" ];
+    extraOptions = [ "--docker_only=false" ];
   };
 
   # Grafana — dashboards
