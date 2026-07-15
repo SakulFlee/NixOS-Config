@@ -5,5 +5,7 @@
 
     restic
     restic-browser
+
+    deskflow
   ];
 }
