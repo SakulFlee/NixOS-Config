@@ -5,6 +5,9 @@
     address = "127.0.0.1";
     port = 28981;
 
+    # Domain for CSRF validation and URL generation
+    domain = "paperless.sakul-flee.de";
+
     # Use PostgreSQL (already running on HomeLab)
     database.createLocally = true;
 
@@ -18,6 +21,8 @@
         optimize = 1;
         pdfa_image_compression = "lossless";
       };
+      # CSRF validation behind Caddy reverse proxy
+      PAPERLESS_URL = "https://paperless.sakul-flee.de";
       # Ignore macOS metadata files in consumption
       PAPERLESS_CONSUMER_IGNORE_PATTERN = [
         ".DS_STORE/*"
