@@ -15,7 +15,8 @@
         "files.autoSave" = "onFocusChange";
         "terminal.integrated.fontFamily" = "'JetBrainsMono Nerd Font'";
         "editor.fontFamily" = "'JetBrainsMono Nerd Font', 'Droid Sans Mono', 'monospace'";
-        "editor.fontLigatures" = true; # Enables beautiful code arrows (->, ==)
+        "editor.fontLigatures" = true;
+        "diffEditor.hideUnchangedRegions.enabled" = true;
       };
 
       extensions = with pkgs.vscode-extensions; [
@@ -39,17 +40,7 @@
           nativeBuildInputs = [ pkgs.autoPatchelfHook ];
           buildInputs = [ (pkgs.lib.getLib pkgs.stdenv.cc.cc) ];
         })
-        (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
-          mktplcRef = {
-            publisher = "boyan01";
-            name = "intelli-git";
-            version = "0.0.7";
-            sha256 = "sha256-Zl8obCV157FXHQFnPA2kalrXdukxfXUKzbdJ9q6Saq8=";
-          };
-          nativeBuildInputs = [ pkgs.autoPatchelfHook ];
-          buildInputs = [ (pkgs.lib.getLib pkgs.stdenv.cc.cc) ];
-        })
-        
+
         # Rust
         rust-lang.rust-analyzer
         tamasfe.even-better-toml
