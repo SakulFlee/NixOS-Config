@@ -21,7 +21,9 @@ in {
     email = "dev@sakul-flee.de";
     environmentFile = config.sops.secrets."caddy-env".path;
     globalConfig = ''
-      acme_dns cloudflare {env.CF_API_TOKEN}
+      acme_dns cloudflare {env.CF_API_TOKEN} {
+        resolvers 1.1.1.1 8.8.8.8
+      }
     '';
     extraConfig = ''
       sakul-flee.de, www.sakul-flee.de {
