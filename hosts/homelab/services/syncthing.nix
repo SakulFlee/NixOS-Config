@@ -1,6 +1,9 @@
 { config, ... }: {
   services.syncthing = {
     enable = true;
+    user = "sakulflee";
+    dataDir = "/home/sakulflee/";
+    configDir = "/home/sakulflee/.config/syncthing";
     guiAddress = "0.0.0.0:8384";
     openDefaultPorts = true;
     overrideDevices = false;
