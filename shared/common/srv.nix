@@ -16,6 +16,9 @@ let
     SERVICE="$1"
     CMD="''${2:-start}"
 
+    # Kill any previous journalctl -f for the same service
+    pkill -f "journalctl -u $SERVICE -f" 2>/dev/null || true
+
     # Tail journal in background
     journalctl -u "$SERVICE" -f --no-hostname -o short &
     JPID=$!
