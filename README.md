@@ -23,6 +23,10 @@ nix-shell -I nixpkgs=channel:nixos-unstable -p sops --run 'SOPS_AGE_KEY=$(sudo s
 
 > [!INFO]
 > This repository should include sops and ssh-to-age ... you may have it installed already, thus no need for the nix-shell!
+> To edit or update keys directly (without nix-shell):
+> ```bash
+> SOPS_AGE_KEY=$(sudo ssh-to-age -private-key -i /etc/ssh/ssh_host_ed25519_key) sops edit secrets.yaml
+> ```
 
 Finally, commit and push the updated `secrets.yaml` **and** `.sops.yaml`.
 
@@ -71,13 +75,13 @@ Check an example config for guidance.
 Finally, build and apply your configuration via:
 
 ```bash
-./rebuild-and-switch.sh <your-chosen-hostname>
+sudo nixos-rebuild switch --flake .#<your-chosen-hostname>
 ```
 
 > [!NOTE]
-> On Subsequent runs, you will only need to run `./rebuild-and-switch.sh` without the hostname!
-> The current system's hostname will be used automatically.
-> Also, a service will be installed that regularly checks for updates in this repository ... you may not even need to update manually.
+> The hostname is optional on subsequent runs — `nixos-rebuild switch` defaults to the current hostname.
+> After first setup, run `sudo chown -R root:root /etc/nixos` to avoid git's "dubious ownership" check.
+> Also, a service will be installed that regularly checks for updates in this repository.
 
 > [!INFO]
 > You may want to enroll your new SSH keys (`ssh-keygen`) to Forgejo and switch to SSH+GIT instead of HTTPS:  
