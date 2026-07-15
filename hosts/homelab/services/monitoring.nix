@@ -99,6 +99,19 @@ in {
         job_name = "cadvisor";
         static_configs = [{ targets = [ "127.0.0.1:8081" ]; }];
       }
+      {
+        job_name = "caddy";
+        static_configs = [{ targets = [ "127.0.0.1:2019" ]; }];
+      }
+      {
+        job_name = "forgejo";
+        metrics_path = "/api/metrics";
+        static_configs = [{ targets = [ "127.0.0.1:3002" ]; }];
+      }
+      {
+        job_name = "postgres";
+        static_configs = [{ targets = [ "127.0.0.1:9187" ]; }];
+      }
     ];
     exporters.node = {
       enable = true;
@@ -122,7 +135,7 @@ in {
     settings = {
       server = {
         http_addr = "127.0.0.1";
-        http_port = 3002;
+        http_port = 3003;
         domain = "grafana.sakul-flee.de";
         root_url = "https://grafana.sakul-flee.de";
       };
@@ -147,5 +160,19 @@ in {
 
   environment.etc."/etc/grafana/provisioning/dashboards/node.json".source = node-dashboard;
 
-  networking.firewall.allowedTCPPorts = [ 3002 ];
+  networking.firewall.allowedTCPPorts = [ 3003 ];
+
+  # PostgreSQL exporter (runs as a systemd service)
+  systemd.services.postgres-exporter = {
+    description = "Prometheus PostgreSQL Exporter";
+    after = [ "postgresql.service" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.postgres_exporter}/bin/postgres_exporter \
+        --web.listen-address=127.0.0.1:9187 \
+        --data-source-name=postgresql://postgres@/postgres?host=/run/postgresql";
+      Restart = "on-failure";
+      User = "postgres";
+    };
+  };
 }

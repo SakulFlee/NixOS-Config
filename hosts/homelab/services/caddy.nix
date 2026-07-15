@@ -190,7 +190,7 @@ in {
         import dns_challenge
         @vpn client_ip ${vpnCidr} ${lanCidr}
         handle @vpn {
-          reverse_proxy localhost:3002
+          reverse_proxy localhost:3003
         }
         handle {
           abort
