@@ -20,7 +20,7 @@ in {
     description = "Auto-update NixOS configuration from Git";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
-    path = with pkgs; [ git nixos-rebuild openssh ];
+    path = with pkgs; [ git nixos-rebuild openssh sudo libnotify ];
 
     serviceConfig = {
       Type = "oneshot";
@@ -30,6 +30,19 @@ in {
     script = ''
       cd /etc/nixos
 
+      notify_all() {
+        local title="$1" body="$2" urgency="$3"
+        for bus in /run/user/*/bus; do
+          [ -S "$bus" ] || continue
+          uid="''${bus#/run/user/}"; uid="''${uid%%/*}"
+          user=$(id -nu "$uid" 2>/dev/null) || continue
+          sudo -u "$user" \
+            DISPLAY=":0" DBUS_SESSION_BUS_ADDRESS="unix:path=$bus" \
+            notify-send --app-name="NixOS Auto Updater" --urgency="$urgency" \
+              "$title" "$body" >/dev/null 2>&1 || true
+        done
+      }
+
       ${gitBin} fetch origin main --quiet || echo "Auto-update: git fetch failed"
       BEHIND=$(${gitBin} rev-list --count HEAD..origin/main || echo 0)
 
@@ -37,8 +50,7 @@ in {
         echo "Auto-update: $BEHIND commits behind — updating..."
 
         if command -v notify-send &>/dev/null; then
-          notify-send --app-name="NixOS Auto Updater" --urgency=normal \
-            "NixOS Auto Updater" "Updates detected, rebuilding..." >/dev/null 2>&1 || true
+          notify_all "NixOS Auto Updater" "Updates detected, rebuilding..." normal
         fi
 
         ${gitBin} merge --ff-only origin/main || echo "Auto-update: merge failed (diverged?)"
@@ -52,11 +64,9 @@ in {
 
         if command -v notify-send &>/dev/null; then
           if [ "$EXIT_CODE" -eq 0 ]; then
-            notify-send --app-name="NixOS Auto Updater" --urgency=normal \
-              "NixOS Auto Updater" "Rebuild completed successfully!" >/dev/null 2>&1 || true
+            notify_all "NixOS Auto Updater" "Rebuild completed successfully!" normal
           else
-            notify-send --app-name="NixOS Auto Updater" --urgency=critical \
-              "NixOS Auto Updater" "Rebuild failed! Check logs:\n\njournalctl -u nixos-auto-update" >/dev/null 2>&1 || true
+            notify_all "NixOS Auto Updater" "Rebuild failed! Check logs:\n\njournalctl -u nixos-auto-update" critical
           fi
         fi
       fi
