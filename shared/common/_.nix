@@ -32,5 +32,6 @@
     ./sddm.nix
     ./sdcard.nix
     ./nixos-auto-updater.nix
+    ./srv.nix
   ];
 }
