@@ -32,7 +32,7 @@
           FIREWALL_OUTBOUND_SUBNETS = "10.88.0.1/32";
         };
         environmentFiles = [ "/run/gluetun/env" ];
-        extraOptions = [ "--cap-add=NET_ADMIN" ];
+        extraOptions = [ "--cap-add=NET_ADMIN" "--device=/dev/net/tun" ];
         volumes = [ "/var/lib/gluetun:/gluetun" ];
       };
     };
