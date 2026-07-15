@@ -33,6 +33,7 @@ in {
       serviceConfig = {
         Type = "oneshot";
       };
+      environment.HOME = "/root";
       script = ''
         restic -r "${repo}" --password-file "${cfg.passwordFile}" snapshots 2>/dev/null || \
           restic -r "${repo}" --password-file "${cfg.passwordFile}" init
