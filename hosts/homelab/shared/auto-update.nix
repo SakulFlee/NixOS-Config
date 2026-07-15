@@ -30,8 +30,8 @@ in {
     script = ''
       cd /etc/nixos
 
-      ${gitBin} fetch origin --quiet 2>/dev/null || true
-      BEHIND=$(${gitBin} rev-list --count @..@{u} 2>/dev/null || echo 0)
+      ${gitBin} fetch origin main --quiet 2>/dev/null || true
+      BEHIND=$(${gitBin} rev-list --count HEAD..origin/main 2>/dev/null || echo 0)
 
       if [ "$BEHIND" -gt 0 ]; then
         echo "Upstream updates detected!"
@@ -41,7 +41,7 @@ in {
             "NixOS Auto Updater" "Updates detected, rebuilding..." >/dev/null 2>&1 || true
         fi
 
-        ${gitBin} pull origin main
+        ${gitBin} merge --ff-only origin/main
 
         echo "--- nixos-rebuild start ---"
         ${nixosRebuildBin} switch --show-trace --verbose --print-build-logs --debug
