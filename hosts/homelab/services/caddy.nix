@@ -26,7 +26,15 @@ in {
       }
     '';
     extraConfig = ''
+      (dns_challenge) {
+        tls {
+          dns cloudflare {env.CF_API_TOKEN}
+          resolvers 1.1.1.1 8.8.8.8
+        }
+      }
+
       sakul-flee.de, www.sakul-flee.de {
+        import dns_challenge
         handle /.well-known/matrix/* {
             root * ${matrixWellKnown}
             file_server
@@ -40,6 +48,7 @@ in {
       }
 
       nas.sakul-flee.de {
+        import dns_challenge
         @vpn client_ip ${vpnCidr} ${lanCidr}
         handle @vpn {
           reverse_proxy 192.168.178.250:9443 {
@@ -54,10 +63,12 @@ in {
       }
 
       forgejo.sakul-flee.de {
+        import dns_challenge
         reverse_proxy localhost:3002
       }
 
       woodpecker.sakul-flee.de {
+        import dns_challenge
         reverse_proxy localhost:8000
       }
 
@@ -66,6 +77,7 @@ in {
       }
 
       syncthing.sakul-flee.de, sync.sakul-flee.de {
+        import dns_challenge
         @vpn client_ip ${vpnCidr} ${lanCidr}
         handle @vpn {
           reverse_proxy localhost:8384
@@ -76,6 +88,7 @@ in {
       }
 
       technitium.sakul-flee.de, dns.sakul-flee.de {
+        import dns_challenge
         @vpn client_ip ${vpnCidr} ${lanCidr}
         handle @vpn {
           reverse_proxy localhost:5380
@@ -86,6 +99,7 @@ in {
       }
 
       bitmagnet.sakul-flee.de {
+        import dns_challenge
         @vpn client_ip ${vpnCidr} ${lanCidr}
         handle @vpn {
           reverse_proxy localhost:3333
@@ -96,6 +110,7 @@ in {
       }
 
       prowlarr.sakul-flee.de {
+        import dns_challenge
         @vpn client_ip ${vpnCidr} ${lanCidr}
         handle @vpn {
           reverse_proxy localhost:9696
@@ -106,6 +121,7 @@ in {
       }
 
       sonarr.sakul-flee.de {
+        import dns_challenge
         @vpn client_ip ${vpnCidr} ${lanCidr}
         handle @vpn {
           reverse_proxy localhost:8989
@@ -116,6 +132,7 @@ in {
       }
 
       radarr.sakul-flee.de {
+        import dns_challenge
         @vpn client_ip ${vpnCidr} ${lanCidr}
         handle @vpn {
           reverse_proxy localhost:7878
@@ -126,6 +143,7 @@ in {
       }
 
       qbittorrent.sakul-flee.de {
+        import dns_challenge
         @vpn client_ip ${vpnCidr} ${lanCidr}
         handle @vpn {
           reverse_proxy localhost:8080
@@ -136,6 +154,7 @@ in {
       }
 
       qui.sakul-flee.de {
+        import dns_challenge
         @vpn client_ip ${vpnCidr} ${lanCidr}
         handle @vpn {
           reverse_proxy localhost:7476
@@ -146,6 +165,7 @@ in {
       }
 
       jellyfin.sakul-flee.de {
+        import dns_challenge
         @vpn client_ip ${vpnCidr} ${lanCidr}
         handle @vpn {
           reverse_proxy localhost:8096
