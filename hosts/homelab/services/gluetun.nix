@@ -18,6 +18,12 @@
       backend = "podman";
       containers.gluetun = {
         image = "qmcgaw/gluetun:latest";
+        ports = [
+          "3333:3333/tcp"
+          "3334:3334/tcp"
+          "3334:3334/udp"
+          "8080:8080/tcp"
+        ];
         environment = {
           VPN_SERVICE_PROVIDER = "private internet access";
           VPN_TYPE = "openvpn";
@@ -25,7 +31,7 @@
           HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE = "{\"auth\":\"none\"}";
         };
         environmentFiles = [ "/run/gluetun/env" ];
-        extraOptions = [ "--network=host" "--cap-add=NET_ADMIN" "--device=/dev/net/tun" ];
+        extraOptions = [ "--cap-add=NET_ADMIN" "--device=/dev/net/tun" ];
         volumes = [ "/var/lib/gluetun:/gluetun" ];
       };
     };
