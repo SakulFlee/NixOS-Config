@@ -27,5 +27,6 @@
     ./mautrix-discord.nix
     ./mautrix-whatsapp.nix
     ./paperless.nix
+    ./monitoring.nix
   ];
 }
