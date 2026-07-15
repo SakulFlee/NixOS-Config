@@ -3,7 +3,7 @@
     ./hardware.nix
     ./kernel.nix
     ./services/_.nix
-    ./shared/_.nix
+    ./common/_.nix
     ../../shared/common/_homelab.nix
     ../../users/_.nix
   ];
