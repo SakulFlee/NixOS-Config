@@ -46,6 +46,8 @@ in {
         echo "--- nixos-rebuild start ---"
         ${nixosRebuildBin} switch --show-trace --verbose --print-build-logs --debug
         EXIT_CODE=$?
+        # Exit code 4 means "switched successfully but some services failed" — treat as success
+        [ "$EXIT_CODE" -eq 4 ] && EXIT_CODE=0
         echo "--- nixos-rebuild end (exit: $EXIT_CODE) ---"
 
         if command -v notify-send &>/dev/null; then
