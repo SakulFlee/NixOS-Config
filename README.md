@@ -26,6 +26,26 @@ nix-shell -I nixpkgs=channel:nixos-unstable -p sops --run 'SOPS_AGE_KEY=$(sudo s
 
 Finally, commit and push the updated `secrets.yaml` **and** `.sops.yaml`.
 
+### User SSH Key (Home-Manager SOPS)
+Home-Manager also needs access to SOPS secrets (like the GPG private key).
+Generate a user SSH key and enroll it:
+
+```bash
+ssh-keygen -t ed25519 -f ~/.ssh/id_ed25519
+```
+
+Derive its AGE key and add it to `.sops.yaml` as `<Name> (User)`:
+
+```bash
+nix-shell -p ssh-to-age --run 'ssh-to-age -i ~/.ssh/id_ed25519.pub'
+```
+
+After adding both the host and user AGE keys to `.sops.yaml`, re-encrypt secrets from a **known** machine:
+
+```bash
+nix-shell -p sops --run 'SOPS_AGE_KEY=$(sudo ssh-to-age -private-key -i /etc/ssh/ssh_host_ed25519_key) sops updatekeys secrets.yaml'
+```
+
 ### Backup
 Next, make a backup of the generated configuration:
 ```bash
