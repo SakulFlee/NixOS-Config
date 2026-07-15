@@ -23,6 +23,8 @@
       };
       # CSRF validation behind Caddy reverse proxy
       PAPERLESS_URL = "https://paperless.sakul-flee.de";
+      # Gotenberg is on port 3001 (port 3000 is used by Woodpecker)
+      PAPERLESS_GOTENBERG_ENDPOINT = "http://localhost:3001";
       # Ignore macOS metadata files in consumption
       PAPERLESS_CONSUMER_IGNORE_PATTERN = [
         ".DS_STORE/*"
@@ -34,8 +36,11 @@
     exporter.enable = true;
   };
 
-  # Gotenberg LibreOffice module (needed for DOCX conversion)
-  services.gotenberg.libreoffice.autoStart = true;
+  # Gotenberg — port 3001 because Woodpecker uses 3000
+  services.gotenberg = {
+    port = 3001;
+    libreoffice.autoStart = true;
+  };
 
   # Backup paperless data directory to NAS via restic
   services.homelab-restic = {
