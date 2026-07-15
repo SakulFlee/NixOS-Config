@@ -53,10 +53,11 @@
 
   networking.firewall = {
     allowedUDPPorts = [ 51820 ];
-    trustedInterfaces = [ "wg0" ];
+    trustedInterfaces = [ "wg0" "podman0" ];
     filterForward = true;
     extraForwardRules = ''
       iifname "wg0" accept
+      iifname "podman0" accept
     '';
   };
 
