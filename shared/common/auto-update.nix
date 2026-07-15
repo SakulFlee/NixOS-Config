@@ -30,18 +30,18 @@ in {
     script = ''
       cd /etc/nixos
 
-      ${gitBin} fetch origin main --quiet 2>/dev/null || true
-      BEHIND=$(${gitBin} rev-list --count HEAD..origin/main 2>/dev/null || echo 0)
+      ${gitBin} fetch origin main --quiet || echo "Auto-update: git fetch failed"
+      BEHIND=$(${gitBin} rev-list --count HEAD..origin/main || echo 0)
 
       if [ "$BEHIND" -gt 0 ]; then
-        echo "Upstream updates detected!"
+        echo "Auto-update: $BEHIND commits behind — updating..."
 
         if command -v notify-send &>/dev/null; then
           notify-send --app-name="NixOS Auto Updater" --urgency=normal \
             "NixOS Auto Updater" "Updates detected, rebuilding..." >/dev/null 2>&1 || true
         fi
 
-        ${gitBin} merge --ff-only origin/main
+        ${gitBin} merge --ff-only origin/main || echo "Auto-update: merge failed (diverged?)"
 
         echo "--- nixos-rebuild start ---"
         EXIT_CODE=0
