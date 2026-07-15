@@ -44,8 +44,8 @@ in {
         ${gitBin} merge --ff-only origin/main
 
         echo "--- nixos-rebuild start ---"
-        ${nixosRebuildBin} switch --show-trace --verbose --print-build-logs --debug
-        EXIT_CODE=$?
+        EXIT_CODE=0
+        ${nixosRebuildBin} switch --show-trace --verbose --print-build-logs --debug || EXIT_CODE=$?
         # Exit code 4 means "switched successfully but some services failed" — treat as success
         [ "$EXIT_CODE" -eq 4 ] && EXIT_CODE=0
         echo "--- nixos-rebuild end (exit: $EXIT_CODE) ---"
