@@ -31,7 +31,7 @@
           HTTP_CONTROL_SERVER_AUTH_DEFAULT_ROLE = "{\"auth\":\"none\"}";
         };
         environmentFiles = [ "/run/gluetun/env" ];
-        extraOptions = [ "--cap-add=NET_ADMIN" "--device=/dev/net/tun" ];
+        extraOptions = [ "--cap-add=NET_ADMIN" "--cap-add=NET_RAW" "--device=/dev/net/tun" ];
         volumes = [ "/var/lib/gluetun:/gluetun" ];
       };
     };
