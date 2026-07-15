@@ -13,6 +13,7 @@
     ./prowlarr.nix
     ./sonarr.nix
     ./radarr.nix
+    ./qui.nix
     ./qbittorrent.nix
     ./bitmagnet.nix
     ./fansly-recorder.nix

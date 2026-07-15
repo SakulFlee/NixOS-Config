@@ -126,7 +126,7 @@ in {
       qbittorrent.sakul-flee.de {
         @vpn client_ip ${vpnCidr} ${lanCidr}
         handle @vpn {
-          reverse_proxy localhost:8080
+          reverse_proxy localhost:7476
         }
         handle {
           abort
