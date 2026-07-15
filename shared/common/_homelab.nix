@@ -1,5 +1,6 @@
 { ... }: {
   imports = [
+    ./auto-update.nix
     ./gc.nix
     ./boot-loader.nix
     ./experimental-features.nix 

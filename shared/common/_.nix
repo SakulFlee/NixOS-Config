@@ -31,7 +31,7 @@
     ./kde-plasma.nix
     ./sddm.nix
     ./sdcard.nix
-    ./nixos-auto-updater.nix
+    ./auto-update.nix
     ./srv.nix
   ];
 }
