@@ -54,7 +54,7 @@
     script = ''
       mkdir -p /var/lib/postgresql-dumps
       DATE=$(date +%Y%m%d-%H%M%S)
-      for DB in forgejo woodpecker bitmagnet; do
+      for DB in forgejo woodpecker bitmagnet paperless; do
         pg_dump -d "$DB" -Fc -f "/var/lib/postgresql-dumps/$DB-$DATE.dump"
       done
       # Keep only last 48 hours of dumps (48 hourly backups)

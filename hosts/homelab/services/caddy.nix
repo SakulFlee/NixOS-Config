@@ -174,6 +174,17 @@ in {
           abort
         }
       }
+
+      paperless.sakul-flee.de {
+        import dns_challenge
+        @vpn client_ip ${vpnCidr} ${lanCidr}
+        handle @vpn {
+          reverse_proxy localhost:28981
+        }
+        handle {
+          abort
+        }
+      }
     '';
   };
 
