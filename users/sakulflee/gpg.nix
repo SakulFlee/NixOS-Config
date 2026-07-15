@@ -74,9 +74,13 @@
 
   # Import GPG key on every activation (idempotent — skips if already present)
   home.activation.importGpgKey = lib.mkAfter ''
-    if ! ${pkgs.gnupg}/bin/gpg --list-secret-keys 0A96C9AA72DB019DE171E7F77F0C6AF1F56A9E05 >/dev/null 2>&1; then
-      echo "Importing private GPG key safely..."
-      ${pkgs.gnupg}/bin/gpg --batch --import ${config.sops.secrets."gpg_private_key".path}
+    if [ -f "${config.sops.secrets."gpg_private_key".path}" ]; then
+      if ! ${pkgs.gnupg}/bin/gpg --list-secret-keys 0A96C9AA72DB019DE171E7F77F0C6AF1F56A9E05 >/dev/null 2>&1; then
+        echo "Importing private GPG key safely..."
+        ${pkgs.gnupg}/bin/gpg --batch --import ${config.sops.secrets."gpg_private_key".path}
+      fi
+    else
+      echo "GPG private key secret not available yet, skipping import"
     fi
   '';
 }
