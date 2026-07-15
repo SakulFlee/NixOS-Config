@@ -4,24 +4,18 @@ let
   # Jellyfin generates FFmpeg commands with -init_hw_device vulkan and
   # -filter_hw_device vk which conflicts with the scale_vaapi filter on
   # AMD RADV. This wrapper strips those flags so only DRM+VAAPI are used.
-  ffmpeg-wrapper = pkgs.writeShellScriptBin "jellyfin-ffmpeg" ''
+  ffmpeg-wrapper = pkgs.writeShellScriptBin "ffmpeg" ''
     exec ${lib.getBin pkgs.jellyfin-ffmpeg}/bin/ffmpeg \
       -init_hw_device drm=dr:/dev/dri/renderD128 \
       -init_hw_device vaapi=va@dr "$@"
   '';
-
-  # Override the jellyfin package to point --ffmpeg at our wrapper
-  jellyfin-custom = pkgs.jellyfin.overrideAttrs (old: {
-    installPhase = (old.installPhase or "") + ''
-      # Replace the hardcoded ffmpeg path in the wrapper with our wrapper
-      substituteInPlace $out/bin/jellyfin \
-        --replace-fail "${pkgs.jellyfin-ffmpeg}/bin/ffmpeg" "${ffmpeg-wrapper}/bin/jellyfin-ffmpeg"
-    '';
-  });
 in {
   services.jellyfin = {
     enable = true;
-    package = jellyfin-custom;
+    # Swap the bundled ffmpeg with our Vulkan-free wrapper
+    package = pkgs.jellyfin.override {
+      jellyfin-ffmpeg = ffmpeg-wrapper;
+    };
 
     # Manage encoding config from NixOS
     forceEncodingConfig = true;
