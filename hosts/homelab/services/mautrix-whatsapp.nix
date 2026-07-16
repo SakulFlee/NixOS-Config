@@ -11,11 +11,12 @@
     preStart = lib.mkAfter ''
       PICKLE_KEY_FILE="/var/lib/mautrix-whatsapp/pickle.key"
       if [ ! -f "$PICKLE_KEY_FILE" ]; then
-        tr -dc 'A-Za-z0-9' < /dev/urandom | head -c 64 > "$PICKLE_KEY_FILE"
+        (tr -dc 'A-Za-z0-9' < /dev/urandom | head -c 64) > "$PICKLE_KEY_FILE" 2>/dev/null
         chmod 600 "$PICKLE_KEY_FILE"
       fi
       PICKLE_KEY=$(cat "$PICKLE_KEY_FILE")
-      ${pkgs.yq}/bin/yq eval -i ".encryption.pickle_key = \"$PICKLE_KEY\"" /var/lib/mautrix-whatsapp/config.yaml
+      export PICKLE_KEY
+      ${pkgs.yq}/bin/yq --in-place '.encryption.pickle_key = env.PICKLE_KEY' /var/lib/mautrix-whatsapp/config.yaml
     '';
   };
 
