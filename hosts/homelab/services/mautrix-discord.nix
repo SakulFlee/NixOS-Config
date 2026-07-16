@@ -35,6 +35,10 @@
           "@sakulflee:sakul-flee.de" = "admin";
           "*" = "relay";
         };
+        encryption = {
+          allow = true;
+          default = true;
+        };
         displayname_check = false;
         federation = true;
       };
