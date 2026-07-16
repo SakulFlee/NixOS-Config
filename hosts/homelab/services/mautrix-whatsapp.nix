@@ -16,7 +16,7 @@
       fi
       PICKLE_KEY=$(cat "$PICKLE_KEY_FILE")
       export PICKLE_KEY
-      ${pkgs.yq}/bin/yq --in-place '.encryption.pickle_key = env.PICKLE_KEY' /var/lib/mautrix-whatsapp/config.yaml
+      ${pkgs.yq}/bin/yq -y '.encryption.pickle_key = env.PICKLE_KEY' /var/lib/mautrix-whatsapp/config.yaml > /var/lib/mautrix-whatsapp/config.yaml.tmp && mv /var/lib/mautrix-whatsapp/config.yaml.tmp /var/lib/mautrix-whatsapp/config.yaml
     '';
   };
 
