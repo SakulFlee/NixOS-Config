@@ -3,9 +3,7 @@
     enable = true;
     matchBlocks = {
       "*" = {
-        setEnv = {
-          TERM = "xterm-256color";
-        };
+        setEnv = "TERM=xterm-256color";
       };
     };
   };
