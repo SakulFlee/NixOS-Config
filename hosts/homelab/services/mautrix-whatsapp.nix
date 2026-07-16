@@ -16,7 +16,7 @@
       echo "ENCRYPTION_PICKLE_KEY=$(tr -dc A-Za-z0-9 < /dev/urandom | head -c64)" > /var/lib/mautrix-whatsapp/env
     fi
   '';
-  systemd.services.mautrix-whatsapp.serviceConfig.EnvironmentFile = "-/var/lib/mautrix-whatsapp/env";
+  systemd.services.mautrix-whatsapp.serviceConfig.EnvironmentFile = lib.mkForce "-/var/lib/mautrix-whatsapp/env";
 
   # Declare encryption capability in the registration file
   systemd.services.mautrix-whatsapp.postStart = ''
