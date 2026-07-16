@@ -183,7 +183,7 @@ in {
     after = [ "postgresql.service" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
-      ExecStart = "${pkgs.postgres_exporter}/bin/postgres_exporter \
+      ExecStart = "${pkgs.prometheus-postgres-exporter}/bin/postgres_exporter \
         --web.listen-address=127.0.0.1:9187 \
         --data-source-name=postgresql://postgres@/postgres?host=/run/postgresql";
       Restart = "on-failure";
