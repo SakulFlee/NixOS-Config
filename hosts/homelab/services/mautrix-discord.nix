@@ -31,6 +31,7 @@
       };
       bridge = {
         permissions = {
+          "sakul-flee.de" = "full";
           "*" = "relay";
         };
         displayname_check = false;
