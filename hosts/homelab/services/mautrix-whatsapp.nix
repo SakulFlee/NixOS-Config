@@ -8,10 +8,15 @@
     SystemCallFilter = [];
   };
 
-  # Ensure encryption capability is declared in the registration
+  # Ensure encryption capability in registration + generate pickle key
   systemd.services.mautrix-whatsapp.preStart = ''
     sed -i '/^appservice:/a\  de\.mau\.matrix\.encryption: true' /var/lib/mautrix-whatsapp/whatsapp-registration.yaml 2>/dev/null || true
+    if [ ! -f /var/lib/mautrix-whatsapp/pickle_key ]; then
+      umask 077
+      echo "ENCRYPTION_PICKLE_KEY=$(tr -dc A-Za-z0-9 < /dev/urandom | head -c64)" > /var/lib/mautrix-whatsapp/pickle_key
+    fi
   '';
+  systemd.services.mautrix-whatsapp.serviceConfig.EnvironmentFile = "-/var/lib/mautrix-whatsapp/pickle_key";
 
   services.mautrix-whatsapp = {
     enable = true;
