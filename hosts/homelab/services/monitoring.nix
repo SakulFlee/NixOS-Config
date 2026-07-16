@@ -142,7 +142,6 @@ in {
       analytics.reporting_enabled = false;
       auth.anonymous.enabled = false;
     };
-    environmentFile = "/var/lib/grafana/secret_key";
     provision = {
       enable = true;
       datasources.settings.datasources = [{
@@ -168,6 +167,7 @@ in {
       echo "GRAFANA_SECRET_KEY=$(tr -dc A-Za-z0-9 < /dev/urandom | head -c40)" > /var/lib/grafana/secret_key
     fi
   '';
+  systemd.services.grafana.serviceConfig.EnvironmentFile = "/var/lib/grafana/secret_key";
 
   networking.firewall.allowedTCPPorts = [ 3003 ];
 
