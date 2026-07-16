@@ -8,6 +8,8 @@
     SystemCallFilter = [];
   };
 
+  # The module's envsubst in preStart replaces $ENCRYPTION_PICKLE_KEY
+  # with the actual key from the sops environment file.
   sops.secrets."mautrix-whatsapp-env" = {};
   services.mautrix-whatsapp = {
     enable = true;
@@ -31,6 +33,9 @@
         encryption = {
           allow = true;
           default = true;
+          # Literal placeholder — envsubst in module's preStart replaces
+          # this with the actual key from the sops env file.
+          pickle_key = "$ENCRYPTION_PICKLE_KEY";
         };
         relay = {
           enabled = true;
