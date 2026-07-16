@@ -139,11 +139,14 @@ in {
         domain = "grafana.sakul-flee.de";
         root_url = "https://grafana.sakul-flee.de";
       };
-      analytics.reporting_enabled = false;
-      auth.anonymous.enabled = false;
-      # Must be set (module assertion), but GRAFANA_SECRET_KEY env var
-      # from EnvironmentFile takes precedence at runtime
-      security.secret_key = "placeholder-overridden-by-env";
+      "auth.anonymous".enabled = false;
+      security = {
+        admin_user = "admin";
+        secret_key = "placeholder-overridden-by-env";
+      };
+      analytics = {
+        reporting_enabled = false;
+      };
     };
     provision = {
       enable = true;
