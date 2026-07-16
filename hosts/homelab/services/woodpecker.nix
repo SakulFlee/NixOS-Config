@@ -63,7 +63,7 @@
       StateDirectory = "woodpecker";
       Restart = "on-failure";
       RestartSec = 5;
-      CPUQuota = "400%";
+      CPUQuota = "800%";
       MemoryMax = "8G";
     };
   };
