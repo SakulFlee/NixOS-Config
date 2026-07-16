@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ config, pkgs, ... }: {
   nixpkgs.config.permittedInsecurePackages = [
     "olm-3.2.16"
   ];
@@ -7,6 +7,22 @@
     MemoryDenyWriteExecute = false;
     SystemCallFilter = [];
   };
+
+  # WhatsApp bridge needs an encryption pickle key (Discord doesn't).
+  # Generate one on first start if it doesn't exist.
+  systemd.services.mautrix-whatsapp.preStart = ''
+    if [ ! -f /var/lib/mautrix-whatsapp/env ]; then
+      umask 077
+      echo "ENCRYPTION_PICKLE_KEY=$(tr -dc A-Za-z0-9 < /dev/urandom | head -c64)" > /var/lib/mautrix-whatsapp/env
+    fi
+  '';
+  systemd.services.mautrix-whatsapp.serviceConfig.EnvironmentFile = "-/var/lib/mautrix-whatsapp/env";
+
+  # Declare encryption capability in the registration file
+  systemd.services.mautrix-whatsapp.postStart = ''
+    ${pkgs.yq}/bin/yq -i '.de.mau.matrix.encryption = true' \
+      /var/lib/mautrix-whatsapp/whatsapp-registration.yaml
+  '';
 
   services.mautrix-whatsapp = {
     enable = true;

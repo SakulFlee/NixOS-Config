@@ -1,4 +1,4 @@
-{ config, ... }: {
+{ config, pkgs, ... }: {
   nixpkgs.config.permittedInsecurePackages = [
     "olm-3.2.16"
   ];
@@ -6,6 +6,13 @@
   systemd.services.mautrix-discord.serviceConfig = {
     ReadWritePaths = [ "/var/lib/mautrix-discord" ];
   };
+
+  # Same pattern the module itself uses: post-process the registration
+  # with yq to declare encryption capability.
+  systemd.services.mautrix-discord.postStart = ''
+    ${pkgs.yq}/bin/yq -i '.de.mau.matrix.encryption = true' \
+      /var/lib/mautrix-discord/discord-registration.yaml
+  '';
 
   services.mautrix-discord = {
     enable = true;
