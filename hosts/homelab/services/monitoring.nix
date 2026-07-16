@@ -164,7 +164,7 @@ in {
     };
   };
 
-  environment.etc."/etc/grafana/provisioning/dashboards/node.json".source = node-dashboard;
+  environment.etc."grafana/provisioning/dashboards/node.json".source = node-dashboard;
 
   # Generate a random Grafana secret key on first start
   systemd.services.grafana.preStart = ''
