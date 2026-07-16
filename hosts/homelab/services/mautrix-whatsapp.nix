@@ -8,8 +8,10 @@
     SystemCallFilter = [];
   };
 
+  sops.secrets."mautrix-whatsapp/env" = {};
   services.mautrix-whatsapp = {
     enable = true;
+    environmentFile = config.sops.secrets."mautrix-whatsapp/env".path;
     settings = {
       homeserver = {
         address = "http://127.0.0.1:6167";
@@ -29,8 +31,6 @@
         encryption = {
           allow = true;
           default = true;
-          # Required for WhatsApp bridge — encrypts encryption keys at rest
-          pickle_key = "zbR3P8eQ2mL5kX9vNc6wF4tA7jH1gD0o";
         };
         relay = {
           enabled = true;
