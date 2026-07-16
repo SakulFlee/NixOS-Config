@@ -26,6 +26,10 @@
       };
       bridge = {
         command_prefix = "!wa";
+        encryption = {
+          allow = true;
+          default = true;
+        };
         relay = {
           enabled = true;
         };
