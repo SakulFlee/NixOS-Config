@@ -1,91 +1,4 @@
-{ config, pkgs, lib, ... }:
-
-let
-  # Pre-provisioned Grafana dashboard: system overview
-  node-dashboard = pkgs.writeText "node-dashboard.json" (builtins.toJSON {
-    title = "HomeLab Overview";
-    tags = [ "homelab" ];
-    schemaVersion = 38;
-    version = 1;
-    time = { from = "now-1h"; to = "now"; };
-    timepicker = {};
-    panels = [
-      {
-        title = "CPU Usage";
-        type = "gauge";
-        gridPos = { h = 8; w = 6; x = 0; y = 0; };
-        datasource = { type = "prometheus"; uid = "prometheus"; };
-        targets = [{
-          expr = "100 - (avg by(instance) (rate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)";
-          legendFormat = "CPU";
-        }];
-        options = { reduceOptions = { calcs = [ "lastNotNull" ]; }; };
-      }
-      {
-        title = "Memory Usage";
-        type = "gauge";
-        gridPos = { h = 8; w = 6; x = 6; y = 0; };
-        datasource = { type = "prometheus"; uid = "prometheus"; };
-        targets = [{
-          expr = "(1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100";
-          legendFormat = "RAM";
-        }];
-        options = { reduceOptions = { calcs = [ "lastNotNull" ]; }; };
-      }
-      {
-        title = "Disk Usage";
-        type = "gauge";
-        gridPos = { h = 8; w = 6; x = 12; y = 0; };
-        datasource = { type = "prometheus"; uid = "prometheus"; };
-        targets = [{
-          expr = "(1 - (node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"})) * 100";
-          legendFormat = "Root";
-        }];
-        options = { reduceOptions = { calcs = [ "lastNotNull" ]; }; };
-      }
-      {
-        title = "CPU (5m)";
-        type = "timeseries";
-        gridPos = { h = 8; w = 12; x = 0; y = 8; };
-        datasource = { type = "prometheus"; uid = "prometheus"; };
-        targets = [{
-          expr = "100 - (avg by(instance) (rate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)";
-          legendFormat = "CPU";
-        }];
-      }
-      {
-        title = "Memory (5m)";
-        type = "timeseries";
-        gridPos = { h = 8; w = 12; x = 12; y = 8; };
-        datasource = { type = "prometheus"; uid = "prometheus"; };
-        targets = [{
-          expr = "node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes";
-          legendFormat = "Used";
-        }];
-      }
-      {
-        title = "Containers";
-        type = "stat";
-        gridPos = { h = 8; w = 6; x = 0; y = 16; };
-        datasource = { type = "prometheus"; uid = "prometheus"; };
-        targets = [{
-          expr = "count(count by(container_label_io_containerd_kubernetes_pod_namespace) (container_start_time_seconds)) or on() count(container_last_seen)";
-          legendFormat = "Running";
-        }];
-      }
-      {
-        title = "SystemD Services";
-        type = "table";
-        gridPos = { h = 8; w = 18; x = 6; y = 16; };
-        datasource = { type = "prometheus"; uid = "prometheus"; };
-        targets = [{
-          expr = "node_systemd_unit_state{state=\"active\"}";
-          legendFormat = "{{name}}";
-        }];
-      }
-    ];
-  });
-in {
+{ config, pkgs, lib, ... }: {
   services.prometheus = {
     enable = true;
     port = 9090;
@@ -163,8 +76,6 @@ in {
       }];
     };
   };
-
-  environment.etc."grafana/provisioning/dashboards/node.json".source = node-dashboard;
 
   # Generate a random Grafana secret key on first start
   systemd.services.grafana.preStart = ''
