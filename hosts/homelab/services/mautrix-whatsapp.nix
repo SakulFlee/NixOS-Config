@@ -8,16 +8,6 @@
     SystemCallFilter = [];
   };
 
-  # WhatsApp bridge needs a non-empty ENCRYPTION_PICKLE_KEY.
-  # Generate one on first start if it doesn't exist.
-  systemd.services.mautrix-whatsapp.preStart = lib.mkAfter ''
-    if [ ! -f /var/lib/mautrix-whatsapp/env ]; then
-      umask 077
-      echo "ENCRYPTION_PICKLE_KEY=$(tr -dc A-Za-z0-9 < /dev/urandom | head -c64)" > /var/lib/mautrix-whatsapp/env
-    fi
-  '';
-  systemd.services.mautrix-whatsapp.serviceConfig.EnvironmentFile = lib.mkForce "-/var/lib/mautrix-whatsapp/env";
-
   services.mautrix-whatsapp = {
     enable = true;
     settings = {
@@ -39,6 +29,8 @@
         encryption = {
           allow = true;
           default = true;
+          # Required for WhatsApp bridge — encrypts encryption keys at rest
+          pickle_key = "zbR3P8eQ2mL5kX9vNc6wF4tA7jH1gD0o";
         };
         relay = {
           enabled = true;
