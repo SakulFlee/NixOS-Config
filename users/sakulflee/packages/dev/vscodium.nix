@@ -1,6 +1,17 @@
 { pkgs, ... }: {
   programs.vscodium = {
     enable = true;
+
+    package = pkgs.symlinkJoin {
+      name = "vscodium-wrapped";
+      paths = [ pkgs.vscodium ];
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/codium \
+          --set XKB_DEFAULT_LAYOUT de
+      '';
+    };
+
     profiles.default = {
       userSettings = {
         "telemetry.telemetryLevel" = "off";

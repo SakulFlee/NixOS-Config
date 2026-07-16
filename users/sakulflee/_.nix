@@ -49,6 +49,10 @@
         size = 24;
       };
 
+      home.sessionVariables = {
+        XKB_DEFAULT_LAYOUT = "de";
+      };
+
       home.stateVersion = "25.11";
     };
   };
