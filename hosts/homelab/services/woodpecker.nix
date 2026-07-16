@@ -73,6 +73,10 @@
     dockerSocket.enable = true;
   };
 
+  virtualisation.containers.containersConf.settings = {
+    network.dns_bind_port = 0;
+  };
+
   # All ports are internal — Caddy reverse-proxies to localhost
 
   services.homelab-restic = {
