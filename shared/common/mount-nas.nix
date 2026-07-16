@@ -4,7 +4,6 @@ let
     "personal_folder"
     "HomeLab-Backups"
     "Movies"
-    "Music"
     "NSFW"
     "qBittorrent"
     "Shows"
