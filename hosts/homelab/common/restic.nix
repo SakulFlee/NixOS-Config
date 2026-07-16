@@ -35,16 +35,20 @@ in {
       };
       environment.HOME = "/root";
       script = ''
-        restic -r "${repo}" --password-file "${cfg.passwordFile}" snapshots 2>/dev/null || \
-          restic -r "${repo}" --password-file "${cfg.passwordFile}" init
-
-        restic -r "${repo}" --password-file "${cfg.passwordFile}" backup \
+        restic backup \
+          -r "${repo}" \
+          --password-file "${cfg.passwordFile}" \
           ${builtins.concatStringsSep " " cfg.paths} \
           --tag $(cat /proc/sys/kernel/hostname) \
           --exclude-caches
 
-        restic -r "${repo}" --password-file "${cfg.passwordFile}" forget \
-          --keep-hourly 24 --keep-daily 7 --keep-weekly 4 --keep-monthly 3 \
+        restic forget \
+          -r "${repo}" \
+          --password-file "${cfg.passwordFile}" \
+          --keep-hourly 24 \
+          --keep-daily 7 \
+          --keep-weekly 4 \
+          --keep-monthly 3 \
           --prune
       '';
     };
