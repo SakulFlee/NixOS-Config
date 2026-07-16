@@ -52,7 +52,7 @@
       Group = "woodpecker";
       EnvironmentFile = [ config.sops.secrets."woodpecker-agent-env".path ];
       Environment = [
-        "WOODPECKER_MAX_WORKFLOWS=2"
+        "WOODPECKER_MAX_WORKFLOWS=1"
         "WOODPECKER_BACKEND_ENGINE=docker"
         "WOODPECKER_AGENT_LABELS=type=linux"
         "WOODPECKER_AGENT_NAME=HomeLab"
