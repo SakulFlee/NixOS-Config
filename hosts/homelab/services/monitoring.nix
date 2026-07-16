@@ -97,7 +97,7 @@ in {
       }
       {
         job_name = "cadvisor";
-        static_configs = [{ targets = [ "127.0.0.1:8081" ]; }];
+        static_configs = [{ targets = [ "127.0.0.1:8082" ]; }];
       }
       {
         job_name = "caddy";
@@ -124,7 +124,7 @@ in {
   # Cadvisor — container metrics (podman, docker, etc.)
   services.cadvisor = {
     enable = true;
-    port = 8081;
+    port = 8082;
     listenAddress = "127.0.0.1";
     extraOptions = [ "--docker_only=false" ];
   };
