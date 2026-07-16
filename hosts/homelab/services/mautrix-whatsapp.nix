@@ -30,6 +30,7 @@
           enabled = true;
         };
         permissions = {
+          "sakul-flee.de" = "full";
           "*" = "relay";
         };
         double_puppet_server_url = "https://matrix.sakul-flee.de";
