@@ -38,10 +38,6 @@
       };
       bridge = {
         command_prefix = "!wa";
-        encryption = {
-          allow = true;
-          default = true;
-        };
         relay = {
           enabled = true;
         };
@@ -51,6 +47,10 @@
         };
         double_puppet_server_url = "https://matrix.sakul-flee.de";
         displayname_check = false;
+      };
+      encryption = {
+        allow = true;
+        default = true;
       };
       database = {
         type = "sqlite3-fk-wal";
