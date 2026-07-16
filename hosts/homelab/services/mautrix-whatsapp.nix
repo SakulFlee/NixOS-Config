@@ -3,17 +3,24 @@
     "olm-3.2.16"
   ];
 
-  systemd.services.mautrix-whatsapp.serviceConfig = {
-    MemoryDenyWriteExecute = false;
-    SystemCallFilter = [];
+  systemd.services.mautrix-whatsapp = {
+    serviceConfig = {
+      MemoryDenyWriteExecute = false;
+      SystemCallFilter = [];
+    };
+    preStart = lib.mkAfter ''
+      PICKLE_KEY_FILE="/var/lib/mautrix-whatsapp/pickle.key"
+      if [ ! -f "$PICKLE_KEY_FILE" ]; then
+        tr -dc 'A-Za-z0-9' < /dev/urandom | head -c 64 > "$PICKLE_KEY_FILE"
+        chmod 600 "$PICKLE_KEY_FILE"
+      fi
+      PICKLE_KEY=$(cat "$PICKLE_KEY_FILE")
+      ${pkgs.yq}/bin/yq eval -i ".encryption.pickle_key = \"$PICKLE_KEY\"" /var/lib/mautrix-whatsapp/config.yaml
+    '';
   };
 
-  # The module's envsubst in preStart replaces $ENCRYPTION_PICKLE_KEY
-  # with the actual key from the sops environment file.
-  sops.secrets."mautrix-whatsapp-env" = {};
   services.mautrix-whatsapp = {
     enable = true;
-    environmentFile = config.sops.secrets."mautrix-whatsapp-env".path;
     settings = {
       homeserver = {
         address = "http://127.0.0.1:6167";
@@ -33,9 +40,6 @@
         encryption = {
           allow = true;
           default = true;
-          # Literal placeholder — envsubst in module's preStart replaces
-          # this with the actual key from the sops env file.
-          pickle_key = "$ENCRYPTION_PICKLE_KEY";
         };
         relay = {
           enabled = true;
