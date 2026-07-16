@@ -3,7 +3,6 @@
     enable = true;
     port = 9090;
     listenAddress = "127.0.0.1";
-    globalScrapeInterval = "1m";
     scrapeConfigs = [
       {
         job_name = "node";
