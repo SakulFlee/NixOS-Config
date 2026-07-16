@@ -77,8 +77,6 @@
     containers.dns_servers = [ "10.100.0.1" "192.168.178.200" ];
   };
 
-  # All ports are internal — Caddy reverse-proxies to localhost
-
   services.homelab-restic = {
     enable = true;
     paths = [
