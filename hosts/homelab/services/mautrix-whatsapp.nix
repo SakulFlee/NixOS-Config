@@ -20,7 +20,7 @@
 
   # Declare encryption capability in the registration file
   systemd.services.mautrix-whatsapp.postStart = ''
-    ${pkgs.yq}/bin/yq -i '.de.mau.matrix.encryption = true' \
+    ${pkgs.yq}/bin/yq -i -y '.de.mau.matrix.encryption = true' \
       /var/lib/mautrix-whatsapp/whatsapp-registration.yaml
   '';
 
