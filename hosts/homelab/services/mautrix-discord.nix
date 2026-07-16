@@ -10,7 +10,7 @@
   # Same pattern the module itself uses: post-process the registration
   # with yq to declare encryption capability.
   systemd.services.mautrix-discord.postStart = ''
-    ${pkgs.yq}/bin/yq -i '.de.mau.matrix.encryption = true' \
+    ${pkgs.yq}/bin/yq -i -y '.de.mau.matrix.encryption = true' \
       /var/lib/mautrix-discord/discord-registration.yaml
   '';
 
