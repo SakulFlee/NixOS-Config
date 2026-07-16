@@ -4,15 +4,21 @@ let
   # Jellyfin's ffmpeg generates Vulkan init flags that conflict with
   # scale_vaapi on AMD RADV. This wrapper invokes the real ffmpeg
   # directly, bypassing the default wrapper that would add those flags.
-  ffmpeg-wrapper = pkgs.writeShellScriptBin "ffmpeg" ''
-    exec ${lib.getBin pkgs.jellyfin-ffmpeg}/bin/ffmpeg "$@"
-  '';
+  # We use symlinkJoin so ffprobe and other ffmpeg binaries are preserved.
+  jellyfin-ffmpeg-no-vulkan = pkgs.symlinkJoin {
+    name = "jellyfin-ffmpeg-no-vulkan";
+    paths = [
+      (pkgs.writeShellScriptBin "ffmpeg" ''
+        exec ${pkgs.jellyfin-ffmpeg}/bin/ffmpeg "$@"
+      '')
+      pkgs.jellyfin-ffmpeg
+    ];
+  };
 in {
   services.jellyfin = {
     enable = true;
-    # Swap the bundled ffmpeg with our Vulkan-free wrapper
     package = pkgs.jellyfin.override {
-      jellyfin-ffmpeg = ffmpeg-wrapper;
+      jellyfin-ffmpeg = jellyfin-ffmpeg-no-vulkan;
     };
 
     # Manage encoding config from NixOS
