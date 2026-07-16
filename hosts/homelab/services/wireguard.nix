@@ -57,7 +57,7 @@
     filterForward = true;
     extraForwardRules = ''
       iifname "wg0" accept
-      iifname "podman0" accept
+      iifname {"podman0", "br-*"} accept
     '';
   };
 
