@@ -139,6 +139,7 @@ in {
         domain = "grafana.sakul-flee.de";
         root_url = "https://grafana.sakul-flee.de";
       };
+      security.secret_key = "sakulflee-homelab-grafana-2026";
       analytics.reporting_enabled = false;
       auth.anonymous.enabled = false;
     };
