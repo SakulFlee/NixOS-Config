@@ -74,7 +74,7 @@
   };
 
   virtualisation.containers.containersConf.settings = {
-    network.dns_bind_port = 0;
+    network.dns_bind_port = 5353;
   };
 
   # All ports are internal — Caddy reverse-proxies to localhost
