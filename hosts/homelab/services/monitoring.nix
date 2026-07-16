@@ -139,10 +139,10 @@ in {
         domain = "grafana.sakul-flee.de";
         root_url = "https://grafana.sakul-flee.de";
       };
-      security.secret_key = "sakulflee-homelab-grafana-2026";
       analytics.reporting_enabled = false;
       auth.anonymous.enabled = false;
     };
+    environmentFile = "/var/lib/grafana/secret_key";
     provision = {
       enable = true;
       datasources.settings.datasources = [{
@@ -160,6 +160,14 @@ in {
   };
 
   environment.etc."/etc/grafana/provisioning/dashboards/node.json".source = node-dashboard;
+
+  # Generate a random Grafana secret key on first start
+  systemd.services.grafana.preStart = ''
+    if [ ! -f /var/lib/grafana/secret_key ]; then
+      umask 077
+      echo "GRAFANA_SECRET_KEY=$(tr -dc A-Za-z0-9 < /dev/urandom | head -c40)" > /var/lib/grafana/secret_key
+    fi
+  '';
 
   networking.firewall.allowedTCPPorts = [ 3003 ];
 
