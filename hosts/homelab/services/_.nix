@@ -25,6 +25,7 @@
     ./palworld.nix
     ./syncthing.nix
     ./mautrix-discord.nix
+    ./mautrix-signal.nix
     ./mautrix-whatsapp.nix
     ./paperless.nix
     ./monitoring.nix
