@@ -1,7 +1,7 @@
 { ... }: {
   programs.ssh = {
     enable = true;
-    matchBlocks = {
+    settings = {
       "*" = {
         setEnv = {
           TERM = "xterm-256color";
