@@ -8,8 +8,12 @@
     SystemCallFilter = [];
   };
 
+  # The module's envsubst in preStart replaces $ENCRYPTION_PICKLE_KEY
+  # with the actual key from the sops environment file.
+  sops.secrets."mautrix-whatsapp-env" = {};
   services.mautrix-whatsapp = {
     enable = true;
+    environmentFile = config.sops.secrets."mautrix-whatsapp-env".path;
     settings = {
       homeserver = {
         address = "http://127.0.0.1:6167";
@@ -29,8 +33,9 @@
         encryption = {
           allow = true;
           default = true;
-          # Required for WhatsApp bridge encryption — encrypts local DB keys
-          pickle_key = "zbR3P8eQ2mL5kX9vNc6wF4tA7jH1gD0o";
+          # Literal placeholder — envsubst in module's preStart replaces
+          # this with the actual key from the sops env file.
+          pickle_key = "$ENCRYPTION_PICKLE_KEY";
         };
         relay = {
           enabled = true;
