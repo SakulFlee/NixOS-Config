@@ -32,6 +32,7 @@
       bridge = {
         permissions = {
           "sakul-flee.de" = "full";
+          "@sakulflee:sakul-flee.de" = "admin";
           "*" = "relay";
         };
         displayname_check = false;
