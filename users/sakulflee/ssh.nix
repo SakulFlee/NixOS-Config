@@ -4,7 +4,7 @@
     enableDefaultConfig = false;
     settings = {
       "*" = {
-        setEnv = "TERM=xterm-256color";
+        SetEnv = "TERM=xterm-256color";
       };
     };
   };
