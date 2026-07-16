@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, lib, ... }: {
   nixpkgs.config.permittedInsecurePackages = [
     "olm-3.2.16"
   ];
