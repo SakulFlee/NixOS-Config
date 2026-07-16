@@ -3,6 +3,7 @@
     enable = true;
     port = 9090;
     listenAddress = "127.0.0.1";
+    globalScrapeInterval = "1m";
     scrapeConfigs = [
       {
         job_name = "node";
@@ -56,6 +57,7 @@
         url = "http://127.0.0.1:9090";
         access = "proxy";
         isDefault = true;
+        jsonData.timeInterval = "1m";
       }];
       dashboards.settings.providers = [{
         name = "HomeLab";
