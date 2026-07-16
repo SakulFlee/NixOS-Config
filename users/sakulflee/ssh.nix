@@ -3,9 +3,7 @@
     enable = true;
     settings = {
       "*" = {
-        setEnv = {
-          TERM = "xterm-256color";
-        };
+        setEnv = "TERM=xterm-256color";
       };
     };
   };
