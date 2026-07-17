@@ -53,16 +53,6 @@
         })
         (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
           mktplcRef = {
-            publisher = "jancassio";
-            name = "worktint";
-            version = "0.1.0";
-            sha256 = "sha256-8UCn0wOS57xbuo6mz2hFsjL+MjgdIFrsmu5P3SeSX2Q=";
-          };
-          nativeBuildInputs = [ pkgs.autoPatchelfHook ];
-          buildInputs = [ (pkgs.lib.getLib pkgs.stdenv.cc.cc) ];
-        })
-        (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
-          mktplcRef = {
             publisher = "asispts";
             name = "neo-git-graph";
             version = "0.4.0";
