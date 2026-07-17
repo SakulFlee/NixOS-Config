@@ -42,6 +42,7 @@
 
         # Git tools
         iceinveins.worktree-manager
+        jancassio.worktint
         (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
           mktplcRef = {
             publisher = "asispts";
