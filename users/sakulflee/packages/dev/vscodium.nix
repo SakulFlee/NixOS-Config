@@ -46,7 +46,7 @@
             publisher = "iceinveins";
             name = "worktree-manager";
             version = "0.3.4";
-            sha256 = "sha256-tMd76ZQjiE/3U95/TFrbLG9TgIxpREhrSK/tXMfN2Yk=";
+            sha256 = "sha256-Y4eSo158wPksi/ZQs04FFPq5hA15R9MLE25PhPvovu4=";
           };
           nativeBuildInputs = [ pkgs.autoPatchelfHook ];
           buildInputs = [ (pkgs.lib.getLib pkgs.stdenv.cc.cc) ];
