@@ -68,9 +68,6 @@
         bbenoist.nix
         jnoortheen.nix-ide
 
-        # Terraform
-        hashicorp.terraform
-
         # Markdown & Typst
         myriad-dreamin.tinymist
         tomoki1207.pdf
