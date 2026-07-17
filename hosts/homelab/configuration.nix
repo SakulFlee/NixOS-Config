@@ -2,6 +2,7 @@
   imports = [
     ./hardware.nix
     ./kernel.nix
+    ./network.nix
     ./services/_.nix
     ./common/_.nix
     ../../shared/common/_homelab.nix
