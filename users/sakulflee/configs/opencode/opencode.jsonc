@@ -13,5 +13,11 @@
         "[unsloth] Qwen3.6 35B-A3B @Q4_K_XL - MTP": { "name": "[unsloth] Qwen3.6 35B-A3B @Q4_K_XL - MTP"}
       }
     }
+  },
+  "permission": {
+    "bash": {
+      "*": "allow",
+      "git push *": "ask"
+    }
   }
 }
