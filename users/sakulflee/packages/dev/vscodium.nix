@@ -41,6 +41,7 @@
         christian-kohler.path-intellisense
 
         # Git tools
+        iceinveins.worktree-manager
         (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
           mktplcRef = {
             publisher = "asispts";
