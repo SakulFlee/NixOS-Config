@@ -22,7 +22,6 @@ in {
     address = this.address;
     privateKeyFile = config.sops.secrets.${"wireguard_${config.networking.hostName}_private_key"}.path;
     dns = [ "10.100.0.1" ];
-    table = null;
     peers = [{
       publicKey = serverPublicKey;
       endpoint = "vpn.sakul-flee.de:51820";
@@ -31,18 +30,8 @@ in {
     }];
     preUp = ''
       if ping -c 1 -W 1 192.168.178.200 &>/dev/null; then
-        # On home LAN — use direct Proxmox endpoint
         ${pkgs.wireguard-tools}/bin/wg set wg0 peer ${serverPublicKey} endpoint 192.168.178.200:51820
-        ip route add 10.0.0.0/24 dev wg0 2>/dev/null || true
       fi
-      # Full tunnel routes (all traffic)
-      ip route add 0.0.0.0/1 dev wg0 2>/dev/null || true
-      ip route add 128.0.0.0/1 dev wg0 2>/dev/null || true
-    '';
-    postDown = ''
-      ip route del 10.0.0.0/24 dev wg0 2>/dev/null || true
-      ip route del 0.0.0.0/1 dev wg0 2>/dev/null || true
-      ip route del 128.0.0.0/1 dev wg0 2>/dev/null || true
     '';
   };
 }
