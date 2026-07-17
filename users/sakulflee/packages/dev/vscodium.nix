@@ -41,7 +41,16 @@
         christian-kohler.path-intellisense
 
         # Git tools
-        iceinveins.worktree-manager
+        (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
+          mktplcRef = {
+            publisher = "iceinveins";
+            name = "worktree-manager";
+            version = "0.3.4";
+            sha256 = "sha256-tMd76ZQjiE/3U95/TFrbLG9TgIxpREhrSK/tXMfN2Yk=";
+          };
+          nativeBuildInputs = [ pkgs.autoPatchelfHook ];
+          buildInputs = [ (pkgs.lib.getLib pkgs.stdenv.cc.cc) ];
+        })
         jancassio.worktint
         (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
           mktplcRef = {
