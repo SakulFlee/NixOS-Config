@@ -76,11 +76,4 @@
   virtualisation.containers.containersConf.settings = {
     containers.dns_servers = [ "10.100.0.1" "192.168.178.200" ];
   };
-
-  services.homelab-restic = {
-    enable = true;
-    paths = [
-      "/var/lib/woodpecker"
-    ];
-  };
 }
