@@ -4,6 +4,7 @@
     cinny-desktop
     element-desktop
     fluffychat
+    signal-desktop
   ];
 
   # Setting x11 here makes the title bar like any other application and not be GIGANTIC.
