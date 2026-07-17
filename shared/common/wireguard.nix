@@ -28,7 +28,7 @@ in {
       allowedIPs = [ "0.0.0.0/0" "::/0" ];
       persistentKeepalive = 25;
     }];
-    preUp = ''
+    postUp = ''
       if ping -c 1 -W 1 192.168.178.200 &>/dev/null; then
         ${pkgs.wireguard-tools}/bin/wg set wg0 peer ${serverPublicKey} endpoint 192.168.178.200:51820
       fi
