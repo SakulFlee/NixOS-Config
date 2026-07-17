@@ -1,6 +1,17 @@
 { pkgs, ... }: {
   programs.vscodium = {
     enable = true;
+
+    package = pkgs.symlinkJoin {
+      name = "vscodium-wrapped";
+      paths = [ pkgs.vscodium ];
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/codium \
+          --set XKB_DEFAULT_LAYOUT de
+      '';
+    };
+
     profiles.default = {
       userSettings = {
         "telemetry.telemetryLevel" = "off";
@@ -13,6 +24,7 @@
         "git.autofetch" = "all";
         "git.confirmSync" = false;
         "files.autoSave" = "onFocusChange";
+        "keyboard.dispatch" = "keyCode";
         "terminal.integrated.fontFamily" = "'JetBrainsMono Nerd Font'";
         "editor.fontFamily" = "'JetBrainsMono Nerd Font', 'Droid Sans Mono', 'monospace'";
         "editor.fontLigatures" = true;
