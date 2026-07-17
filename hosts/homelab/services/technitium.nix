@@ -15,6 +15,8 @@
   };
 
   systemd.services.technitium-dns-server = {
+    wants = [ "network-online.target" ];
+    after = [ "network-online.target" ];
     environment = {
       DOTNET_USE_POLLING_FILE_WATCHER = "true";
     };
