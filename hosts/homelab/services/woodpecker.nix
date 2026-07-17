@@ -76,4 +76,9 @@
   virtualisation.containers.containersConf.settings = {
     containers.dns_servers = [ "10.100.0.1" "192.168.178.200" ];
   };
+
+  # Cache
+  systemd.tmpfiles.rules = [
+    "d /var/lib/woodpecker/cache 0777 root root -"
+  ];
 }
