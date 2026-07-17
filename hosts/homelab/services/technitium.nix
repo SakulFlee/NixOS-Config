@@ -12,6 +12,9 @@
   services.technitium-dns-server = {
     enable = true;
     openFirewall = true;
+    environment = {
+      DOTNET_USE_POLLING_FILE_WATCHER = "true";
+    };
   };
 
   systemd.services.technitium-dns-server.serviceConfig = {
