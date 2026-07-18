@@ -29,6 +29,7 @@
       },
       "original": {
         "owner": "SakulFlee",
+        "ref": "main",
         "repo": "FanslyRecorder",
         "type": "github"
       }
