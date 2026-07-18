@@ -48,6 +48,11 @@
     nix-flatpak = {
       url = "github:gmodena/nix-flatpak";
     };
+
+    sudo-tee-opencode-nvim = {
+      url = "github:sudo-tee/opencode.nvim";
+      flake = false;
+    };
   };
 
     outputs = { self, nixpkgs, home-manager, nixvim, nix-flatpak, ... }@inputs: 

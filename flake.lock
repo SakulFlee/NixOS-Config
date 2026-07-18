@@ -2,11 +2,11 @@
   "nodes": {
     "crane": {
       "locked": {
-        "lastModified": 1784248371,
-        "narHash": "sha256-0l0Y4D4wbZhp1Oi6h8OpbLtIm/4FN88oCf54MK2ZgiM=",
+        "lastModified": 1784407669,
+        "narHash": "sha256-gcFMcRjw0ZSn380Rx2QLlU1goUQeSrKX/DF12omI6+o=",
         "owner": "ipetkov",
         "repo": "crane",
-        "rev": "f7d151ec0bf52cf9662e2f59d7bea28588c2f070",
+        "rev": "1316b7d278ad77a16aec024b71d971366e123bec",
         "type": "github"
       },
       "original": {
@@ -123,12 +123,12 @@
         "pyproject-nix": "pyproject-nix",
         "uv2nix": "uv2nix"
       },
-     "locked": {
-        "lastModified": 1784330208,
-        "narHash": "sha256-6NmUkMED+P9OJoGHL4pWKPhr6a6dqoXhRiHz4BSMMOM=",
+      "locked": {
+        "lastModified": 1784413117,
+        "narHash": "sha256-E6tBJE6cQnMxEOIpKvpNUmsi62oXx0NJlvoUScz1Roo=",
         "owner": "NousResearch",
         "repo": "hermes-agent",
-        "rev": "d59b79fadd1e9edd7afc5c679cc3b143838e7c01",
+        "rev": "1310ceb07ba43be6ea5466a7c9895d7398af6e4f",
         "type": "github"
       },
       "original": {
@@ -144,11 +144,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784351324,
-        "narHash": "sha256-By+kuRJZRqs2TuXgtR8vJ8cTKWXw33YG/Yollu5cO1U=",
+        "lastModified": 1784407317,
+        "narHash": "sha256-iZrxHToDJWnvt+5LGAtvuQMTy1NZYlNEKbKaVtBJNcc=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "460108009ca1ff69ca2ff19079ca2c838d6e3080",
+        "rev": "39411a8e12a5526d992e65bc7e3dc9a4414d6713",
         "type": "github"
       },
       "original": {
@@ -386,7 +386,8 @@
         "nixpkgs": "nixpkgs_3",
         "nixvim": "nixvim",
         "plasma-manager": "plasma-manager",
-        "sops-nix": "sops-nix"
+        "sops-nix": "sops-nix",
+        "sudo-tee-opencode-nvim": "sudo-tee-opencode-nvim"
       }
     },
     "rust-analyzer-src": {
@@ -423,6 +424,22 @@
       "original": {
         "owner": "Mic92",
         "repo": "sops-nix",
+        "type": "github"
+      }
+    },
+    "sudo-tee-opencode-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1784203166,
+        "narHash": "sha256-sbHxSKzDxT53XY7QzsMyrxstoPb1FEo4+H0h0OL+mYA=",
+        "owner": "sudo-tee",
+        "repo": "opencode.nvim",
+        "rev": "5e89ef97c88aaca11f23c32e297daed5b641dab5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "sudo-tee",
+        "repo": "opencode.nvim",
         "type": "github"
       }
     },

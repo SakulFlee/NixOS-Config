@@ -24,12 +24,27 @@
             ghost_text.enabled = true;
           };
           sources = {
-            default = [ "lazydev" "lsp" "path" "snippets" "buffer" ];
+            default = [ "lazydev" "lsp" "path" "snippets" "buffer" "avante_commands" "avante_mentions" "avante_files" ];
             providers = {
               lazydev = {
                 name = "LazyDev";
                 module = "lazydev.integrations.blink";
                 score_offset = 100;
+              };
+              avante_commands = {
+                name = "avante_commands";
+                module = "blink.compat.source";
+                score_offset = 90;
+              };
+              avante_files = {
+                name = "avante_files";
+                module = "blink.compat.source";
+                score_offset = 100;
+              };
+              avante_mentions = {
+                name = "avante_mentions";
+                module = "blink.compat.source";
+                score_offset = 1000;
               };
             };
           };
@@ -203,8 +218,11 @@
       };
       treesitter-textobjects.enable = true;
 
-      # ── AI: opencode.nvim ──────────────────────────────────
-      opencode.enable = true;
+      # ── AI: avante.nvim ────────────────────────────────────
+      avante = {
+        enable = true;
+        settings.provider = "claude";
+      };
 
       # ── Git: lazygit ───────────────────────────────────────
       lazygit.enable = true;

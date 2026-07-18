@@ -230,10 +230,8 @@ map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Open location list" })
 map("n", "]q", "<cmd>cnext<cr>", { desc = "Next quickfix" })
 map("n", "[q", "<cmd>cprevious<cr>", { desc = "Previous quickfix" })
 
--- ── AI: opencode.nvim ────────────────────────────
-map({ "n", "x" }, "<leader>oa", function() require("opencode").ask("@this: ") end, { desc = "Ask OpenCode…" })
-map({ "n", "x" }, "<leader>os", function() require("opencode").select() end,       { desc = "Select OpenCode…" })
-map("n", "<leader>ao", function() require("opencode").toggle() end,       { desc = "Toggle OpenCode" })
+-- ── AI: Avante ────────────────────────────────────
+map("n", "<leader>aa", "<cmd>AvanteAsk<cr>", { desc = "Ask Avante" })
 
 -- ── Markdown preview ──────────────────────────────────
 map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>",
@@ -274,6 +272,8 @@ if wk_ok then
     { "<leader>g",  group = "Git" },
     { "<leader>x",  group = "List" },
     { "<leader>a",  group = "AI" },
+    { "<leader>aa", desc  = "Ask Avante" },
+    { "<leader>ao", group = "Opencode" },
     { "<leader>c",  group = "Code" },
     { "<leader>.",  group = "Suggest" },
     { "<leader>h",  group = "Dashboard" },

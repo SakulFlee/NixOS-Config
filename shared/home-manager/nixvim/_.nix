@@ -43,18 +43,24 @@
       providers.wl-copy.enable = true;
     };
 
-    dependencies.opencode.enable = true;
-
     # ── Extra plugins (not in nixvim module) ──────────────────
     extraPlugins = [
       pkgs.vimPlugins.heirline-nvim
       pkgs.vimPlugins.nvim-lsp-file-operations
+      (pkgs.vimUtils.buildVimPlugin {
+        name = "sudo-tee-opencode-nvim";
+        src = inputs.sudo-tee-opencode-nvim;
+      })
     ];
 
     # ── Lua configuration ─────────────────────────────────────
     extraConfigLuaPre = builtins.readFile ./keymaps.lua;
     extraConfigLua    = builtins.readFile ./heirline.lua + ''
       require("snacks.notifier")
+
+      require("opencode").setup({
+        keymap_prefix = "<leader>ao",
+      })
     '';
 
     extraConfigLuaPost = builtins.readFile ./autocmds.lua;
@@ -66,6 +72,7 @@
     ripgrep
     fd
     tree-sitter
+    opencode
     vscode-extensions.vadimcn.vscode-lldb.adapter
   ];
 }
