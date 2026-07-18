@@ -7,6 +7,7 @@
     enable = true;
 
     settings.general.api.server.enable = true;
+    settings.lapi.credentialsFile = "/var/lib/crowdsec/lapi-api-key.yaml";
 
     localConfig.acquisitions = [
       {
