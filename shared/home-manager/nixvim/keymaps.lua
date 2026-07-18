@@ -233,7 +233,7 @@ map("n", "[q", "<cmd>cprevious<cr>", { desc = "Previous quickfix" })
 -- ── AI: opencode.nvim ────────────────────────────
 map({ "n", "x" }, "<leader>oa", function() require("opencode").ask("@this: ") end, { desc = "Ask OpenCode…" })
 map({ "n", "x" }, "<leader>os", function() require("opencode").select() end,       { desc = "Select OpenCode…" })
-map({ "n", "t" }, "<leader>ao", function() require("opencode").toggle() end,       { desc = "Toggle OpenCode" })
+map("n", "<leader>ao", function() require("opencode").toggle() end,       { desc = "Toggle OpenCode" })
 
 -- ── Markdown preview ──────────────────────────────────
 map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>",
