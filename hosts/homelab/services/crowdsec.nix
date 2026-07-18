@@ -25,6 +25,20 @@
       }
     ];
 
+    localConfig.parsers.s02Enrich = [
+      {
+        name = "homelab/whitelist";
+        description = "Whitelist home LAN and VPN networks";
+        whitelist = {
+          reason = "Trusted internal networks";
+          cidr = [
+            "192.168.178.0/24"
+            "10.100.0.0/24"
+          ];
+        };
+      }
+    ];
+
     hub.collections = [ "crowdsecurity/linux" ];
     hub.parsers = [ "crowdsecurity/caddy-logs" ];
   };
