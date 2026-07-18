@@ -29,7 +29,7 @@
     };
 
     fansly-recorder = {
-      url = "github:SakulFlee/FanslyRecorder/main";
+      url = "github:SakulFlee/FanslyRecorder";
     };
 
     hermes-agent = {
