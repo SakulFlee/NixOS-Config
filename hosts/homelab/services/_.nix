@@ -29,5 +29,6 @@
     ./mautrix-whatsapp.nix
     ./paperless.nix
     ./monitoring.nix
+    ./crowdsec.nix
   ];
 }
