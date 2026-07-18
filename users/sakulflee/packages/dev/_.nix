@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   imports = [
     ./vscodium.nix
+    ./android.nix
   ];
 
   home.packages = with pkgs; [
