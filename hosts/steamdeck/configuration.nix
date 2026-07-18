@@ -7,6 +7,21 @@
 
   networking.hostName = "SteamDeck";
 
+  services.displayManager = {
+    autoLogin = {
+      enable = true;
+      user = "sakulflee";
+    };
+    defaultSession = "gamescope";
+    session = [{
+      name = "gamescope";
+      manage = "desktop";
+      start = ''
+        ${pkgs.gamescope}/bin/gamescope -e -- ${pkgs.steam}/bin/steam -gamepadui
+      '';
+    }];
+  };
+
   programs.gamescope = {
     enable = true;
     capSysNice = false;
