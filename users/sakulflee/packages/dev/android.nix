@@ -4,9 +4,6 @@
     android-tools
     # MTP
     android-file-transfer
-    # IDE
-    android-studio
-    android-studio-tools
   ];
 
   # Required to accept licenses
