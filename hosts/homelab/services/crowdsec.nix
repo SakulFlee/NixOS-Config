@@ -1,6 +1,7 @@
 { config, pkgs, ... }: {
   systemd.tmpfiles.rules = [
     "d /var/log/caddy 0755 caddy caddy -"
+    "d /var/lib/crowdsec 0750 crowdsec crowdsec -"
   ];
 
   services.crowdsec = {
