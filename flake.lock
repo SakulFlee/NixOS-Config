@@ -123,12 +123,12 @@
         "pyproject-nix": "pyproject-nix",
         "uv2nix": "uv2nix"
       },
-      "locked": {
-        "lastModified": 1784400666,
-        "narHash": "sha256-oWNbywvW6NDFtPhTFPG6frrl1sDHhfN7pMyI4JeEyqQ=",
+     "locked": {
+        "lastModified": 1784330208,
+        "narHash": "sha256-6NmUkMED+P9OJoGHL4pWKPhr6a6dqoXhRiHz4BSMMOM=",
         "owner": "NousResearch",
         "repo": "hermes-agent",
-        "rev": "e45d12642d5d0753e492d51be17cccf687aa8b06",
+        "rev": "d59b79fadd1e9edd7afc5c679cc3b143838e7c01",
         "type": "github"
       },
       "original": {
