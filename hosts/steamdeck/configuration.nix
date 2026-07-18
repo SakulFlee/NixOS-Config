@@ -1,4 +1,18 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }:
+let
+  gamescopeSession = pkgs.runCommand "gamescope-session" {
+    providedSessions = [ "gamescope" ];
+  } ''
+    mkdir -p $out/share/wayland-sessions
+    cat > $out/share/wayland-sessions/gamescope.desktop <<EOF
+    [Desktop Entry]
+    Name=Gamescope
+    Comment=Steam Gaming Mode
+    Exec=${pkgs.gamescope}/bin/gamescope -e -- ${pkgs.steam}/bin/steam -gamepadui
+    Type=Application
+    EOF
+  '';
+in {
   imports = [
     ./hardware.nix
     ../../shared/common/_.nix
@@ -13,6 +27,7 @@
       user = "sakulflee";
     };
     defaultSession = "gamescope";
+    sessionPackages = [ gamescopeSession ];
   };
 
   programs.gamescope = {
@@ -29,16 +44,6 @@
       comment = "Switch to Steam Game Mode";
       categories = [ "Game" ];
     })
-    (pkgs.runCommand "gamescope-session" {} ''
-      mkdir -p $out/share/wayland-sessions
-      cat > $out/share/wayland-sessions/gamescope.desktop <<EOF
-      [Desktop Entry]
-      Name=Gamescope
-      Comment=Steam Gaming Mode
-      Exec=${pkgs.gamescope}/bin/gamescope -e -- ${pkgs.steam}/bin/steam -gamepadui
-      Type=Application
-      EOF
-    '')
   ];
 
   # Prevent Maliit virtual keyboard from stealing focus on keypress
