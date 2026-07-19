@@ -8,6 +8,7 @@
     enable = true;
 
     settings.general.api.server.enable = true;
+    settings.general.api.server.listen_uri = "127.0.0.1:8088";
     settings.lapi.credentialsFile = "/var/lib/crowdsec/state/lapi-api-key.yaml";
 
     localConfig.acquisitions = [
