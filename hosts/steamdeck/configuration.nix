@@ -1,23 +1,12 @@
-{ config, pkgs, lib, ... }:
-let
-  gamescopeSession = pkgs.runCommand "gamescope-session" {
-    providedSessions = [ "gamescope" ];
-  } ''
-    mkdir -p $out/share/wayland-sessions
-    cat > $out/share/wayland-sessions/gamescope.desktop <<EOF
-    [Desktop Entry]
-    Name=Gamescope
-    Comment=Steam Gaming Mode
-    Exec=${pkgs.gamescope}/bin/gamescope -e -- ${pkgs.steam}/bin/steam -gamepadui
-    Type=Application
-    EOF
-  '';
-in {
+{ config, pkgs, lib, inputs, ... }:
+{
   imports = [
     ./hardware.nix
     ../../shared/common/_.nix
     ../../users/_.nix
   ];
+
+  nixpkgs.overlays = [ inputs.jovian.overlays.default ];
 
   networking.hostName = "SteamDeck";
 
@@ -26,11 +15,54 @@ in {
       enable = true;
       user = "sakulflee";
     };
-    defaultSession = "gamescope";
-    sessionPackages = [ gamescopeSession ];
+    sddm.autoLogin.relogin = true;
+    defaultSession = "gamescope-wayland";
+    sessionPackages = [ pkgs.gamescope-session ];
   };
 
-  services.logind.settings.Login.HandlePowerKey = "suspend";
+  services.logind.settings.Login.HandlePowerKey = "ignore";
+
+  security.wrappers.gamescope = {
+    owner = "root";
+    group = "root";
+    source = "${lib.getBin pkgs.gamescope}/bin/gamescope";
+    capabilities = "cap_sys_nice+pie";
+  };
+
+  systemd.packages = [
+    pkgs.gamescope-session
+    pkgs.powerbuttond
+    pkgs.steamos-manager
+  ];
+
+  services.dbus.packages = [ pkgs.steamos-manager ];
+  services.udev.packages = [ pkgs.powerbuttond ];
+
+  systemd.user.services.steamos-manager = {
+    wantedBy = [ "gamescope-session.service" ];
+  };
+
+  systemd.user.services.steamos-powerbuttond = {
+    wantedBy = [ "gamescope-session.service" ];
+  };
+
+  systemd.services.steamos-manager = {
+    wantedBy = [ "multi-user.target" ];
+  };
+
+  systemd.user.services.jovian-setup-desktop-session = {
+    wants = [ "steamos-manager.service" ];
+    after = [ "steamos-manager.service" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.steamos-manager}/bin/steamosctl set-default-desktop-session plasma.desktop";
+    };
+    wantedBy = [ "graphical-session.target" ];
+  };
+
+  systemd.user.services.steamos-manager-session-cleanup = {
+    wantedBy = [ "graphical-session.target" ];
+  };
 
   programs.gamescope = {
     enable = true;
@@ -46,42 +78,17 @@ in {
       comment = "Switch to Steam Game Mode";
       categories = [ "Game" ];
     })
-    (pkgs.writeShellScriptBin "steamos-session-select" ''
-      if [ -n "$XDG_SESSION_ID" ]; then
-        exec loginctl terminate-session "$XDG_SESSION_ID"
-      else
-        exec loginctl terminate-user "$USER"
-      fi
-    '')
-    (pkgs.writeShellScriptBin "steamosctl" ''
-      case "''${1:-}" in
-        switch-to-desktop-mode|switch-to-game-mode)
-          ;;
-        set-default-login-mode|set-default-desktop-session)
-          exit 0
-          ;;
-      esac
-      if [ -n "$XDG_SESSION_ID" ]; then
-        exec loginctl terminate-session "$XDG_SESSION_ID"
-      else
-        exec loginctl terminate-user "$USER"
-      fi
-    '')
-    (pkgs.writeShellScriptBin "holo-session-select" ''
-      exec steamosctl switch-to-desktop-mode
-    '')
   ];
 
-  # Prevent Maliit virtual keyboard from stealing focus on keypress
   home-manager.users.sakulflee = {
     programs.plasma.configFile."kwinrulesrc" = {
       "General" = { count = 1; };
       "1" = {
         Description = "Virtual Keyboard - prevent focus steal";
         windowclass = "maliit_keyboard";
-        windowclassrule = 2;  # Force
+        windowclassrule = 2;
         acceptfocus = "false";
-        acceptfocusrule = 3;  # Force
+        acceptfocusrule = 3;
       };
     };
   };
