@@ -59,7 +59,7 @@
       require("snacks.notifier")
 
       pcall(function() require("opencode").setup({
-        keymap_prefix = "<leader>ao",
+        keymap_prefix = "<leader>o",
       }) end)
     '';
 
