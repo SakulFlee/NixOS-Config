@@ -20,6 +20,10 @@
         job_name = "postgres";
         static_configs = [{ targets = [ "127.0.0.1:9187" ]; }];
       }
+      {
+        job_name = "crowdsec";
+        static_configs = [{ targets = [ "127.0.0.1:6060" ]; }];
+      }
     ];
     exporters.node = {
       enable = true;
