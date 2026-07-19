@@ -74,8 +74,8 @@ local FileNameModBlock = utils.insert(FileNameBlock, FileName, FileFlags)
 local GitBranch = {
   condition = conditions.is_git_repo,
   init = function(self)
-    local branch = vim.fn.system("git -C " .. vim.fn.expand("%:p:h") .. " rev-parse --abbrev-ref HEAD 2>/dev/null"):gsub("\n", "")
-    self.branch = branch ~= "" and branch or ""
+    local ok, gitsigns = pcall(require, "gitsigns")
+    self.branch = ok and (gitsigns.get_head() or "") or ""
   end,
   provider = function(self)
     return self.branch ~= "" and (" " .. self.branch .. " ") or ""

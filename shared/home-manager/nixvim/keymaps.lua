@@ -65,16 +65,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
     map("n", "gO", vim.lsp.buf.document_symbol, opts_buf("Document symbols"))
 
     map("n", "<leader>lf", vim.lsp.buf.format, opts_buf("Format document"))
-    map("n", "<leader>la", vim.lsp.buf.code_action, opts_buf("Code action"))
-    map("n", "<leader>lr", vim.lsp.buf.rename, opts_buf("Rename"))
     map("n", "<leader>lh", vim.lsp.buf.signature_help, opts_buf("Signature help"))
-    map("n", "<leader>ls", vim.lsp.buf.document_symbol, opts_buf("Document symbols"))
     map("n", "<leader>lw", vim.lsp.buf.workspace_symbol, opts_buf("Workspace symbols"))
-    map("n", "<leader>lR", vim.lsp.buf.references, opts_buf("References"))
     map("n", "<leader>lS", "<cmd>AerialToggle!<cr>", opts_buf("Symbols outline"))
 
-    map("n", "gl", vim.diagnostic.open_float, opts_buf("Line diagnostics"))
-    map("n", "<leader>ld", vim.diagnostic.open_float, opts_buf("Line diagnostics"))
     map("n", "<leader>lD", vim.diagnostic.setloclist, opts_buf("Workspace diagnostics"))
     map("n", "]d", function() vim.diagnostic.jump({ count = 1 }) end, opts_buf("Next diagnostic"))
     map("n", "[d", function() vim.diagnostic.jump({ count = -1 }) end, opts_buf("Previous diagnostic"))
@@ -180,6 +174,14 @@ map("n", "<leader>ud", function()
   end
 end, { desc = "Toggle diagnostics" })
 
+-- ── Inlay hints ─────────────────────────────────────────
+local inlay_hints_enabled = true
+map("n", "<leader>uh", function()
+  inlay_hints_enabled = not inlay_hints_enabled
+  vim.lsp.inlay_hint.enable(inlay_hints_enabled)
+  Snacks.notify(inlay_hints_enabled and "Inlay hints enabled" or "Inlay hints disabled")
+end, { desc = "Toggle inlay hints" })
+
 -- ── Picker keymaps (snacks.picker) ────────────────────
 map("n", "<leader>ff", function() Snacks.picker.files() end, { desc = "Find files" })
 map("n", "<leader>fb", function() Snacks.picker.buffers() end, { desc = "Buffers" })
@@ -253,6 +255,28 @@ map({ "x", "o" }, "il", ts_to("loop.inner"), { desc = "inner loop" })
 -- ── Notifications ──────────────────────────────────────
 map("n", "<leader>uD", function() Snacks.notifier.hide() end, { desc = "Dismiss notifications" })
 map("n", "<leader>n", function() Snacks.picker.notifications() end, { desc = "Notification history" })
+
+-- ── Rust (rustaceanvim) keymaps ────────────────────────
+local rust_ok, rustaceanvim = pcall(require, "rustaceanvim")
+if rust_ok then
+  vim.api.nvim_create_autocmd("FileType", {
+    pattern = "rust",
+    callback = function()
+      local rb = vim.api.nvim_get_current_buf()
+      local ro = function(desc)
+        return { buffer = rb, desc = desc, noremap = true, silent = true }
+      end
+
+      map("n", "<leader>lM", function() vim.cmd("RustExpandMacro") end, ro("Expand macro"))
+      map("n", "<leader>lH", function() vim.cmd("RustHoverActions") end, ro("Hover actions"))
+      map("n", "<leader>lW", function() vim.cmd("RustReloadWorkspace") end, ro("Reload workspace"))
+      map("n", "<leader>lt", function() require("rustaceanvim.runnables").run() end, ro("Run nearest target"))
+      map("n", "<leader>lT", function() vim.cmd("RustLsp runnables") end, ro("All targets (picker)"))
+      map("n", "<leader>lC", function() vim.cmd("RustOpenCargo") end, ro("Open Cargo.toml"))
+      map("n", "<leader>lP", function() vim.cmd("RustParentModule") end, ro("Parent module"))
+    end,
+  })
+end
 
 -- ══════════════════════════════════════════════════════
 -- Which-Key Groups

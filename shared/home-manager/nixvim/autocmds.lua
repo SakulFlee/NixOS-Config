@@ -23,40 +23,13 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 
 -- ══════════════════════════════════════════════════════
--- Format on Save
--- ══════════════════════════════════════════════════════
-vim.api.nvim_create_autocmd("BufWritePre", {
-  group = vim.api.nvim_create_augroup("FormatOnSave", { clear = true }),
-  pattern = "*",
-  callback = function(args)
-    local conform_ok, conform = pcall(require, "conform")
-    if conform_ok then
-      conform.format({ bufnr = args.buf, lsp_fallback = true, timeout_ms = 1000 })
-    end
-  end,
-})
-
--- ══════════════════════════════════════════════════════
--- Inlay Hints Toggle
--- ══════════════════════════════════════════════════════
-local map = vim.keymap.set
-local inlay_hints_enabled = true
-map("n", "<leader>uh", function()
-  inlay_hints_enabled = not inlay_hints_enabled
-  vim.lsp.inlay_hint.enable(inlay_hints_enabled)
-  Snacks.notify(inlay_hints_enabled and "Inlay hints enabled" or "Inlay hints disabled")
-end, { desc = "Toggle inlay hints" })
-
--- ══════════════════════════════════════════════════════
 -- LSP Code Lenses (e.g. "Run Test", "Run", "Debug" annotations)
 -- ══════════════════════════════════════════════════════
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("LspCodeLens", { clear = true }),
   callback = function(ev)
     local bufnr = ev.buf
-    if inlay_hints_enabled then
-      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-    end
+    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
     vim.lsp.codelens.refresh()
     vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
       buffer = bufnr,
@@ -121,28 +94,3 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end, opts_buf("Code suggestions"))
   end,
 })
-
--- ══════════════════════════════════════════════════════
--- Rustaceanvim Keymaps
--- ══════════════════════════════════════════════════════
-local rust_ok, rustaceanvim = pcall(require, "rustaceanvim")
-if rust_ok then
-  -- Only set these keymaps for Rust files
-  vim.api.nvim_create_autocmd("FileType", {
-    pattern = "rust",
-    callback = function()
-      local rb = vim.api.nvim_get_current_buf()
-      local ro = function(desc)
-        return { buffer = rb, desc = desc, noremap = true, silent = true }
-      end
-
-      map("n", "<leader>lM", function() vim.cmd("RustExpandMacro") end, ro("Expand macro"))
-      map("n", "<leader>lH", function() vim.cmd("RustHoverActions") end, ro("Hover actions"))
-      map("n", "<leader>lW", function() vim.cmd("RustReloadWorkspace") end, ro("Reload workspace"))
-      map("n", "<leader>lt", function() require("rustaceanvim.runnables").run() end, ro("Run nearest target"))
-      map("n", "<leader>lT", function() vim.cmd("RustLsp runnables") end, ro("All targets (picker)"))
-      map("n", "<leader>lC", function() vim.cmd("RustOpenCargo") end, ro("Open Cargo.toml"))
-      map("n", "<leader>lP", function() vim.cmd("RustParentModule") end, ro("Parent module"))
-    end,
-  })
-end

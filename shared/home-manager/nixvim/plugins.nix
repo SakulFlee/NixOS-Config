@@ -37,7 +37,6 @@
           signature.enabled = true;
         };
       };
-      blink-compat.enable = true;
       friendly-snippets.enable = true;
       lazydev.enable = true;
 
@@ -137,9 +136,6 @@
         };
       };
 
-      # ── Highlight colors ───────────────────────────────────
-      highlight-colors.enable = true;
-
       # ── Session manager (auto-session) ─────────────────────
       auto-session = {
         enable = true;
@@ -172,6 +168,10 @@
             toml       = [ "taplo" ];
             markdown   = [ "prettier" ];
           };
+          format_on_save = {
+            lsp_fallback = true;
+            timeout_ms = 1000;
+          };
         };
       };
 
@@ -182,16 +182,14 @@
           highlight.enable = true;
           indent.enable    = true;
         };
-        grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-          rust html css javascript typescript tsx
-          yaml json toml bash lua nix vim vimdoc
-          regex markdown markdown_inline
-          python go c cpp java zig sql graphql
-        ];
       };
       treesitter-textobjects.enable = true;
 
-      # ── AI: opencode.nvim (sudo-tee) ──────────────────────
+      # ── AI: opencode.nvim ─────────────────────────────────
+      opencode = {
+        enable = true;
+        settings.keymap_prefix = "<leader>o";
+      };
 
       # ── Git: lazygit ───────────────────────────────────────
       lazygit.enable = true;

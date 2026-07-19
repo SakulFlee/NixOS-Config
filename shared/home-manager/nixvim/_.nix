@@ -3,16 +3,14 @@
     inputs.nixvim.homeModules.nixvim
     ./plugins.nix
     ./lsp.nix
+    ./dap.nix
   ];
 
   programs.nixvim = {
     enable = true;
     defaultEditor = true;
-    nixpkgs.source = pkgs.path;
-
-    colorschemes.catppuccin = {
+    colorschemes.kanagawa = {
       enable = true;
-      settings.flavour = "mocha";
     };
 
     opts = {
@@ -47,20 +45,12 @@
     extraPlugins = [
       pkgs.vimPlugins.heirline-nvim
       pkgs.vimPlugins.nvim-lsp-file-operations
-      (pkgs.vimUtils.buildVimPlugin {
-        name = "sudo-tee-opencode-nvim";
-        src = inputs.sudo-tee-opencode-nvim;
-      })
     ];
 
     # ── Lua configuration ─────────────────────────────────────
     extraConfigLuaPre = builtins.readFile ./keymaps.lua;
     extraConfigLua    = builtins.readFile ./heirline.lua + ''
       require("snacks.notifier")
-
-      pcall(function() require("opencode").setup({
-        keymap_prefix = "<leader>o",
-      }) end)
     '';
 
     extraConfigLuaPost = builtins.readFile ./autocmds.lua;
@@ -68,7 +58,6 @@
 
   # CLI tools that plugins shell out to
   home.packages = with pkgs; [
-    lazygit
     ripgrep
     fd
     tree-sitter
