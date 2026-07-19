@@ -46,7 +46,11 @@
     hub.parsers = [ "crowdsecurity/caddy-logs" ];
   };
 
+  sops.secrets."crowdsec_key" = {};
+
   services.crowdsec-firewall-bouncer = {
     enable = true;
+    registerBouncer.enable = false;
+    secrets.apiKeyPath = config.sops.secrets."crowdsec_key".path;
   };
 }
