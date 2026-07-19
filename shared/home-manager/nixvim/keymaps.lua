@@ -198,7 +198,7 @@ map("n", "<leader>fd", function() Snacks.picker.diagnostics() end, { desc = "Dia
 map("n", "<leader>fo", function() Snacks.picker.recent() end, { desc = "Recent files" })
 -- ── Explorer / Outline ────────────────────────────────
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "File explorer" })
-map("n", "<leader>o", "<cmd>Neotree source=document_symbols<cr>", { desc = "Symbols outline" })
+map("n", "<leader>uo", "<cmd>Neotree source=document_symbols<cr>", { desc = "Symbols outline" })
 
 -- ── Session keymaps (auto-session) ────────────────────
 local gs_ok, gs = pcall(require, "auto-session")
