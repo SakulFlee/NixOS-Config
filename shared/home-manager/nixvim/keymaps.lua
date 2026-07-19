@@ -230,9 +230,6 @@ map("n", "<leader>xl", "<cmd>lopen<cr>", { desc = "Open location list" })
 map("n", "]q", "<cmd>cnext<cr>", { desc = "Next quickfix" })
 map("n", "[q", "<cmd>cprevious<cr>", { desc = "Previous quickfix" })
 
--- ── AI: Avante ────────────────────────────────────
-map("n", "<leader>aa", "<cmd>AvanteAsk<cr>", { desc = "Ask Avante" })
-
 -- ── Markdown preview ──────────────────────────────────
 map("n", "<leader>mp", "<cmd>MarkdownPreviewToggle<cr>",
   { desc = "Markdown preview" })
@@ -272,7 +269,6 @@ if wk_ok then
     { "<leader>g",  group = "Git" },
     { "<leader>x",  group = "List" },
     { "<leader>a",  group = "AI" },
-    { "<leader>aa", desc  = "Ask Avante" },
     { "<leader>ao", group = "Opencode" },
     { "<leader>aog", desc = "Toggle Opencode" },
     { "<leader>aoi", desc = "Open input" },

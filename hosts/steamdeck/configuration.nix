@@ -30,6 +30,8 @@ in {
     sessionPackages = [ gamescopeSession ];
   };
 
+  services.logind.settings.Login.HandlePowerKey = "ignore";
+
   programs.gamescope = {
     enable = true;
     capSysNice = false;
@@ -44,6 +46,18 @@ in {
       comment = "Switch to Steam Game Mode";
       categories = [ "Game" ];
     })
+    (pkgs.writeShellScriptBin "steamos-session-select" ''
+      case "''${1:-}" in
+        desktop|plasma*|gnome*|xfce*)
+          # Switch to desktop: terminate session to return to SDDM
+          ;;
+      esac
+      if [ -n "$XDG_SESSION_ID" ]; then
+        exec loginctl terminate-session "$XDG_SESSION_ID"
+      else
+        exec loginctl terminate-user "$USER"
+      fi
+    '')
   ];
 
   # Prevent Maliit virtual keyboard from stealing focus on keypress
