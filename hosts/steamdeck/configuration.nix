@@ -1,12 +1,33 @@
-{ config, pkgs, lib, inputs, ... }:
-{
+{ config, pkgs, lib, ... }:
+let
+  gamescopeSession = pkgs.runCommand "gamescope-session" {
+    providedSessions = [ "gamescope" ];
+  } ''
+    mkdir -p $out/share/wayland-sessions
+    cat > $out/share/wayland-sessions/gamescope.desktop <<EOF
+    [Desktop Entry]
+    Name=Gamescope
+    Comment=Steam Gaming Mode
+    Exec=${pkgs.gamescope}/bin/gamescope -e -- ${pkgs.steam}/bin/steam -gamepadui
+    Type=Application
+    EOF
+  '';
+
+  steamosDbusExec = pkgs.writeShellScriptBin "steamos-dbus-exec" ''
+    exec loginctl terminate-user "$(id -un)"
+  '';
+
+  steamosDbusService = pkgs.writeTextDir "share/dbus-1/services/com.steampowered.SteamOSManager1.service" ''
+    [D-BUS Service]
+    Name=com.steampowered.SteamOSManager1
+    Exec=${steamosDbusExec}/bin/steamos-dbus-exec
+  '';
+in {
   imports = [
     ./hardware.nix
     ../../shared/common/_.nix
     ../../users/_.nix
   ];
-
-  nixpkgs.overlays = [ inputs.jovian.overlays.default ];
 
   networking.hostName = "SteamDeck";
 
@@ -15,54 +36,13 @@
       enable = true;
       user = "sakulflee";
     };
-    sddm.autoLogin.relogin = true;
-    defaultSession = "gamescope-wayland";
-    sessionPackages = [ pkgs.gamescope-session ];
+    defaultSession = "gamescope";
+    sessionPackages = [ gamescopeSession ];
   };
 
-  services.logind.settings.Login.HandlePowerKey = "ignore";
+  services.logind.settings.Login.HandlePowerKey = "suspend";
 
-  security.wrappers.gamescope = {
-    owner = "root";
-    group = "root";
-    source = "${lib.getBin pkgs.gamescope}/bin/gamescope";
-    capabilities = "cap_sys_nice+pie";
-  };
-
-  systemd.packages = [
-    pkgs.gamescope-session
-    pkgs.powerbuttond
-    pkgs.steamos-manager
-  ];
-
-  services.dbus.packages = [ pkgs.steamos-manager ];
-  services.udev.packages = [ pkgs.powerbuttond ];
-
-  systemd.user.services.steamos-manager = {
-    wantedBy = [ "gamescope-session.service" ];
-  };
-
-  systemd.user.services.steamos-powerbuttond = {
-    wantedBy = [ "gamescope-session.service" ];
-  };
-
-  systemd.services.steamos-manager = {
-    wantedBy = [ "multi-user.target" ];
-  };
-
-  systemd.user.services.jovian-setup-desktop-session = {
-    wants = [ "steamos-manager.service" ];
-    after = [ "steamos-manager.service" ];
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = "${pkgs.steamos-manager}/bin/steamosctl set-default-desktop-session plasma.desktop";
-    };
-    wantedBy = [ "graphical-session.target" ];
-  };
-
-  systemd.user.services.steamos-manager-session-cleanup = {
-    wantedBy = [ "graphical-session.target" ];
-  };
+  services.dbus.packages = [ steamosDbusService ];
 
   programs.gamescope = {
     enable = true;

@@ -53,14 +53,9 @@
       url = "github:sudo-tee/opencode.nvim";
       flake = false;
     };
-
-    jovian = {
-      url = "github:Jovian-Experiments/Jovian-NixOS";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-    outputs = { self, nixpkgs, home-manager, nixvim, nix-flatpak, jovian, ... }@inputs: 
+    outputs = { self, nixpkgs, home-manager, nixvim, nix-flatpak, ... }@inputs: 
     let    
       system = "x86_64-linux";
 
