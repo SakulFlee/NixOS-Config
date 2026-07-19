@@ -58,9 +58,9 @@
     extraConfigLua    = builtins.readFile ./heirline.lua + ''
       require("snacks.notifier")
 
-      require("opencode").setup({
+      pcall(function() require("opencode").setup({
         keymap_prefix = "<leader>ao",
-      })
+      }) end)
     '';
 
     extraConfigLuaPost = builtins.readFile ./autocmds.lua;

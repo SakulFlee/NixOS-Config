@@ -166,21 +166,9 @@
         };
       };
 
-      # ── Markdown & Obsidian ────────────────────────────────
+      # ── Markdown ───────────────────────────────────────────
       render-markdown.enable  = true;
       markdown-preview.enable = true;
-      obsidian = {
-        enable = true;
-        settings = {
-          legacy_commands = false;
-          workspaces = [
-            {
-              name = "personal";
-              path = "~/Sync/Vault";
-            }
-          ];
-        };
-      };
 
       # ── Formatters (conform.nvim) ──────────────────────────
       conform-nvim = {
