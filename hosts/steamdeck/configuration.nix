@@ -30,7 +30,7 @@ in {
     sessionPackages = [ gamescopeSession ];
   };
 
-  services.logind.settings.Login.HandlePowerKey = "ignore";
+  services.logind.settings.Login.HandlePowerKey = "suspend";
 
   programs.gamescope = {
     enable = true;
@@ -47,9 +47,18 @@ in {
       categories = [ "Game" ];
     })
     (pkgs.writeShellScriptBin "steamos-session-select" ''
+      if [ -n "$XDG_SESSION_ID" ]; then
+        exec loginctl terminate-session "$XDG_SESSION_ID"
+      else
+        exec loginctl terminate-user "$USER"
+      fi
+    '')
+    (pkgs.writeShellScriptBin "steamosctl" ''
       case "''${1:-}" in
-        desktop|plasma*|gnome*|xfce*)
-          # Switch to desktop: terminate session to return to SDDM
+        switch-to-desktop-mode|switch-to-game-mode)
+          ;;
+        set-default-login-mode|set-default-desktop-session)
+          exit 0
           ;;
       esac
       if [ -n "$XDG_SESSION_ID" ]; then
@@ -57,6 +66,9 @@ in {
       else
         exec loginctl terminate-user "$USER"
       fi
+    '')
+    (pkgs.writeShellScriptBin "holo-session-select" ''
+      exec steamosctl switch-to-desktop-mode
     '')
   ];
 
