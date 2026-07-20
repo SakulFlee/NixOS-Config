@@ -75,7 +75,7 @@ local GitBranch = {
   condition = conditions.is_git_repo,
   init = function(self)
     local ok, gitsigns = pcall(require, "gitsigns")
-    self.branch = ok and (gitsigns.get_head() or "") or ""
+    self.branch = (ok and gitsigns.get_head and gitsigns.get_head()) or ""
   end,
   provider = function(self)
     return self.branch ~= "" and (" " .. self.branch .. " ") or ""
