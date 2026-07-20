@@ -46,14 +46,6 @@
       };
 
       messaging.discord.enabled = true;
-
-      matrix = {
-        require_mention = false;
-        auto_thread = false;
-        dm_auto_thread = true;
-        session_scope = "room";
-        e2ee_mode = "optional";
-      };
     };
   };
 
