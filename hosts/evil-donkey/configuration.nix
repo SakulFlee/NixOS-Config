@@ -6,6 +6,7 @@
     ../../shared/_.nix
     ../../shared/common/_.nix
     ../../shared/optionals/openrgb.nix
+    ../../shared/optionals/vbox.nix
   ];
 
   # Hostname
