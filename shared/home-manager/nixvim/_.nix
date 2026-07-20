@@ -11,6 +11,7 @@
     defaultEditor = true;
     colorschemes.kanagawa = {
       enable = true;
+      settings.theme = "dragon";
     };
 
     opts = {
