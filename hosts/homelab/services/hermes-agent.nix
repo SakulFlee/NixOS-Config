@@ -49,6 +49,14 @@
     };
   };
 
+  systemd.services.hermes-agent.environment = {
+    MATRIX_AUTO_THREAD = "false";
+    MATRIX_DM_AUTO_THREAD = "true";
+    MATRIX_REQUIRE_MENTION = "false";
+    MATRIX_SESSION_SCOPE = "room";
+    MATRIX_E2EE_MODE = "optional";
+  };
+
   nix.settings.max-jobs = 1;
 
   environment.systemPackages = with pkgs; [
