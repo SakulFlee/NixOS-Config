@@ -30,8 +30,8 @@
 
     settings = {
       model = {
-        provider = "custom:llama-swap";
-        default = "[unsloth] Qwen3.6 35B-A3B @Q4_K_XL [MTP]";
+        provider = "custom:ollama";
+        default = "qwen3.6:35b-a3b";
       };
 
       custom_providers = [
@@ -45,6 +45,7 @@
           name = "ollama";
           base_url = "http://127.0.0.1:11434/v1";
           discover_models = true;
+          model = "qwen3.6:35b-a3b";
         }
       ];
 
