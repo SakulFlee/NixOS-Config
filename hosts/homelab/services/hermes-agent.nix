@@ -30,8 +30,8 @@
 
     settings = {
       model = {
-        provider = "auto";
-        default = "opencode-go/deepseek-v4-flash";
+        provider = "custom:llama-swap";
+        default = "[unsloth] Qwen3.6 35B-A3B @Q4_K_XL [MTP]";
       };
 
       custom_providers = [
@@ -39,6 +39,16 @@
           name = "llama-swap";
           base_url = "http://127.0.0.1:30001/v1";
           discover_models = true;
+          model = "[unsloth] Qwen3.6 35B-A3B @Q4_K_XL [MTP]";
+          models = [
+            "[unsloth] Qwen3.6 35B-A3B @Q4_K_XL [MTP]"
+            "[unsloth] Gemma4 12B @UD-Q4_K_XL [QAT] [MTP]"
+            "[unsloth] Gemma4 26B-A4B @Q4_K_XL [QAT] [MTP]"
+            "[unsloth] Gemma4 E4B @UD-Q4_K_XL [QAT] [MTP]"
+            "[unsloth] Qwen3.5 9B @Q4_K_XL [MTP]"
+            "Qwythos 9 @Q4_K_M [MTP]"
+            "Ornith1.0 9B @Q4_K_M"
+          ];
         }
       ];
 
