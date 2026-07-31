@@ -18,6 +18,7 @@
     ./bitmagnet.nix
     ./fansly-recorder.nix
     ./hermes-agent.nix
+    ./ollama.nix
     ./wireguard.nix
     ./cloudflare-ddns.nix
     ./technitium.nix

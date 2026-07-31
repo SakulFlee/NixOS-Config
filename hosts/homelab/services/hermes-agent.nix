@@ -41,6 +41,11 @@
           discover_models = true;
           model = "[unsloth] Qwen3.6 35B-A3B @Q4_K_XL [MTP]";
         }
+        {
+          name = "ollama";
+          base_url = "http://127.0.0.1:11434/v1";
+          discover_models = true;
+        }
       ];
 
       terminal.backend = "local";
@@ -65,8 +70,6 @@
     MATRIX_SESSION_SCOPE = "room";
     MATRIX_E2EE_MODE = "optional";
   };
-
-  services.ollama.enable = lib.mkForce false;
 
   nix.settings.max-jobs = 1;
 
