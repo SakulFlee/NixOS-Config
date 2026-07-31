@@ -17,7 +17,6 @@
     ./zsh.nix
     ./dbus.nix
     ./home-manager.nix
-    ./llama-swap.nix
     ./open-webui.nix
     ./srv.nix
   ];
