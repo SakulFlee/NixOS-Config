@@ -50,7 +50,7 @@
     };
   };
 
-    outputs = { self, nixpkgs, home-manager, nix-flatpak, jovian, ... }@inputs: 
+    outputs = { self, nixpkgs, home-manager, nix-flatpak, ... }@inputs: 
     let    
       system = "x86_64-linux";
 
