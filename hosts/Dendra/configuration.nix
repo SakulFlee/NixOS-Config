@@ -14,6 +14,10 @@
       allowedIPs = [ "192.168.178.0/24" "100.64.0.0/10" ];
       privateKey = "gLYRXmnfOVfDmeLEkPq4XVVkKZ56obcarG0kFFNcrV4=";
     })
+
+    (import ../../modules/services/hermes-agent.nix {
+      users = [ "sakulflee" ];
+    })
   ];
   # Hostname
   networking.hostName = "Dendra";
