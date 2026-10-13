@@ -8,11 +8,10 @@
   sops.defaultSopsFile = ../../secrets.yaml;
   sops.defaultSopsFormat = "yaml";
 
-  # Tell SOPS which keys to use for decryption on the hardware
-  sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-
-  # Define the secrets
-  sops.secrets.smb_credentials = {};
+  # Sets the GPG key location for SOPS
+  sops.gnupg = {
+    home = "/home/sakulflee/.gnupg";
+  };
 
   environment.systemPackages = with pkgs; [
     sops
