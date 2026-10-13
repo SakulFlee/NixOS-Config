@@ -8,7 +8,7 @@
     ./home-manager.nix
     ./kernel.nix
     ./locale.nix
-    ./mount-nas.nix
+#    ./mount-nas.nix
     ./nixpkgs-unfree.nix
     ./printing.nix
     ./sops.nix
@@ -19,7 +19,7 @@
     ./wayland.nix
     ./zram.nix
     ./zsh.nix
-    ./wireguard.nix
+#    ./wireguard.nix
     ./wheel.nix
     ./llama-swap.nix
     ./sunshine.nix
