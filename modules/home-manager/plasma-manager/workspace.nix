@@ -26,7 +26,7 @@
       for (var i = 0; i < allDesktops.length; i++) {
           var d = allDesktops[i];
           d.currentConfigGroup = ["General"];
-          d.writeConfig("url", "file:///home/sakulflee/Sync/Desktop");
+          d.writeConfig("url", "file:///home/sakulflee/Desktop");
       }
     '';
     priority = 3;
