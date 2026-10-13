@@ -1,6 +1,6 @@
 { pkgs, lib, ... }: {
-  imports = [ ../../shared/home-manager/zsh.nix ];
-
+  imports = [ ../../modules/home-manager/zsh.nix ];
+ 
   programs.zsh = {
     shellAliases = {
       s = "stream";
