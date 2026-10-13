@@ -23,10 +23,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim/main";
-    };
-
     fansly-recorder = {
       url = "github:SakulFlee/FanslyRecorder";
     };
@@ -59,7 +55,7 @@
     };
   };
 
-    outputs = { self, nixpkgs, home-manager, nixvim, nix-flatpak, jovian, ... }@inputs: 
+    outputs = { self, nixpkgs, home-manager, nix-flatpak, jovian, ... }@inputs: 
     let    
       system = "x86_64-linux";
 
