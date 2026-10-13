@@ -2,12 +2,24 @@
   services.syncthing = {
     enable = true;
     user = "sakulflee";
-    dataDir = "/home/sakulflee/";
+    dataDir = "/mnt/ssd/";
     configDir = "/home/sakulflee/.config/syncthing";
     guiAddress = "127.0.0.1:8384";
     openDefaultPorts = true;
-    overrideDevices = false;
-    overrideFolders = false;
+    overrideDevices = true;
+    overrideFolders = true;
+    settings = {
+      devices = {
+        HomeLab = {
+          id = "WQULGP6-QFZWHOS-CNVGE7L-VYOUIRB-PRIIDUM-WIB4G3E-3RHXMA5-MLUA3AA";
+        };
+      };
+      # folders = {
+      #   "/mnt/ssd/Personal/" = {
+      #     id = ""
+      #   };
+      # };
+    };
   };
 
   # Port 8384/TCP: WebUI

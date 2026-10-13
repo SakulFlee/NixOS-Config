@@ -1,6 +1,7 @@
 { lib, pkgs, ... }: {
   imports = [
     ./hardware.nix
+    ./syncthing.nix
     ../../users/_.nix
 #     ../../modules/services/vpn.nix
     ../../modules/common/_.nix

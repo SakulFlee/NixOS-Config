@@ -27,7 +27,6 @@
     ./avahi.nix
     ./flatpak.nix
     ./ollama.nix
-    ./syncthing.nix
     ./kde-plasma.nix
     ./sddm.nix
     ./sdcard.nix
