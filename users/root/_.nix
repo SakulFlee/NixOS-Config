@@ -5,7 +5,7 @@
     };
 
     home-manager.users.root = {
-      imports = [ ../../shared/home-manager/zsh.nix ];
+      imports = [ ../../modules/home-manager/zsh.nix ];
 
       home.stateVersion = "25.11";
     };

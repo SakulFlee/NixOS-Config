@@ -34,7 +34,7 @@
 
     home-manager.users.sakulflee = {
       imports = [
-        ../../shared/home-manager/_.nix
+        ../../modules/home-manager/_.nix
         ./ssh.nix
         ./git.nix
         ./gpg.nix
