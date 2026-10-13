@@ -11,6 +11,8 @@
   # Sets the GPG key location for SOPS
   sops.gnupg = {
     home = "/home/sakulflee/.gnupg";
+    # Unset the default (host RSA SSH key) — exactly one key source allowed
+    sshKeyPaths = [ ];
   };
 
   environment.systemPackages = with pkgs; [

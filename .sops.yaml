@@ -2,4 +2,6 @@ creation_rules:
   - path_regex: secrets.yaml$
     key_groups:
       - gpg:
-        - 93842616D9E2EF9B41078EB833CC460FF18CDFFC
+          - 93842616D9E2EF9B41078EB833CC460FF18CDFFC
+        age:
+          - age15v49lrtr6nm9pzuyfmwwv9ynk493m3n3zjsnkpe2lzg9305cp3yqwpjhz5
