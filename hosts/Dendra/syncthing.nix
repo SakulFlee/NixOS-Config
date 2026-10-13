@@ -23,7 +23,7 @@
       folders = {
         "/mnt/ssd/Personal/" = {
           id = "personal";
-          devices = [ "HomeLab" ];
+          devices = [ "HomeLab" "Tablet" "Phone" ];
         };       
         "/mnt/ssd/Replicated: hytale-backups/" = {
           id = "replicated-hytale-backups";
