@@ -5,7 +5,7 @@
       user = {
         name = "@SakulFlee | Lukas Weber";
         email = "dev@sakul-flee.de";
-        signingKey = "0A96C9AA72DB019DE171E7F77F0C6AF1F56A9E05";
+        signingKey = "93842616D9E2EF9B41078EB833CC460FF18CDFFC";
       };
       commit.gpgsign = true;
       init.defaultBranch = "main";

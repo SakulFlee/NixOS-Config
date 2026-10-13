@@ -22,7 +22,7 @@
     enable = true;
 
     settings = {
-      trusted-key = "0A96C9AA72DB019DE171E7F77F0C6AF1F56A9E05";
+      trusted-key = "93842616D9E2EF9B41078EB833CC460FF18CDFFC";
     };
 
     publicKeys = [
@@ -30,32 +30,32 @@
         text = ''
           -----BEGIN PGP PUBLIC KEY BLOCK-----
 
-          mDMEZsz8ExYJKwYBBAHaRw8BAQdAMp0H2LrUQIQsdzo6JFEbiYPnR6kvgLpAY6hW
-          1u9C9jq0Hkx1a2FzIFdlYmVyIDxtZUBzYWt1bC1mbGVlLmRlPoicBBMWCgBEAhsj
-          BQkFpEINBQsJCAcCAiICBhUKCQgLAgQWAgMBAh4HAheAFiEECpbJqnLbAZ3hcef3
-          fwxq8fVqngUFAmbM/MICGQEACgkQfwxq8fVqngWF8QD+NcUv3M94voI6GHo/kUsc
-          /B1ELih6FU4u5Zt13OCXdlUA/1UM+Ukrsh5/WHxvxZA0ryKpRc4430N6ibJRbRRZ
-          DGUCtCFMdWthcyBXZWJlciA8bHVrYXNAc2FrdWwtZmxlZS5kZT6ImQQTFgoAQRYh
-          BAqWyapy2wGd4XHn938MavH1ap4FBQJmzPxgAhsjBQkFpEINBQsJCAcCAiICBhUK
-          CQgLAgQWAgMBAh4HAheAAAoJEH8MavH1ap4FVbMBAKWtku8KbnVcPbCEL4XmI3Rs
-          0ZoYW8TRA2IDJV4vrIxzAQDYGc+YoHu3zo0ATFrmVChe2b9ct/WP327CoNQ3MtOD
-          ArQjTHVrYXMgV2ViZXIgPGwud2ViZXJAc2FrdWwtZmxlZS5kZT6ImQQTFgoAQRYh
-          BAqWyapy2wGd4XHn938MavH1ap4FBQJmzPxlAhsjBQkFpEINBQsJCAcCAiICBhUK
-          CQgLAgQWAgMBAh4HAheAAAoJEH8MavH1ap4FMQcBAKzv1lyr7Dzy3kRIFhNM3LV0
-          /Op+BVU22aDM+acfN78DAQDUjtTb+4upAwqfs7BNkKkyV89nSamuRWhAzXTkF+ZA
-          DbQfTHVrYXMgV2ViZXIgPGRldkBzYWt1bC1mbGVlLmRlPoiZBBMWCgBBFiEECpbJ
-          qnLbAZ3hcef3fwxq8fVqngUFAmbM/GsCGyMFCQWkQg0FCwkIBwICIgIGFQoJCAsC
-          BBYCAwECHgcCF4AACgkQfwxq8fVqngWCdQEA7yir7zbLlv+ownwBHUXtvVjgGQ1j
-          T/eEtVou7PG44HwA/1AFUb5JA7osg8KuKS5O7DSyugtryeQCM0wL2Yq0dZEGtCFM
-          dWthcyBXZWJlciA8c2FrdWxmbGVlQGdtYWlsLmNvbT6ImQQTFgoAQRYhBAqWyapy
-          2wGd4XHn938MavH1ap4FBQJmzPyOAhsjBQkFpEINBQsJCAcCAiICBhUKCQgLAgQW
-          AgMBAh4HAheAAAoJEH8MavH1ap4FXFgBAODOArsjsch4IEDBJShKb9VLEdaE1ISY
-          PY86LJFHdRbkAQD9kuG0IaTolnYXVv/tOyaComeHJEf9pTusVIwtJtSeCLg4BGbM
-          /BMSCisGAQQBl1UBBQEBB0B+NnSj8RWynC5Do1trjpg8px0fNh7/yCQIABaHd9Ya
-          PQMBCAeIfgQYFgoAJhYhBAqWyapy2wGd4XHn938MavH1ap4FBQJmzPwTAhsMBQkF
-          pEINAAoJEH8MavH1ap4FCKEBAJfexZoNFJ6HpTBv3rR1EmSgT8H8OwAi1R4KUBCz
-          8QaPAQCxdFkx5kTnJvEtGrM/1cmNQQoNta1X/U5M9EUIuw0QDg==
-          =YJUl
+          mDMEamPxpBYJKwYBBAHaRw8BAQdAKHOdpStUm9nE/5oA1fNDsOqlkjusm/AS9KmE
+          27H0xD20I0x1a2FzIFdlYmVyIDxsLndlYmVyQHNha3VsLWZsZWUuZGU+iJYEExYK
+          AD4WIQSThCYW2eLvm0EHjrgzzEYP8Yzf/AUCamPyOAIbAwUJBaOaxgULCQgHAgYV
+          CgkICwIEFgIDAQIeAQIXgAAKCRAzzEYP8Yzf/J3LAQDFe18AjMvJyz690xN7bmjZ
+          QPmYKQQyoQUim1NQhrJMAQEAj7BbzAndsXenVAEwGVWvbqpCJrv3tfV+zibU53TQ
+          vwK0Ikx1a2FzIFdlYmVyIDxsd2ViZXJAc2FrdWwtZmxlZS5kZT6IlgQTFgoAPgIb
+          AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBJOEJhbZ4u+bQQeOuDPMRg/xjN/8
+          BQJqY/HqBQkFo5rGAAoJEDPMRg/xjN/8z70A/2DABAfINdo+pD82Rt+ng4yLoYtz
+          7VfmSYYyZK5hxnbuAP9aNPHJAujxvmdSRQu/6sZSIVkKLSo/liB1rJLRvTqPALQe
+          THVrYXMgV2ViZXIgPG1lQHNha3VsLWZsZWUuZGU+iJYEExYKAD4WIQSThCYW2eLv
+          m0EHjrgzzEYP8Yzf/AUCamPyJwIbAwUJBaOaxgULCQgHAgYVCgkICwIEFgIDAQIe
+          AQIXgAAKCRAzzEYP8Yzf/CESAP9qZ13mDlItRGWIKu0r+skeoWqwU1x6oXL/zevg
+          edaeAQEA1QwsD9NaYynSezME62EvbzyrTwiI5g3uuEPAC1bKYgO0H0x1a2FzIFdl
+          YmVyIDxkZXZAc2FrdWwtZmxlZS5kZT6IlgQTFgoAPhYhBJOEJhbZ4u+bQQeOuDPM
+          Rg/xjN/8BQJqY/IvAhsDBQkFo5rGBQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAAAoJ
+          EDPMRg/xjN/8pk0BANRUkUtXTSWUzE6GNOMRhqNGHWtfc7AsOKHf2a7eD23kAP9U
+          TTIDT/uurkxwqd+y/LduTnZZmUADz+8j0pewR8hVA7g4BGpj8aQSCisGAQQBl1UB
+          BQEBB0AzU0g7LD64OqrgAZ7bTICubATFGRdkcHpqW6v/o0s2BAMBCAeIfgQYFgoA
+          JhYhBJOEJhbZ4u+bQQeOuDPMRg/xjN/8BQJqY/GkAhsMBQkB4TOAAAoJEDPMRg/x
+          jN/8lnoA/A2QrkdGxNCgEP/yWIaxMmljM4S26AP2trJhvTVWVBKAAP4mbRIfSgvq
+          TXcQRMh+R1k713yqYzjlYwwYk25lFMIHDrg4BGrL/wsSCisGAQQBl1UBBQEBB0Cf
+          FOajPs+vTbtEstEELkY14X7QtsMvs3mEJnnL8DQHGwMBCAeIeAQYFgoAIBYhBJOE
+          JhbZ4u+bQQeOuDPMRg/xjN/8BQJqy/8LAhsMAAoJEDPMRg/xjN/84ggBAI+RSNZi
+          s7huzoGJL5ivYzew3KmLX0F6PbAzPqeIw243AQCWsP/aDSs7IiIV82hMCFlHGXW+
+          pxgrXwbJEqA+CwxxCA==
+          =sPTo
           -----END PGP PUBLIC KEY BLOCK-----
         '';
         trust = 5;
@@ -75,7 +75,7 @@
   # Import GPG key on every activation (idempotent — skips if already present)
   home.activation.importGpgKey = lib.mkAfter ''
     if [ -f "${config.sops.secrets."gpg_private_key".path}" ]; then
-      if ! ${pkgs.gnupg}/bin/gpg --list-secret-keys 0A96C9AA72DB019DE171E7F77F0C6AF1F56A9E05 >/dev/null 2>&1; then
+      if ! ${pkgs.gnupg}/bin/gpg --list-secret-keys 93842616D9E2EF9B41078EB833CC460FF18CDFFC >/dev/null 2>&1; then
         echo "Importing private GPG key safely..."
         ${pkgs.gnupg}/bin/gpg --batch --import ${config.sops.secrets."gpg_private_key".path}
       fi
