@@ -16,6 +16,8 @@
     (import ../../modules/services/hermes-agent.nix {
       users = [ "sakulflee" ];
     })
+
+    ../../modules/services/openvpn.nix
   ];
   # Hostname
   networking.hostName = "Dendra";

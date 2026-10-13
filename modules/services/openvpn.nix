@@ -1,25 +1,24 @@
-{ config, lib, pkgs, ... }:
-
-let
-  # Load secrets from SOPS
-  vpn_secrets = sops.secrets {
-    path = ../../secrets.yaml;
+{ config, ... }: {
+  sops.secrets = {
+    "openvpn_pia_username" = {
+      key = "openvpn/pia/username";
+    };
+    "openvpn_pia_password" = {
+      key = "openvpn/pia/password";
+    };
   };
 
-  # OpenVPN Credentials (shared across all hosts)
-  vpn_public_creds = vpn_secrets.openvpn.pia;
-in
-{
-  # OpenVPN Configuration
-  systemd.services.openvpn-client = {
-    description = "OpenVPN Client";
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = {
-      Environment = "OPENVPN_USER=${vpn_public_creds.username}"
-      Environment = "OPENVPN_PASS=${vpn_public_creds.password}"
-      ExecStart = "${pkgs.openvpn}/bin/openvpn --config /etc/openvpn/client/pia.conf"
-      Restart = "on-failure"
-      RestartSec = 5
-    };
+  sops.templates."pia-auth" = {
+    content = ''
+      ${config.sops.placeholder."openvpn_pia_username"}
+      ${config.sops.placeholder."openvpn_pia_password"}
+    '';
+  };
+
+  services.openvpn.servers.pia = {
+    autoStart = false;
+    updateResolvConf = true;
+    authUserPass = config.sops.templates."pia-auth".path;
+    config = builtins.readFile ./openvpn-pia.conf;
   };
 }
