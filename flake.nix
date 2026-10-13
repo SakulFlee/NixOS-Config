@@ -69,35 +69,11 @@
       };
     in {
       nixosConfigurations = {
-      Evil-Donkey = nixpkgs.lib.nixosSystem {
+      Dendra = nixpkgs.lib.nixosSystem {
         specialArgs = sharedArgs;
         modules = [
           { nixpkgs.hostPlatform = system; }
-          ./hosts/evil-donkey/configuration.nix 
-        ];
-      };
-
-      Cindry = nixpkgs.lib.nixosSystem {
-        specialArgs = sharedArgs;
-        modules = [
-          { nixpkgs.hostPlatform = system; }
-          ./hosts/cindry/configuration.nix 
-        ];
-      };
-
-      SteamDeck = nixpkgs.lib.nixosSystem {
-        specialArgs = sharedArgs;
-        modules = [
-          { nixpkgs.hostPlatform = system; }
-          ./hosts/steamdeck/configuration.nix 
-        ];
-      };
-
-      HomeLab = nixpkgs.lib.nixosSystem {
-        specialArgs = sharedArgs;
-        modules = [
-          { nixpkgs.hostPlatform = system; }
-          ./hosts/homelab/configuration.nix 
+          ./hosts/Dendra/configuration.nix 
         ];
       };
     };
