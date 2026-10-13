@@ -14,11 +14,24 @@
           id = "WQULGP6-QFZWHOS-CNVGE7L-VYOUIRB-PRIIDUM-WIB4G3E-3RHXMA5-MLUA3AA";
         };
       };
-      # folders = {
-      #   "/mnt/ssd/Personal/" = {
-      #     id = ""
-      #   };
-      # };
+      folders = {
+        "/mnt/ssd/Personal/" = {
+          id = "personal";
+          devices = [ "HomeLab" ];
+        };       
+        "/mnt/ssd/Replicated: hytale-backups/" = {
+          id = "replicated-hytale-backups";
+          devices = [ "HomeLab" ];
+        };       
+        "/mnt/ssd/Replicated: minecraft-backups/" = {
+          id = "replicated-minecraft-backups";
+          devices = [ "HomeLab" ];
+        };       
+        "/mnt/ssd/Replicated: paperless-media/" = {
+          id = "replicated-paperless-media";
+          devices = [ "HomeLab" ];
+        };
+      };
     };
   };
 
