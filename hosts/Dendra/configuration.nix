@@ -18,6 +18,7 @@
     })
 
     ../../modules/services/openvpn.nix
+    ../../modules/packages/dev/neovim.nix
   ];
   # Hostname
   networking.hostName = "Dendra";
