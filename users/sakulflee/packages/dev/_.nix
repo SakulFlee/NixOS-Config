@@ -3,6 +3,8 @@
     ./vscodium.nix
     ./android.nix
     ./jetbrains.nix
+    ./lazygit.nix
+    ./zed.nix
   ];
 
   home.packages = with pkgs; [
@@ -12,7 +14,5 @@
     kitty
 
     jetbrains.jdk
-
-    vscode-runner # Open VSCode workspaces from KDE 
   ];
 }
