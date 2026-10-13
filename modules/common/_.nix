@@ -26,6 +26,7 @@
     ./dbus.nix
     ./avahi.nix
     ./flatpak.nix
+    ./incus-client.nix
     ./ollama.nix
     ./kde-plasma.nix
     ./sddm.nix

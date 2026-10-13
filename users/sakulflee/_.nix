@@ -38,6 +38,7 @@
         ./ssh.nix
         ./git.nix
         ./gpg.nix
+        ./incus.nix
         ./zsh.nix
       ] ++ (if config.custom.installPackages then [ 
         ./packages/_.nix
