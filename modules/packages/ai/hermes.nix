@@ -5,17 +5,15 @@
 
   services.hermes-agent = {
     enable = true;
-    addToSystemPackages = true;
+    gateway.enable = true;
+    backend.mode = "dashboard"; # + the browser dashboard on 127.0.0.1:9119
+    backend.port = 9119;
 
-    desktop.enable = true;
+    addToSystemPackages = true;
 
     container = {
       enable = true;
       hostUsers = users;
     };
-
-    # settings.model.default = "anthropic/claude-sonnet-4";
-    # environmentFiles = [ config.sops.secrets."hermes-env".path ];
-
   };
 }
