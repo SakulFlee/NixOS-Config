@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  programs.gpg.enable = true;
+  programs.gnupg.enable = true;
   environment.systemPackages = with pkgs; [
     gnupg
   ];
