@@ -1,6 +1,6 @@
 { ... }: {
   imports = [
-    libreoffice.nix
-    onlyoffice.nix
+    ./libreoffice.nix
+    ./onlyoffice.nix
   ];
 }

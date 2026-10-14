@@ -1,6 +1,6 @@
 { ... }: {
   imports = [
-    signal.nix
-    discord.nix
+    ./signal.nix
+    ./discord.nix
   ];
 }

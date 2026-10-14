@@ -1,6 +1,6 @@
 { ... }: {
   imports = [
-    blender.nix
-    krita.nix
+    ./blender.nix
+    ./krita.nix
   ];
 }

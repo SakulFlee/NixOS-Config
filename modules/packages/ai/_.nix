@@ -1,10 +1,10 @@
 { users }: { ... }: {
   imports = [
-    (import hermes.nix {
+    (import ./hermes.nix {
       users = users;
     })
 
-    llama-cpp.nix
-    opencode.nix
+    ./llama-cpp.nix
+    ./opencode.nix
   ];
 }

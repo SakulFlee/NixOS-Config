@@ -1,5 +1,5 @@
 { ... }: {
   imports = [
-    filelight.nix
+    ./filelight.nix
   ];
 }

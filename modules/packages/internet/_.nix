@@ -1,6 +1,6 @@
 { ... }: {
   imports = [
-    brave.nix
-    thunderbird.nix
+    ./brave.nix
+    ./thunderbird.nix
   ];
 }
