@@ -20,7 +20,6 @@
     #    ./wireguard.nix
     ./wheel.nix
     ./llama-swap.nix
-    ./sunshine.nix
     ./dbus.nix
     ./avahi.nix
     ./flatpak.nix
