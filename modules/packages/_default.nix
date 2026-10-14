@@ -11,6 +11,7 @@
     # AI
     ai/llama-cpp.nix
     ai/opencode.nix
+    ai/hermes.nix
 
     # Creative
     creative/blender.nix

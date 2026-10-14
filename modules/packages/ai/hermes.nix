@@ -7,6 +7,8 @@
     enable = true;
     addToSystemPackages = true;
 
+    desktop.enable = true;
+
     container = {
       enable = true;
       hostUsers = users;
