@@ -10,4 +10,8 @@
       };
     };
   };
+
+  sops.secrets."ssh_private_key" = {
+    path = "${config.home.homeDirectory}/.ssh/id_ed25519";
+  };
 }
