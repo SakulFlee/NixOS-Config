@@ -1,4 +1,4 @@
-{ ... }:  {
+{ ... }: {
   imports = [
     # Dev
     dev/zed.nix
