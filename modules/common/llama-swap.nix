@@ -22,6 +22,7 @@ in
             --host 127.0.0.1 \
             --port ''${PORT} \
             -fa on \
+            -np 1 \
             -c 64000
         '';
         "with_fit" = ''
