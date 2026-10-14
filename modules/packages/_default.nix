@@ -1,5 +1,5 @@
 { ... }:  {
-  imports [
+  imports = [
     # Dev
     dev/zed.nix
     dev/lazygit.nix
