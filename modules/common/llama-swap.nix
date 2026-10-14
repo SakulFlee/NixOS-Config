@@ -22,13 +22,13 @@ in
             --host 127.0.0.1 \
             --port ''${PORT} \
             -fa on \
-            -c 65536
+            -c 64000
         '';
         "with_fit" = ''
           -fit on
         '';
         "with_mtp" = ''
-          --spec-type draft-mtp 
+          --spec-type draft-mtp \
         '';
       };
       models = {
@@ -46,7 +46,7 @@ in
             ''${with_fit} \
               --spec-draft-n-max 6 \
               -np 1 \
-              -hf unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-Q4_K_XL 
+              -hf unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-Q4_K_XL \
           '';
         };
         "[unsloth] Qwen3.6 35B-A3B @Q4_K_XL [MTP]" = {
@@ -56,7 +56,7 @@ in
             ''${with_fit} \
               --spec-draft-n-max 2 \
               -np 1 \
-              -hf unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-Q4_K_XL 
+              -hf unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-Q4_K_XL \
           '';
         };
         "[unsloth] Gemma4 26B-A4B @Q4_K_XL [QAT] [MTP]" = {
@@ -65,7 +65,7 @@ in
             ''${with_mtp} \
             ''${with_fit} \
               --spec-draft-n-max 4 \
-              -hf unsloth/gemma-4-26B-A4B-it-qat-GGUF:UD-Q4_K_XL 
+              -hf unsloth/gemma-4-26B-A4B-it-qat-GGUF:UD-Q4_K_XL \
           '';
         };
         "Qwythos 9 @Q4_K_M [MTP]" = {
@@ -92,6 +92,34 @@ in
             ''${with_fit} \
               -hf unsloth/gemma-4-12B-it-qat-GGUF:UD-Q4_K_XL
           '';
+        };
+        "Ternary Bonsai 2 27B" = {
+          cmd = ''
+            ''${default} \
+            ''${with_fit} \
+              -hf prism-ml/Ternary-Bonsai-2-27B-gguf
+          '';
+        };
+        "limite-1b-violetto" = {
+          cmd = ''
+            ''${default} \
+            ''${with_fit} \
+              -hf Tdamre/limite-1b-violetto-GGUF-LiteRT
+          '';
+        };
+        "ConwayResearch/Underdog-Saluki-27B-1.0" = {
+            cmd = ''
+              ''${default} \
+              ''${with_fit} \
+              -hf ConwayResearch/Underdog-Saluki-27B-1.0
+            '';
+        };
+        "ggml-org/MiMo-V2.6-Distill-Qwen-9B-GGUF" = {
+            cmd = ''
+              ''${default} \
+              ''${with_fit} \
+              -hf ggml-org/MiMo-V2.6-Distill-Qwen-9B-GGUF
+            '';
         };
       };
     };
