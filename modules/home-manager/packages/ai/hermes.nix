@@ -1,4 +1,4 @@
-{ ... }: {
+{ config, ... }: {
   programs.hermes-agent = {
     enable = true;
     desktop.enable = true;
