@@ -8,6 +8,5 @@
     ./nixfmt.nix
     ./clang.nix
     ./gcc.nix
-    ./make.nix
   ];
 }
