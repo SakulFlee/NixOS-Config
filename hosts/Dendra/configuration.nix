@@ -7,10 +7,7 @@
     #    ../../modules/common/optionals/openrgb.nix
     #    ../../modules/common/optionals/vbox.nix
     
-    (import ../../modules/packages/_.nix {
-      users = [ "sakulflee" ];
-    })
-
+    ../../modules/packages/_.nix
 
     (import ../../modules/services/wireguard.nix {
       address = [ "100.64.0.2/32" ];

@@ -1,9 +1,5 @@
-{ users }: { ... }: {
+{ ... }: {
   imports = [
-    (import ai/_.nix {
-      users = users;
-    })
-
     dev/_.nix
     creative/_.nix
     files/_.nix
