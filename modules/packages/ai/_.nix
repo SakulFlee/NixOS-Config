@@ -4,7 +4,7 @@
       users = users;
     })
 
-    ai/llama-cpp.nix
-    ai/opencode.nix
+    llama-cpp.nix
+    opencode.nix
   ];
 }

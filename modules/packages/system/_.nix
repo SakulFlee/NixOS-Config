@@ -1,6 +1,6 @@
 { ... }: {
   imports = [
-    system/android.nix
-    system/zsh.nix
+    android.nix
+    zsh.nix
   ];
 }

@@ -1,5 +1,5 @@
 { ... }: {
   imports = [
-    security/security.nix
+    security.nix
   ];
 }

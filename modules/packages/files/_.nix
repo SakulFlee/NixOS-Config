@@ -1,5 +1,5 @@
 { ... }: {
   imports = [
-    files/obsidian.nix
+    obsidian.nix
   ];
 }

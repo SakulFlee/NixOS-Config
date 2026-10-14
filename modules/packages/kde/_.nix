@@ -1,5 +1,5 @@
 { ... }: {
   imports = [
-    kde/filelight.nix
+    filelight.nix
   ];
 }
