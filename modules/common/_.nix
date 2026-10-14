@@ -33,5 +33,7 @@
     ./sdcard.nix
     ./auto-update.nix
     ./srv.nix
+    ./gvfs.nix
+    ./trash.nix
   ];
 }

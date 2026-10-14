@@ -6,5 +6,7 @@
     fd
     tree-sitter
     nodejs
+    # snacks explorer tries `trash` first when moving files to the trash
+    trash-cli
   ];
 }
