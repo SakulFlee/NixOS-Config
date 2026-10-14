@@ -13,12 +13,10 @@
     ./printing.nix
     ./sops.nix
     ./ssh.nix
-    ./steam.nix
     ./system-packages.nix
     ./system-state.nix
     ./wayland.nix
     ./zram.nix
-    ./zsh.nix
 #    ./wireguard.nix
     ./wheel.nix
     ./llama-swap.nix

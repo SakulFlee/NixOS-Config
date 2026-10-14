@@ -1,6 +1,5 @@
 { pkgs, ... }: {
   home.packages = with pkgs; [
-    obsidian
-    kdePackages.filelight
+    obs-studio
   ];
 }

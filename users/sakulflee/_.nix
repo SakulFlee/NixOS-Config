@@ -41,7 +41,6 @@
         ./incus.nix
         ./zsh.nix
       ] ++ (if config.custom.installPackages then [ 
-        ./packages/_.nix
         ./configs/_.nix
       ] else [ ]);
 
