@@ -6,6 +6,7 @@
     dev/neovim.nix
     dev/git.nix
     dev/gpg.nix
+    dev/nixfmt.nix
 
     # AI
     ai/llama-cpp.nix
