@@ -1,7 +1,10 @@
-{ ... }: {
+{ users }: { ... }: {
   imports = [
+    (import ai/_.nix {
+      users = users;
+    })
+
     dev/_.nix
-    ai/_.nix
     creative/_.nix
     files/_.nix
     kde/_.nix
