@@ -1,8 +1,8 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 {
   services.printing = {
     enable = true;
-    drivers = with pkgs; [ 
+    drivers = with pkgs; [
       # CANON printer drivers
       cnijfilter2
 
@@ -20,8 +20,8 @@
   };
 
   environment.systemPackages = with pkgs; [
-      # Scanning
-      kdePackages.skanpage
+    # Scanning
+    kdePackages.skanpage
   ];
 
   hardware.printers = {

@@ -1,6 +1,6 @@
 { ... }: {
   programs.plasma.desktop = {
-    widgets = [];
+    widgets = [ ];
 
     icons = {
       arrangement = "topToBottom";

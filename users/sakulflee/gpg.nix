@@ -1,18 +1,26 @@
-{ config, osConfig, pkgs, lib, inputs, ...}: {
+{
+  config,
+  osConfig,
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
+{
   imports = [
     inputs.sops-nix.homeManagerModules.sops
   ];
 
   sops = {
     # Take values from Nix* sops config
-    defaultSopsFile   = osConfig.sops.defaultSopsFile;
+    defaultSopsFile = osConfig.sops.defaultSopsFile;
     defaultSopsFormat = osConfig.sops.defaultSopsFormat;
 
     # Use user SSH key to bypass Home-Manager being unable to access host SSH keys
-    age.sshKeyPaths   = [ "/home/sakulflee/.ssh/id_ed25519" ];
+    age.sshKeyPaths = [ "/home/sakulflee/.ssh/id_ed25519" ];
 
     # Declare secret to expose here (onChange hook handles import into GPG keyring)
-    secrets."gpg_private_key" = {};
+    secrets."gpg_private_key" = { };
 
     # Tell SOPS where where to put GPG key
     gnupg.home = "${config.programs.gpg.homedir}";
@@ -68,8 +76,8 @@
     pinentry.package = pkgs.pinentry-qt; # KDE popup for password entry
 
     # Cache time-to-live settings (values are in seconds)
-    defaultCacheTtl = 14400;     # 4 hours (re-authenticates after 4 hours of inactivity)
-    maxCacheTtl = 172800;        # 48 hours (forces re-entry after 48 hours max)
+    defaultCacheTtl = 14400; # 4 hours (re-authenticates after 4 hours of inactivity)
+    maxCacheTtl = 172800; # 48 hours (forces re-entry after 48 hours max)
   };
 
   # Import GPG key on every activation (idempotent — skips if already present)

@@ -24,15 +24,15 @@
         "/mnt/ssd/Personal/" = {
           id = "personal";
           devices = [ "HomeLab  "Tablet" "Phone" ];
-        };       
+        };
         "/mnt/ssd/Replicated: hytale-backups/" = {
           id = "replicated-hytale-backups";
           devices = [ "HomeLab" ];
-        };       
+        };
         "/mnt/ssd/Replicated: minecraft-backups/" = {
           id = "replicated-minecraft-backups";
           devices = [ "HomeLab" ];
-        };       
+        };
         "/mnt/ssd/Replicated: paperless-media/" = {
           id = "replicated-paperless-media";
           devices = [ "HomeLab" ];

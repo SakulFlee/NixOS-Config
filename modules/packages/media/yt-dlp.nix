@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-    environment.systemPackages = with pkgs; [ 
-        yt-dlp
-    ];
+  environment.systemPackages = with pkgs; [
+    yt-dlp
+  ];
 }

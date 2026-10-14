@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-    environment.systemPackages = with pkgs; [ 
-        mpv
-    ];
+  environment.systemPackages = with pkgs; [
+    mpv
+  ];
 }

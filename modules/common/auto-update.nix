@@ -3,7 +3,8 @@
 let
   nixosRebuildBin = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
   gitBin = "${pkgs.git}/bin/git";
-in {
+in
+{
   security.sudo.extraRules = [
     {
       users = [ "sakulflee" ];
@@ -20,7 +21,13 @@ in {
     description = "Auto-update NixOS configuration from Git";
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
-    path = with pkgs; [ git nixos-rebuild openssh sudo libnotify ];
+    path = with pkgs; [
+      git
+      nixos-rebuild
+      openssh
+      sudo
+      libnotify
+    ];
 
     serviceConfig = {
       Type = "oneshot";

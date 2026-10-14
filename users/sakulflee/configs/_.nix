@@ -1,6 +1,6 @@
 { ... }: {
-    imports = [
-        ./opencode/_.nix
-        ./nvim/_.nix
-    ];
+  imports = [
+    ./opencode/_.nix
+    ./nvim/_.nix
+  ];
 }

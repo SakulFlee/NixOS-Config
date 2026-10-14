@@ -19,8 +19,14 @@
     enable = true;
     cache32Bit = true;
     defaultFonts = {
-      sansSerif = [ "Noto Sans CJK SC" "Noto Sans" ];
-      serif = [ "Noto Serif CJK SC" "Noto Serif" ];
+      sansSerif = [
+        "Noto Sans CJK SC"
+        "Noto Sans"
+      ];
+      serif = [
+        "Noto Serif CJK SC"
+        "Noto Serif"
+      ];
       monospace = [ "JetBrainsMono Nerd Font" ];
     };
   };

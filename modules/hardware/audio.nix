@@ -1,4 +1,4 @@
-{ pkgs, ...}:
+{ pkgs, ... }:
 {
   # Disable PulseAudio (outdated)
   services.pulseaudio.enable = false;

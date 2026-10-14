@@ -1,4 +1,10 @@
-{ pkgs, inputs, configs, lib, ... }: 
+{
+  pkgs,
+  inputs,
+  configs,
+  lib,
+  ...
+}:
 let
   llama-cpp = inputs.llama-cpp.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
     useVulkan = true;
@@ -25,7 +31,7 @@ in
           --spec-type draft-mtp 
         '';
       };
-      models = {        
+      models = {
         "Ornith1.0 9B @Q4_K_M" = {
           cmd = ''
             ''${default} \
@@ -104,7 +110,10 @@ in
     ProtectControlGroups = lib.mkForce false;
 
     # GPU access for Vulkan (AMD ROCm, etc.)
-    SupplementaryGroups = [ "render" "video" ];
+    SupplementaryGroups = [
+      "render"
+      "video"
+    ];
     PrivateDevices = lib.mkForce false;
   };
 }

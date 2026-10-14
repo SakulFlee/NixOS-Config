@@ -1,4 +1,10 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   options.custom.installPackages = lib.mkOption {
     type = lib.types.bool;
     default = true;
@@ -13,13 +19,13 @@
 
       isNormalUser = true;
 
-      extraGroups = [ 
+      extraGroups = [
         # To be able to use network manager (KDE Networking)
         "networkmanager"
         # Sudo privileges
         "wheel"
         # Access to GPU (also required by Sunshine)
-        "video" 
+        "video"
         "render"
         # Universal inputs (gamepads, touch, mouse, keyboard, etc.; Also required for Sunshine!)
         "uinput"
@@ -40,9 +46,15 @@
         ./gpg.nix
         ./incus.nix
         ./zsh.nix
-      ] ++ (if config.custom.installPackages then [ 
-        ./configs/_.nix
-      ] else [ ]);
+      ]
+      ++ (
+        if config.custom.installPackages then
+          [
+            ./configs/_.nix
+          ]
+        else
+          [ ]
+      );
 
       home.pointerCursor = {
         enable = true;

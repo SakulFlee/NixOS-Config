@@ -1,8 +1,11 @@
 { pkgs, ... }: {
   # Link autostart entries
-  xdg.configFile."autostart/sunshine.desktop".source = "${pkgs.sunshine}/share/applications/sunshine.desktop";
-  xdg.configFile."autostart/obsidian.desktop".source = "${pkgs.obsidian}/share/applications/obsidian.desktop";
-  xdg.configFile."autostart/keepassxc.desktop".source = "${pkgs.keepassxc}/share/applications/keepassxc.desktop";
+  xdg.configFile."autostart/sunshine.desktop".source =
+    "${pkgs.sunshine}/share/applications/sunshine.desktop";
+  xdg.configFile."autostart/obsidian.desktop".source =
+    "${pkgs.obsidian}/share/applications/obsidian.desktop";
+  xdg.configFile."autostart/keepassxc.desktop".source =
+    "${pkgs.keepassxc}/share/applications/keepassxc.desktop";
 
   xdg.configFile."autostart/steam.desktop".text = ''
     [Desktop Entry]
@@ -26,4 +29,3 @@
     Categories=Network;InstantMessaging;
   '';
 }
-

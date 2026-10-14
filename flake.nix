@@ -11,7 +11,7 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
+
     plasma-manager = {
       url = "github:pjones/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -50,22 +50,30 @@
     };
   };
 
-    outputs = { self, nixpkgs, home-manager, nix-flatpak, ... }@inputs: 
-    let    
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      nix-flatpak,
+      ...
+    }@inputs:
+    let
       system = "x86_64-linux";
 
       sharedArgs = {
         inherit inputs home-manager;
       };
-    in {
+    in
+    {
       nixosConfigurations = {
-      Dendra = nixpkgs.lib.nixosSystem {
-        specialArgs = sharedArgs;
-        modules = [
-          { nixpkgs.hostPlatform = system; }
-          ./hosts/Dendra/configuration.nix 
-        ];
+        Dendra = nixpkgs.lib.nixosSystem {
+          specialArgs = sharedArgs;
+          modules = [
+            { nixpkgs.hostPlatform = system; }
+            ./hosts/Dendra/configuration.nix
+          ];
+        };
       };
     };
-  };
 }

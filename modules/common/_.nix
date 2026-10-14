@@ -2,13 +2,13 @@
   imports = [
     ./gc.nix
     ./boot-loader.nix
-    ./experimental-features.nix 
+    ./experimental-features.nix
     ./fonts.nix
     ./gpg.nix
     ./home-manager.nix
     ./kernel.nix
     ./locale.nix
-#    ./mount-nas.nix
+    #    ./mount-nas.nix
     ./nixpkgs-unfree.nix
     ./printing.nix
     ./sops.nix
@@ -17,7 +17,7 @@
     ./system-state.nix
     ./wayland.nix
     ./zram.nix
-#    ./wireguard.nix
+    #    ./wireguard.nix
     ./wheel.nix
     ./llama-swap.nix
     ./sunshine.nix

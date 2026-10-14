@@ -1,4 +1,10 @@
-{ pkgs, config, lib, ... }: {
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
+{
   # 1. TTY / Console — rotate framebuffer 180°
   boot.kernelParams = [ "fbcon=rotate:2" ];
 

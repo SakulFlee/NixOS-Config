@@ -1,4 +1,11 @@
-{ inputs, pkgs, lib, config, ... }: {
+{
+  inputs,
+  pkgs,
+  lib,
+  config,
+  ...
+}:
+{
   imports = [
     inputs.plasma-manager.homeModules.plasma-manager
     ./ktrashrc.nix

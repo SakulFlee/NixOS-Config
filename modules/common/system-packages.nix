@@ -4,7 +4,7 @@
     htop
     btop
     nvtopPackages.full
-    
+
     # Display Server
     xauth
 

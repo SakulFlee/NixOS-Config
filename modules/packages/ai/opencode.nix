@@ -1,6 +1,6 @@
 { pkgs, ... }: {
-    environment.systemPackages = with pkgs; [ 
-        opencode
-        opencode-desktop
-    ];
+  environment.systemPackages = with pkgs; [
+    opencode
+    opencode-desktop
+  ];
 }

@@ -19,6 +19,7 @@ let
     systemctl "$CMD" "$SERVICE" &
     journalctl -u "$SERVICE" -f
   '';
-in {
+in
+{
   environment.systemPackages = [ srv ];
 }

@@ -6,5 +6,4 @@
     android-file-transfer
   ];
 
-
 }

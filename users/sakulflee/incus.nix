@@ -1,4 +1,10 @@
-{ config, lib, pkgs, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
   sops.secrets = {
     "incus_client_crt" = { };
     "incus_client_key" = { };
@@ -50,6 +56,8 @@
     ${pkgs.coreutils}/bin/install -d -m 0700 "$incusDir/servercerts"
     incus_install_secret "${config.sops.secrets."incus_client_crt".path}" "$incusDir/client.crt" 0600
     incus_install_secret "${config.sops.secrets."incus_client_key".path}" "$incusDir/client.key" 0600
-    incus_install_secret "${config.sops.secrets."incus_server_crt".path}" "$incusDir/servercerts/sakul-flee.crt" 0644
+    incus_install_secret "${
+      config.sops.secrets."incus_server_crt".path
+    }" "$incusDir/servercerts/sakul-flee.crt" 0644
   '';
 }

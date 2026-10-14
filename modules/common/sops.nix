@@ -1,4 +1,10 @@
-{ config, pkgs, inputs, ... }: {
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
+{
   # Enable sops-nix module
   imports = [
     inputs.sops-nix.nixosModules.sops

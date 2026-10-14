@@ -15,8 +15,7 @@
         };
       };
 
-      wayland.compositorCommand =
-        "${pkgs.coreutils}/bin/env XKB_DEFAULT_LAYOUT=de ${lib.getBin pkgs.kdePackages.kwin}/bin/kwin_wayland --no-global-shortcuts --no-kactivities --no-lockscreen --locale1";
+      wayland.compositorCommand = "${pkgs.coreutils}/bin/env XKB_DEFAULT_LAYOUT=de ${lib.getBin pkgs.kdePackages.kwin}/bin/kwin_wayland --no-global-shortcuts --no-kactivities --no-lockscreen --locale1";
     };
 
     # mkDefault so hosts (e.g. SteamDeck via Jovian) can override

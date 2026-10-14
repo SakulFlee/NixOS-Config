@@ -3,7 +3,7 @@
     ./auto-update.nix
     ./gc.nix
     ./boot-loader.nix
-    ./experimental-features.nix 
+    ./experimental-features.nix
     ./fonts.nix
     ./gpg.nix
     ./locale.nix
