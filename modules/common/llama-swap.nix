@@ -38,6 +38,9 @@ in
             ''${with_fit} \
               -hf deepreinforce-ai/Ornith-1.0-9B-GGUF:Q4_K_M
           '';
+          compabilities = {
+            context = 64000;
+          };
         };
         "[unsloth] Qwen3.5 9B @Q4_K_XL [MTP]" = {
           cmd = ''
@@ -48,6 +51,9 @@ in
               -np 1 \
               -hf unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-Q4_K_XL \
           '';
+          compabilities = {
+            context = 64000;
+          };
         };
         "[unsloth] Qwen3.6 35B-A3B @Q4_K_XL [MTP]" = {
           cmd = ''
@@ -58,6 +64,9 @@ in
               -np 1 \
               -hf unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-Q4_K_XL \
           '';
+          compabilities = {
+            context = 64000;
+          };
         };
         "[unsloth] Gemma4 26B-A4B @Q4_K_XL [QAT] [MTP]" = {
           cmd = ''
@@ -67,6 +76,9 @@ in
               --spec-draft-n-max 4 \
               -hf unsloth/gemma-4-26B-A4B-it-qat-GGUF:UD-Q4_K_XL \
           '';
+          compabilities = {
+            context = 64000;
+          };
         };
         "Qwythos 9 @Q4_K_M [MTP]" = {
           cmd = ''
@@ -76,6 +88,9 @@ in
               -hf empero-ai/Qwythos-9B-Claude-Mythos-5-1M-GGUF:Q4_K_M \
               -m Qwythos-9B-Claude-Mythos-5-1M-MTP-Q4_K_M.gguf
           '';
+          compabilities = {
+            context = 64000;
+          };
         };
         "[unsloth] Gemma4 E4B @UD-Q4_K_XL [QAT] [MTP]" = {
           cmd = ''
@@ -84,6 +99,9 @@ in
             ''${with_fit} \
               -hf unsloth/gemma-4-E4B-it-qat-GGUF:UD-Q4_K_XL
           '';
+          compabilities = {
+            context = 64000;
+          };
         };
         "[unsloth] Gemma4 12B @UD-Q4_K_XL [QAT] [MTP]" = {
           cmd = ''
@@ -92,6 +110,9 @@ in
             ''${with_fit} \
               -hf unsloth/gemma-4-12B-it-qat-GGUF:UD-Q4_K_XL
           '';
+          compabilities = {
+            context = 64000;
+          };
         };
         "Ternary Bonsai 2 27B" = {
           cmd = ''
@@ -99,6 +120,9 @@ in
             ''${with_fit} \
               -hf prism-ml/Ternary-Bonsai-2-27B-gguf
           '';
+          compabilities = {
+            context = 64000;
+          };
         };
         "limite-1b-violetto" = {
           cmd = ''
@@ -106,6 +130,9 @@ in
             ''${with_fit} \
               -hf Tdamre/limite-1b-violetto-GGUF-LiteRT
           '';
+          compabilities = {
+            context = 64000;
+          };
         };
         "ConwayResearch/Underdog-Saluki-27B-1.0" = {
             cmd = ''
@@ -113,6 +140,9 @@ in
               ''${with_fit} \
               -hf ConwayResearch/Underdog-Saluki-27B-1.0
             '';
+          compabilities = {
+            context = 64000;
+          };
         };
         "ggml-org/MiMo-V2.6-Distill-Qwen-9B-GGUF" = {
             cmd = ''
@@ -120,6 +150,9 @@ in
               ''${with_fit} \
               -hf ggml-org/MiMo-V2.6-Distill-Qwen-9B-GGUF
             '';
+          compabilities = {
+            context = 64000;
+          };
         };
       };
     };
