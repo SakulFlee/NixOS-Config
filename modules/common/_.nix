@@ -4,7 +4,6 @@
     ./boot-loader.nix
     ./experimental-features.nix
     ./fonts.nix
-    ./gpg.nix
     ./home-manager.nix
     ./kernel.nix
     ./locale.nix
