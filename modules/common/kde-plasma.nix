@@ -8,6 +8,15 @@
   # KDE & SDDM
   services.desktopManager.plasma6.enable = true;
 
+  # Don't ship KDE PIM (KMail, Kontact, Merkuro, Akonadi)
+  programs.kde-pim.enable = false;
+
+  # Kitty instead of Konsole, own editors instead of Kate
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    konsole
+    kate
+  ];
+
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [ kdePackages.xdg-desktop-portal-kde ];
