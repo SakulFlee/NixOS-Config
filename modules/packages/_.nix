@@ -3,7 +3,6 @@
     dev/_.nix
     creative/_.nix
     files/_.nix
-    kde/_.nix
     games/_.nix
     internet/_.nix
     media/_.nix
