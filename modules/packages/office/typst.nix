@@ -3,6 +3,6 @@
     typst
     typstyle
     typst-live
-    tapstwriter
+    typstwriter
   ];
 }
