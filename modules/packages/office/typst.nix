@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     typst
-    typststyle
+    typstyle
     typst-live
     tapstwriter
   ];
