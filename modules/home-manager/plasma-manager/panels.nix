@@ -39,7 +39,7 @@
                 "preferred://filemanager"
                 "preferred://browser"
                 "applications:discord.desktop"
-                "applications:obsidian.desktop"
+                "applications:md.obsidian.Obsidian.desktop"
                 "applications:thunderbird.desktop"
                 "applications:kitty.desktop"
               ];
