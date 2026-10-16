@@ -16,14 +16,12 @@
     defaultSopsFile = osConfig.sops.defaultSopsFile;
     defaultSopsFormat = osConfig.sops.defaultSopsFormat;
 
-    # Use user SSH key to bypass Home-Manager being unable to access host SSH keys
-    age.sshKeyPaths = [ "/home/sakulflee/.ssh/id_ed25519" ];
+    # Dedicated age decryptor (real file on disk, not a SOPS secret) so
+    # login-time decryption is unattended — no pinentry/GPG prompt.
+    age.sshKeyPaths = [ "/home/sakulflee/.ssh/sops_key" ];
 
     # Declare secret to expose here (onChange hook handles import into GPG keyring)
     secrets."gpg_private_key" = { };
-
-    # Tell SOPS where where to put GPG key
-    gnupg.home = "${config.programs.gpg.homedir}";
   };
 
   programs.gpg = {
