@@ -1,12 +1,12 @@
 creation_rules:
   - path_regex: secrets.yaml$
     key_groups:
-      - gpg:
-          - 93842616D9E2EF9B41078EB833CC460FF18CDFFC
-        age:
+      - age:
           # Dendra (Host)
           - age15v49lrtr6nm9pzuyfmwwv9ynk493m3n3zjsnkpe2lzg9305cp3yqwpjhz5
-          # Dendra (User SOPS)
+          # Dendra (User SOPS - login decryptor)
           - age1gdctyf4nkegctxjuuxc4pkj25lmu84v646m0j3psfa7dyxzt7vysyve02y
           # Dendra (User)
           - age1extqssdhtgu3ntpuvq5rkz8zfd20597de9g6y4uuxwf27ca7a3xqjvacrg
+          # Dendra (User CLI editing)
+          - age1gd3xyft4as27zlr5307rs53gddz3w5gklwl76kl4208uaswhd94sdkm6xa
