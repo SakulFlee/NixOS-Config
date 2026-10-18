@@ -9,6 +9,7 @@
   imports = [
     inputs.plasma-manager.homeModules.plasma-manager
     ./ktrashrc.nix
+    ./defaultapps.nix
     ./workspace.nix
     ./desktop.nix
     ./panels.nix
