@@ -1,0 +1,123 @@
+name: Update flake.lock
+
+# Bumps flake.lock input-by-input. Each input must pass a full build of the
+# Dendra toplevel before it is kept; an input that fails the build is reverted
+# on its own, so a single broken input (e.g. llama-cpp, hermes-agent) does not
+# block nixpkgs and the rest. The committed lock is picked up automatically by
+# the host's `nixos-auto-update` timer (git merge --ff-only + nixos-rebuild).
+#
+# Runs on the `nix:host` label: a host-executor job inside the forgejo-runner
+# NixOS VM, which already has Nix and a persistent store for the VM's lifetime.
+
+on:
+  schedule:
+    # Daily at 03:23 Europe/Berlin (DST-aware; needs a Forgejo that supports
+    # the `timezone:` key -- drop it and use UTC otherwise).
+    - cron: '23 3 * * *'
+      timezone: Europe/Berlin
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+# Never overlap two lock bumps.
+concurrency:
+  group: flake-lock
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: nix
+    steps:
+      - name: Check out the repository
+        uses: https://data.forgejo.org/actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Update inputs one by one, gated on a full build
+        id: gate
+        run: |
+          set -uo pipefail
+
+          export NIX_CONFIG="experimental-features = nix-command flakes"
+          git config user.name  "forgejo-actions"
+          git config user.email "actions@forgejo.sakul-flee.de"
+
+          # Read the top-level input names straight from the lockfile -- no jq,
+          # no hand-maintained list. They live under .nodes.root.inputs: the
+          # lock's top-level "root" key is the *string* "root" (a node name),
+          # not the node itself, so `.root.inputs` throws "expected a set but
+          # found a string". nixpkgs first: its bump moves everything that
+          # `follows` it and is by far the largest delta.
+          inputs=$(nix eval --raw --impure --expr \
+            'builtins.concatStringsSep " " (builtins.attrNames (builtins.fromJSON (builtins.readFile ./flake.lock)).nodes.root.inputs)')
+          order="nixpkgs $(printf '%s\n' $inputs | grep -vx nixpkgs | tr '\n' ' ')"
+
+          cp flake.lock /tmp/flake.lock.keep
+
+          reverted=""
+          for i in $order; do
+            echo "::group::update $i"
+            if nix flake update "$i" \
+               && nix build --no-link ".#nixosConfigurations.Dendra.config.system.build.toplevel"; then
+              cp flake.lock /tmp/flake.lock.keep
+              echo "KEPT $i"
+            else
+              cp /tmp/flake.lock.keep flake.lock
+              reverted="$reverted $i"
+              echo "REVERTED $i"
+            fi
+            echo "::endgroup::"
+          done
+
+          # Defensive: the accepted set must build as a whole. Cheap when the
+          # store is warm -- only the last iteration's state is re-checked.
+          nix build --no-link ".#nixosConfigurations.Dendra.config.system.build.toplevel"
+
+          echo "reverted=$reverted" >> "$GITHUB_OUTPUT"
+
+      - name: Commit and push if the lock changed
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- flake.lock; then
+            echo "flake.lock unchanged -- nothing to do"
+            exit 0
+          fi
+          git add flake.lock
+          git commit -m "flake.lock: automated update ($(date -u +%F))"
+          git push origin HEAD:main
+
+      - name: Report reverted inputs as an issue
+        if: steps.gate.outputs.reverted != ''
+        env:
+          TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          API: ${{ forgejo.api_url }}
+          REPO: ${{ forgejo.repository }}
+        run: |
+          set -euo pipefail
+
+          title="flake.lock: input(s) reverted by the CI build gate"
+          body="The following inputs failed the full-build gate and were kept at their previous revision:
+
+          \`\`\`
+          ${{ steps.gate.outputs.reverted }}
+          \`\`\`
+
+          The remaining inputs were updated and pushed. See the latest run under **Actions**."
+
+          existing=$(curl -fsSL -H "Authorization: token $TOKEN" \
+            "$API/repos/$REPO/issues?state=open&type=issues" \
+            | jq -r --arg t "$title" '.[] | select(.title == $t) | .number' | head -n1 || true)
+
+          if [ -n "${existing:-}" ]; then
+            curl -fsSL -X POST -H "Authorization: token $TOKEN" -H "Content-Type: application/json" \
+              "$API/repos/$REPO/issues/$existing/comments" \
+              -d "$(jq -n --arg b "$body" '{body:$b}')" >/dev/null
+            echo "Commented on existing issue #$existing"
+          else
+            curl -fsSL -X POST -H "Authorization: token $TOKEN" -H "Content-Type: application/json" \
+              "$API/repos/$REPO/issues" \
+              -d "$(jq -n --arg t "$title" --arg b "$body" '{title:$t, body:$b}')" >/dev/null
+            echo "Opened a new issue"
+          fi
