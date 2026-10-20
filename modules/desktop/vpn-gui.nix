@@ -42,6 +42,9 @@ let
         exit 1
       fi
 
+      # A new launch counts as activity, so cancel any pending idle stop.
+      rm -f /run/pia-idle-since
+
       if [ ! -e /run/netns/pia ]; then
         systemctl start pia.service
       fi
