@@ -1,5 +1,6 @@
 { ... }: {
   imports = [
+    ai/strata.nix
     dev/_.nix
     creative/_.nix
     files/_.nix

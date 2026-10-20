@@ -29,6 +29,14 @@ let
     pname = "strata";
     inherit version src;
 
+    # The bundled Python looks for /etc/ssl/cert.pem or a hashed CA directory,
+    # neither of which exists here, so point it at the NixOS trust store.
+    extraBwrapArgs = [
+      "--setenv"
+      "SSL_CERT_FILE"
+      "/etc/ssl/certs/ca-certificates.crt"
+    ];
+
     extraInstallCommands = ''
       install -Dm644 ${desktopItem}/share/applications/strata.desktop \
         $out/share/applications/strata.desktop
