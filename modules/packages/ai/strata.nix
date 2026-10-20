@@ -1,11 +1,11 @@
 { pkgs, lib, ... }:
 let
-  version = "0.2.0-beta";
+  version = "0.2.1";
 
   # The AMD RX 9070 build supports Navi 48 (gfx1201) and Navi 44 / RX 9060 XT (gfx1200).
   src = pkgs.fetchurl {
     url = "https://github.com/Niko1221/Strata/releases/download/v${version}/Strata-${version}-linux-amd-rx9070.AppImage";
-    hash = "sha256-MpO+V3wfbeUgB4CGc5dWAVgKjp5dwwZGpJI5VpKmu3A=";
+    hash = "sha256-C8oqCZ9Qbh041C1x1Vxwnibzejx+J2ubXFPnkya/NPo=";
   };
 
   icon = pkgs.fetchurl {
