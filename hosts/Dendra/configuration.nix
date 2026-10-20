@@ -6,7 +6,7 @@
     ../../modules/common/_.nix
     #    ../../modules/common/optionals/openrgb.nix
     #    ../../modules/common/optionals/vbox.nix
-    
+
     ../../modules/packages/_.nix
 
     (import ../../modules/services/wireguard.nix {
@@ -17,7 +17,8 @@
       ];
     })
 
-    ../../modules/services/openvpn.nix
+    ../../modules/services/pia-wireguard.nix
+    ../../modules/desktop/vpn-gui.nix
   ];
   # Hostname
   networking.hostName = "Dendra";

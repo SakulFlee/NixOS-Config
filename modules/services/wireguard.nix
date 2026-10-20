@@ -21,7 +21,6 @@ in
   networking.wg-quick.interfaces.wg0 = {
     address = address;
     privateKeyFile = config.sops.secrets.${secretName}.path;
-    dns = [ "192.168.178.200" ];
     mtu = 1420;
     peers = [
       {
@@ -33,9 +32,11 @@ in
       }
     ];
     postUp = ''
+      # When we are on the home LAN, the directly-connected /24 route must win
+      # over the WireGuard route, otherwise all LAN hosts (including the
+      # HomeLab) get blackholed through the tunnel.
       if ip -4 addr show | grep -q 'inet 192\.168\.178\.'; then
         ip route del 192.168.178.0/24 dev wg0 2>/dev/null || true
-        ip route add 192.168.178.200/32 dev wg0 2>/dev/null || true
       fi
     '';
   };

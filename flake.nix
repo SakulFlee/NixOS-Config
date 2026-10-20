@@ -44,6 +44,10 @@
       url = "github:gmodena/nix-flatpak";
     };
 
+    vpn-confinement = {
+      url = "github:Maroka-chan/VPN-Confinement";
+    };
+
     sudo-tee-opencode-nvim = {
       url = "github:sudo-tee/opencode.nvim";
       flake = false;
@@ -56,6 +60,7 @@
       nixpkgs,
       home-manager,
       nix-flatpak,
+      vpn-confinement,
       ...
     }@inputs:
     let
@@ -71,6 +76,7 @@
           specialArgs = sharedArgs;
           modules = [
             { nixpkgs.hostPlatform = system; }
+            vpn-confinement.nixosModules.default
             ./hosts/Dendra/configuration.nix
           ];
         };
