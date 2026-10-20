@@ -27,11 +27,11 @@
   hardware.printers = {
     ensurePrinters = [
       {
-        name = "Canon_TR4500_series";
+        name = "ET-3960_Series";
         location = "Home";
 
-        deviceUri = "dnssd://Canon%20TR4500%20series%20(AIR)._ipp._tcp.local/";
-        model = "canontr4500.ppd";
+        deviceUri = "dnssd://EPSON%20ET-3950%20Series._ipp._tcp.local/?uuid=cfe92100-67c4-11d4-a45f-5805d90f2ee2";
+        model = "everywhere";
 
         ppdOptions = {
           media = "a4";
@@ -39,6 +39,6 @@
         };
       }
     ];
-    ensureDefaultPrinter = "Canon_TR4500_series";
+    ensureDefaultPrinter = "ET-3960_Series";
   };
 }
