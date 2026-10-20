@@ -37,7 +37,14 @@ in
       # HomeLab) get blackholed through the tunnel.
       if ip -4 addr show | grep -q 'inet 192\.168\.178\.'; then
         ip route del 192.168.178.0/24 dev wg0 2>/dev/null || true
+        # Keep the HomeLab host itself on the tunnel while leaving the rest of
+        # the LAN direct. This is more specific than the connected /24 route,
+        # so Caddy sees the VPN source address (100.64.0.x) for host vhosts.
+        ip route replace 192.168.178.200/32 dev wg0
       fi
+    '';
+    preDown = ''
+      ip route del 192.168.178.200/32 dev wg0 2>/dev/null || true
     '';
   };
 }
