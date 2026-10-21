@@ -15,6 +15,7 @@
     ./panels.nix
     ./shortcuts.nix
     ./cursor.nix
+    ./vaults.nix
   ];
 
   programs.plasma.enable = true;
@@ -23,6 +24,6 @@
   home.activation.cleanPlasmaCache = lib.mkBefore ''
     ${pkgs.coreutils}/bin/rm -rf \
       "${config.home.homeDirectory}/.cache/plasma*" \
-      "${config.home.homeDirectory}/.local/share/plasma*"
+      "${config.home.homeDirectory}/.local/share/plasma-manager"
   '';
 }

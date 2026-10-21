@@ -11,6 +11,10 @@
   # Don't ship KDE PIM (KMail, Kontact, Merkuro, Akonadi)
   programs.kde-pim.enable = false;
 
+  environment.systemPackages = with pkgs.kdePackages; [
+    plasma-vault
+  ];
+
   # Kitty instead of Konsole, own editors instead of Kate
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     konsole
