@@ -8,5 +8,6 @@
     ./nixfmt.nix
     ./clang.nix
     ./gcc.nix
+    ./docker.nix
   ];
 }
