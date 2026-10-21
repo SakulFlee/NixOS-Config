@@ -19,6 +19,11 @@
     browsed.enable = false;
   };
 
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+  };
+
   environment.systemPackages = with pkgs; [
     # Scanning
     kdePackages.skanpage
