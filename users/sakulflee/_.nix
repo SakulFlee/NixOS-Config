@@ -33,6 +33,8 @@
         "i2c"
         # Access to NAS media shares
         "media"
+        # Docker
+        "docker"
       ];
 
       shell = pkgs.zsh;
