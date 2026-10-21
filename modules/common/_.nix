@@ -16,7 +16,6 @@
     ./system-state.nix
     ./wayland.nix
     ./zram.nix
-    #    ./wireguard.nix
     ./wheel.nix
     ./llama-swap.nix
     ./dbus.nix
