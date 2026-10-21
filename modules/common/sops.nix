@@ -14,6 +14,9 @@
   sops.defaultSopsFile = ../../secrets.yaml;
   sops.defaultSopsFormat = "yaml";
 
+  # Credentials file for the NAS SMB mounts
+  sops.secrets.smb_credentials = { };
+
   # Sets the GPG key location for SOPS
   sops.gnupg = {
     home = "/home/sakulflee/.gnupg";

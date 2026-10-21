@@ -7,7 +7,7 @@
     ./home-manager.nix
     ./kernel.nix
     ./locale.nix
-    #    ./mount-nas.nix
+    ./mount-nas.nix
     ./nixpkgs-unfree.nix
     ./printing.nix
     ./sops.nix
