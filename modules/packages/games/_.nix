@@ -5,5 +5,6 @@
     ./minecraft.nix
     ./steam.nix
     ./faugus-launcher.nix
+    ./heroic.nix
   ];
 }
