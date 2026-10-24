@@ -17,6 +17,11 @@
   # Credentials file for the NAS SMB mounts
   sops.secrets.smb_credentials = { };
 
+  sops.secrets.opencode_server_password = {
+    owner = "sakulflee";
+    mode = "0400";
+  };
+
   # Sets the GPG key location for SOPS
   sops.gnupg = {
     home = "/home/sakulflee/.gnupg";
