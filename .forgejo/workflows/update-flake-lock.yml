@@ -6,8 +6,9 @@ name: Update flake.lock
 # block nixpkgs and the rest. The committed lock is picked up automatically by
 # the host's `nixos-auto-update` timer (git merge --ff-only + nixos-rebuild).
 #
-# Runs on the `nix:host` label: a host-executor job inside the forgejo-runner
-# NixOS VM, which already has Nix and a persistent store for the VM's lifetime.
+# Runs on the `nix-rebuild` label: the dedicated host runner on the HomeLab
+# host, which uses the host's own Nix store. The Incus runner VM deliberately
+# declares no Nix label, so this job never grows the VM's root disk.
 
 on:
   schedule:
@@ -29,7 +30,7 @@ concurrency:
 
 jobs:
   update:
-    runs-on: nix
+    runs-on: nix-rebuild
     steps:
       - name: Check out the repository
         uses: https://data.forgejo.org/actions/checkout@v6
