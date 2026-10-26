@@ -145,66 +145,30 @@ in
         "common" = ''
           --host 127.0.0.1 \
             --port ''${PORT} \
-            -fa on \
-            -fit on \
-            -c 64000
+            -c 64000 \
+            -ctk q8_0 \
+            -ctv q8_0
         '';
         # Stock llama.cpp from the flake input (supports --moe-cache-mib).
         "default" = "${llama-server}";
-        # --moe-cache-mib hard-errors on dense models ("MoE cache requires a
-        # MoE model"), so it must only be appended to MoE model cmds.
-        "moe" = "--moe-cache-mib 4096";
         # PrismML-Eng fork build, for GGUFs with fork-only features (e.g. the
         # ternary PTQ1_0 kernels of Ternary Bonsai 2). No --moe-cache-mib here.
         "bonsai_llama" = "${bonsai-llama-server}";
         # Upstream llama.cpp + Tdamre limite patch, for the limite-1b-violetto
         # GGUFs. No --moe-cache-mib here.
         "limite_llama" = "${limite-llama-server}";
-        "with_mtp" = "--spec-type draft-mtp";
-        "with_dspark" = "--spec-type draft-dspark";
       };
       models = {
-        "[unsloth] Qwen3.5 9B @UD-Q4_K_XL [MTP]" = {
-          cmd = ''
-            ''${default} ''${common} \
-              ''${with_mtp} \
-              --spec-draft-n-max 6 \
-              -hf unsloth/Qwen3.5-9B-MTP-GGUF:UD-Q4_K_XL
-          '';
-          capabilities.context = 64000;
-        };
-        "[unsloth] Qwen3.5 27B @UD-Q4_K_XL [MTP]" = {
-          cmd = ''
-            ''${default} ''${common} \
-              ''${with_mtp} \
-              --spec-draft-n-max 4 \
-              -hf unsloth/Qwen3.5-27B-MTP-GGUF:UD-Q4_K_XL
-          '';
-          capabilities.context = 64000;
-        };
-        "[unsloth] Qwen3.5 35B-A3B @UD-Q4_K_XL [MTP]" = {
-          cmd = ''
-            ''${default} ''${common} ''${moe} \
-              ''${with_mtp} \
-              --spec-draft-n-max 2 \
-              -hf unsloth/Qwen3.5-35B-A3B-MTP-GGUF:UD-Q4_K_XL
-          '';
-          capabilities.context = 64000;
-        };
         "[unsloth] Qwen3.6 35B-A3B @UD-Q4_K_XL [MTP]" = {
           cmd = ''
-            ''${default} ''${common} ''${moe} \
-              ''${with_mtp} \
-              --spec-draft-n-max 2 \
+            ''${default} ''${common} \
               -hf unsloth/Qwen3.6-35B-A3B-MTP-GGUF:UD-Q4_K_XL
           '';
           capabilities.context = 64000;
         };
         "[unsloth] Gemma4 26B-A4B @UD-Q4_K_XL [QAT] [MTP]" = {
           cmd = ''
-            ''${default} ''${common} ''${moe} \
-              ''${with_mtp} \
-              --spec-draft-n-max 4 \
+            ''${default} ''${common} \
               -hf unsloth/gemma-4-26B-A4B-it-qat-GGUF:UD-Q4_K_XL
           '';
           capabilities.context = 64000;
@@ -212,7 +176,6 @@ in
         "[unsloth] Gemma4 12B @UD-Q4_K_XL [QAT] [MTP]" = {
           cmd = ''
             ''${default} ''${common} \
-              ''${with_mtp} \
               -hf unsloth/gemma-4-12B-it-qat-GGUF:UD-Q4_K_XL
           '';
           capabilities.context = 64000;
@@ -226,21 +189,21 @@ in
         };
         "Ornith 1.5 35B-A3B @Q4_K_M" = {
           cmd = ''
-            ''${default} ''${common} ''${moe} \
+            ''${default} ''${common} \
               -hf ornith-ai/Ornith-1.5-35B-A3B-GGUF:Q4_K_M
           '';
           capabilities.context = 64000;
         };
         "LiquidAI/LFM2.5-24B-A2B @Q4_K_M" = {
           cmd = ''
-            ''${default} ''${common} ''${moe} \
+            ''${default} ''${common} \
               -hf LiquidAI/LFM2.5-24B-A2B-GGUF:Q4_K_M
           '';
           capabilities.context = 64000;
         };
         "[openbmb] MiniCPM-V 4.7 35B-A3B @Q4_K_M" = {
           cmd = ''
-            ''${default} ''${common} ''${moe} \
+            ''${default} ''${common} \
               -hf openbmb/MiniCPM-V-4.7-35B-A3B-gguf:Q4_K_M
           '';
           capabilities.context = 64000;
@@ -248,8 +211,6 @@ in
         "[openbmb] MiniCPM-V 4.7 1B @Q8_0" = {
           cmd = ''
             ''${default} ''${common} \
-              ''${with_dspark} \
-              --spec-draft-hf openbmb/MiniCPM-V-4.7-1B-DSpark-gguf:Q4_K_M \
               -hf openbmb/MiniCPM-V-4.7-1B-gguf:Q8_0
           '';
           capabilities.context = 64000;
