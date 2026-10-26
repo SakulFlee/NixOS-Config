@@ -52,11 +52,11 @@
 }:
 
 let
-  # Official prebuilt Linux tarballs, one per channel:
-  #   https://pkgs.fluxer.com/desktop/<channel>/linux/x64/<version>/tar_gz
+  # Official prebuilt Linux tarball for the stable channel:
+  #   https://pkgs.fluxer.com/desktop/stable/linux/x64/<version>/tar_gz
   #
   # The version and hash can be updated from:
-  #   https://pkgs.fluxer.com/desktop/<channel>/linux/x64/latest/latest.json
+  #   https://pkgs.fluxer.com/desktop/stable/linux/x64/latest/latest.json
   mkFluxer =
     {
       pname,
@@ -120,6 +120,7 @@ let
 
       src = fetchurl {
         url = "https://pkgs.fluxer.com/desktop/${channel}/linux/x64/${version}/tar_gz";
+        name = "${pname}-${version}.tar.gz";
         inherit hash;
       };
 
@@ -244,18 +245,5 @@ in
     desktopId = "app.fluxer.FluxerDesktop";
     iconName = "fluxer";
     comment = "Instant messaging and VoIP";
-  };
-
-  fluxer-canary = mkFluxer {
-    pname = "fluxer-canary";
-    version = "2026.1025.12532";
-    hash = "sha256-eV2NHOgc6o7oFeoQhV8RlXkSreYqTjVB06VSNMLBtCg=";
-    channel = "canary";
-    srcName = "Fluxer-Canary";
-    displayName = "Fluxer Canary";
-    binaryName = "fluxer-canary";
-    desktopId = "app.fluxer.FluxerDesktopCanary";
-    iconName = "fluxer-canary";
-    comment = "Canary build of Fluxer";
   };
 }
