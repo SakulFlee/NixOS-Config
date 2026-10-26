@@ -236,8 +236,8 @@ in
 {
   fluxer = mkFluxer {
     pname = "fluxer";
-    version = "2026.1025.12517";
-    hash = "sha256-nbms8MCZxhrlg859MbsKZxoUix2LFtYcbR6yuvzFExg=";
+    version = "2026.1026.24218";
+    hash = "sha256-q68qWqQdacKGQhmvgm/0wxT7ZNGD82GBfsF+ZkEzcMs=";
     channel = "stable";
     srcName = "Fluxer";
     displayName = "Fluxer";
