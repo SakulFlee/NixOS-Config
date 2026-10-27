@@ -158,10 +158,10 @@ Syncthing runs **on demand**, not continuously:
 - The script starts the service, unpauses `personal`, waits for the sync to
   finish, pauses it again and stops the service.
 
-The tablet’s `/sdcard/Personal` was wiped, leaving ~180 GB free, so a full
-63 GB sync fits. The folder is set to **receive-only**: the tablet mirrors
-Dendra, and local deletions do not propagate. Switch it to `sendreceive` later
-if you want tablet uploads.
+The tablet’s `/sdcard/Personal` was wiped, leaving ~180 GB free, so the full
+~65 GB global folder (Dendra + HomeLab) fits. The folder is set to
+**receive-only**: the tablet mirrors the peers, and local deletions do not
+propagate. Switch it to `sendreceive` later if you want tablet uploads.
 
 Initial sync, on the charger:
 
@@ -199,7 +199,52 @@ already added to Dendra's `hosts/Dendra/syncthing.nix`.
 - Port: 8022
 - User: `u0_a510` (the Termux app UID; check with `whoami`)
 - Key-only; `~/.ssh/authorized_keys` contains the `sakulflee@nixos` key.
-- From Dendra: `ssh -p 8022 u0_a510@192.168.178.106`
+- From Dendra: `ssh tablet` (the `Host tablet` entry is in the Home Manager SSH
+  config), or explicitly:
+
+  ```bash
+  ssh -p 8022 u0_a510@192.168.178.106
+  ```
+
+- From another device, use the same command. Add that device’s public key from
+  an already-authorized session:
+
+  ```bash
+  ssh tablet 'cat >> ~/.ssh/authorized_keys' < ~/.ssh/id_ed25519.pub
+  ```
+
+- The tablet does not hold a permanent wake-lock. If it is asleep, wake it/open
+  Termux first; the `tablet-sshd` service is started at boot by Termux:Boot.
+- From the tablet to Dendra: `ssh sakulflee@192.168.178.109`.
+
+## Runtime files on the tablet
+
+Keep these:
+
+- `~/.local/bin/` — `start/stop-desktop`, `open-app`, `ytdl`, `syncthing-sync`,
+  `download-*`, `show-desktop`, `plasma-tune`, …
+- `~/.config/` — Plasma, the Openbox fallback, tint2, Rofi, qterminal, GTK and
+  `tablet-session`
+- `~/.shortcuts/` — Termux:Widget scripts
+- `~/.termux/` — `termux.properties`, `boot/start-services.sh`
+- `~/.ssh/` — `sshd_config`, `authorized_keys`, keys
+- `~/.mozilla/firefox/tablet/` — Firefox profile and cookies
+- `~/.local/state/syncthing/` — Syncthing config, keys and index
+- `~/storage/shared/Personal/` — the actual synced files
+
+Disposable:
+
+- `~/.config/**/*.bak-*` and `~/.local/**/*.bak-*` — installer backups
+- `~/.local/share/tablet-shell-src/` — staging copy; reinstall from the repo
+- `~/bootstrap*.sh`, `~/dlg.out`, `~/yt-test.log`, `~/syncthing-sync.out`
+- `~/.local/state/*-test.log`
+- `~/storage/downloads/ytdlp/test-*`
+- `~/.cpan/` — Perl build cache
+
+Logs (`~/syncthing-sync.log`, `~/ytdlp.log`, `~/.local/state/*.log`) are safe to
+delete when not troubleshooting. Do **not** delete `~/.local/state/syncthing`
+or `~/storage/shared/Personal` while a sync is running or if you want to keep
+the received data.
 
 ## OpenCode
 
