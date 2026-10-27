@@ -275,6 +275,21 @@ The host is configured in `~/.config/tablet-session` as
 - **No audio**: `pulseaudio --start --exit-idle-time=-1`; check
   `pactl info` and `pactl list short sinks`. If `module-sles-sink` fails, try
   `sed -i 's/module-sles-sink/module-aaudio-sink/g' $PREFIX/etc/pulse/default.pa`.
+- **"Please enable permission for Termux:API" toast / Plasma brightness**:
+  Plasma's PowerDevil backlight helper calls `termux-brightness`, which needs the
+  special **Modify system settings** (`WRITE_SETTINGS`) access. It is not shown
+  in the normal app permission list, so every normal permission can be granted
+  and the toast still appears. Grant it via **Settings → Apps → Termux:API →
+  Special app access → Modify system settings**, or from a computer with adb:
+
+  ```bash
+  adb shell appops set com.termux.api WRITE_SETTINGS allow
+  ```
+
+  Re-grant it after reinstalling Termux:API. Existing **Termux:API Error**
+  notifications are leftovers from the failed calls and can be swiped away.
+  Plasma's brightness slider may start at 50% because the Termux brightness API
+  is write-only; setting it still works.
 - **Clipboard empty**: Android 10+ restricts background clipboard access. Use
   the **Download URL** widget, which opens a native paste dialog.
 - **Widget starts the desktop but Termux:X11 stays behind**: grant Termux

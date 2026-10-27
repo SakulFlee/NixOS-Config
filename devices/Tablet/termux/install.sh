@@ -115,3 +115,7 @@ put "$SRC/provision.sh" "$BIN/provision.sh" 755
 
 echo "Installed tablet shell into $HOME"
 echo "Next: run provision.sh from the Termux app (not via run-as)."
+echo
+echo "Termux:API needs 'Modify system settings' for Plasma brightness."
+echo "From a computer with adb: appops set com.termux.api WRITE_SETTINGS allow"
+echo "Or: Settings -> Apps -> Termux:API -> Special app access -> Modify system settings."
