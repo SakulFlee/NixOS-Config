@@ -13,11 +13,12 @@
 
   environment.systemPackages = with pkgs.kdePackages; [
     plasma-vault
+    # Dolphin's built-in terminal view requires Konsole. Kitty stays the default terminal.
+    konsole
   ];
 
-  # Kitty instead of Konsole, own editors instead of Kate
+  # Own editors instead of Kate
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    konsole
     kate
   ];
 
