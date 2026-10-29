@@ -22,8 +22,6 @@
       openssh.authorizedKeys.keys = [
         # SakulFlee's main key (matches the sops-managed private key)
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIImnWUykSX10iZYDF4g0bqy/uOXppRwWodtmg3iYBfBS sakulflee@nixos"
-        # Tablet Termux key (OpenCode over SSH)
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIssQBMMbluui0iK6IB/L0C0f2R79ZUk280OHRe1mNBW u0_a510@localhost"
       ];
 
       extraGroups = [
