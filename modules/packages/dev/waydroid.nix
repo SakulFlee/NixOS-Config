@@ -1,3 +1,6 @@
 { pkgs, ... }: {
-  virtualisation.docker.enable = true;
+  virtualisation.waydroid.enable = true;
+  environment.systemPackages = with pkgs; [
+    waydroid-helper
+  ];
 }
