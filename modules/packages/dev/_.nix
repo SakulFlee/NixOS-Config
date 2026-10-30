@@ -9,5 +9,6 @@
     ./clang.nix
     ./gcc.nix
     ./docker.nix
+    ./waydroid.nix
   ];
 }
