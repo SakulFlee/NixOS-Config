@@ -18,16 +18,15 @@
       src,
       patches ? [ ],
       cmakeFlags ? [ ],
-      # tools/ui/package-lock.json changes occasionally upstream; keep the
-      # hash per-revision instead of assuming every source tree shares one.
-      npmDepsHash ? "sha256-2Q7XhaLAArmviOLdQsNbYTfdyDE5pW9lR26cRHEVl9k=",
     }:
     let
+      # npm deps for tools/ui — package-lock.json is identical across the
+      # PrismML fork and the limite-patched rev.
       npmDeps = pkgs.fetchNpmDeps {
         name = "${name}-npm-deps";
         inherit src patches;
         preBuild = "pushd tools/ui";
-        hash = npmDepsHash;
+        hash = "sha256-2Q7XhaLAArmviOLdQsNbYTfdyDE5pW9lR26cRHEVl9k=";
       };
     in
     pkgs.stdenv.mkDerivation {
@@ -123,22 +122,6 @@
       ];
     }
   ) "llama-server";
-
-  # b12000 adds the LFM3 architecture (LLM_ARCH_LFM3), which the flake's
-  # llama.cpp input predates. Keep this build separate so the default binary
-  # stays on the pinned flake revision.
-  lfm3-llama-server = lib.getExe' (
-    mkLlamaServer {
-      name = "llama-server-lfm3";
-      src = pkgs.fetchFromGitHub {
-        owner = "ggml-org";
-        repo = "llama.cpp";
-        rev = "68d20b884c3878217de79eade0a249efde96ab38";
-        hash = "sha256-4UamGRu5zXtF+DzgYJpIYWU3fcIcxmyIkPlp6JqOIWI=";
-      };
-      npmDepsHash = "sha256-XLtEZsSFdk+2SyfXzBp8HQ2e27PQPpDCn1YjePU1/9w=";
-    }
-  ) "llama-server";
 in
 {
   services.llama-swap = {
@@ -174,9 +157,6 @@ in
         # Upstream llama.cpp + Tdamre limite patch, for the limite-1b-violetto
         # GGUFs. No --moe-cache-mib here.
         "limite_llama" = "${limite-llama-server}";
-        # Upstream llama.cpp b12000, for the LFM3 architecture (LFM3 and d1
-        # GGUFs). Adds LLM_ARCH_LFM3 on top of the flake-pinned revision.
-        "lfm3_llama" = "${lfm3-llama-server}";
       };
       models = {
         "[unsloth] Qwen3.6 35B-A3B @UD-Q4_K_XL [MTP]" = {
@@ -221,12 +201,12 @@ in
           '';
           capabilities.context = 64000;
         };
-        # LFM3 GGUFs use the lfm3 architecture, which needs the b12000 build.
-        # With -hf, llama.cpp auto-downloads the matching vision/audio mmproj
-        # where one exists (VL, Audio, Omni, d1-Omni).
+        # LFM3 GGUFs use the lfm3 architecture, supported by the flake's
+        # llama.cpp input. With -hf, llama.cpp auto-downloads the matching
+        # vision/audio mmproj where one exists (VL, Audio, Omni, d1-Omni).
         "LiquidAI/LFM3-1.7B @Q4_K_M" = {
           cmd = ''
-            ''${lfm3_llama} ''${common} \
+            ''${default} ''${common} \
               -hf LiquidAI/LFM3-1.7B-GGUF:Q4_K_M \
               --jinja
           '';
@@ -234,7 +214,7 @@ in
         };
         "LiquidAI/LFM3-VL-2B @Q4_K_M" = {
           cmd = ''
-            ''${lfm3_llama} ''${common} \
+            ''${default} ''${common} \
               -hf LiquidAI/LFM3-VL-2B-GGUF:Q4_K_M \
               --jinja
           '';
@@ -242,7 +222,7 @@ in
         };
         "LiquidAI/LFM3-Audio-2B @Q4_K_M" = {
           cmd = ''
-            ''${lfm3_llama} ''${common} \
+            ''${default} ''${common} \
               -hf LiquidAI/LFM3-Audio-2B-GGUF:Q4_K_M \
               --temp 0 \
               --jinja
@@ -251,7 +231,7 @@ in
         };
         "LiquidAI/LFM3-Omni-2B @Q4_K_M" = {
           cmd = ''
-            ''${lfm3_llama} ''${common} \
+            ''${default} ''${common} \
               -hf LiquidAI/LFM3-Omni-2B-GGUF:Q4_K_M \
               --reasoning off \
               --temp 0 \
@@ -263,7 +243,7 @@ in
         # hold the whole state plus any media.
         "LiquidAI/d1-2B @Q8_0" = {
           cmd = ''
-            ''${lfm3_llama} ''${common} \
+            ''${default} ''${common} \
               -hf LiquidAI/d1-2B-GGUF:Q8_0 \
               -b 8192 -ub 8192
           '';
@@ -271,7 +251,7 @@ in
         };
         "LiquidAI/d1-Omni-2B @Q8_0" = {
           cmd = ''
-            ''${lfm3_llama} ''${common} \
+            ''${default} ''${common} \
               -hf LiquidAI/d1-Omni-2B-GGUF:Q8_0 \
               -b 8192 -ub 8192
           '';
