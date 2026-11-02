@@ -24,6 +24,13 @@ in
     backend.sessionTokenFile = config.sops.secrets."hermes/desktop-token".path;
 
     settings = {
+      model = {
+        default = "LiquidAI/LFM3-1.7B @Q4_K_M";
+        provider = "custom";
+        base_url = llamaSwapUrl;
+        context_length = 64000;
+      };
+
       providers = {
         "llama-swap" = {
           base_url = llamaSwapUrl;
