@@ -10,5 +10,6 @@
     ./gcc.nix
     ./docker.nix
     ./waydroid.nix
+    ./quickemu.nix
   ];
 }
