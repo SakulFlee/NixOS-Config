@@ -10,6 +10,10 @@ return {
   -- Optional: For image rendering
   {
     "3rd/image.nvim",
+    -- We use the magick_cli processor, so the `magick` Lua rock is not needed.
+    -- Without this, lazy.nvim sees the rockspec dependency and keeps trying to
+    -- build it (and hererocks), which fails on NixOS.
+    build = false,
     config = function()
       require("image").setup({
         backend = "kitty",

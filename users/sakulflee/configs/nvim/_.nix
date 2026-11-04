@@ -6,13 +6,12 @@
 
   programs.neovim = {
     enable = true;
-    extraLuaPackages = luaPkgs: [
-      luaPkgs.magick
-    ];
+    # image.nvim is configured with the `magick_cli` processor, so it only
+    # needs the ImageMagick CLI. The `magick` Lua rock (and thus luarocks)
+    # is not required and should not be installed here.
     extraPackages = with pkgs; [
       imagemagick
       ghostscript
-      luarocks
     ];
   };
 }
