@@ -11,9 +11,6 @@
       init.defaultBranch = "main";
       pull.rebase = true;
       credential.helper = "store";
-
-      # Fetch other AGIT branches
-      remote.origin.fetch = "+refs/pull/*/head:refs/remotes/origin/pr/*";
     };
   };
 }
