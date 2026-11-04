@@ -13,6 +13,7 @@ return {
     config = function()
       require("image").setup({
         backend = "kitty",
+        processor = "magick_cli", -- Uses system ImageMagick directly
       })
     end,
   },
