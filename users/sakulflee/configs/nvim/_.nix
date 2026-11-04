@@ -12,6 +12,7 @@
     extraPackages = with pkgs; [
       imagemagick
       ghostscript
+      luarocks
     ];
   };
 }
