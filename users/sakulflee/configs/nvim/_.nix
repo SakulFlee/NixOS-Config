@@ -7,6 +7,10 @@ let
     jupyter-client
     jupytext
     nbformat
+    # Common notebook dependencies
+    numpy
+    pandas
+    matplotlib
     # Optional, for richer output rendering
     cairosvg
     pillow
