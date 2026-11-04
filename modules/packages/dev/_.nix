@@ -11,5 +11,6 @@
     ./docker.nix
     ./waydroid.nix
     ./quickemu.nix
+    ./jupyter.nix
   ];
 }
