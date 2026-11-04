@@ -154,12 +154,13 @@ local function eval_cells(cells)
     end
   end
 
-  -- If no kernel is attached yet, let Molten's normal prompt initialize one
-  -- first, then run all the requested cells once it is ready.
+  -- If no kernel is attached yet, initialize one and wait until it is actually
+  -- ready. MoltenInitPost fires before the kernel can receive code, so using it
+  -- can silently drop the first batch of cells.
   if not has_kernel() then
     local group = vim.api.nvim_create_augroup("MoltenRunCells", { clear = true })
     vim.api.nvim_create_autocmd("User", {
-      pattern = "MoltenInitPost",
+      pattern = "MoltenKernelReady",
       once = true,
       group = group,
       callback = function()
@@ -254,6 +255,9 @@ return {
     init = function()
       vim.g.molten_image_provider = "image.nvim"
       vim.g.molten_output_win_max_height = 20
+      -- Keep outputs visible below the cell instead of relying on the float.
+      vim.g.molten_virt_text_output = true
+      vim.g.molten_virt_lines_off_by_1 = true
       define_commands()
     end,
     keys = {
