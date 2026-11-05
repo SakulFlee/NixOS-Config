@@ -25,4 +25,18 @@
     DBusActivatable=false
     StartupNotify=true
   '';
+
+  # Run ComfyUI in a terminal so it can be stopped with Ctrl+C and its
+  # model/GPU logs stay visible. Data lives in ~/.local/share/comfyui.
+  xdg.dataFile."applications/comfyui.desktop".text = ''
+    [Desktop Entry]
+    Type=Application
+    Name=ComfyUI
+    Comment=Node-based interface for running diffusion models
+    Exec=/run/current-system/sw/bin/kitty /run/current-system/sw/bin/comfyui --auto-launch --preview-method auto --enable-manager
+    Icon=applications-graphics
+    Terminal=false
+    Categories=Graphics;2DGraphics;
+    StartupNotify=true
+  '';
 }
