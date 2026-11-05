@@ -13,6 +13,7 @@
     ./workspace.nix
     ./desktop.nix
     ./panels.nix
+    ./pin-panels.nix
     ./shortcuts.nix
     ./cursor.nix
     ./vaults.nix
