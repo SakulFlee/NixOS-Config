@@ -4,7 +4,7 @@
     ./syncthing.nix
     ../../users/_.nix
     ../../modules/common/_.nix
-    #    ../../modules/common/optionals/openrgb.nix
+    ../../modules/common/optionals/openrgb.nix
     #    ../../modules/common/optionals/vbox.nix
 
     ../../modules/packages/_.nix
