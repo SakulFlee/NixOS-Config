@@ -5,5 +5,6 @@
     ./kitty.nix
     ./clipboard.nix
     ./sunshine.nix
+    ./moonlight.nix
   ];
 }
