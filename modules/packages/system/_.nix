@@ -4,5 +4,6 @@
     ./zsh.nix
     ./kitty.nix
     ./clipboard.nix
+    ./sunshine.nix
   ];
 }
