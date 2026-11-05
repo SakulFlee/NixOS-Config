@@ -13,7 +13,7 @@
     home-manager.users.root = {
       imports = [ ../../modules/home-manager/zsh.nix ];
 
-      home.stateVersion = "25.11";
+      home.stateVersion = "26.05";
     };
   };
 }
