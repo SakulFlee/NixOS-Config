@@ -19,12 +19,16 @@
         Tablet = {
           id = "D6FXOLT-K6ANSIJ-RLFA7D7-EPI6CZO-GVVCGET-B3NMYBA-ZJ34RF6-VXO3BQ5";
         };
+        Cindry = {
+          id = "PNWH6NV-I5Q4FGM-F67LFIY-GBAFSUR-K6CL2ZQ-D4N6ZFS-BVRMC7N-6NCG5AO";
+        };
       };
       folders = {
         "/mnt/ssd/Personal/" = {
           id = "personal";
           devices = [
             "HomeLab"
+            "Cindry"
             "Phone"
             "Tablet"
           ];
