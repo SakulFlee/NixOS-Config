@@ -94,6 +94,15 @@ let
 
     postFixup = ''
       wrapUnsloth() {
+        # The ROCm torch wheels are manylinux builds: they need the Nix
+        # libstdc++/zlib/openssl/ffmpeg stack, plus the host GPU userspace,
+        # or `import torch` fails before it can enumerate the GPU.
+        #
+        # Nix owns the runtime versions. Leaving Unsloth's updater enabled
+        # makes it try to write .bin.install.lock into the read-only store.
+        #
+        # Prefer Hugging Face; Unsloth otherwise auto-selects ModelScope in
+        # some regions, which hides HF models from the Hub until changed.
         wrapProgram "$1" \
           --prefix PATH : ${
             lib.makeBinPath (
@@ -113,12 +122,25 @@ let
               ]
             )
           } \
+          --prefix LD_LIBRARY_PATH : ${
+            lib.makeLibraryPath (
+              with pkgs;
+              [
+                stdenv.cc.cc.lib
+                zlib
+                openssl
+                ffmpeg
+                nghttp2
+              ]
+            )
+          }:/run/opengl-driver/lib \
           --set-default UV_PYTHON_PREFERENCE only-system \
           --set-default UV_PYTHON_DOWNLOADS never \
           --set-default UNSLOTH_PYTHON 3.13 \
           --set-default UNSLOTH_ROCM_GFX_ARCH ${rocmGfxArch} \
           --set-default UNSLOTH_LOCAL_LLAMA_CPP_DIR ${llama-cpp}/bin \
-          --set-default UNSLOTH_LLAMA_CPP_PATH ${llama-cpp}/bin \
+          --set-default UNSLOTH_DISABLE_UPDATE_CHECK 1 \
+          --set-default UNSLOTH_MIRROR_FALLBACK 0 \
           --set-default SSL_CERT_FILE ${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt \
           --set-default NIX_SSL_CERT_FILE ${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt \
           --set-default REQUESTS_CA_BUNDLE ${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt \
