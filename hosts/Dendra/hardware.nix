@@ -22,14 +22,20 @@
     "usbhid"
     "sd_mod"
   ];
-  boot.initrd.kernelModules = [ 
-    "nct6683"
+  boot.kernelModules = [ 
+    "nct6687"
   ];
+  boot.blacklistedKernelModules = [ "nct6683" ];
   boot.kernelParams = [ "acpi_enforce_resources=lax" ];
-  boot.kernelModules = [ "kvm-amd" ];
-  boot.extraModulePackages = [ ];
+  boot.kernelModules = [ 
+    "kvm-amd"
+    "nct6687"
+  ];
+  boot.extraModulePackages = [
+    config.boot.kernelPackages.nct6887d
+  ];
   boot.extraModprobeConfig = ''
-    options nct6775 fan_predict=1
+    options nct6687 msi_fan_brute_force=1
   '';
 
   fileSystems."/" = {
