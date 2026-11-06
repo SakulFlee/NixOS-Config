@@ -6,5 +6,6 @@
     ./clipboard.nix
     ./sunshine.nix
     ./moonlight.nix
+    ./lm_sensors.nix
   ];
 }
