@@ -25,6 +25,7 @@
   boot.initrd.kernelModules = [ 
     "nct6775"
   ];
+  boot.kernelParams = [ "acpi_enforce_resources=lax" ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
   boot.extraModprobeConfig = ''
