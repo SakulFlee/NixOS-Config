@@ -5,7 +5,7 @@
     ../../users/_.nix
     ../../modules/common/_.nix
     ../../modules/optionals/openrgb.nix
-    ../../modules/optionals/openrazer.nix
+    ../../modules/optionals/devices-razer.nix
 
     ../../modules/packages/_.nix
 
