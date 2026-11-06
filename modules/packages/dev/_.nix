@@ -12,5 +12,6 @@
     ./waydroid.nix
     ./quickemu.nix
     ./jupyter.nix
+    ./qwen-code.nix
   ];
 }
