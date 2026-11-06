@@ -29,7 +29,7 @@
   boot.blacklistedKernelModules = [ "nct6683" ];
   boot.kernelParams = [ "acpi_enforce_resources=lax" ];
   boot.extraModulePackages = [
-    config.boot.kernelPackages.nct6887d
+    config.boot.kernelPackages.nct6687d
   ];
   boot.extraModprobeConfig = ''
     options nct6687 msi_fan_brute_force=1
