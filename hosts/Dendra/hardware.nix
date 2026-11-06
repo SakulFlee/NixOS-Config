@@ -23,7 +23,7 @@
     "sd_mod"
   ];
   boot.initrd.kernelModules = [ 
-    "nct6775"
+    "nct6683"
   ];
   boot.kernelParams = [ "acpi_enforce_resources=lax" ];
   boot.kernelModules = [ "kvm-amd" ];
