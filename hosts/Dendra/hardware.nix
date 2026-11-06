@@ -22,9 +22,14 @@
     "usbhid"
     "sd_mod"
   ];
-  boot.initrd.kernelModules = [ ];
+  boot.initrd.kernelModules = [ 
+    "nct6775"
+  ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
+  boot.extraModprobeConfig = ''
+    options nct6775 fan_predict=1
+  '';
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/200030cb-36bd-478c-81a6-250720433196";
