@@ -14,7 +14,7 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  boot.initrd.availableKernelModules = [
+  boo/.initrd.availableKernelModules = [
     "nvme"
     "xhci_pci"
     "ahci"
@@ -23,14 +23,11 @@
     "sd_mod"
   ];
   boot.kernelModules = [ 
+    "kvm-amd"
     "nct6687"
   ];
   boot.blacklistedKernelModules = [ "nct6683" ];
   boot.kernelParams = [ "acpi_enforce_resources=lax" ];
-  boot.kernelModules = [ 
-    "kvm-amd"
-    "nct6687"
-  ];
   boot.extraModulePackages = [
     config.boot.kernelPackages.nct6887d
   ];
