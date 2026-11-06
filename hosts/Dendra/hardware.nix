@@ -14,7 +14,7 @@
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 
-  boo/.initrd.availableKernelModules = [
+  boot.initrd.availableKernelModules = [
     "nvme"
     "xhci_pci"
     "ahci"
