@@ -1,9 +1,6 @@
 { ... }: {
   imports = [
-    ai/comfyui.nix
-    ai/strata-cli.nix
-    ai/strata.nix
-    ai/unsloth-studio.nix
+    ai/_.nix
     dev/_.nix
     creative/_.nix
     files/_.nix
