@@ -3,5 +3,6 @@
     ./brave.nix
     ./thunderbird.nix
     ./tor-browser.nix
+    ./librewolf.nix
   ];
 }
