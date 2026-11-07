@@ -16,7 +16,7 @@ let
   desktopItem = pkgs.makeDesktopItem {
     name = "strata";
     desktopName = "Strata";
-    exec = "strata";
+    exec = "strata-gui";
     icon = "strata";
     comment = "Local AI, tuned to one model";
     categories = [
@@ -25,8 +25,10 @@ let
     ];
   };
 
-  strata = pkgs.appimageTools.wrapType2 {
-    pname = "strata";
+  # Keep the GUI's binary separate from the `strata` CLI so both can be
+  # installed at once; the desktop entry below still launches the GUI.
+  strata-gui = pkgs.appimageTools.wrapType2 {
+    pname = "strata-gui";
     inherit version src;
 
     # The bundled Python looks for /etc/ssl/cert.pem or a hashed CA directory,
@@ -49,10 +51,10 @@ let
       homepage = "https://github.com/Niko1221/Strata";
       license = lib.licenses.mit;
       platforms = [ "x86_64-linux" ];
-      mainProgram = "strata";
+      mainProgram = "strata-gui";
     };
   };
 in
 {
-  environment.systemPackages = [ strata ];
+  environment.systemPackages = [ strata-gui ];
 }
