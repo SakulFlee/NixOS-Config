@@ -4,5 +4,6 @@
     ./thunderbird.nix
     ./tor-browser.nix
     ./librewolf.nix
+    ./firefox.nix
   ];
 }
