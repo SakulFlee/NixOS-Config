@@ -1,11 +1,11 @@
 { pkgs, lib, ... }:
 let
-  version = "0.2.1";
+  version = "0.2.11";
 
-  # The AMD RX 9070 build supports Navi 48 (gfx1201) and Navi 44 / RX 9060 XT (gfx1200).
+  # One AppImage covers the supported x86_64 GPU backends (AMD HIP, NVIDIA CUDA).
   src = pkgs.fetchurl {
-    url = "https://github.com/Niko1221/Strata/releases/download/v${version}/Strata-${version}-linux-amd-rx9070.AppImage";
-    hash = "sha256-C8oqCZ9Qbh041C1x1Vxwnibzejx+J2ubXFPnkya/NPo=";
+    url = "https://github.com/Niko1221/Strata/releases/download/v${version}/Strata-${version}-linux-x86_64.AppImage";
+    hash = "sha256-nKyb5/gc6Syn+wuDkYC+xz1FS4rksrwKckwGeMLiEZ4=";
   };
 
   icon = pkgs.fetchurl {
