@@ -8,7 +8,7 @@
   llama-cpp = inputs.llama-cpp.packages.${pkgs.stdenv.hostPlatform.system}.rocm;
   llama-server = lib.getExe' llama-cpp "llama-server";
 
-  # Build llama-server from an arbitrary llama.cpp revision with the Vulkan
+  # Build llama-server from an arbitrary llama.cpp revision with the ROCm/HIP
   # backend (matching the default build above) and the embedded Web UI.
   mkLlamaServer =
     {
@@ -18,6 +18,11 @@
       cmakeFlags ? [ ],
     }:
     let
+      # This host only has an RX 9060 XT (gfx1200). Restricting the target
+      # keeps the HIP kernel build fast instead of cross-compiling for every
+      # GPU in rocmPackages.clr.gpuTargets.
+      rocmGpuTarget = "gfx1200";
+
       # npm deps for tools/ui — package-lock.json is identical across the
       # PrismML fork and the limite-patched rev.
       npmDeps = pkgs.fetchNpmDeps {
@@ -33,17 +38,23 @@
       nativeBuildInputs = [
         pkgs.cmake
         pkgs.pkg-config
-        pkgs.shaderc # glslc, compiles the Vulkan shaders
         pkgs.nodejs
         pkgs.npmHooks.npmConfigHook
       ];
 
       buildInputs = [
         pkgs.openssl
-        pkgs.spirv-headers
-        pkgs.vulkan-headers
-        pkgs.vulkan-loader
+        pkgs.rocmPackages.clr
+        pkgs.rocmPackages.hipblas
+        pkgs.rocmPackages.rocblas
       ];
+
+      # The HIP compiler is ROCm's clang, and these two variables point its
+      # device runtime at the matching ROCm installation in the Nix store.
+      env = {
+        ROCM_PATH = "${pkgs.rocmPackages.clr}";
+        HIP_DEVICE_LIB_PATH = "${pkgs.rocmPackages.rocm-device-libs}/amdgcn/bitcode";
+      };
 
       npmRoot = "tools/ui";
       inherit npmDeps;
@@ -58,7 +69,11 @@
 
       cmakeFlags = [
         "-DBUILD_SHARED_LIBS=OFF"
-        "-DGGML_ROCM=ON"
+        # llama.cpp's CMake option is GGML_HIP, not GGML_ROCM. The latter is
+        # silently ignored, which produces a CPU-only binary.
+        "-DGGML_HIP=ON"
+        "-DCMAKE_HIP_COMPILER=${pkgs.rocmPackages.llvm.clang}/bin/clang"
+        "-DCMAKE_HIP_ARCHITECTURES=${rocmGpuTarget}"
         "-DLLAMA_BUILD_APP=OFF"
         "-DLLAMA_BUILD_EXAMPLES=OFF"
         "-DLLAMA_BUILD_SERVER=ON"
@@ -365,7 +380,7 @@ in
     MemoryDenyWriteExecute = lib.mkForce false;
     ProtectControlGroups = lib.mkForce false;
 
-    # GPU access for Vulkan (AMD ROCm, etc.)
+    # GPU access for ROCm (/dev/kfd, /dev/dri).
     SupplementaryGroups = [
       "render"
       "video"
