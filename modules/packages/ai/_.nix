@@ -1,6 +1,7 @@
 { ... }: {
   imports = [
     ./llama-cpp.nix
+    ./llama-swap.nix
     ./opencode.nix
     ./unsloth-studio.nix
     ./lmstudio.nix

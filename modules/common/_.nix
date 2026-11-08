@@ -17,7 +17,6 @@
     ./wayland.nix
     ./zram.nix
     ./wheel.nix
-    ./llama-swap.nix
     ./dbus.nix
     ./avahi.nix
     ./flatpak.nix

@@ -5,9 +5,7 @@
   lib,
   ...
 }:let
-  llama-cpp = inputs.llama-cpp.packages.${pkgs.stdenv.hostPlatform.system}.default.override {
-    useVulkan = true;
-  };
+  llama-cpp = inputs.llama-cpp.packages.${pkgs.stdenv.hostPlatform.system}.rocm;
   llama-server = lib.getExe' llama-cpp "llama-server";
 
   # Build llama-server from an arbitrary llama.cpp revision with the Vulkan
@@ -60,7 +58,7 @@
 
       cmakeFlags = [
         "-DBUILD_SHARED_LIBS=OFF"
-        "-DGGML_VULKAN=ON"
+        "-DGGML_ROCM=ON"
         "-DLLAMA_BUILD_APP=OFF"
         "-DLLAMA_BUILD_EXAMPLES=OFF"
         "-DLLAMA_BUILD_SERVER=ON"
