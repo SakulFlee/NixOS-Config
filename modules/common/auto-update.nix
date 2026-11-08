@@ -3,6 +3,7 @@
 let
   nixosRebuildBin = "${pkgs.nixos-rebuild}/bin/nixos-rebuild";
   gitBin = "${pkgs.git}/bin/git";
+  systemctlBin = "${pkgs.systemd}/bin/systemctl";
 in
 {
   security.sudo.extraRules = [
@@ -61,6 +62,15 @@ in
         fi
 
         ${gitBin} merge --ff-only origin/main || echo "Auto-update: merge failed (diverged?)"
+
+        # switch-to-configuration stops and restarts this very service, so an
+        # interrupted run can still have its transient switch unit loaded when
+        # this instance starts. nixos-rebuild reuses that unit name, so wait
+        # for it to finish instead of failing with "already loaded".
+        while ${systemctlBin} is-active --quiet nixos-rebuild-switch-to-configuration.service; do
+          echo "Auto-update: waiting for the previous system switch to finish..."
+          sleep 5
+        done
 
         echo "--- nixos-rebuild start ---"
         EXIT_CODE=0
