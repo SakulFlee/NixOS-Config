@@ -7,5 +7,6 @@
     ./comfyui.nix
     ./strata-cli.nix
     ./strata.nix
+    ./herdr.nix
   ];
 }

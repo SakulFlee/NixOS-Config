@@ -50,6 +50,12 @@
       url = "github:sudo-tee/opencode.nvim";
       flake = false;
     };
+
+    # Third-party AI agent tooling (e.g. herdr). Intentionally does NOT follow
+    # our nixpkgs so we hit numtide's binary cache (see experimental-features.nix).
+    llm-agents = {
+      url = "github:numtide/llm-agents.nix";
+    };
   };
 
   outputs =
