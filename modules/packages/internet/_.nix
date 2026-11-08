@@ -1,6 +1,6 @@
 { ... }: {
   imports = [
-    ./brave.nix
+    # ./brave.nix
     ./thunderbird.nix
     ./tor-browser.nix
     ./librewolf.nix
